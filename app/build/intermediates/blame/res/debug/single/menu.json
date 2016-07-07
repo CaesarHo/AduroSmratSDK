@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_client_connections_contextual.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_client_connections_contextual.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe_disconnected.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_subscribe_disconnected.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_new_connection.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_new_connection.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_connections.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections_logging.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_connections_logging.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_advanced.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_advanced.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_subscribe.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details_disconnected.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_connection_details_disconnected.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish_disconnected.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_publish_disconnected.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_publish.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_connection_details.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_last_will.xml",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\menu\\activity_last_will.xml"
+    }
+]

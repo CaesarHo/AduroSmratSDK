@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\arrow.png",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\drawable-hdpi\\arrow.png"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\Worksmarthome\\AndroidMQTTDemo-master\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    }
+]
