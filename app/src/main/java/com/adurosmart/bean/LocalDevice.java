@@ -9,7 +9,6 @@ public class LocalDevice {
 	public int type;
 	public InetAddress address;
 	public int rtspFrag ;
-	
 
 	public int getRtspFrag() {
 		return rtspFrag;

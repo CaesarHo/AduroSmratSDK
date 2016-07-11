@@ -27,8 +27,8 @@
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService"></service>
 
-        <!-- Main Activity -->
-        <activity android:name="org.eclipse.paho.android.service.sample.ClientConnections">
+        <!-- Main Activity org.eclipse.paho.android.service.sample.ClientConnections-->
+        <activity android:name="com.adurosmart.activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +40,6 @@
         <activity
             android:name="org.eclipse.paho.android.service.sample.NewConnection"
             android:label="@string/title_activity_new_connection"></activity>
-
 
         <!-- Advanced Options Screen -->
         <activity
@@ -56,6 +55,8 @@
         <activity
             android:name="org.eclipse.paho.android.service.sample.ConnectionDetails"
             android:label="@string/title_activity_connection_details"></activity>
+
+
 
         <activity
             android:name="com.adurosmart.activitys.UpdActivity"

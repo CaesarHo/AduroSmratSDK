@@ -32,10 +32,8 @@ public class SharedPreferencesManager {
         return sf.getString(key, "");
     }
 
-    public void putData(Context context, String fileName, String key,
-                        String value) {
-        SharedPreferences sf = context.getSharedPreferences(fileName,
-                context.MODE_PRIVATE);
+    public void putData(Context context, String fileName, String key,String value) {
+        SharedPreferences sf = context.getSharedPreferences(fileName, context.MODE_PRIVATE);
         Editor editor = sf.edit();
         editor.putString(key, value);
         editor.commit();

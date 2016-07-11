@@ -1,6 +1,8 @@
 package org.eclipse.paho.android.service.sample;
 
 import android.app.Application;
+import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
@@ -8,6 +10,7 @@ import android.util.Log;
 
 import com.adurosmart.global.Constants;
 import com.adurosmart.mqtt.MQTTHelper;
+import com.adurosmart.utils.UDPHelper2;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -24,6 +27,10 @@ public class MyApp extends Application {
 	MQTTHelper mqttHelper;
 	Thread thread;
 
+	Thread tReceived;
+	UDPHelper2 udpHelper2;
+	WifiManager wifiManager;
+
 	@Override
 	public void onCreate() {
 		app = this;
@@ -32,11 +39,16 @@ public class MyApp extends Application {
 		clientId = mAndroidId;
 		connectAction();
 		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
-
-		//订阅MQTT
 		mqttHelper = new MQTTHelper(app,clientHandle);
-		thread = new Thread(mqttHelper);
+		thread = new Thread();
 		thread.start();
+
+		//获取wifi服务
+		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		//监听2
+		udpHelper2 = new UDPHelper2(app,wifiManager);
+		tReceived = new Thread(udpHelper2);
+		tReceived.start();
 	}
 
 	public void connectAction(){

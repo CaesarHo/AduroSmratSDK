@@ -2,31 +2,31 @@
 <instant-run
     abi="armeabi-v7a,armeabi"
     api-level="22"
-    density="tvdpi"
+    density="xxhdpi"
     format="7"
-    timestamp="6680284910507"
-    token="1531137079426245158" >
+    timestamp="5874604025983"
+    token="6983500007684525563" >
 
     <task
         name="javac"
-        duration="506" />
+        duration="394" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="256" />
+        duration="437" />
     <task
         name="verifier"
-        duration="90" />
+        duration="95" />
 
     <artifact
-        location="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\outputs\apk\app-debug.apk"
+        location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="6680284910507" >
+    <build timestamp="5874604025983" >
         <artifact
-            location="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\outputs\apk\app-debug.apk"
+            location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
 

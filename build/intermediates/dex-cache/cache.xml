@@ -2,32 +2,25 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
-        jumboMode="true"
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="false"
         revision="21.1.2"
-        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
-        <dex dex="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed\classes.dex" />
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\pre-dexed\debug\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f.jar" />
     </item>
     <item
         jar="D:\Android\android-sdk-windows\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         revision="21.1.2"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000\classes.dex" />
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000.jar" />
     </item>
     <item
-        jar="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
+        jumboMode="false"
         revision="21.1.2"
-        sha1="b03b1d9ed46477e3b0692e26f0e00b15453114c3">
-        <dex dex="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_afe7be601b3c34dbe68829f6046d4e7d5d840a82\classes.dex" />
-    </item>
-    <item
-        jar="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="6f2eeb5182e71988026178639b2386f5f0560c3e">
-        <dex dex="F:\Worksmarthome\AndroidMQTTDemo-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3112fdfdd3b359d31b3e0129f6473c5d1623a898\classes.dex" />
+        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\pre-dexed\debug\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed.jar" />
     </item>
 
 </items>

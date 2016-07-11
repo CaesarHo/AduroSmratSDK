@@ -4,10 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.adurosmart.global.FList;
-import com.adurosmart.mqtt.MQTTHelper;
 import com.adurosmart.utils.Utils;
-
-import org.eclipse.paho.android.service.sample.MyApp;
 
 public class MainThread {
 	static MainThread manager;
@@ -20,9 +17,6 @@ public class MainThread {
 	private SearchUpdate update;
 	Context context;
 	private static boolean isOpenThread;
-	MQTTHelper mMQTTHelper;
-	Thread mThread;
-	String uri = "tcp://" + "www.adurosmart.com" + ":" + "1883" + MyApp.clientId;
 
 	public MainThread(Context context) {
 		manager = this;
@@ -39,10 +33,6 @@ public class MainThread {
 			isRun = true;
 			Utils.sleepThread(3000);
 			while (isRun) {
-				FList.getInstance().searchLocalDevice();
-				mMQTTHelper = new MQTTHelper(MyApp.app,uri);
-				mThread = new Thread(mMQTTHelper);
-				mThread.start();
 				if (isOpenThread == true) {
 //					checkUpdate();
 					Log.e("my", "updateOnlineState");
