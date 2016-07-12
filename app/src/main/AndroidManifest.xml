@@ -27,8 +27,8 @@
         <!-- Mqtt Service -->
         <service android:name="org.eclipse.paho.android.service.MqttService"></service>
 
-        <!-- Main Activity org.eclipse.paho.android.service.sample.ClientConnections-->
-        <activity android:name="com.adurosmart.activitys.MainActivity">
+        <!-- Main Activity -->
+        <activity android:name="org.eclipse.paho.android.service.sample.ClientConnections">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

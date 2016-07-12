@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\Worksmarthome\AndroidAduroSmart\app\src\main\assets"><file name="file" path="F:\Worksmarthome\AndroidAduroSmart\app\src\main\assets\file"/></source><source path="F:\Worksmarthome\AndroidAduroSmart\app\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="F:\Worksmarthome\AndroidAduroSmart\app\src\release\assets"/></dataSet></merger>

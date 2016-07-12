@@ -54,7 +54,32 @@ public class DataSources {
     }
 
     //添加设备
-    public void AddDeviceResult(){
+    public void AddDeviceResult(int result){
         sdkCallback.AddDeviceCallback(1);
+    }
+
+    //设备删除回调
+    public void DeleteDeviceResult(int result){
+        sdkCallback.DeleteDeviceCallback(result);
+    }
+
+    //修改设备回调
+    public void ModifyDeviceResult(int result){
+        sdkCallback.ModifyDeviceCallback(result);
+    }
+
+    //设备状态改变
+    public void setDeviceState(int state){
+        sdkCallback.setDeviceStateCallback(state);
+    }
+
+    //获取设备状态
+    public void getDeviceState(){
+
+    }
+
+    //改变设备值
+    public void setDeviceLevel(byte value){
+
     }
 }

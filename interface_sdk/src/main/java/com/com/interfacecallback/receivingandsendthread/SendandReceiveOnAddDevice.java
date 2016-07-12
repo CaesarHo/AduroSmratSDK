@@ -42,6 +42,7 @@ public class SendandReceiveOnAddDevice implements Runnable{
 //            cmdInfo.app_id = app_id;
 
             DatagramPacket packet_send = new DatagramPacket(mAddRoom.getBytes(),mAddRoom.getBytes().length,serverAddr, port);
+
             m_CMDSocket.send(packet_send);
 
             // 接收数据
@@ -52,7 +53,7 @@ public class SendandReceiveOnAddDevice implements Runnable{
 //            repdata.parseBytes(packet.getData());
 
             //当result等于1时修改成功,0修改失败
-            DataSources.getInstance().AddDeviceResult();
+            DataSources.getInstance().AddDeviceResult(1);
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

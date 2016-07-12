@@ -6,7 +6,7 @@ public class ShakeData {
     public static class Cmd {
         public static final int GET_DEVICE_LIST = 1;
         public static final int RECEIVE_DEVICE_LIST = 2;
-        public static final int NO_ASSOCIATED_DATA_PACKET = 9999;
+        public static final int NO_ASSOCIATED_DATA_PACKET = 8888;
 
         public static int[] getCmds() {
             return new int[]{1, 2};

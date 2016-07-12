@@ -21,9 +21,11 @@ import android.widget.Toast;
 import com.adurosmart.adapters.TestUPDAdapters;
 import com.adurosmart.global.Constants;
 import com.adurosmart.global.FList;
+import com.adurosmart.global.ListenCallback;
 import com.adurosmart.utils.AESUtils;
 import com.adurosmart.utils.UDPHelper;
 import com.adurosmart.utils.UDPHelper2;
+import com.interfacecallback.SerialHandler;
 
 import org.eclipse.paho.android.service.sample.MyApp;
 import org.eclipse.paho.android.service.sample.R;
@@ -101,6 +103,7 @@ public class UpdActivity extends Activity {
         udpHelper2 = new UDPHelper2(context,wifiManager);
         tReceived = new Thread(udpHelper2);
         tReceived.start();
+        SerialHandler.getInstance().p2pInit(context,new ListenCallback());
     }
 
     public void initview() {
@@ -109,7 +112,8 @@ public class UpdActivity extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Thread(new Send()).start();
+//                new Thread(new Send()).start();
+                SerialHandler.getInstance().AddDevice(context,"192.168.0.89",8888,"我的设备",123456,(short)1,(short)1);
             }
         });
 
@@ -154,6 +158,7 @@ public class UpdActivity extends Activity {
     public void regFilter() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constants.Action.ACTION_LISTEN_UDP_DATA);
+        filter.addAction("adddevicecallback");
         context.registerReceiver(broadcastReceiver, filter);
         isRegFilter = true;
     }
@@ -178,6 +183,12 @@ public class UpdActivity extends Activity {
                 t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
                 t3.setMargin(0f, 0.5f);
                 t3.show();
+            }else if (intent.getAction().equals("adddevicecallback")){
+                int i = intent.getIntExtra("i",-1);
+                Toast ti = Toast.makeText(context,""+ i,Toast.LENGTH_LONG);
+                ti.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                ti.setMargin(0f,0.5f);
+                ti.show();
             }
         }
     };

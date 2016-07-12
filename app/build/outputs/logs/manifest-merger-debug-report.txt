@@ -73,10 +73,10 @@ service#org.eclipse.paho.android.service.MqttService
 ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:28:9-88
 	android:name
 		ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:28:18-77
-activity#com.adurosmart.activitys.MainActivity
+activity#org.eclipse.paho.android.service.sample.ClientConnections
 ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:31:9-37:20
 	android:name
-		ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:31:19-71
+		ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:31:19-91
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from F:\Worksmarthome\AndroidAduroSmart\app\src\main\AndroidManifest.xml:32:13-36:29
 action#android.intent.action.MAIN
