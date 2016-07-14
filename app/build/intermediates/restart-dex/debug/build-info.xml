@@ -2,46 +2,32 @@
 <instant-run
     abi="armeabi-v7a,armeabi"
     api-level="22"
-    density="tvdpi"
+    density="xxhdpi"
     format="7"
-    timestamp="6802678739570"
-    token="6983500007684525563"
-    verifier="DEPENDENCY_CHANGED" >
+    timestamp="31021993955747"
+    token="6983500007684525563" >
 
     <task
         name="javac"
-        duration="972" />
+        duration="468" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="58" />
+        duration="270" />
     <task
         name="verifier"
-        duration="6" />
+        duration="96" />
 
     <artifact
-        location="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_eb06ccdc67063f458dd2ab71de371dc3086944d4\classes.dex"
-        type="DEX" />
-    <artifact
-        location="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
-        type="DEX" />
+        location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="6306109741093" >
+    <build timestamp="31021993955747" >
         <artifact
             location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="6802678739570"
-        verifier="DEPENDENCY_CHANGED" >
-        <artifact
-            location="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_eb06ccdc67063f458dd2ab71de371dc3086944d4\classes.dex"
-            type="DEX" />
-        <artifact
-            location="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

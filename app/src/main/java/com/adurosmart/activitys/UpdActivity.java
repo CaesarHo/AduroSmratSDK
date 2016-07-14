@@ -19,13 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adurosmart.adapters.TestUPDAdapters;
-import com.adurosmart.global.Constants;
 import com.adurosmart.global.FList;
 import com.adurosmart.global.ListenCallback;
 import com.adurosmart.utils.AESUtils;
-import com.adurosmart.utils.UDPHelper;
 import com.adurosmart.utils.UDPHelper2;
 import com.interfacecallback.SerialHandler;
+import com.interfacecallback.UDPHelper;
 
 import org.eclipse.paho.android.service.sample.MyApp;
 import org.eclipse.paho.android.service.sample.R;
@@ -65,22 +64,24 @@ public class UpdActivity extends Activity {
     List<DevInfo> mDevInfoList = new ArrayList<DevInfo>();
     TestUPDAdapters testUPDAdapters;
 
-    public UDPHelper mHelper;
     boolean isReceive = false;
     private boolean isRegFilter = false;
     WifiManager.MulticastLock lock;
 
     Thread tReceived;
     UDPHelper2 udpHelper2;
+    WifiManager wifiManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_udp);
         context = this;
+//        DataSources.getInstance().setSettingInterface(new ListenCallback());
+        SerialHandler.getInstance().Init(context, "200004401331", new ListenCallback());
         new FList();
         //获取wifi服务
-        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         //判断wifi是否开启
         if (!wifiManager.isWifiEnabled()) {
             wifiManager.setWifiEnabled(true);
@@ -103,7 +104,7 @@ public class UpdActivity extends Activity {
         udpHelper2 = new UDPHelper2(context,wifiManager);
         tReceived = new Thread(udpHelper2);
         tReceived.start();
-        SerialHandler.getInstance().p2pInit(context,new ListenCallback());
+//        SerialHandler.getInstance().Init(context,new ListenCallback());
     }
 
     public void initview() {
@@ -113,7 +114,15 @@ public class UpdActivity extends Activity {
             @Override
             public void onClick(View view) {
 //                new Thread(new Send()).start();
-                SerialHandler.getInstance().AddDevice(context,"192.168.0.89",8888,"我的设备",123456,(short)1,(short)1);
+                UDPHelper udpHelper = new UDPHelper(context,wifiManager);
+                Thread thread = new Thread(udpHelper);
+                thread.start();
+
+//                String ipaddress = GatewayInfo.getInstance().getInetAddress(context);
+//                Toast t3 = Toast.makeText(context, "当前数据=" + ipaddress, Toast.LENGTH_SHORT);
+//                t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
+//                t3.setMargin(0f, 0.5f);
+//                t3.show();
             }
         });
 
@@ -157,8 +166,9 @@ public class UpdActivity extends Activity {
 
     public void regFilter() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.Action.ACTION_LISTEN_UDP_DATA);
+        filter.addAction("ACTION_LISTEN_UDP_DATA");
         filter.addAction("adddevicecallback");
+        filter.addAction("GatewatInfoCallback");
         context.registerReceiver(broadcastReceiver, filter);
         isRegFilter = true;
     }
@@ -166,7 +176,7 @@ public class UpdActivity extends Activity {
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(Constants.Action.ACTION_LISTEN_UDP_DATA)){
+            if (intent.getAction().equals("ACTION_LISTEN_UDP_DATA")){
                 String ipstr = intent.getStringExtra("ipaddrss");
                 String str =  intent.getStringExtra("data");
                 int port_int = intent.getIntExtra("port",-1);
@@ -186,6 +196,18 @@ public class UpdActivity extends Activity {
             }else if (intent.getAction().equals("adddevicecallback")){
                 int i = intent.getIntExtra("i",-1);
                 Toast ti = Toast.makeText(context,""+ i,Toast.LENGTH_LONG);
+                ti.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
+                ti.setMargin(0f,0.5f);
+                ti.show();
+            }else if(intent.getAction().equals("GatewatInfoCallback")){
+                String gatewayName = intent.getStringExtra("gatewayName");
+                String gatewayNo = intent.getStringExtra("gatewayNo");
+                String gatewaySoftwareVersion = intent.getStringExtra("gatewaySoftwareVersion");
+                String gatewayHardwareVersion = intent.getStringExtra("gatewayHardwareVersion");
+                String gatewayIPv4Address = intent.getStringExtra("gatewayIPv4Address");
+                String gatewayDatetime = intent.getStringExtra("gatewayDatetime");
+
+                Toast ti = Toast.makeText(context,gatewayName + gatewayNo + gatewaySoftwareVersion + gatewayHardwareVersion + gatewayIPv4Address + gatewayDatetime,Toast.LENGTH_LONG);
                 ti.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM,0,0);
                 ti.setMargin(0f,0.5f);
                 ti.show();

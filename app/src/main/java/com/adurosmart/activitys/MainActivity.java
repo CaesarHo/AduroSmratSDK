@@ -84,8 +84,7 @@ public class MainActivity extends  TraceableActivity{
                 t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
                 t3.setMargin(0f, 0.5f);
                 t3.show();
-            }
-            else if (intent.getAction().equals("getdevice_callback")){
+            } else if (intent.getAction().equals("getdevice_callback")){
                 //获取设备
                 deviceInfo = (DeviceInfo) intent.getSerializableExtra("dinfo");
                 if (deviceInfo == null) {
