@@ -1,10 +1,10 @@
 /*******************************************************************************
  * Copyright (c) 1999, 2014 IBM Corp.
- * <p/>
+ * <p>
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v1.0 which accompany this distribution.
- * <p/>
+ * <p>
  * The Eclipse Public License is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * and the Eclipse Distribution License is available at
@@ -95,12 +95,12 @@ public class ConnectionDetails extends FragmentActivity implements ActionBar.Tab
         viewPager.setAdapter(sectionsPagerAdapter);
 
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        // select the tab that represents the current page
-                        actionBar.setSelectedNavigationItem(position);
-                    }
-                });
+            @Override
+            public void onPageSelected(int position) {
+                // select the tab that represents the current page
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
 
         // Create the tabs for the screen
         for (int i = 0; i < sectionsPagerAdapter.getCount(); i++) {
@@ -133,7 +133,6 @@ public class ConnectionDetails extends FragmentActivity implements ActionBar.Tab
         // Select the correct action bar menu to display based on the
         // connectionStatus and which tab is selected
         if (connected) {
-
             switch (selected) {
                 case 0: // history view
                     menuID = R.menu.activity_connection_details;
@@ -220,7 +219,7 @@ public class ConnectionDetails extends FragmentActivity implements ActionBar.Tab
      *      android.app.FragmentTransaction)
      */
     @Override
-    public void onTabReselected(ActionBar.Tab tab,FragmentTransaction fragmentTransaction) {
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // Don't need to do anything when the tab is reselected
     }
 

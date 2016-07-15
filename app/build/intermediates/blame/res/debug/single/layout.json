@@ -8,12 +8,12 @@
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_udp.xml"
     },
     {
-        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
-        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_publish.xml"
-    },
-    {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_connection_details.xml",
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_connection_details.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
+        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_publish.xml"
     },
     {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_view_text_view.xml",

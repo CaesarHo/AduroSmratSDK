@@ -4,7 +4,7 @@ package com.interfacecallback;
  * Created by best on 2016/7/11.
  */
 public interface InterfaceCallback {
-
+    //-------------------------------网关相关------------------------------
     //网关信息回调
     void GatewatInfoCallback(String gatewayName,String gatewayNo,String gatewaySoftwareVersion,String gatewayHardwareVersion,String gatewayIPv4Address,String gatewayDatetime);
     //===============================房间相关==============================
@@ -33,7 +33,7 @@ public interface InterfaceCallback {
     //将指定的设备从组中删除
     void deleteDeviceFromGroupCallback(int result);
 
-    //=========================设备操作======================
+    //=========================设备操作===========================
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫面设备回调

@@ -31,7 +31,6 @@
         <activity android:name="org.eclipse.paho.android.service.sample.ClientConnections">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -55,8 +54,6 @@
         <activity
             android:name="org.eclipse.paho.android.service.sample.ConnectionDetails"
             android:label="@string/title_activity_connection_details"></activity>
-
-
 
         <activity
             android:name="com.adurosmart.activitys.UpdActivity"

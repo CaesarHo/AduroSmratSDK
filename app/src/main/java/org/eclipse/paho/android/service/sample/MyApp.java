@@ -5,10 +5,8 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.util.Log;
 
-import com.adurosmart.global.Constants;
 import com.adurosmart.mqtt.MQTTHelper;
 import com.adurosmart.utils.UDPHelper2;
 
@@ -17,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MyApp extends Application {
-	public static final String MAIN_SERVICE_START = Constants.PACKAGE_NAME  + "service.MAINSERVICE";
+	public static final String MAIN_SERVICE_START = "com.adurosmart.service.MAINSERVICE";
 	public static MyApp app;
 	public static String mServer = "www.adurosmart.com";
 	public static String clientId;
@@ -35,16 +33,17 @@ public class MyApp extends Application {
 	public void onCreate() {
 		app = this;
 		super.onCreate();
-		mAndroidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-		clientId = mAndroidId;
-		connectAction();
-		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
-		mqttHelper = new MQTTHelper(app,clientHandle);
-		thread = new Thread();
-		thread.start();
+//		mAndroidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+//		clientId = mAndroidId;
+//		connectAction();
+//		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
+//
+//		mqttHelper = new MQTTHelper(app,clientHandle);
+//		thread = new Thread();
+//		thread.start();
 
 		//获取wifi服务
-		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
 		//监听2
 		udpHelper2 = new UDPHelper2(app,wifiManager);
 		tReceived = new Thread(udpHelper2);

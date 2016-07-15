@@ -1,10 +1,10 @@
 /*******************************************************************************
  * Copyright (c) 1999, 2014 IBM Corp.
- * <p/>
+ * <p>
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v1.0 which accompany this distribution.
- * <p/>
+ * <p>
  * The Eclipse Public License is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * and the Eclipse Distribution License is available at
@@ -96,6 +96,7 @@ public class NewConnection extends Activity {
 
         //used for starting activities
         private NewConnection newConnection = null;
+
         public Listener(NewConnection newConnection) {
             this.newConnection = newConnection;
         }

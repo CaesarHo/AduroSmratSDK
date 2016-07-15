@@ -2,12 +2,15 @@ package com.adurosmart.activitys;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import com.adurosmart.adapters.TestUPDAdapters;
 import com.adurosmart.global.FList;
 import com.adurosmart.global.ListenCallback;
+import com.adurosmart.global.MainService;
 import com.adurosmart.utils.AESUtils;
 import com.adurosmart.utils.UDPHelper2;
 import com.interfacecallback.SerialHandler;
@@ -118,6 +122,10 @@ public class UpdActivity extends Activity {
                 Thread thread = new Thread(udpHelper);
                 thread.start();
 
+                Intent service = new Intent(MyApp.MAIN_SERVICE_START);
+                context.startService(service);
+                context.bindService(service,conn,Context.BIND_AUTO_CREATE);
+
 //                String ipaddress = GatewayInfo.getInstance().getInetAddress(context);
 //                Toast t3 = Toast.makeText(context, "当前数据=" + ipaddress, Toast.LENGTH_SHORT);
 //                t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
@@ -163,6 +171,20 @@ public class UpdActivity extends Activity {
             e.printStackTrace();
         }
     }
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MainService.MyBinder binder = (MainService.MyBinder)service;
+            MainService bindService = binder.getService();
+            bindService.MyMethod();
+        }
+    };
 
     public void regFilter() {
         IntentFilter filter = new IntentFilter();

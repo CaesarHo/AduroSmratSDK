@@ -21,7 +21,7 @@ public class AutoStartReceiver extends BroadcastReceiver {
         if (intent.getAction().equals(action_boot)) {
             Intent service = new Intent(MyApp.MAIN_SERVICE_START);
             context.startService(service);
-//            context.bindService(service,conn,Context.BIND_AUTO_CREATE);
+            context.bindService(service,conn,Context.BIND_AUTO_CREATE);
         }
     }
 

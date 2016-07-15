@@ -5,7 +5,7 @@
         jar="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="a0a1c69caba22f1f47ac76409913185102e4735e">
+        sha1="c7058ef452b62078c33f048e89efa67b1ab0d330">
         <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ad618d408a71b48f3e07f8b647c6b8ed3b63041b\classes.dex" />
     </item>
     <item
@@ -33,14 +33,14 @@
         jar="F:\Worksmarthome\AndroidAduroSmart\app\src\main\libs\sdk.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="3b042d0e1b1b854e4843efe0fb6c94cb57886812">
+        sha1="c46c58c2164783dd7e9f05ea57b4bc5427cd7cab">
         <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_eb06ccdc67063f458dd2ab71de371dc3086944d4\classes.dex" />
     </item>
     <item
         jar="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="ffc89c37e3559c55ba1a2048ad8eca4bd12faa97">
+        sha1="d20527acfd52524b7f40fdd3b17edc92ba00be99">
         <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ac55f3c385db1dc9116b8a01f11d2203c04f3aeb\classes.dex" />
     </item>
 
