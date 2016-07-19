@@ -25,7 +25,7 @@ public class DataSources {
     //============================实现数据接收与发送==============================
     //------------------------------------设备相关--------------------------------
     //允许设备入网
-    public void AgreeDeviceInNet(){
+    public void AgreeDeviceInNet(int result){
         sdkCallback.AgreeDeviceInNetCallback(1);
     }
 

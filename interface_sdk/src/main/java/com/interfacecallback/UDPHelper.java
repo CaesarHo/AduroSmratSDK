@@ -1,8 +1,11 @@
 package com.interfacecallback;
 
 import android.content.Context;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
+
+import com.utils.Utils;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -20,10 +23,15 @@ public class UDPHelper implements Runnable {
     InetAddress mInetAddress;
     // UDP服务器监听的端口
     int port = 8888;
+    public static String ip;
 
     public UDPHelper(Context context, WifiManager manager) {
-        this.lock = manager.createMulticastLock("localWifi");
         this.context = context;
+        this.lock = manager.createMulticastLock("localWifi");
+        //获取本地IP地址
+        WifiInfo wifiInfo = manager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        ip = Utils.intToIp(ipAddress);
     }
 
     @Override
@@ -51,7 +59,8 @@ public class UDPHelper implements Runnable {
                     int port_int = datagramPacket.getPort();
                     long time = System.currentTimeMillis();
 
-                    DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion","HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
+                    DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion",
+                            "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
 
                     GatewayInfo.getInstance().setInetAddress(context,ipstr);
                     GatewayInfo.getInstance().setPort(context,port_int);

@@ -6,6 +6,7 @@ import com.threadhelper.AddDevice;
 import com.threadhelper.AddDeviceToSence;
 import com.threadhelper.AddGroup;
 import com.threadhelper.AddSences;
+import com.threadhelper.AgreeDeviceInNet;
 import com.threadhelper.DeleteDevice;
 import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
@@ -19,7 +20,7 @@ import com.threadhelper.GetDeviceOnLinStatus;
 import com.threadhelper.GetDeviceSat;
 import com.threadhelper.GetDeviceSwitchState;
 import com.threadhelper.GetSenceDetails;
-import com.threadhelper.ScanDevice;
+import com.threadhelper.GetAllDevice;
 import com.threadhelper.SetColorTemperature;
 import com.threadhelper.SetDeviceHueSat;
 import com.threadhelper.SetDeviceLevel;
@@ -170,17 +171,21 @@ public class SerialHandler {
     /**
      * 允许设备入网
      */
-    public void AgreeDeviceInNet(byte value){
-        DataSources.getInstance().AgreeDeviceInNet();
+    public void AgreeDeviceInNet(){
+//        DataSources.getInstance().AgreeDeviceInNet();
+        AgreeDeviceInNet agreeDeviceInNet = new AgreeDeviceInNet(ipaddress);
+        Thread thread = new Thread(agreeDeviceInNet);
+        thread.start();
     }
 
     /**
      * search device
      */
-    public void ScanDevice(){
+    public void GetAllDevice(){
         DataSources.getInstance().ScanDeviceResult("LED灯",(byte)0x01,(byte)0x00,(byte)220,(byte)220,(byte)220,(byte)220,"145263",
         0x0101,"Unknown Device",0,(short)0,(short)0,(short)0x000d);
-        ScanDevice mScanDevice = new ScanDevice(ipaddress,port);
+
+        GetAllDevice mScanDevice = new GetAllDevice(ipaddress,port);
         Thread thread = new Thread(mScanDevice);
         thread.start();
     }

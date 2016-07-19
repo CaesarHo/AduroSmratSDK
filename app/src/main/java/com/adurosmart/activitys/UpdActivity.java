@@ -27,8 +27,9 @@ import com.adurosmart.global.ListenCallback;
 import com.adurosmart.global.MainService;
 import com.adurosmart.utils.AESUtils;
 import com.adurosmart.utils.UDPHelper2;
+import com.interfacecallback.DataSources;
+import com.interfacecallback.GatewayInfo;
 import com.interfacecallback.SerialHandler;
-import com.interfacecallback.UDPHelper;
 
 import org.eclipse.paho.android.service.sample.MyApp;
 import org.eclipse.paho.android.service.sample.R;
@@ -81,7 +82,7 @@ public class UpdActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_udp);
         context = this;
-//        DataSources.getInstance().setSettingInterface(new ListenCallback());
+        DataSources.getInstance().setSettingInterface(new ListenCallback());
         SerialHandler.getInstance().Init(context, "200004401331", new ListenCallback());
         new FList();
         //获取wifi服务
@@ -105,9 +106,9 @@ public class UpdActivity extends Activity {
         initview();
 
         //监听2
-        udpHelper2 = new UDPHelper2(context,wifiManager);
-        tReceived = new Thread(udpHelper2);
-        tReceived.start();
+//        udpHelper2 = new UDPHelper2(context,wifiManager);
+//        tReceived = new Thread(udpHelper2);
+//        tReceived.start();
 //        SerialHandler.getInstance().Init(context,new ListenCallback());
     }
 
@@ -117,20 +118,23 @@ public class UpdActivity extends Activity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                udpHelper2 = new UDPHelper2(context,wifiManager);
+                tReceived = new Thread(udpHelper2);
+                tReceived.start();
 //                new Thread(new Send()).start();
-                UDPHelper udpHelper = new UDPHelper(context,wifiManager);
-                Thread thread = new Thread(udpHelper);
-                thread.start();
+//                UDPHelper udpHelper = new UDPHelper(context,wifiManager);
+//                Thread thread = new Thread(udpHelper);
+//                thread.start();
 
-                Intent service = new Intent(MyApp.MAIN_SERVICE_START);
-                context.startService(service);
-                context.bindService(service,conn,Context.BIND_AUTO_CREATE);
+//                Intent service = new Intent(MyApp.MAIN_SERVICE_START);
+//                context.startService(service);
+//                context.bindService(service,conn,Context.BIND_AUTO_CREATE);
 
-//                String ipaddress = GatewayInfo.getInstance().getInetAddress(context);
-//                Toast t3 = Toast.makeText(context, "当前数据=" + ipaddress, Toast.LENGTH_SHORT);
-//                t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
-//                t3.setMargin(0f, 0.5f);
-//                t3.show();
+                String ipaddress = GatewayInfo.getInstance().getInetAddress(context);
+                Toast t3 = Toast.makeText(context, "当前数据=" + ipaddress, Toast.LENGTH_SHORT);
+                t3.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
+                t3.setMargin(0f, 0.5f);
+                t3.show();
             }
         });
 

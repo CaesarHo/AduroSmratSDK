@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.mqttglobal.MqttAndroidClient;
 
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
@@ -97,7 +98,7 @@ public class MQTTHelper implements Runnable {
 
     public void connectAction(){
         String uri = "tcp://" + mServer + ":" + port;
-//        MqttConnectOptions conOpt = new MqttConnectOptions();
+        MqttConnectOptions conOpt = new MqttConnectOptions();
         MqttAndroidClient client = Connections.getInstance(context).createClient(context, uri, clientId);
 
         // create a client handle
@@ -108,13 +109,13 @@ public class MQTTHelper implements Runnable {
         //set traceCallback
         client.setTraceCallback(new MqttTraceCallback());
 
-//        connection.addConnectionOptions(conOpt);
+        connection.addConnectionOptions(conOpt);
         Connections.getInstance(context).addConnection(connection);
-//        try {
-//            client.connect(conOpt, null,null);
-//        } catch (MqttException e) {
-//            Log.e(this.getClass().getCanonicalName(), "MqttException Occured", e);
-//        }
+        try {
+            client.connect(conOpt, null,null);
+        } catch (MqttException e) {
+            Log.e(this.getClass().getCanonicalName(), "MqttException Occured", e);
+        }
     }
 
     public class MQTTReconnectThread implements Runnable {

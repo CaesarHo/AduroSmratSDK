@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.adurosmart.bean.DeviceInfo;
 import com.adurosmart.bean.GatewayInfo;
 import com.adurosmart.global.Constants;
-import com.adurosmart.utils.SerialHelper;
 
 import org.eclipse.paho.android.service.sample.MyApp;
 import org.eclipse.paho.android.service.sample.R;
@@ -43,7 +42,6 @@ public class MainActivity extends  TraceableActivity{
         context.startService(service);
         regFilter();
         init();
-        SerialHelper.getInstance(context).GetDevice();
     }
 
     public void init(){
@@ -55,7 +53,7 @@ public class MainActivity extends  TraceableActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SerialHelper.getInstance(context).GetDevice();
+
             }
         });
     }

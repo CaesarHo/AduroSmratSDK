@@ -6,7 +6,6 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 
 import com.adurosmart.bean.GatewayInfo;
-import com.adurosmart.global.Constants;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -55,7 +54,7 @@ public class UDPHelper2 implements Runnable {
                     GatewayInfo.getInstance().setGatewayUniqueId(strMsg);
 
                     Intent intent = new Intent();
-                    intent.setAction(Constants.Action.ACTION_LISTEN_UDP_DATA);
+                    intent.setAction("ACTION_LISTEN_UDP_DATA");
                     intent.putExtra("data",strMsg);
                     intent.putExtra("ipaddrss",ipstr);
                     intent.putExtra("port",port_int);
