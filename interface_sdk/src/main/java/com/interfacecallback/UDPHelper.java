@@ -61,7 +61,7 @@ public class UDPHelper implements Runnable {
 
                     DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion",
                             "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
-      
+                      
                     GatewayInfo.getInstance().setInetAddress(context,ipstr);
                     GatewayInfo.getInstance().setPort(context,port_int);
                     GatewayInfo.getInstance().setGatewayNo(context,strMsg);
