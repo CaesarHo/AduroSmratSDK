@@ -58,10 +58,10 @@ public class UDPHelper implements Runnable {
                     String ipstr = datagramPacket.getAddress().getHostAddress().toString();
                     int port_int = datagramPacket.getPort();
                     long time = System.currentTimeMillis();
-   
+
                     DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion",
                             "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
-
+      
                     GatewayInfo.getInstance().setInetAddress(context,ipstr);
                     GatewayInfo.getInstance().setPort(context,port_int);
                     GatewayInfo.getInstance().setGatewayNo(context,strMsg);
