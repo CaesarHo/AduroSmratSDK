@@ -21,7 +21,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec8d4793-8867-464e-aab4-e027c20b4581" name="Default" comment="" />
+    <list default="true" id="ec8d4793-8867-464e-aab4-e027c20b4581" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java" />
+    </list>
     <ignored path="AndroidAduroSmart.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,8 +89,8 @@
       <file leaf-file-name="UDPHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6642229">
-              <caret line="64" column="50" selection-start-line="64" selection-start-column="50" selection-end-line="64" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.4882698">
+              <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -2667,7 +2669,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/mqtt/MQTTHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/activitys/MainActivity.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/Utils.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/CRC8.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/FtFormatTransfer.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/NewCmdData.java" />
@@ -2679,6 +2680,7 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/SerialHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/utils/UDPHelper2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/activitys/UpdActivity.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java" />
       </list>
     </option>
   </component>
@@ -3982,8 +3984,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6642229">
-          <caret line="64" column="50" selection-start-line="64" selection-start-column="50" selection-end-line="64" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.4882698">
+          <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
           <folding />
         </state>
       </provider>
