@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="4f97f7844f35d8380fa59eaca25d54b24610815d">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ad618d408a71b48f3e07f8b647c6b8ed3b63041b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f\classes.dex" />
+    </item>
+    <item
+        jar="D:\Android\android-sdk-windows\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000\classes.dex" />
+    </item>
+    <item
+        jar="F:\Worksmarthome\AndroidAduroSmart\app\src\main\libs\sdk.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="c46c58c2164783dd7e9f05ea57b4bc5427cd7cab">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_eb06ccdc67063f458dd2ab71de371dc3086944d4\classes.dex" />
+    </item>
+    <item
+        jar="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="4a0d973687804b11875a329916764f2e95a70798">
+        <dex dex="F:\Worksmarthome\AndroidAduroSmart\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ac55f3c385db1dc9116b8a01f11d2203c04f3aeb\classes.dex" />
+    </item>
+
+</items>

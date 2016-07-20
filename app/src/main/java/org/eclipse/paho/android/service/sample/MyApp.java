@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.adurosmart.mqtt.MQTTHelper;
@@ -33,14 +34,14 @@ public class MyApp extends Application {
 	public void onCreate() {
 		app = this;
 		super.onCreate();
-//		mAndroidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-//		clientId = mAndroidId;
-//		connectAction();
-//		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
-//
-//		mqttHelper = new MQTTHelper(app,clientHandle);
-//		thread = new Thread();
-//		thread.start();
+		mAndroidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+		clientId = mAndroidId;
+		connectAction();
+		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
+
+		mqttHelper = new MQTTHelper(app,clientHandle);
+		thread = new Thread();
+		thread.start();
 
 		//获取wifi服务
 		wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);

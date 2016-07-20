@@ -3,6 +3,7 @@ package com.threadhelper;
 import android.util.Log;
 
 import com.interfacecallback.DataSources;
+import com.utils.NewCmdData;
 import com.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -27,26 +28,7 @@ public class AgreeDeviceInNet implements  Runnable{
         try {
             m_CMDSocket = new DatagramSocket();
             InetAddress serverAddr = InetAddress.getByName(ipaddress);
-
-            byte[] bt_send = new byte[16];
-            bt_send[0] = 0x41;
-            bt_send[1] = 0x50;
-            bt_send[2] = 0x50;
-            bt_send[3] = (byte)0xC0;
-            bt_send[4] = (byte)0xA8;
-            bt_send[5] = 0x01;
-            bt_send[6] = 0x67;
-            bt_send[7] = 0x01;
-            bt_send[8] = 0x01;
-            bt_send[9] = (byte)0xB9;
-            //消息体
-            bt_send[10] = 0x01;
-            bt_send[11] = 0x00;
-            bt_send[12] = 0x00;
-            bt_send[13] = 0x00;
-            bt_send[14] = 0x00;
-            bt_send[15] = 0x62;
-
+            byte[] bt_send = NewCmdData.Allow_DevicesAccesstoBytes();
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
             System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
             System.out.println("十进制DATA =" + Arrays.toString(bt_send));

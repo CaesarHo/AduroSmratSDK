@@ -1,8 +1,10 @@
 package com.interfacecallback;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
 
 import com.threadhelper.AddDevice;
+import com.threadhelper.AddDeviceToGroup;
 import com.threadhelper.AddDeviceToSence;
 import com.threadhelper.AddGroup;
 import com.threadhelper.AddSences;
@@ -16,11 +18,11 @@ import com.threadhelper.GetAllGroups;
 import com.threadhelper.GetAllSences;
 import com.threadhelper.GetDeviceHue;
 import com.threadhelper.GetDeviceLevel;
+import com.threadhelper.GetDeviceListCmd;
 import com.threadhelper.GetDeviceOnLinStatus;
 import com.threadhelper.GetDeviceSat;
 import com.threadhelper.GetDeviceSwitchState;
 import com.threadhelper.GetSenceDetails;
-import com.threadhelper.GetAllDevice;
 import com.threadhelper.SetColorTemperature;
 import com.threadhelper.SetDeviceHueSat;
 import com.threadhelper.SetDeviceLevel;
@@ -34,7 +36,6 @@ import com.threadhelper.SetGroupState;
 import com.threadhelper.UpdateDevice;
 import com.threadhelper.UpdateGroup;
 import com.threadhelper.UpdateSceneName;
-import com.threadhelper.AddDeviceToGroup;
 
 /**
  * Created by best on 2016/7/11.
@@ -172,7 +173,6 @@ public class SerialHandler {
      * 允许设备入网
      */
     public void AgreeDeviceInNet(){
-//        DataSources.getInstance().AgreeDeviceInNet();
         AgreeDeviceInNet agreeDeviceInNet = new AgreeDeviceInNet(ipaddress);
         Thread thread = new Thread(agreeDeviceInNet);
         thread.start();
@@ -181,12 +181,18 @@ public class SerialHandler {
     /**
      * search device
      */
-    public void GetAllDevice(){
+    public void GetAllDeviceListen(Context context, WifiManager wifiManager){
         DataSources.getInstance().ScanDeviceResult("LED灯",(byte)0x01,(byte)0x00,(byte)220,(byte)220,(byte)220,(byte)220,"145263",
         0x0101,"Unknown Device",0,(short)0,(short)0,(short)0x000d);
 
-        GetAllDevice mScanDevice = new GetAllDevice(ipaddress,port);
+        GetDeviceListListen mScanDevice = new GetDeviceListListen(context,wifiManager);
         Thread thread = new Thread(mScanDevice);
+        thread.start();
+    }
+
+    public void GetAllDeviceCmd(Context context,WifiManager wifiManager){
+        GetDeviceListCmd getDeviceListCmd = new GetDeviceListCmd(context,wifiManager);
+        Thread thread = new Thread(getDeviceListCmd);
         thread.start();
     }
 

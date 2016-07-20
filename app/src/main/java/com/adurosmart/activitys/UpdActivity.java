@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -270,8 +269,6 @@ public class UpdActivity extends Activity {
                 InetAddress serverAddress = InetAddress.getByName(mRemoteIp);
                 //Inet4Address serverAddress = (Inet4Address) Inet4Address.getByName("192.168.1.32");
                 byte data[] = sendmessage.getBytes();//把字符串str字符串转换为字节数组
-                //创建一个DatagramPacket对象，用于发送数据。
-                //参数一：要发送的数据  参数二：数据的长度  参数三：服务端的网络地址  参数四：服务器端端口号
                 DatagramPacket packet = new DatagramPacket(data, data.length ,new InetSocketAddress(serverAddress,port_int));
                 m_CMDSocket.send(packet);//把数据发送到服务端。
             } catch (Exception e) {
@@ -316,20 +313,6 @@ public class UpdActivity extends Activity {
                 Log.e("deviceinfo IOException", "Client: Error!");
             }
         }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(false);
-            this.finish();
-            if(isRegFilter){
-                isRegFilter = false;
-                this.unregisterReceiver(broadcastReceiver);
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override
