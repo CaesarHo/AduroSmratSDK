@@ -2,9 +2,10 @@ package com.utils;
 
 import android.util.Log;
 
+import com.interfacecallback.Constants;
+
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -79,15 +80,22 @@ public class Utils {
         String[] s=ipaddress.split("\\.");
         for (String ss:s) {
             Log.i("out_ip_split", s[0]+s[1]+s[2]+s[3]);
-            ip_1 = s[0].getBytes();
-            ip_2 = s[1].getBytes();
-            ip_3 = s[2].getBytes();
-            ip_4 = s[3].getBytes();
+            int s1 = Integer.parseInt(s[0]);
+            int s2 = Integer.parseInt(s[1]);
+            int s3 = Integer.parseInt(s[2]);
+            int s4 = Integer.parseInt(s[3]);
+            Constants.IpAddress.int_1 = s1;
+            Constants.IpAddress.int_2 = s2;
+            Constants.IpAddress.int_3 = s3;
+            Constants.IpAddress.int_4 = s4;
 
-            System.out.println("ip_1 =" + Arrays.toString(ip_1));
-            System.out.println("ip_2 =" + Arrays.toString(ip_2));
-            System.out.println("ip_3 =" + Arrays.toString(ip_3));
-            System.out.println("ip_4 =" + Arrays.toString(ip_4));
+            String str = s[0];
+            byte[] bt = str.getBytes();
+            String outStr = "";
+            for (int k=0;k<str.length();k++){
+                outStr = Integer.toHexString(bt[k]);
+            }
+            System.out.println("outStr"+Integer.parseInt(String.valueOf(s[0]),16));
         }
     }
 }

@@ -50,7 +50,7 @@ public class GetDeviceListListen implements Runnable{
 
 
                     Intent intent = new Intent();
-                    intent.setAction("ACTION_LISTEN_DEVICE_DATA");
+                    intent.setAction("ACTION_LISTEN_DEVICE_LIST");
                     intent.putExtra("data",strMsg);
                     intent.putExtra("ipaddrss",ipstr);
                     intent.putExtra("port",port_int);

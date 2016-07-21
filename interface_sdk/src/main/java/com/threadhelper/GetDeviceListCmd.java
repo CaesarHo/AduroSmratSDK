@@ -1,9 +1,11 @@
 package com.threadhelper;
 
 import android.content.Context;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import com.interfacecallback.Constants;
 import com.interfacecallback.GatewayInfo;
 import com.utils.Utils;
 
@@ -23,12 +25,17 @@ public class GetDeviceListCmd implements Runnable{
     public Boolean IsThreadDisable = false;//指示监听线程是否终止
     private static WifiManager.MulticastLock lock;
     private int port = 8888;
+    public String ip;
     WifiManager wifiManager;
     public GetDeviceListCmd(Context context,WifiManager manager){
         this.context = context;
         this.ipaddress = GatewayInfo.getInstance().getInetAddress(context);
         this.lock = manager.createMulticastLock("localWifi");
         this.wifiManager = manager;
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        ip = Utils.intToIp(ipAddress);
+        Utils.SplitToIp(ip);
     }
 
     @Override
@@ -41,13 +48,13 @@ public class GetDeviceListCmd implements Runnable{
             bt_send[0] = 0x41;
             bt_send[1] = 0x50;
             bt_send[2] = 0x50;
-            bt_send[3] = (byte)0xC0;
-            bt_send[4] = (byte)0xA8;
-            bt_send[5] = 0x01;
-            bt_send[6] = 0x67;
+            bt_send[3] = (byte)Constants.IpAddress.int_1;
+            bt_send[4] = (byte)Constants.IpAddress.int_2;
+            bt_send[5] = (byte)Constants.IpAddress.int_3;
+            bt_send[6] = (byte)Constants.IpAddress.int_4;
             bt_send[7] = 0x01;
             bt_send[8] = 0x01;
-            bt_send[9] = (byte)0xB9;
+            bt_send[9] = (byte)0xD2;
             //消息体
             bt_send[10] = 0x01;
             bt_send[11] = 0x00;
@@ -75,7 +82,7 @@ public class GetDeviceListCmd implements Runnable{
             bt_send[30] = (byte)0x09;
             bt_send[31] = (byte)0x00;
             bt_send[32] = (byte)0x00;
-            bt_send[33] = (byte)0xA9;
+            bt_send[33] = (byte)0x97;
 //CRC8.calcCrc8(FtFormatTransfer.byteMerger1(boby_type1,boby_type2))
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
             System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
