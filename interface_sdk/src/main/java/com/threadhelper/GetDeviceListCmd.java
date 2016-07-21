@@ -82,7 +82,7 @@ public class GetDeviceListCmd implements Runnable{
             bt_send[30] = (byte)0x09;
             bt_send[31] = (byte)0x00;
             bt_send[32] = (byte)0x00;
-            bt_send[33] = (byte)0x97;
+            bt_send[33] = (byte)0xA9;
 //CRC8.calcCrc8(FtFormatTransfer.byteMerger1(boby_type1,boby_type2))
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
             System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
