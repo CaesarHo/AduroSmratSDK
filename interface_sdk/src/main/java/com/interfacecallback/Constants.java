@@ -5,6 +5,7 @@ package com.interfacecallback;
  */
 public class Constants {
     public static String mMqttServer = "www.adurosmart.com";
+    public static String ipaddress = "";
     public static class IpAddress{
         public static int int_1 = -1;
         public static int int_2 = -1;

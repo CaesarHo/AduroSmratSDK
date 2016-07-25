@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidAduroSmart.iml" filepath="$PROJECT_DIR$/AndroidAduroSmart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidAduroSmratSDK.iml" filepath="$PROJECT_DIR$/AndroidAduroSmratSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/interface_sdk/interface_sdk.iml" filepath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" />
     </modules>

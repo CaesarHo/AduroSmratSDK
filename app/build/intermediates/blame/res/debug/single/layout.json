@@ -1,5 +1,9 @@
 [
     {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_new_connection.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_new_connection.xml"
+    },
+    {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\filedialogitem.xml",
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\filedialogitem.xml"
     },
@@ -8,12 +12,12 @@
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_udp.xml"
     },
     {
-        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_connection_details.xml",
-        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_connection_details.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_advanced.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_advanced.xml"
     },
     {
-        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
-        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_publish.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\client_connections.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\client_connections.xml"
     },
     {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_view_text_view.xml",
@@ -28,16 +32,60 @@
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\client_connections.xml"
     },
     {
-        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_subscribe.xml",
-        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_subscribe.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_publish.xml"
     },
     {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_lan.xml",
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\list_item_lan.xml"
     },
     {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_lan.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\list_item_lan.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_subscribe.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_subscribe.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_connection_details.xml",
+        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_connection_details.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
+        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_publish.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\filedialogitem.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\filedialogitem.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_udp.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_udp.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_connection_details.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_connection_details.xml"
+    },
+    {
+        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_subscribe.xml",
+        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\activity_subscribe.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\connection_text_view.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\connection_text_view.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_view_text_view.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\list_view_text_view.xml"
+    },
+    {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\connection_text_view.xml",
         "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\layout\\connection_text_view.xml"
+    },
+    {
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_activity.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\main_activity.xml"
     },
     {
         "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_advanced.xml",

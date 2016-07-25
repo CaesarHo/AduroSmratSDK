@@ -29,4 +29,47 @@ public class NewCmdData {
         by_body[5] = (byte)0x62;//消息体校验码
         return FtFormatTransfer.byteMerger(bt_msg,by_body);
     }
+
+    public static byte[] GetAllDeviceList(){
+        byte[] bt_send = new byte[34];
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte)192;
+        bt_send[4] = (byte)168;
+        bt_send[5] = (byte)1;
+        bt_send[6] = (byte)103;
+        bt_send[7] = 0x01;
+        bt_send[8] = 0x01;
+        bt_send[9] = (byte)0xB9;
+        //消息体
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = 0x0B;
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x12;
+//            bt_send[15] = (byte)0xF0;
+        //数据体-----头
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte)0xFF;
+        bt_send[22] = (byte)0xFF;
+        bt_send[23] = (byte)0x00;
+        bt_send[24] = (byte)0x12;
+        bt_send[25] = (byte)0x4b;
+        bt_send[26] = (byte)0x00;
+        bt_send[27] = (byte)0x07;
+        bt_send[28] = (byte)0x6a;
+        bt_send[29] = (byte)0xfe;
+        bt_send[30] = (byte)0x09;
+        bt_send[31] = (byte)0x00;
+        bt_send[32] = (byte)0x00;
+        bt_send[33] = (byte)0xA9;
+        return bt_send;
+    }
 }

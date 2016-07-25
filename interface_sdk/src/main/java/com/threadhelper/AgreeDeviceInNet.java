@@ -26,7 +26,7 @@ public class AgreeDeviceInNet implements  Runnable{
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
+            m_CMDSocket = new DatagramSocket(port);
             InetAddress serverAddr = InetAddress.getByName(ipaddress);
             byte[] bt_send = NewCmdData.Allow_DevicesAccesstoBytes();
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));

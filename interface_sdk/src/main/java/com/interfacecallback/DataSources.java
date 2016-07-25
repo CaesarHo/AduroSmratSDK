@@ -36,33 +36,9 @@ public class DataSources {
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
 
-    /**
-     * 扫面设备
-     * @param deviceName  (设备名称)
-     * @param deviceNetStatus  (设备是否在线)0x00设备离线,0x01设备在线,0x02设备远程在线
-     * @param deviceSwitchState  (设备开关状态)0x00设备开启,0x01设备关闭,0x02设备停止
-     * @param deviceLightLevel  //亮度(只对灯类有效0x00(最暗)~0xff(最亮))
-     * @param deviceLightHue   //颜色属性色相
-     * @param deviceLightSat   //颜色属性饱和度
-     * @param deviceLightColorTemperature  //色温灯的色温值
-     * @param deviceID   //设备ID号,唯一标识符
-     * @param deviceTypeID  (设备种类)0x0105可调开关,0x102彩灯,0x0110色温灯,0x0210飞利浦彩灯,
-     *                      0x0220色温灯JZGD,0x0101调光灯,0x0402CIE传感器类,0x0202窗帘,0x0309PM2.5
-     *                      0x0310烟雾传感器
-     * @param deviceType  设备类型
-     * @param Sensordata  传感器上传的数据
-     * @param clusterId   簇ID,特定义ID
-     * @param attribID    属性ID
-     * @param zoneType    (设备区域类型) 0x0000标准CIE设备,0x000d人体红外传感器,0x0015门磁,0x0028烟雾传感器
-     *                      0x002a水浸传感器,0x002b气体传感器,0x010f遥控器,0x021d键盘
-     */
-    public void ScanDeviceResult(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
-                                byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
-                                byte deviceLightColorTemperature,String deviceID,int deviceTypeID,
-                                String deviceType,int Sensordata,Short clusterId,Short attribID,Short zoneType){
 
-        sdkCallback.ScanDeviceCallback(deviceName,deviceNetStatus,deviceSwitchState,deviceLightLevel,deviceLightHue,
-        deviceLightSat,deviceLightColorTemperature,deviceID,deviceTypeID,deviceType,Sensordata,clusterId,attribID,zoneType);
+    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid){
+        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid);
     }
 
     //添加设备
