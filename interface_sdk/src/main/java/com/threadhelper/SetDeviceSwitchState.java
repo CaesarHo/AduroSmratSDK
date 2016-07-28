@@ -32,13 +32,7 @@ public class SetDeviceSwitchState implements Runnable {
         try {
             m_CMDSocket = new DatagramSocket();
             InetAddress serverAddr = InetAddress.getByName(ipaddress);
-
             String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
             DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 
@@ -46,11 +40,8 @@ public class SetDeviceSwitchState implements Runnable {
             byte[] buf = new byte[24];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
-
             //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().setDeviceState((byte)1);
+            DataSources.getInstance().setDeviceStateResule(1);
             m_CMDSocket.close();
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");

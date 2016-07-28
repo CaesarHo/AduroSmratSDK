@@ -4,29 +4,29 @@
     api-level="22"
     density="xxhdpi"
     format="7"
-    timestamp="23684704935140"
-    token="6983500007684525563" >
+    timestamp="19701024217733"
+    token="4248176631140908628" >
 
     <task
         name="javac"
-        duration="1458" />
+        duration="972" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="411" />
+        duration="379" />
     <task
         name="verifier"
-        duration="108" />
+        duration="126" />
 
     <artifact
-        location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
+        location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="23684704935140" >
+    <build timestamp="19701024217733" >
         <artifact
-            location="F:\Worksmarthome\AndroidAduroSmart\app\build\outputs\apk\app-debug.apk"
+            location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
 

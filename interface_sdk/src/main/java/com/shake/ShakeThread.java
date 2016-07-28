@@ -5,16 +5,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.interfacecallback.Constants;
+import com.interfacecallback.DataSources;
+import com.utils.NewCmdData;
+import com.utils.SearchUtils;
+import com.utils.Utils;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.util.Set;
 
 public class ShakeThread extends Thread {
     public static final int DEFAULT_PORT = 8888;
@@ -25,15 +26,15 @@ public class ShakeThread extends Thread {
     private int port;
     private boolean isRun;
 
-    private DatagramSocket server;
-    private DatagramSocket broadcast;
-    private Selector selector;
-    private DatagramChannel channel;
+    private DatagramSocket socket;
     private Handler handler;
 
-    private InetAddress host;
+    private InetAddress inetAddress;
 
-    public ShakeThread(Handler handler) {
+    //设备信息
+    private String profile_id,device_id,device_mac,device_shortaddr,main_endpoint;
+
+    public ShakeThread(Handler handler){
         this.port = DEFAULT_PORT;
         this.SEND_TIMES = 10;
     }
@@ -43,7 +44,7 @@ public class ShakeThread extends Thread {
     }
 
     public void setInetAddress(InetAddress host) {
-        this.host = host;
+        this.inetAddress = host;
     }
 
     public void setHandler(Handler handler) {
@@ -54,88 +55,96 @@ public class ShakeThread extends Thread {
     public void run() {
         isRun = true;
         try {
-            selector = Selector.open();
-            channel = DatagramChannel.open();
-            channel.configureBlocking(false);
-            server = channel.socket();
-            server.bind(new InetSocketAddress(port));
-            channel.register(selector, SelectionKey.OP_READ);
-
-            ByteBuffer receiveBuffer = ByteBuffer.allocate(1024);
+            socket = new DatagramSocket();
+            if (socket == null) {
+                socket = new DatagramSocket(null);
+                socket.setReuseAddress(true);
+                socket.bind(new InetSocketAddress(port));
+            }
 
             new Thread() {
                 @Override
                 public void run() {
                     try {
                         int times = 0;
-                        broadcast = new DatagramSocket();
-                        broadcast.setBroadcast(true);
+                        if (socket == null) {
+                            socket = new DatagramSocket(null);
+                            socket.setReuseAddress(true);
+                            socket.bind(new InetSocketAddress(port));
+                        }
                         while (times < SEND_TIMES) {
                             if (!isRun) {
                                 return;
                             }
                             times++;
-                            Log.e("my", "shake thread send broadcast.");
+                            Log.e("myshake", "shake thread send broadcast.");
 
-                            ShakeData data = new ShakeData();
-                            data.setCmd(ShakeData.Cmd.GET_DEVICE_LIST);
-                            DatagramPacket packet = new DatagramPacket(ShakeData.getBytes(data), 100,
-                                    InetAddress.getByName("255.255.255.255"), port);
-                            broadcast.send(packet);
+                            byte[] bt_send = NewCmdData.GetAllDeviceList();
+                            bt_send = NewCmdData.GetAllDeviceList();
+                            Log.i("GATEWATEIPADDRESS = " ,Constants.ipaddress);
+                            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+
+                            DatagramPacket datagramPacket = new DatagramPacket(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), Utils.hexStringToByteArray(Utils.binary(bt_send, 16)).length, inetAddress, port);
+                            socket.send(datagramPacket);
+                            System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
+                            System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+
                             Thread.sleep(1000);
                         }
 
-                        Log.e("my", "shake thread broadcast end.");
+                        Log.e("myshake", "shake thread broadcast end.");
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
-                        try {
-                            broadcast.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        ShakeManager.getInstance().stopShaking();
+//                        try {
+//                            socket.close();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        ShakeManager.getInstance().stopShaking();
                     }
                 }
             }.start();
 
             while (isRun) {
+                byte[] recbuf = new byte[1024];
+                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                try {
+                    socket.receive(packet);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                int n = selector.select(100);
-                if (n > 0) {
-                    Set<SelectionKey> keys = selector.selectedKeys();
-                    for (SelectionKey key : keys) {
-                        keys.remove(key);
-                        if (key.isReadable()) {
-                            DatagramChannel dc = (DatagramChannel) key.channel();
-                            InetSocketAddress client = (InetSocketAddress) dc.receive(receiveBuffer);
-                            key.interestOps(SelectionKey.OP_READ);
-                            receiveBuffer.flip();
-                            ShakeData data = ShakeData.getShakeData(receiveBuffer);
+                String rec_str = packet.getData().toString();
+                Log.i("myshake = ", rec_str);
 
-                            switch (data.getCmd()) {
-                                case ShakeData.Cmd.RECEIVE_DEVICE_LIST:
+                if(rec_str.contains("GW")&&!rec_str.contains("K64")){
+                    int profile_id_int = SearchUtils.searchString(rec_str, "PROFILE_ID:");
+                    int device_id_int = SearchUtils.searchString(rec_str, "DEVICE_ID:");
+                    int device_mac_int = SearchUtils.searchString(rec_str, "DEVICE_MAC:");
+                    int device_shortaddr_int = SearchUtils.searchString(rec_str, "DEVICE_SHORTADDR:");
+                    int main_endpoint_int = SearchUtils.searchString(rec_str, "MAIN_ENDPOINT:");
+                    profile_id = new String(rec_str).substring(profile_id_int, profile_id_int + 6);
+                    device_id = new String(rec_str).substring(device_id_int, device_id_int + 6);
+                    device_mac = new String(rec_str).substring(device_mac_int, device_mac_int + 18);
+                    device_shortaddr = new String(rec_str).substring(device_shortaddr_int, device_shortaddr_int + 6);
+                    main_endpoint = new String(rec_str).substring(main_endpoint_int,device_shortaddr_int+4);
 
-                                    if (data.getError_code() == 1) {
-                                        if (null != handler) {
-                                            Message msg = new Message();
-                                            msg.what = ShakeManager.HANDLE_ID_RECEIVE_DEVICE_INFO;
-                                            Bundle bundle = new Bundle();
-                                            bundle.putSerializable("address", client.getAddress());
-                                            bundle.putString("id", data.getId() + "");
-                                            bundle.putString("name", data.getName() + "");
-                                            bundle.putInt("flag", data.getFlag());
-                                            bundle.putInt("type", data.getType());
-                                            bundle.putInt("rtspflag", data.getRightCount());
-                                            msg.setData(bundle);
-                                            handler.sendMessage(msg);
-                                        }
-                                        break;
-                                    }
-                                    receiveBuffer.clear();
-                            }
-                        }
-                    }
+                    Log.i("device_mac = ", device_mac);
+                    DataSources.getInstance().ScanDeviceResult("Device",profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
+                }
+
+                if (null != handler) {
+                    Message msg = new Message();
+                    msg.what = ShakeManager.HANDLE_ID_RECEIVE_DEVICE_INFO;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("profile_id", profile_id);
+                    bundle.putString("device_id", device_id);
+                    bundle.putString("device_mac", device_mac);
+                    bundle.putString("device_shortaddr",device_shortaddr);
+                    bundle.putString("main_endpoint",main_endpoint);
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
                 }
             }
             Log.e("my", "shake thread end.");
@@ -151,17 +160,7 @@ public class ShakeThread extends Thread {
             }
 
             try {
-                server.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                channel.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                selector.close();
+                socket.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -170,7 +169,6 @@ public class ShakeThread extends Thread {
 
     public void killThread() {
         if (isRun) {
-            selector.wakeup();
             isRun = false;
         }
     }

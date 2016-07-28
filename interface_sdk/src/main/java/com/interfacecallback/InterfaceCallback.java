@@ -37,7 +37,7 @@ public interface InterfaceCallback {
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫面设备回调
-    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid);
+    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint);
 
     void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
                            byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,

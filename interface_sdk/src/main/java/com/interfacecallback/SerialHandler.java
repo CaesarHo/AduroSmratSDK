@@ -13,7 +13,7 @@ import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
 import com.threadhelper.DeleteSence;
 import com.threadhelper.DeleteSenceMember;
-import com.threadhelper.GetAllDevice;
+import com.threadhelper.GetAllDevices;
 import com.threadhelper.GetAllGroups;
 import com.threadhelper.GetAllSences;
 import com.threadhelper.GetDeviceHue;
@@ -181,7 +181,9 @@ public class SerialHandler {
      * search device
      */
     public void GetAllDeviceListen(){
-        new Thread(new GetAllDevice()).start();
+        //测试假数据
+        DataSources.getInstance().ScanDeviceResult("MyDevice","0X0104","0X00124b0001de5c9c","0X03ad" ,"0Xffff","main_endpoint");
+        new Thread(new GetAllDevices()).start();
     }
 
     /**
@@ -206,6 +208,7 @@ public class SerialHandler {
      * @param deviceid
      */
     public void DeleteDevice(String devicename,String deviceid){
+        DataSources.getInstance().DeleteDeviceResult(1);//定义假数据回调1表示Delete成功
         DeleteDevice mDeleteDevice = new DeleteDevice(ipaddress,port,devicename,deviceid);
         Thread thread = new Thread(mDeleteDevice);
         thread.start();
@@ -230,6 +233,7 @@ public class SerialHandler {
      * @param state
      */
     public void setDeviceSwitchState(String devicename,String deviceid,int state){
+        DataSources.getInstance().setDeviceStateResule(1);
         SetDeviceSwitchState mSwitchDevice = new SetDeviceSwitchState(ipaddress,port,devicename,deviceid,state);
         Thread thread = new Thread(mSwitchDevice);
         thread.start();
@@ -296,7 +300,8 @@ public class SerialHandler {
     //=======================场景操作 start========================
     //获取网关所有场景
     public void getSences(){
-        DataSources.getInstance().getAllSences((short)12546,"在家","");
+        DataSources.getInstance().getAllSences(125468,"在家","");//返回假数据
+
         GetAllSences mDeviceSences = new GetAllSences(ipaddress,port);
         Thread thread = new Thread(mDeviceSences);
         thread.start();
@@ -304,7 +309,9 @@ public class SerialHandler {
 
     //添加场景
     public void AddSences(int sencesid,String sencesName,String sceneIconPath){
-        DataSources.getInstance().AddSences(sencesid,sencesName,sceneIconPath);
+
+        DataSources.getInstance().AddSences(sencesid,sencesName,sceneIconPath);//返回添加场景数据
+
         AddSences addSences = new AddSences(ipaddress,port,sencesid,sencesName,sceneIconPath);
         Thread thread = new Thread(addSences);
         thread.start();
@@ -323,6 +330,7 @@ public class SerialHandler {
         Thread thread = new Thread(mAddDeviceToSence);
         thread.start();
     }
+
     //删除场景中指定设备成员 senceName场景名 设备Id
     public void deleteSenceMember(String senceName,String deviceid){
         DeleteSenceMember mDeleteSenceMember = new DeleteSenceMember(ipaddress,port,senceName,deviceid);
@@ -332,6 +340,7 @@ public class SerialHandler {
 
     //删除指定场景
     public void deleteSence(short senceId, String senceName){
+        DataSources.getInstance().DeleteSences(1);//返回添加场景成功(假数据)
         DeleteSence mDeleteSence = new DeleteSence(ipaddress,port,senceId,senceName);
         Thread thread = new Thread(mDeleteSence);
         thread.start();

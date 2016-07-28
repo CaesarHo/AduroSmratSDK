@@ -1,9 +1,5 @@
 [
     {
-        "merged": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\build\\intermediates\\res\\merged\\debug\\raw\\jsr47android.properties",
-        "source": "F:\\Worksmarthome\\AndroidAduroSmart\\app\\src\\main\\res\\raw\\jsr47android.properties"
-    },
-    {
         "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\raw\\jsr47android.properties",
         "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\raw\\jsr47android.properties"
     }

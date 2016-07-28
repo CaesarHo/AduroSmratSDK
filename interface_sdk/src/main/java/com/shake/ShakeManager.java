@@ -7,7 +7,6 @@ import java.net.InetAddress;
 public class ShakeManager {
 	public static final int HANDLE_ID_SEARCH_END = 0x11;
 	public static final int HANDLE_ID_RECEIVE_DEVICE_INFO = 0x12;
-	public static final int HANDLE_ID_APDEVICE_END = 0x13;
 	
 	private static ShakeManager manager = null;
 	private ShakeThread shakeThread;
@@ -53,6 +52,7 @@ public class ShakeManager {
 	public void stopShaking(){
 		if(null!=shakeThread){
 			shakeThread.killThread();
+			shakeThread.interrupt();
 			shakeThread = null;
 		}
 	}

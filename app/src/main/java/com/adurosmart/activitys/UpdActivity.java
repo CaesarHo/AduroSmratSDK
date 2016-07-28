@@ -94,8 +94,8 @@ public class UpdActivity extends Activity {
         int ipAddress = wifiInfo.getIpAddress();
         ip = intToIp(ipAddress);
 //        MainThread.setOpenThread(true);
-//        FList flist = FList.getInstance();
-//        flist.searchLocalDevice();
+        FList flist = FList.getInstance();
+        flist.searchLocalDevice();
         //监听
 //        mHelper = new UDPHelper(context,8888);
 //        listen();

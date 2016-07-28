@@ -17,7 +17,7 @@ import java.nio.channels.Selector;
 import java.util.Set;
 
 public class ShakeThread extends Thread {
-    public static final int DEFAULT_PORT = 9999;
+    public static final int DEFAULT_PORT = 8888;
     public static final int RECEIVE_IPC_INFO = 0;
     public static final int CLOSE_SERVER = 999;
     public int SEND_TIMES;
@@ -78,8 +78,7 @@ public class ShakeThread extends Thread {
 
                             ShakeData data = new ShakeData();
                             data.setCmd(ShakeData.Cmd.GET_DEVICE_LIST);
-                            DatagramPacket packet = new DatagramPacket(
-                                    ShakeData.getBytes(data), 100,
+                            DatagramPacket packet = new DatagramPacket(ShakeData.getBytes(data), 100,
                                     InetAddress.getByName("255.255.255.255"),
                                     port);
                             broadcast.send(packet);
@@ -137,7 +136,6 @@ public class ShakeThread extends Thread {
                             }
                         }
                     }
-
                 }
             }
             Log.e("my", "shake thread end.");

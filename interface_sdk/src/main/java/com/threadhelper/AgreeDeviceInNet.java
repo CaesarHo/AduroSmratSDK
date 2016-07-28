@@ -9,6 +9,7 @@ import com.utils.Utils;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 /**
@@ -26,7 +27,11 @@ public class AgreeDeviceInNet implements  Runnable{
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket(port);
+            if(m_CMDSocket==null){
+                m_CMDSocket = new DatagramSocket(null);
+                m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.bind(new InetSocketAddress(port));
+            }
             InetAddress serverAddr = InetAddress.getByName(ipaddress);
             byte[] bt_send = NewCmdData.Allow_DevicesAccesstoBytes();
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
@@ -46,6 +51,11 @@ public class AgreeDeviceInNet implements  Runnable{
             DataSources.getInstance().AgreeDeviceInNet(1);
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
+            try {
+                m_CMDSocket = new DatagramSocket();
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
         }
     }
 }

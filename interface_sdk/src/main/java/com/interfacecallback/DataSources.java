@@ -37,8 +37,8 @@ public class DataSources {
     }
 
 
-    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid){
-        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid);
+    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint){
+        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint);
     }
 
     //添加设备
@@ -61,7 +61,7 @@ public class DataSources {
     }
 
     //设备状态改变
-    public void setDeviceState(byte state){
+    public void setDeviceStateResule(int state){
         sdkCallback.setDeviceStateCallback(state);
     }
 
