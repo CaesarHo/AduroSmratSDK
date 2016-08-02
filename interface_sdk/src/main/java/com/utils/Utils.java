@@ -156,4 +156,10 @@ public class Utils {
         byte ret = (byte) (_b0 ^ _b1);
         return ret;
     }
+
+    public static String CrcToString(byte[] bt_send,int len){
+        byte bt_crc82 = (byte) (CRC8.calc(bt_send,len)&0xFF);
+        String hex = Integer.toHexString(bt_crc82 & 0xFF);
+        return hex;
+    }
 }

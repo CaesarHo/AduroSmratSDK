@@ -172,17 +172,13 @@ public class SerialHandler {
      * 允许设备入网
      */
     public void AgreeDeviceInNet(){
-        AgreeDeviceInNet agreeDeviceInNet = new AgreeDeviceInNet(ipaddress);
-        Thread thread = new Thread(agreeDeviceInNet);
-        thread.start();
+        new Thread(new AgreeDeviceInNet()).start();
     }
 
     /**
      * search device
      */
     public void GetAllDeviceListen(){
-        //测试假数据
-        DataSources.getInstance().ScanDeviceResult("MyDevice","0X0104","0X00124b0001de5c9c","0X03ad" ,"0Xffff","main_endpoint");
         new Thread(new GetAllDevices()).start();
     }
 
@@ -228,15 +224,12 @@ public class SerialHandler {
 
     /**
      * 改变设备状态(0关1开)
-     * @param deviceid
-     * @param devicename
-     * @param state
+     * @param devicemac
+     * @param deviceshortaddr
+     * @param main_endpoint
      */
-    public void setDeviceSwitchState(String devicename,String deviceid,int state){
-        DataSources.getInstance().setDeviceStateResule(1);
-        SetDeviceSwitchState mSwitchDevice = new SetDeviceSwitchState(ipaddress,port,devicename,deviceid,state);
-        Thread thread = new Thread(mSwitchDevice);
-        thread.start();
+    public void setDeviceSwitchState(String devicemac,String deviceshortaddr,String main_endpoint){
+        new Thread(new SetDeviceSwitchState(devicemac,deviceshortaddr,main_endpoint)).start();
     }
 
     /**
@@ -257,10 +250,8 @@ public class SerialHandler {
     }
 
     //设置设备亮度回调
-    public void setDeviceLevel(String deviceId,byte value){
-        SetDeviceLevel mDeviceLevel = new SetDeviceLevel(ipaddress,port,deviceId,value);
-        Thread thread = new Thread(mDeviceLevel);
-        thread.start();
+    public void setDeviceLevel(String devicemac , String shortaddr , String main_point,int Level){
+        new Thread(new SetDeviceLevel(devicemac,shortaddr,main_point,Level)).start();
     }
 
     //获取设备亮度回调

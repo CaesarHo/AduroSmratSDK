@@ -2,44 +2,50 @@ package com.threadhelper;
 
 import android.util.Log;
 
+import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
+import com.utils.NewCmdData;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 /**
  * Created by best on 2016/7/12.
  */
 public class SetDeviceSwitchState implements Runnable {
-    private String ipaddress;
-    int port = -1;
-    String devicename;
-    String deviceid ;
-    int state;
+    private String devicemac;
+    private String deviceshortaddr;
+    private String main_endpoint ;
+    private int port = 8888;
     DatagramSocket m_CMDSocket = null;
 
-    public SetDeviceSwitchState(String ipaddress, int port, String devicename, String deviceid, int state){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.devicename = devicename;
-        this.deviceid = deviceid;
-        this.state = state;
+    public SetDeviceSwitchState(String devicemac,String deviceshortaddr, String main_endpoint){
+        this.devicemac = devicemac;
+        this.deviceshortaddr = deviceshortaddr;
+        this.main_endpoint = main_endpoint;
     }
 
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
-            String mDeleteRoom = "DeleteRoom";
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
+            if (m_CMDSocket == null){
+                m_CMDSocket = new DatagramSocket(null);
+                m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.bind(new InetSocketAddress(port));
+            }
+            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            byte[] bt_send = NewCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 
             // 接收数据
-            byte[] buf = new byte[24];
+            byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
+
+            Log.i("DeviceSwitchReturn = " , packet_receive.getData().toString().trim());
             //当result等于1时删除成功,0删除失败
             DataSources.getInstance().setDeviceStateResule(1);
             m_CMDSocket.close();

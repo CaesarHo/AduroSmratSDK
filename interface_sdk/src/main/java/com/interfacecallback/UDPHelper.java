@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 
 /**
@@ -23,6 +24,7 @@ public class UDPHelper implements Runnable {
     InetAddress mInetAddress;
     // UDP服务器监听的端口
     int port = 8888;
+    DatagramSocket socket = null;
     public static String ip;
 
     public UDPHelper(Context context, WifiManager manager) {
@@ -32,6 +34,7 @@ public class UDPHelper implements Runnable {
         WifiInfo wifiInfo = manager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
         ip = Utils.intToIp(ipAddress);
+        Utils.SplitToIp(ip);
     }
 
     @Override
@@ -45,7 +48,11 @@ public class UDPHelper implements Runnable {
         int num = 0;
         try {
             // 建立Socket连接
-            DatagramSocket datagramSocket = new DatagramSocket(port);
+            if (socket == null) {
+                socket = new DatagramSocket(null);
+                socket.setReuseAddress(true);
+                socket.bind(new InetSocketAddress(port));
+            }
             DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
             try {
                 while (!IsThreadDisable && num < 10) {
@@ -53,7 +60,7 @@ public class UDPHelper implements Runnable {
                     // 准备接收数据
                     Log.d("UDP = ", "接受数据:");
                     lock.acquire();
-                    datagramSocket.receive(datagramPacket);
+                    socket.receive(datagramPacket);
                     String strMsg = new String(datagramPacket.getData()).trim();
                     String ipstr = datagramPacket.getAddress().getHostAddress().toString();
                     int port_int = datagramPacket.getPort();

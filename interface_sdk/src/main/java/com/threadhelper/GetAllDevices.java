@@ -23,8 +23,6 @@ import java.net.UnknownHostException;
 public class GetAllDevices implements Runnable {
     private Context context;
     byte[] bt_send;
-    private String ip = "192.168.1.100";
-    private String GatewayString = "200004401331";
     public static final int PORT = 8888;
     public DatagramSocket socket = null;
     private boolean ready = true;
@@ -35,9 +33,9 @@ public class GetAllDevices implements Runnable {
             public void run() {
                 try {
                     bt_send = NewCmdData.GetAllDeviceList();
-                    Log.i("GATEWATEIPADDRESS = " , Constants.ipaddress);
+                    Log.i("网关IP地址 = " , Constants.ipaddress);
                     InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
-                    socket = new DatagramSocket();
+
                     if (socket == null) {
                         socket = new DatagramSocket(null);
                         socket.setReuseAddress(true);
@@ -64,27 +62,31 @@ public class GetAllDevices implements Runnable {
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
 
             try {
-                if (socket == null){
-                    socket = new DatagramSocket(PORT);
+                if (socket == null) {
+                    socket = new DatagramSocket(null);
+                    socket.setReuseAddress(true);
+                    socket.bind(new InetSocketAddress(PORT));
                 }
                 socket.receive(packet);
                 System.out.println("收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
                 String str = new String(packet.getData()).trim();
                 if(str.contains("GW")&&ready&&!str.contains("K64")){
                     ready = true;
-                    int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:");
-                    int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:");
-                    int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:");
-                    int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:");
-                    int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:");
-                    String profile_id = new String(str).substring(profile_id_int, profile_id_int + 6);
-                    String device_id = new String(str).substring(device_id_int, device_id_int + 6);
-                    String device_mac = new String(str).substring(device_mac_int, device_mac_int + 18);
-                    String device_shortaddr = new String(str).substring(device_shortaddr_int, device_shortaddr_int + 6);
-                    String main_endpoint = new String(str).substring(main_endpoint_int,device_shortaddr_int+4);
+                    int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:0X");
+                    int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:0X");
+                    int device_name_int = SearchUtils.searchString(str,"DEVICE_NAME:0X");
+                    int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
+                    int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
+                    int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
+                    String profile_id = new String(str).substring(profile_id_int, profile_id_int + 4);
+                    String device_id = new String(str).substring(device_id_int, device_id_int + 4);
+                    String device_name = new String(str).substring(device_name_int,device_name_int+4);
+                    String device_mac = new String(str).substring(device_mac_int, device_mac_int + 16);
+                    String device_shortaddr = new String(str).substring(device_shortaddr_int, device_shortaddr_int + 4);
+                    String main_endpoint = new String(str).substring(main_endpoint_int,main_endpoint_int+2);
 
                     Log.i("device_mac = ", device_mac);
-                    DataSources.getInstance().ScanDeviceResult("Device",profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
+                    DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
                 }
                 Thread.sleep(1000);
             } catch (Exception e) {

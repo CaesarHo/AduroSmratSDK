@@ -2,6 +2,7 @@ package com.threadhelper;
 
 import android.util.Log;
 
+import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
 import com.utils.NewCmdData;
 import com.utils.Utils;
@@ -16,13 +17,8 @@ import java.util.Arrays;
  * Created by best on 2016/7/18.
  */
 public class AgreeDeviceInNet implements  Runnable{
-    private String ipaddress;
     private DatagramSocket m_CMDSocket = null;
     private int port = 8888;
-
-    public AgreeDeviceInNet(String ipaddress){
-        this.ipaddress = ipaddress;
-    }
 
     @Override
     public void run() {
@@ -32,7 +28,7 @@ public class AgreeDeviceInNet implements  Runnable{
                 m_CMDSocket.setReuseAddress(true);
                 m_CMDSocket.bind(new InetSocketAddress(port));
             }
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
             byte[] bt_send = NewCmdData.Allow_DevicesAccesstoBytes();
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
             System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));

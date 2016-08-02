@@ -2,56 +2,51 @@ package com.threadhelper;
 
 import android.util.Log;
 
-import com.interfacecallback.DataSources;
+import com.interfacecallback.Constants;
+import com.utils.NewCmdData;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 /**
  * Created by best on 2016/7/12.
  */
 public class SetDeviceLevel implements Runnable {
-    private String ipaddress;
-    int port = -1;
-    String devicename;
-    String deviceId;
-    Short deviceid = 0;
-    byte value;
-    DatagramSocket m_CMDSocket = null;
-
-    public SetDeviceLevel(String ipaddress, int port, String deviceId, byte value){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.deviceId = deviceId;
-        this.value = value;
+    private int Level = 1;
+    private static final int PORT = 8888;
+    private DatagramSocket m_CMDSocket = null;
+    private String  devicemac;
+    private String shortaddr;
+    private String main_point;
+    public SetDeviceLevel (String devicemac , String shortaddr , String main_point,int Level){
+        this.devicemac = devicemac;
+        this.shortaddr = shortaddr;
+        this.main_point = main_point;
+        this.Level = Level;
     }
 
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            if (m_CMDSocket == null) {
+                m_CMDSocket = new DatagramSocket(null);
+                m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.bind(new InetSocketAddress(PORT));
+            }
+            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
 
-            String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
+            byte[] bt_send = NewCmdData.setDeviceLevel(devicemac,shortaddr,main_point,Level);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据
             byte[] buf = new byte[24];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
-
             //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().setDeviceLevel(deviceId,(byte)value);
-            m_CMDSocket.close();
+//            DataSources.getInstance().setDeviceLevel(deviceId,(byte)value);
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }
