@@ -2,29 +2,32 @@ package com.threadhelper;
 
 import android.util.Log;
 
-import com.interfacecallback.DataSources;
+import com.interfacecallback.Constants;
+import com.utils.NewCmdData;
+import com.utils.Utils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 /**
- * Created by best on 2016/7/13.
+ * Created by best on 2016/8/3.
  */
-public class SetDeviceHueSat implements Runnable{
-    private String ipaddress;
-    int port = -1;
-    String devicename;
-    int uid = -1;
-    String deviceid;
-    byte hue;
-    byte sat;
-    DatagramSocket m_CMDSocket = null;
+public class SetDeviceHueSat implements Runnable {
+    private static final int PORT = 8888;
+    private DatagramSocket socket = null;
+    private String  devicemac;
+    private String shortaddr;
+    private String main_point;
+    private DatagramSocket m_CMDSocket = null;
+    private int hue = -1;
+    private int sat = -1;
 
-    public SetDeviceHueSat(String ipaddress, int port, String deviceid,byte hue, byte sat){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.deviceid = deviceid;
+    public SetDeviceHueSat(String devicemac , String shortaddr , String main_point, int hue, int sat){
+        this.devicemac = devicemac;
+        this.shortaddr = shortaddr;
+        this.main_point = main_point;
         this.hue = hue;
         this.sat = sat;
     }
@@ -32,27 +35,24 @@ public class SetDeviceHueSat implements Runnable{
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            if (m_CMDSocket == null) {
+                m_CMDSocket = new DatagramSocket(null);
+                m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.bind(new InetSocketAddress(PORT));
+            }
+            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
 
-            String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
+            byte[]  bt_send = NewCmdData.setDeviceHueSatCmd(devicemac,shortaddr,main_point,hue,sat);
+            System.out.println("十六进制SAT = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据
             byte[] buf = new byte[24];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
-            //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().setDeviceHueSat(deviceid,0);
-            m_CMDSocket.close();
+            Log.i("receive_huesat = " ,packet_receive.getData().toString().trim());
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

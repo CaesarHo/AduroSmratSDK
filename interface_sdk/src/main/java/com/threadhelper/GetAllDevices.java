@@ -32,7 +32,7 @@ public class GetAllDevices implements Runnable {
             @Override
             public void run() {
                 try {
-                    bt_send = NewCmdData.GetAllDeviceList();
+                    bt_send = NewCmdData.GetAllDeviceListCmd();
                     Log.i("网关IP地址 = " , Constants.ipaddress);
                     InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
 
@@ -46,7 +46,6 @@ public class GetAllDevices implements Runnable {
                     socket.send(datagramPacket);
                     System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
                     System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
-
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 } catch (SocketException e) {

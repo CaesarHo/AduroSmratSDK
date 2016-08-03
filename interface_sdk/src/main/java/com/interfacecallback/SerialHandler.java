@@ -2,13 +2,11 @@ package com.interfacecallback;
 
 import android.content.Context;
 
-import com.threadhelper.AddDevice;
 import com.threadhelper.AddDeviceToGroup;
 import com.threadhelper.AddDeviceToSence;
 import com.threadhelper.AddGroup;
 import com.threadhelper.AddSences;
 import com.threadhelper.AgreeDeviceInNet;
-import com.threadhelper.DeleteDevice;
 import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
 import com.threadhelper.DeleteSence;
@@ -22,7 +20,9 @@ import com.threadhelper.GetDeviceOnLinStatus;
 import com.threadhelper.GetDeviceSat;
 import com.threadhelper.GetDeviceSwitchState;
 import com.threadhelper.GetSenceDetails;
+import com.threadhelper.SendDeleteDeviceCmd;
 import com.threadhelper.SetColorTemperature;
+import com.threadhelper.SetDeviceHue;
 import com.threadhelper.SetDeviceHueSat;
 import com.threadhelper.SetDeviceLevel;
 import com.threadhelper.SetDeviceSwitchState;
@@ -32,7 +32,6 @@ import com.threadhelper.SetGroupHueSat;
 import com.threadhelper.SetGroupLevel;
 import com.threadhelper.SetGroupSat;
 import com.threadhelper.SetGroupState;
-import com.threadhelper.UpdateDevice;
 import com.threadhelper.UpdateGroup;
 import com.threadhelper.UpdateSceneName;
 
@@ -183,43 +182,11 @@ public class SerialHandler {
     }
 
     /**
-     * 添加设备
-     * @param deviceName
-     * @param deviceId
-     * @param deviceTypeId
-     * @param deviceType
-     * @param zoneType
-     */
-    public void AddDevice(String deviceName,String deviceId,int deviceTypeId,String deviceType,short zoneType){
-        DataSources.getInstance().AddDeviceResult(deviceName,(byte)0x01,(byte)0x00,(byte)220,(byte)220,(byte)220,(byte)220,deviceId,
-                0x0101,"Unknown Device",0,(short)0,(short)0,(short)0x000d);
-        AddDevice mAddDevice = new AddDevice(ipaddress,port,deviceName,deviceId,deviceTypeId,deviceType,zoneType);
-        Thread thread = new Thread(mAddDevice);
-        thread.start();
-    }
-
-    /**
      * 删除设备
-     * @param devicename
-     * @param deviceid
+     * @param devicemac
      */
-    public void DeleteDevice(String devicename,String deviceid){
-        DataSources.getInstance().DeleteDeviceResult(1);//定义假数据回调1表示Delete成功
-        DeleteDevice mDeleteDevice = new DeleteDevice(ipaddress,port,devicename,deviceid);
-        Thread thread = new Thread(mDeleteDevice);
-        thread.start();
-    }
-
-    /**
-     * 修改设备
-     * @param deviceid
-     * @param devicename
-     * @param deviceid
-     */
-    public void ModifyDevice(String devicename,String deviceid){
-        UpdateDevice mModifyDevice = new UpdateDevice(ipaddress,port,devicename,deviceid);
-        Thread thread = new Thread(mModifyDevice);
-        thread.start();
+    public void DeleteDevice(String devicemac){
+        new Thread(new SendDeleteDeviceCmd(devicemac)).start();
     }
 
     /**
@@ -232,6 +199,28 @@ public class SerialHandler {
         new Thread(new SetDeviceSwitchState(devicemac,deviceshortaddr,main_endpoint)).start();
     }
 
+    //设置设备亮度回调
+    public void setDeviceLevel(String devicemac , String shortaddr , String main_point,int Level){
+        new Thread(new SetDeviceLevel(devicemac,shortaddr,main_point,Level)).start();
+    }
+
+    public void setDeviceHue(String devicemac , String shortaddr , String main_point,int hue){
+        new Thread(new SetDeviceHue(devicemac,shortaddr,main_point,hue)).start();
+    }
+
+    //改变设备色调,饱和度
+    public void setDeviceHueSat(String devicemac , String shortaddr , String main_point,int hue,int sat){
+        new Thread(new SetDeviceHueSat(devicemac,shortaddr,main_point,hue,sat)).start();
+    }
+
+
+    //改变色温值
+    public void setColorTemperature(String deviceid,byte value){
+        SetColorTemperature mSetColorTemperature = new SetColorTemperature(ipaddress,port,deviceid,value);
+        Thread thread = new Thread(mSetColorTemperature);
+        thread.start();
+    }
+
     /**
      * 获得设备状态
      */
@@ -242,16 +231,9 @@ public class SerialHandler {
     }
 
     public void getDeviceOnLinStatus(String devicename,String deviceid){
-        //测试数据
-        DataSources.getInstance().getDeviceStatus(devicename,deviceid,(byte)1);
         GetDeviceOnLinStatus getDeviceOnLinStatus = new GetDeviceOnLinStatus();
         Thread thread = new Thread(getDeviceOnLinStatus);
         thread.start();
-    }
-
-    //设置设备亮度回调
-    public void setDeviceLevel(String devicemac , String shortaddr , String main_point,int Level){
-        new Thread(new SetDeviceLevel(devicemac,shortaddr,main_point,Level)).start();
     }
 
     //获取设备亮度回调
@@ -260,12 +242,7 @@ public class SerialHandler {
         Thread thread = new Thread(mDeviceLevel);
         thread.start();
     }
-    //改变设备色调,饱和度
-    public void setDeviceHueSat(String deviceid,byte hue,byte sat){
-        SetDeviceHueSat mDeviceHueSat = new SetDeviceHueSat(ipaddress,port,deviceid,hue,sat);
-        Thread thread = new Thread(mDeviceHueSat);
-        thread.start();
-    }
+
     //获取设备色调
     public void getDeviceHue(String deviceid){
         GetDeviceHue mDeviceHue = new GetDeviceHue(ipaddress,port,deviceid);
@@ -280,12 +257,6 @@ public class SerialHandler {
         thread.start();
     }
 
-    //改变色温值
-    public void setColorTemperature(String deviceid,byte value){
-        SetColorTemperature mSetColorTemperature = new SetColorTemperature(ipaddress,port,deviceid,value);
-        Thread thread = new Thread(mSetColorTemperature);
-        thread.start();
-    }
     //设备 ==========================end============================
 
     //=======================场景操作 start========================

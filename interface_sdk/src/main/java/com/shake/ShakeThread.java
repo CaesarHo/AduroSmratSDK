@@ -79,8 +79,7 @@ public class ShakeThread extends Thread {
                             times++;
                             Log.e("myshake", "shake thread send broadcast.");
 
-                            byte[] bt_send = NewCmdData.GetAllDeviceList();
-                            bt_send = NewCmdData.GetAllDeviceList();
+                            byte[] bt_send = NewCmdData.GetAllDeviceListCmd();
                             Log.i("GATEWATEIPADDRESS = " ,Constants.ipaddress);
                             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
 

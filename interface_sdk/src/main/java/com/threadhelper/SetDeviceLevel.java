@@ -37,7 +37,7 @@ public class SetDeviceLevel implements Runnable {
             }
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
 
-            byte[] bt_send = NewCmdData.setDeviceLevel(devicemac,shortaddr,main_point,Level);
+            byte[] bt_send = NewCmdData.setDeviceLevelCmd(devicemac,shortaddr,main_point,Level);
             DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
             m_CMDSocket.send(packet_send);
 
