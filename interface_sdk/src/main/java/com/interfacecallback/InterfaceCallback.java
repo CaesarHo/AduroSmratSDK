@@ -34,6 +34,7 @@ public interface InterfaceCallback {
     void deleteDeviceFromGroupCallback(int result);
 
     //=========================设备操作===========================
+    void SendExceptionCallack(int result);
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫面设备回调

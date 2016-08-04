@@ -1,6 +1,8 @@
 package com.threadhelper;
 
 import com.interfacecallback.Constants;
+import com.interfacecallback.DataSources;
+import com.interfacecallback.UDPHelper;
 import com.utils.NewCmdData;
 import com.utils.Utils;
 
@@ -25,6 +27,11 @@ public class SendDeleteDeviceCmd implements Runnable{
 
     @Override
     public void run() {
+
+        if (UDPHelper.localip == null && Constants.ipaddress == null){
+            DataSources.getInstance().SendExceptionResult(0);
+            return ;
+        }
         try {
             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
             byte[] bt_send = NewCmdData.DeleteDeviceCmd(devicemac);

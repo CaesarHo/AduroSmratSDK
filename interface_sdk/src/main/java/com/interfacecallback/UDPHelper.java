@@ -25,7 +25,7 @@ public class UDPHelper implements Runnable {
     // UDP服务器监听的端口
     int port = 8888;
     DatagramSocket socket = null;
-    public static String ip;
+    public static String localip;
 
     public UDPHelper(Context context, WifiManager manager) {
         this.context = context;
@@ -33,12 +33,16 @@ public class UDPHelper implements Runnable {
         //获取本地IP地址
         WifiInfo wifiInfo = manager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
-        ip = Utils.intToIp(ipAddress);
-        Utils.SplitToIp(ip);
+        localip = Utils.intToIp(ipAddress);
+        Utils.SplitToIp(localip);
     }
 
     @Override
     public void run() {
+        if (localip == null){
+            DataSources.getInstance().SendExceptionResult(0);
+            return ;
+        }
         StartListen();
     }
 

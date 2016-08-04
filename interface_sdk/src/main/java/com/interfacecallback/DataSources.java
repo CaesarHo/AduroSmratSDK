@@ -23,6 +23,10 @@ public class DataSources {
     }
 
     //============================实现数据接收与发送==============================
+    //发送命令异常回调
+    public void SendExceptionResult(int result){
+        sdkCallback.SendExceptionCallack(result);
+    }
     //------------------------------------设备相关--------------------------------
     //允许设备入网
     public void AgreeDeviceInNet(int result){
@@ -35,7 +39,6 @@ public class DataSources {
         sdkCallback.GatewatInfoCallback(gatewayName,gatewayNo, gatewaySoftwareVersion,
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
-
 
     public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint){
         sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint);

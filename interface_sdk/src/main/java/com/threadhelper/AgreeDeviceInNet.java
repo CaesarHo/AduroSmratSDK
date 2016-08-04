@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
+import com.interfacecallback.UDPHelper;
 import com.utils.NewCmdData;
 import com.utils.Utils;
 
@@ -22,6 +23,12 @@ public class AgreeDeviceInNet implements  Runnable{
 
     @Override
     public void run() {
+
+        if (UDPHelper.localip == null && Constants.ipaddress == null){
+            DataSources.getInstance().SendExceptionResult(0);
+            return ;
+        }
+
         try {
             if(m_CMDSocket==null){
                 m_CMDSocket = new DatagramSocket(null);
@@ -38,7 +45,7 @@ public class AgreeDeviceInNet implements  Runnable{
             Log.e("UDP_SEND = ", "-----------------------------------------");
 
             // 接收数据
-            byte[] buf = new byte[24];
+            byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
             System.out.println("out_bt_send =" + Arrays.toString(buf));
@@ -46,12 +53,7 @@ public class AgreeDeviceInNet implements  Runnable{
             //当result等于1时删除成功,0删除失败
             DataSources.getInstance().AgreeDeviceInNet(1);
         } catch (Exception e) {
-            Log.e("deviceinfo IOException", "Client: Error!");
-            try {
-                m_CMDSocket = new DatagramSocket();
-            }catch (Exception e1){
-                e1.printStackTrace();
-            }
+            e.printStackTrace();
         }
     }
 }

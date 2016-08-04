@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
+import com.interfacecallback.UDPHelper;
 import com.utils.NewCmdData;
 import com.utils.SearchUtils;
 import com.utils.Utils;
@@ -28,6 +29,10 @@ public class GetAllDevices implements Runnable {
     private boolean ready = true;
     @Override
     public void run() {
+        if (UDPHelper.localip == null && Constants.ipaddress == null){
+            DataSources.getInstance().SendExceptionResult(0);
+            return ;
+        }
         new Thread(){
             @Override
             public void run() {
