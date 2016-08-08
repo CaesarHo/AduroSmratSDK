@@ -21,56 +21,58 @@ public class Utils {
     public static byte ip_3[] = new byte[1];
     public static byte ip_4[] = new byte[1];
 
-    public static String ConvertTimeByLong(long time){
+    public static String ConvertTimeByLong(long time) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = new Date(time);
         return sdf.format(date);
     }
 
     public static String intToIp(int i) {
-        return (i & 0xFF ) + "." + ((i >> 8 ) & 0xFF) + "." + ((i >> 16 ) & 0xFF) + "." + ( i >> 24 & 0xFF) ;
+        return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + (i >> 24 & 0xFF);
     }
 
     /**
      * 将byte[]转为各种进制的字符串
+     *
      * @param bytes byte[]
      * @param radix 基数可以转换进制的范围，从Character.MIN_RADIX到Character.MAX_RADIX，超出范围后变为10进制
      * @return 转换后的字符串
      */
-    public static String binary(byte[] bytes, int radix){
+    public static String binary(byte[] bytes, int radix) {
         return new BigInteger(1, bytes).toString(radix);// 这里的1代表正数
     }
 
     /**
      * 十六进制字符串转换byte数组
+     *
      * @param str
      * @return
      */
     public static byte[] hexStringToByteArray(String str) {
-        byte[] byteArray = new byte[str.length()/2];
+        byte[] byteArray = new byte[str.length() / 2];
         int len = byteArray.length;
         int j = 0;
-        for (int i = 0; i<len; i++) {
-            j = (i<<1);
+        for (int i = 0; i < len; i++) {
+            j = (i << 1);
             byteArray[i] = 0;
             char c = str.charAt(j);
-            if ('0'<=c && c<='9') {
-                byteArray[i] |= ((c-'0')<<4);
-            } else if ('A'<=c && c<='F') {
-                byteArray[i] |= ((c-'A'+10)<<4);
-            } else if ('a'<=c && c<='f') {
-                byteArray[i] |= ((c-'a'+10)<<4);
+            if ('0' <= c && c <= '9') {
+                byteArray[i] |= ((c - '0') << 4);
+            } else if ('A' <= c && c <= 'F') {
+                byteArray[i] |= ((c - 'A' + 10) << 4);
+            } else if ('a' <= c && c <= 'f') {
+                byteArray[i] |= ((c - 'a' + 10) << 4);
             } else {
 
             }
             j++;
             c = str.charAt(j);
-            if ('0'<=c && c<='9') {
-                byteArray[i] |= (c-'0');
-            } else if ('A'<=c && c<='F') {
-                byteArray[i] |= (c-'A'+10);
-            } else if ('a'<=c && c<='f') {
-                byteArray[i] |= (c-'a'+10);
+            if ('0' <= c && c <= '9') {
+                byteArray[i] |= (c - '0');
+            } else if ('A' <= c && c <= 'F') {
+                byteArray[i] |= (c - 'A' + 10);
+            } else if ('a' <= c && c <= 'f') {
+                byteArray[i] |= (c - 'a' + 10);
             } else {
 
             }
@@ -79,11 +81,11 @@ public class Utils {
     }
 
     //截取分段IP地址
-    public static void SplitToIp(String ipaddress){
+    public static void SplitToIp(String ipaddress) {
         System.out.println(ipaddress);
-        String[] s=ipaddress.split("\\.");
-        for (String ss:s) {
-            Log.i("out_ip_split", s[0]+s[1]+s[2]+s[3]);
+        String[] s = ipaddress.split("\\.");
+        for (String ss : s) {
+            Log.i("out_ip_split", s[0] + s[1] + s[2] + s[3]);
             int s1 = Integer.parseInt(s[0]);
             int s2 = Integer.parseInt(s[1]);
             int s3 = Integer.parseInt(s[2]);
@@ -96,15 +98,15 @@ public class Utils {
             String str = s[0];
             byte[] bt = str.getBytes();
             String outStr = "";
-            for (int k=0;k<str.length();k++){
+            for (int k = 0; k < str.length(); k++) {
                 outStr = Integer.toHexString(bt[k]);
             }
-            System.out.println("outStr"+Integer.parseInt(String.valueOf(s[0]),16));
+            System.out.println("outStr" + Integer.parseInt(String.valueOf(s[0]), 16));
         }
     }
 
     /**
-     *  ByteBuffer 转换 String：
+     * ByteBuffer 转换 String：
      */
     public static String ByteBufferToString(ByteBuffer buffer) {
         Charset charset = null;
@@ -125,8 +127,8 @@ public class Utils {
 
     /**
      * 将指定字符串src，以每两个字符分割转换为16进制形式 如："2B44EFD9" –> byte[]{0x2B, 0×44, 0xEF, 0xD9}
-     * @param src
-     *            String
+     *
+     * @param src String
      * @return byte[]
      */
     public static byte[] HexString2Bytes(String src) {
@@ -143,23 +145,72 @@ public class Utils {
 
     /**
      * 将两个ASCII字符合成一个字节； 如："EF"–> 0xEF
-     * @param src0
-     *            byte
-     * @param src1
-     *            byte
+     *
+     * @param src0 byte
+     * @param src1 byte
      * @return byte
      */
     public static byte uniteBytes(byte src0, byte src1) {
-        byte _b0 = Byte.decode("0x" + new String(new byte[] {src0})).byteValue();
+        byte _b0 = Byte.decode("0x" + new String(new byte[]{src0})).byteValue();
         _b0 = (byte) (_b0 << 4);
-        byte _b1 = Byte.decode("0x" + new String(new byte[] { src1 })).byteValue();
+        byte _b1 = Byte.decode("0x" + new String(new byte[]{src1})).byteValue();
         byte ret = (byte) (_b0 ^ _b1);
         return ret;
     }
 
-    public static String CrcToString(byte[] bt_send,int len){
-        byte bt_crc82 = (byte) (CRC8.calc(bt_send,len)&0xFF);
+    public static String CrcToString(byte[] bt_send, int len) {
+        byte bt_crc82 = (byte) (CRC8.calc(bt_send, len) & 0xFF);
         String hex = Integer.toHexString(bt_crc82 & 0xFF);
         return hex;
+    }
+
+    //判断CRC8结果长度是否为1
+    public static boolean isCRC8Value(String crc8value) {
+
+        if (crc8value.length() != 2){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public static String StringToHexString(String string){
+        String result = "";
+        switch (string){
+            case "a":
+            case "A":
+                result = "0a";
+                break;
+
+            case "b":
+            case "B":
+                result = "0b";
+                break;
+
+            case "c":
+            case "C":
+                result = "0c";
+                break;
+
+            case "d":
+            case "D":
+                result = "0d";
+                break;
+
+            case "e":
+            case "E":
+                result = "0e";
+                break;
+
+            case "f":
+            case "F":
+                result = "0f";
+                break;
+        }
+        if (result.length() == 2){
+            return result;
+        }else{
+            return "0"+string;
+        }
     }
 }

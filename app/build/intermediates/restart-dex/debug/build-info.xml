@@ -4,7 +4,7 @@
     api-level="22"
     density="xxhdpi"
     format="7"
-    timestamp="44420191168899"
+    timestamp="24640297196379"
     token="4248176631140908628" >
 
     <task
@@ -24,7 +24,7 @@
         location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
-    <build timestamp="44420191168899" >
+    <build timestamp="24640297196379" >
         <artifact
             location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />

@@ -64,13 +64,23 @@ public class NewCmdData {
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
+        System.out.println("IpAddress = " + Constants.IpAddress.int_1+Constants.IpAddress.int_2+Constants.IpAddress.int_3+Constants.IpAddress.int_4);
         bt_send[3] = (byte)Constants.IpAddress.int_1;
         bt_send[4] = (byte)Constants.IpAddress.int_2;
         bt_send[5] = (byte)Constants.IpAddress.int_3;
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;
         bt_send[8] = 0x01;
-        bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            Log.i("ss = " ,ss);
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -113,9 +123,14 @@ public class NewCmdData {
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        byte bt_crc8 = (byte) (CRC8.calc(bt_send, 9)&0xFF);
-        String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -166,7 +181,14 @@ public class NewCmdData {
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        bt_send[9] = Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send,9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -237,7 +259,14 @@ public class NewCmdData {
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        bt_send[9] = Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send,9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -308,7 +337,14 @@ public class NewCmdData {
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        bt_send[9] = Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send,9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -374,7 +410,14 @@ public class NewCmdData {
         bt_send[6] = (byte)Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        bt_send[9] = Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send,9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
         //消息体   01 00 01 00 12
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
