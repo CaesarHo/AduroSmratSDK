@@ -82,6 +82,16 @@ public class GetAllDevices implements Runnable {
                     int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
                     int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
                     int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
+
+                    System.out.println("RESULT = " + SearchUtils.RESULT);
+
+                    System.out.println("profile_id_int = " + profile_id_int);
+                    System.out.println("device_id_int = " + device_id_int);
+                    System.out.println("device_name_int = " + device_name_int);
+                    System.out.println("device_mac_int = " + device_mac_int);
+                    System.out.println("device_shortaddr_int = " + device_shortaddr_int);
+                    System.out.println("main_endpoint_int = " + main_endpoint_int);
+
                     String profile_id = new String(str).substring(profile_id_int, profile_id_int + 4);
                     String device_id = new String(str).substring(device_id_int, device_id_int + 4);
                     String device_name = new String(str).substring(device_name_int,device_name_int+4);

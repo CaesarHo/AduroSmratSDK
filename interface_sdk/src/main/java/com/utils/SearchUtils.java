@@ -4,7 +4,7 @@ package com.utils;
  * Created by oaosj on 2016/7/22 0022.
  */
 public class SearchUtils {
-    private static int RESULT = -1;
+    public static int RESULT = -1;
     public static int searchString(String source,String target){
         if(source.length()<target.length()){
             throw new UnsupportedOperationException("卧槽、别乱输入！");

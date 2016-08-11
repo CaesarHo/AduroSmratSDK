@@ -146,17 +146,17 @@ public class DataSources {
 
     //--------------------------------组相关------------------------------
     //获取网关所有组
-    public void GetAllGroups(Short groupId,String groupsName,String groupIconPath){
-        sdkCallback.getAllGroupsCallback(groupId,groupsName,groupIconPath);
+    public void GetAllGroups(Short groupId,String groupsName,String groupIconPath,String[] mac_data){
+        sdkCallback.getAllGroupsCallback(groupId,groupsName,groupIconPath,mac_data);
     }
 
     //添加组
-    public void AddGroupResult(int result){
-        sdkCallback.AddGroupCallback(result);
+    public void AddGroupResult(short group_id,String group_name){
+        sdkCallback.AddGroupCallback(group_id,group_name);
     }
 
     //删除组
-    public void DeleteGroupResult(int result){
+    public void DeleteGroupResult(short result){
         sdkCallback.DeleteGroupCallback(result);
     }
 
