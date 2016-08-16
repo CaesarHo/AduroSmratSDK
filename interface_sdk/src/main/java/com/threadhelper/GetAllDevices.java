@@ -75,6 +75,8 @@ public class GetAllDevices implements Runnable {
                 System.out.println("收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
                 String str = new String(packet.getData()).trim();
                 if(str.contains("GW")&&ready&&!str.contains("K64")){
+                    System.out.println("isGroupScene = " + !Constants.isGroupScene);
+
                     ready = true;
                     int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:0X");
                     int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:0X");
@@ -82,6 +84,13 @@ public class GetAllDevices implements Runnable {
                     int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
                     int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
                     int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
+
+                    String isMac = new String(str).substring(device_mac_int - 13, device_mac_int);
+
+                    System.out.println("isMac = " + isMac);
+                    if (!isMac.contains("DEVICE_MAC:0X") && isMac.length() < 13){
+                        return;
+                    }
 
                     System.out.println("RESULT = " + SearchUtils.RESULT);
 

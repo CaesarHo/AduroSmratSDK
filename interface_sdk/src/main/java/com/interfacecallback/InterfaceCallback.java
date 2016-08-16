@@ -1,5 +1,8 @@
 package com.interfacecallback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by best on 2016/7/11.
  */
@@ -15,7 +18,7 @@ public interface InterfaceCallback {
     //修改房间
     void ModifyGroupCallback(int result);
     //获取网关所有房间
-    void getAllGroupsCallback(Short groupId,String groupsName,String groupIconPath,String[] mac_data);
+    void getAllGroupsCallback(Short groupId,String groupsName,String groupIconPath,ArrayList<String> mac_data);
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
     void setGroupsStateCallback(short groupId,byte state);
     //设置房间中所有lamp的亮度
@@ -69,9 +72,9 @@ public interface InterfaceCallback {
 
     //==========================场景相关===========================
     //获取网关所有场景
-    void getSencesCallback(int sencesid,String sencesname,String sencesIconPath);
+    void getSencesCallback(short sencesId,String sencesName,short groups_id,String[] devices_mac);
     //添加场景
-    void addSencesCallback(int sencesid,String sencesname,String sencesIconPath);
+    void addSencesCallback(short sencesid ,String sencesName,short group_id,String[] device_mac);
     //获取指定场景的详细信息，
     void getSenceDetailsCallback(short senceId, String senceName,int uid,Short groupId);
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)

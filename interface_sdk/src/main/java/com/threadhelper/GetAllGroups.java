@@ -16,7 +16,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by best on 2016/7/13.
@@ -25,10 +27,10 @@ public class GetAllGroups implements Runnable {
     byte[] bt_send;
     public static final int PORT = 8888;
     public DatagramSocket socket = null;
-    private boolean ready = true;
     private Short Group_Id = 0;
     private String Group_Name = "";
-    private String[] strings;
+
+    ArrayList<String> Devicelist =new ArrayList<String>();
 
     @Override
     public void run() {
@@ -72,37 +74,41 @@ public class GetAllGroups implements Runnable {
 
             String str = FtFormatTransfer.bytesToUTF8String(recbuf);
 
-            if (str.contains("GW") && !str.contains("K64")) {
+            int strToint = str.indexOf(":");
+            String isGroup = "";
+            if (strToint >= 0){
+                isGroup = str.substring(strToint-4,strToint);
+                Log.i("isGroup = " ,isGroup);
+            }
+            Devicelist.clear();
+
+            if (str.contains("GW") && !str.contains("K64") && isGroup.contains("upId")) {
                 String[] group_data = str.split(",");
 
-                for (int i = 1; i < group_data.length; i++) {
-                    if (group_data.length <= 1){
+                for (int i = 2; i < group_data.length; i++) {
+                    if (group_data.length < 2){
                         return;
                     }
+                    Devicelist.add(group_data[i]);
 
                     String[] Id_Source = group_data[0].split(":");
                     String[] Name_Source = group_data[1].split(":");
-                    if (Id_Source.length == 3){
-                        Group_Id = Short.valueOf(Id_Source[2]);
-                    }else if (Id_Source.length != 1){
-                        Group_Id = Short.valueOf(Id_Source[1]);
-                    }
-                    Group_Name = Utils.toStringHex2(Name_Source[1]);
 
-                    Log.i("Id_Source = " ,"" + Group_Id);
-                    Log.i("Name_Source = " , Group_Name);
-
-                    //分组device
-                    if (group_data.length <= 2 && Id_Source.length <= 1){
-                        return;
+                    if (Id_Source.length > 1 && Name_Source.length > 1) {
+                        if (Id_Source.length >= 3){
+                            Group_Id = Short.valueOf(Id_Source[2]);
+                            System.out.println("Source1 = " + Arrays.toString(Id_Source));
+                        }else{
+                            Group_Id = Short.valueOf(Id_Source[1]);
+                            System.out.println("Source2 = " + Arrays.toString(Id_Source));
+                        }
+                        Group_Name = Utils.toStringHex2(Name_Source[1]);
+                        System.out.println("Source3 = " + Arrays.toString(Name_Source));
                     }
-                    String[] strings = new String[group_data.length];
-                    for (int s = 0 ; s < strings.length;s++){
-                        strings[s] = group_data[i];
-                        System.out.println("strings = " + Arrays.toString(strings));
+                    for(int j=0;j<Devicelist.size();j++) {
+                        System.out.println("sdkmaclist  = " +  Devicelist.get(j));
                     }
-
-                    DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, strings);
+                    DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
                 }
 
 //                    for (int i = 0; i < group_data.length; i++) {

@@ -3,6 +3,9 @@ package com.interfacecallback;
 
 import android.net.wifi.WifiManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by best on 2016/7/11.
  */
@@ -110,13 +113,13 @@ public class DataSources {
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景
-    public void getAllSences(int sencesId,String sencesName,String sencesIconPath){
-        sdkCallback.getSencesCallback(sencesId,sencesName,sencesIconPath);
+    public void getAllSences(short sencesId,String sencesName,short groups_id,String[] devices_mac){
+        sdkCallback.getSencesCallback(sencesId,sencesName,groups_id,devices_mac);
     }
 
     //添加场景
-    public void AddSences(int sencesid ,String sencesName,String sceneIconPath){
-        sdkCallback.addSencesCallback(sencesid,sencesName,sceneIconPath);
+    public void AddSence(short sencesid ,String sencesName,short group_id,String[] device_mac){
+        sdkCallback.addSencesCallback(sencesid,sencesName,group_id,device_mac);
     }
 
     //获取场景的详细信息
@@ -146,7 +149,7 @@ public class DataSources {
 
     //--------------------------------组相关------------------------------
     //获取网关所有组
-    public void GetAllGroups(Short groupId,String groupsName,String groupIconPath,String[] mac_data){
+    public void GetAllGroups(Short groupId,String groupsName,String groupIconPath,ArrayList<String> mac_data){
         sdkCallback.getAllGroupsCallback(groupId,groupsName,groupIconPath,mac_data);
     }
 

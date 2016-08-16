@@ -62,7 +62,6 @@ public class UDPHelper implements Runnable {
                 while (!IsThreadDisable && num < 10) {
                     num++;
                     // 准备接收数据
-                    Log.d("UDP = ", "接受数据:");
                     lock.acquire();
                     socket.receive(datagramPacket);
                     String strMsg = new String(datagramPacket.getData()).trim();
@@ -72,12 +71,13 @@ public class UDPHelper implements Runnable {
 
                     Constants.ipaddress = ipstr;
 
-                    DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion",
-                            "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
+                    if (strMsg.contains("K64_SEARCH_GW")){
+                        DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion", "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
 
-                    GatewayInfo.getInstance().setInetAddress(context,ipstr);
-                    GatewayInfo.getInstance().setPort(context,port_int);
-                    GatewayInfo.getInstance().setGatewayNo(context,strMsg);
+                        GatewayInfo.getInstance().setInetAddress(context,ipstr);
+                        GatewayInfo.getInstance().setPort(context,port_int);
+                        GatewayInfo.getInstance().setGatewayNo(context,strMsg);
+                    }
 
                     Log.d("UDP = ", datagramPacket.getAddress().getHostAddress().toString() + ":" + strMsg);
                     if (lock.isHeld()){

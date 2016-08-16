@@ -5,11 +5,11 @@ import android.content.Context;
 import com.threadhelper.AddDeviceToGroup;
 import com.threadhelper.AddDeviceToSence;
 import com.threadhelper.AddGroup;
-import com.threadhelper.AddSences;
+import com.threadhelper.AddSence;
 import com.threadhelper.AgreeDeviceInNet;
 import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
-import com.threadhelper.DeleteSence;
+import com.threadhelper.DeleteScence;
 import com.threadhelper.DeleteSenceMember;
 import com.threadhelper.GetAllDevices;
 import com.threadhelper.GetAllGroups;
@@ -83,14 +83,10 @@ public class SerialHandler {
 
     /**
      * 删除房间
-     *
      * @param groupid
-     * @param groupname
      */
-    public void DeleteGroup(String groupname, String groupid) {
-        DeleteGroup mDeleteGroup = new DeleteGroup(ipaddress, port, groupname, groupid);
-        Thread thread = new Thread(mDeleteGroup);
-        thread.start();
+    public void DeleteGroup(short groupid) {
+        new Thread(new DeleteGroup(groupid)).start();
     }
 
     /**
@@ -112,42 +108,42 @@ public class SerialHandler {
         getGroups.start();
     }
 
-    //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
+    //设置房间中所有设备的状态roomId(房间ID),state(房间状态)(未实现)
     public void setGroupState(Short groupId, byte state) {
         SetGroupState mSetGroupState = new SetGroupState(ipaddress, port, groupId, state);
         Thread thread = new Thread(mSetGroupState);
         thread.start();
     }
 
-    //设置房间中所有lamp的亮度
+    //设置房间中所有lamp的亮度(未实现)
     public void setGroupLevel(short groupId, byte level) {
         SetGroupLevel mSetGroupLevel = new SetGroupLevel(ipaddress, port, groupId, level);
         Thread thread = new Thread(mSetGroupLevel);
         thread.start();
     }
 
-    //设置房间中所有lamp的色调
+    //设置房间中所有lamp的色调(未实现)
     public void setGroupHue(short groupId, byte hue) {
         SetGroupHue mSetGroupHue = new SetGroupHue(ipaddress, port, groupId, hue);
         Thread thread = new Thread(mSetGroupHue);
         thread.start();
     }
 
-    //设置房间中所有lamp的饱和度
+    //设置房间中所有lamp的饱和度(未实现)
     public void setGroupSat(short groupId, byte sat) {
         SetGroupSat setGroupSat = new SetGroupSat(ipaddress, port, groupId, sat);
         Thread thread = new Thread(setGroupSat);
         thread.start();
     }
 
-    //设置房间中所有设备的饱和度及色调
+    //设置房间中所有设备的饱和度及色调(未实现)
     public void setGroupHueSat(short groupId, byte hue, byte sat) {
         SetGroupHueSat mSetGroupHueSat = new SetGroupHueSat(ipaddress, port, groupId, hue, sat);
         Thread thread = new Thread(mSetGroupHueSat);
         thread.start();
     }
 
-    //设置房间中所有设备的色温
+    //设置房间中所有设备的色温(未实现)
     public void setGroupColorTemperature(short groupId, int value) {
         SetGroupColorTemperature mSetGroupColorTemperature = new SetGroupColorTemperature(ipaddress, port, groupId, value);
         Thread thread = new Thread(mSetGroupColorTemperature);
@@ -269,19 +265,14 @@ public class SerialHandler {
     //=======================场景操作 start========================
     //获取网关所有场景
     public void getSences() {
-        DataSources.getInstance().getAllSences(125468, "在家", "");//返回假数据
-
-        GetAllSences mDeviceSences = new GetAllSences(ipaddress, port);
+        GetAllSences mDeviceSences = new GetAllSences();
         Thread thread = new Thread(mDeviceSences);
         thread.start();
     }
 
     //添加场景
-    public void AddSences(int sencesid, String sencesName, String sceneIconPath) {
-
-        DataSources.getInstance().AddSences(sencesid, sencesName, sceneIconPath);//返回添加场景数据
-
-        AddSences addSences = new AddSences(ipaddress, port, sencesid, sencesName, sceneIconPath);
+    public void AddSences(String Out_Scene_Name, short Out_Group_Id) {
+        AddSence addSences = new AddSence(Out_Scene_Name,Out_Group_Id);
         Thread thread = new Thread(addSences);
         thread.start();
     }
@@ -308,9 +299,8 @@ public class SerialHandler {
     }
 
     //删除指定场景
-    public void deleteSence(short senceId, String senceName) {
-        DataSources.getInstance().DeleteSences(1);//返回添加场景成功(假数据)
-        DeleteSence mDeleteSence = new DeleteSence(ipaddress, port, senceId, senceName);
+    public void deleteScence(short senceId) {
+        DeleteScence mDeleteSence = new DeleteScence(senceId);
         Thread thread = new Thread(mDeleteSence);
         thread.start();
     }
