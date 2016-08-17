@@ -84,6 +84,8 @@ public class GetAllDevices implements Runnable {
                     int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
                     int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
                     int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
+                    int in_cluster_count_int = SearchUtils.searchString(str,"IN_CLUSTER_COUNT:0X");
+                    int out_cluster_count_int = SearchUtils.searchString(str,"OUT_CLUSTER_COUNT:0X");
 
                     String isMac = new String(str).substring(device_mac_int - 13, device_mac_int);
 
@@ -107,11 +109,13 @@ public class GetAllDevices implements Runnable {
                     String device_mac = new String(str).substring(device_mac_int, device_mac_int + 16);
                     String device_shortaddr = new String(str).substring(device_shortaddr_int, device_shortaddr_int + 4);
                     String main_endpoint = new String(str).substring(main_endpoint_int,main_endpoint_int+2);
+                    String in_cluster_count = new String(str).substring(in_cluster_count_int,in_cluster_count_int+2);
+                    String out_cluster_count = new String(str).substring(out_cluster_count_int,out_cluster_count_int+2);
 
                     Log.i("device_mac = ", device_mac);
-                    DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
+                    DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint,in_cluster_count,out_cluster_count);
                 }
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (Exception e) {
                 e.printStackTrace();
             }

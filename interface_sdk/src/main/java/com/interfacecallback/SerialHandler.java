@@ -10,7 +10,7 @@ import com.threadhelper.AgreeDeviceInNet;
 import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
 import com.threadhelper.DeleteScence;
-import com.threadhelper.DeleteSenceMember;
+import com.threadhelper.DeleteDeviceFromScene;
 import com.threadhelper.GetAllDevices;
 import com.threadhelper.GetAllGroups;
 import com.threadhelper.GetAllSences;
@@ -285,15 +285,15 @@ public class SerialHandler {
     }
 
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
-    public void addDeviceToSence(Short sencesId, String senceName, String deviceid, byte delaytime) {
-        AddDeviceToSence mAddDeviceToSence = new AddDeviceToSence(ipaddress, port, sencesId, senceName, deviceid, delaytime);
+    public void addDeviceToSence(String mac,String shortaddr,String main_endpoint,short group_id,short scene_id) {
+        AddDeviceToSence mAddDeviceToSence = new AddDeviceToSence(mac,shortaddr,main_endpoint,group_id,scene_id);
         Thread thread = new Thread(mAddDeviceToSence);
         thread.start();
     }
 
     //删除场景中指定设备成员 senceName场景名 设备Id
-    public void deleteSenceMember(String senceName, String deviceid) {
-        DeleteSenceMember mDeleteSenceMember = new DeleteSenceMember(ipaddress, port, senceName, deviceid);
+    public void deleteDeviceFromScene(short scene_id,String mac,String shortaddr,String main_endpoint) {
+        DeleteDeviceFromScene mDeleteSenceMember = new DeleteDeviceFromScene(scene_id, mac,shortaddr,main_endpoint);
         Thread thread = new Thread(mDeleteSenceMember);
         thread.start();
     }

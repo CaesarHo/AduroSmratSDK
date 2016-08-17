@@ -43,8 +43,8 @@ public class DataSources {
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
 
-    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint){
-        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint);
+    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count){
+        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint,in_cluster_count,out_cluster_count);
     }
 
     //添加设备
@@ -113,7 +113,7 @@ public class DataSources {
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景
-    public void getAllSences(short sencesId,String sencesName,short groups_id,String[] devices_mac){
+    public void getAllSences(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac){
         sdkCallback.getSencesCallback(sencesId,sencesName,groups_id,devices_mac);
     }
 

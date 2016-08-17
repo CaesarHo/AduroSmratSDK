@@ -15,6 +15,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -28,6 +29,7 @@ public class GetAllSences implements Runnable {
     private Short Scene_Id = 0;
     private String Scene_Name = "";
     private boolean isRun = true;
+    ArrayList<String> SceneFormGroupDevlist =new ArrayList<String>();
 
     @Override
     public void run() {
@@ -73,6 +75,7 @@ public class GetAllSences implements Runnable {
                 isScene = str.substring(strToint-3,strToint);
                 Log.i("isScene = " ,isScene);
             }
+            SceneFormGroupDevlist.clear();
 
             if (str.contains("GW") && !str.contains("K64") && isScene.contains("eId")) {
 
@@ -82,7 +85,10 @@ public class GetAllSences implements Runnable {
                 //get scenes
                 for (int i = 1; i < group_data.length; i++) {
                     if (group_data.length <= 2) {
-                        return;
+                        continue;
+                    }
+                    if (group_data[i].contains("MAC:")){
+                        SceneFormGroupDevlist.add(group_data[i].substring(4,group_data[i].length()));
                     }
 
                     String[] Id_Source = group_data[0].split(":");
@@ -106,18 +112,11 @@ public class GetAllSences implements Runnable {
                     Log.i("Scene_Id = ", "" + Scene_Id);
                     Log.i("Scene_Name = ", Scene_Name);
 
-                    //场景设备
-                    if (group_data.length <= 2 && Id_Source.length <= 1 && Scene_Name == null) {
-                        return;
+                    for(int j=0;j<SceneFormGroupDevlist.size();j++) {
+                        System.out.println("sdkmaclist  = " +  SceneFormGroupDevlist.get(j));
                     }
-                    String[] get_scene_mac = new String[group_data.length];
-                    for (int s = 0; s < get_scene_mac.length; s++) {
-                        get_scene_mac[s] = group_data[i];
-                        System.out.println("get_scene_mac = " + Arrays.toString(get_scene_mac));
-                    }
-
-                    DataSources.getInstance().getAllSences(Scene_Id,Scene_Name,Scene_Group_Id,get_scene_mac);
                 }
+                DataSources.getInstance().getAllSences(Scene_Id,Scene_Name,Scene_Group_Id,SceneFormGroupDevlist);
             }
         }
     }

@@ -41,7 +41,7 @@ public interface InterfaceCallback {
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫面设备回调
-    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint);
+    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count);
 
     void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
                            byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
@@ -72,7 +72,7 @@ public interface InterfaceCallback {
 
     //==========================场景相关===========================
     //获取网关所有场景
-    void getSencesCallback(short sencesId,String sencesName,short groups_id,String[] devices_mac);
+    void getSencesCallback(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac);
     //添加场景
     void addSencesCallback(short sencesid ,String sencesName,short group_id,String[] device_mac);
     //获取指定场景的详细信息，

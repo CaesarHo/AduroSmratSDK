@@ -130,7 +130,7 @@ public class ShakeThread extends Thread {
                     main_endpoint = new String(rec_str).substring(main_endpoint_int,device_shortaddr_int+4);
 
                     Log.i("device_mac = ", device_mac);
-                    DataSources.getInstance().ScanDeviceResult("Device",profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
+//                    DataSources.getInstance().ScanDeviceResult("Device",profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
                 }
 
                 if (null != handler) {
