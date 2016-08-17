@@ -32,7 +32,7 @@ import com.threadhelper.SetGroupHueSat;
 import com.threadhelper.SetGroupLevel;
 import com.threadhelper.SetGroupSat;
 import com.threadhelper.SetGroupState;
-import com.threadhelper.UpdateGroup;
+import com.threadhelper.UpdateGroupName;
 import com.threadhelper.UpdateSceneName;
 
 /**
@@ -96,7 +96,7 @@ public class SerialHandler {
      * @param groupname
      */
     public void ModifyGroup(String groupname, String groupid) {
-        UpdateGroup mUpdateGroup = new UpdateGroup(ipaddress, port, groupname, groupid);
+        UpdateGroupName mUpdateGroup = new UpdateGroupName(ipaddress, port, groupname, groupid);
         Thread thread = new Thread(mUpdateGroup);
         thread.start();
     }

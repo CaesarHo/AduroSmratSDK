@@ -828,6 +828,102 @@ public class NewCmdData {
     }
 
 
+    /**
+     * change
+     * @param groupname
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public static byte[] sendUpdateGroupCmd(int group_id,String groupname)throws UnsupportedEncodingException {
+
+        byte[] strTobt = groupname.getBytes("utf-8");
+        int group_name_len = strTobt.length;
+        int data_style_len = 22 + group_name_len;
+        int data_len = 4 + group_name_len;
+
+        //组名称 726f6f6d  31
+        String group_str = "";
+        byte[] group_data = null;
+        for (int i = 0;i< strTobt.length;i++){
+            group_str += Integer.toHexString(strTobt[i] & 0xFF);
+            System.out.println("group_str = " + group_str);
+            group_data = Utils.HexString2Bytes(group_str);
+        }
+
+        byte[] bt_send = new byte[37];
+        //4415050c0a801040101c1    415050c0a801040101c1
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte)Constants.IpAddress.int_1;
+        bt_send[4] = (byte)Constants.IpAddress.int_2;
+        bt_send[5] = (byte)Constants.IpAddress.int_3;
+        bt_send[6] = (byte)Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            Log.i("ss = " ,ss);
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
+        //消息体   01001000    010010001b
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = 0x10;//数据类型
+        bt_send[13] = 0x00;
+        bt_send[14] = (byte)data_style_len;//数据体长度  1b = 27
+        //数据体头   415f5a4947   415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号   01ffff     01ffff
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte)0xFF;
+        bt_send[22] = (byte)0xFF;
+        //macaddr  00124b00076afe09   00124b00076afe09
+        bt_send[23] = 0x00;
+        bt_send[24] = 0x12;
+        bt_send[25] = 0x4b;
+        bt_send[26] = 0x00;
+        bt_send[27] = 0x07;
+        bt_send[28] = 0x6a;
+        bt_send[29] = (byte)0xfe;
+        bt_send[30] = 0x09;
+        //数据长度   0009      0009
+        bt_send[31] = (byte)0x00;
+        bt_send[32] = (byte)data_len;
+        // group_id  00a2   00a1
+        bt_send[33] = (byte)(group_id >> 8);
+        bt_send[34] = (byte) group_id;
+
+        //415050c0a801040101c1010010001f 415f5a494701ffff 00124b00076afe09 000d 00a20009 e58e95e689802d3036 3b
+        //组名称长度   0005      0005
+        bt_send[35] = 0x00;
+        bt_send[36] = (byte)group_name_len;
+
+        //固定数据与group数据相加
+        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send,group_data);
+
+        //将前面数据CRC8校验  7d
+        byte bt_crc8 = (CRC8.calc(bt_send_data,bt_send_data.length));
+        String hex = Integer.toHexString(bt_crc8 & 0xFF);
+        Log.i("bt_crc8ToHex = " ,hex);
+        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+
+        //Cmd 数据与CRC8相加
+        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(bt_send_data,bt_crcdata);
+
+        return bt_send_cmd;
+    }
+
+
     //=======================================场景相关=======================================================
     //获取网关所有场景
     public static byte[] GetAllScenesListCmd(){
