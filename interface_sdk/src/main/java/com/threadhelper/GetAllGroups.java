@@ -26,6 +26,7 @@ import java.util.List;
 public class GetAllGroups implements Runnable {
     //马丹，测试git
     //测试二号。
+    //测试三号。
     byte[] bt_send;
     public static final int PORT = 8888;
     public DatagramSocket socket = null;
