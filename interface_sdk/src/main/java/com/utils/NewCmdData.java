@@ -1224,7 +1224,7 @@ public class NewCmdData {
     }
 
     /**
-     * 从组里删除Device
+     * 从场景里删除Device
      * @param scene_id
      * @return
      */

@@ -92,11 +92,11 @@ public class SerialHandler {
     /**
      * 修改房间
      *
-     * @param groupid
-     * @param groupname
+     * @param group_id
+     * @param group_name
      */
-    public void ModifyGroup(String groupname, String groupid) {
-        UpdateGroupName mUpdateGroup = new UpdateGroupName(ipaddress, port, groupname, groupid);
+    public void ModifyGroup(short group_id,String group_name) {
+        UpdateGroupName mUpdateGroup = new UpdateGroupName(group_id,group_name);
         Thread thread = new Thread(mUpdateGroup);
         thread.start();
     }
@@ -271,7 +271,7 @@ public class SerialHandler {
     }
 
     //添加场景
-    public void AddSences(String Out_Scene_Name, short Out_Group_Id) {
+    public void AddSence(String Out_Scene_Name, short Out_Group_Id) {
         AddSence addSences = new AddSence(Out_Scene_Name,Out_Group_Id);
         Thread thread = new Thread(addSences);
         thread.start();
