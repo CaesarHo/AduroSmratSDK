@@ -5,7 +5,7 @@
         jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="a3754c725b2796b1ec449c75463a427e22fa3fe0">
+        sha1="3c7fd69eb554f1f676a826e78cfe3c03796047f1">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
     </item>
     <item
@@ -33,7 +33,7 @@
         jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="61b02af1d5cf0050e46069fb9f126ace6f5f9248">
+        sha1="95141891d37a1ce6fb8387a409f70ed5c454372f">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
     </item>
     <item
