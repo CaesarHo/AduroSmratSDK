@@ -116,6 +116,7 @@ public class GetAllGroups implements Runnable {
                 }
                 DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
 
+
                 }
             }
         }
