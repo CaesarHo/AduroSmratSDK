@@ -124,6 +124,7 @@ public class GetAllGroups implements Runnable {
 
 
 
+
 //        if (UDPHelper.localip == null && Constants.ipaddress == null) {
 //            DataSources.getInstance().SendExceptionResult(0);
 //            return;
