@@ -118,8 +118,8 @@ public class DataSources {
     }
 
     //添加场景
-    public void AddSence(short sencesid ,String sencesName,short group_id,String[] device_mac){
-        sdkCallback.addSencesCallback(sencesid,sencesName,group_id,device_mac);
+    public void AddSence(short sencesid ,String sencesName,short group_id){
+        sdkCallback.addSencesCallback(sencesid,sencesName,group_id);
     }
 
     //获取场景的详细信息

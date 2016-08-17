@@ -99,17 +99,7 @@ public class AddSence implements Runnable {
                         Log.i("Scene_Id = ", "" + Scene_Id);
                         Log.i("Scene_Name = ", Scene_Name);
 
-                        //场景分组
-                        if (group_data.length <= 2 && Id_Source.length <= 1) {
-                            return;
-                        }
-                        String[] add_scene_mac = new String[group_data.length];
-                        for (int s = 0; s < add_scene_mac.length; s++) {
-                            add_scene_mac[s] = group_data[i];
-                            System.out.println("scene_mac = " + Arrays.toString(add_scene_mac));
-                        }
-
-                        DataSources.getInstance().AddSence(Scene_Id,Scene_Name,Scene_Group_Id,add_scene_mac);
+                        DataSources.getInstance().AddSence(Scene_Id,Scene_Name,Scene_Group_Id);
                     }
                 }
             }
