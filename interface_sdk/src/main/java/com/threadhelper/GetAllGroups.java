@@ -62,6 +62,11 @@ public class GetAllGroups implements Runnable {
         }
 
         while (true) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             final byte[] recbuf = new byte[1024];
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             try {
@@ -87,7 +92,7 @@ public class GetAllGroups implements Runnable {
 
                 for (int i = 2; i < group_data.length; i++) {
                     if (group_data.length < 2){
-                        return;
+                        continue;
                     }
                     Devicelist.add(group_data[i]);
 
@@ -105,35 +110,12 @@ public class GetAllGroups implements Runnable {
                         Group_Name = Utils.toStringHex2(Name_Source[1]);
                         System.out.println("Source3 = " + Arrays.toString(Name_Source));
                     }
-                    for(int j=0;j<Devicelist.size();j++) {
-                        System.out.println("sdkmaclist  = " +  Devicelist.get(j));
-                    }
-                    DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
                 }
+                for(int j=0;j<Devicelist.size();j++) {
+                    System.out.println("sdkmaclist  = " +  Devicelist.get(j));
+                }
+                DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
 
-//                    for (int i = 0; i < group_data.length; i++) {
-//                        if (group_data.length <= 1) {
-//                            return;
-//                        }
-//
-//                        String[] Id_Source = group_data[0].split(":");
-//                        String[] Name_Source = group_data[1].split(":");
-//                        if (Id_Source.length <= 2) {
-//                            return;
-//                        }
-//                        Group_Id = Short.valueOf(Id_Source[2]);
-//                        Group_Name = Name_Source[1];
-//
-//                        strings = new String[group_data.length - 2];
-//                        for (int s = 0; s < strings.length; s++) {
-//                            if (group_data.length <= 3) {
-//                                return;
-//                            }
-//                            strings[s] = group_data[i];
-//                            System.out.println("strings = " + Arrays.toString(strings));
-//                        }
-//                        DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, strings);
-//                    }
                 }
             }
         }
