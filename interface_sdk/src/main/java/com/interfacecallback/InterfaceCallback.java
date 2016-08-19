@@ -16,7 +16,7 @@ public interface InterfaceCallback {
     //删除房间
     void DeleteGroupCallback(short result);
     //修改房间
-    void ModifyGroupCallback(int result);
+    void ChangeGroupNameCallback(short groupId,String group_name);
     //获取网关所有房间
     void getAllGroupsCallback(Short groupId,String groupsName,String groupIconPath,ArrayList<String> mac_data);
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)

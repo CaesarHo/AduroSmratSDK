@@ -95,7 +95,7 @@ public class SerialHandler {
      * @param group_id
      * @param group_name
      */
-    public void ModifyGroup(short group_id,String group_name) {
+    public void ChangeGroupName(short group_id,String group_name) {
         UpdateGroupName mUpdateGroup = new UpdateGroupName(group_id,group_name);
         Thread thread = new Thread(mUpdateGroup);
         thread.start();

@@ -874,7 +874,7 @@ public class NewCmdData {
         //消息体   01001000    010010001b
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x10;//数据类型
+        bt_send[12] = 0x10;//数据类型 枚举A
         bt_send[13] = 0x00;
         bt_send[14] = (byte)data_style_len;//数据体长度  1b = 27
         //数据体头   415f5a4947   415f5a4947
@@ -913,6 +913,8 @@ public class NewCmdData {
 
         //将前面数据CRC8校验  7d
         byte bt_crc8 = (CRC8.calc(bt_send_data,bt_send_data.length));
+
+        //crc8 转成需要的类型
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
         Log.i("bt_crc8ToHex = " ,hex);
         byte[] bt_crcdata = Utils.HexString2Bytes(hex);

@@ -164,8 +164,8 @@ public class DataSources {
     }
 
     //修改组
-    public void ModifyGroupResult(int result){
-        sdkCallback.ModifyGroupCallback(result);
+    public void ChangeGroupName(short groupId,String group_name){
+        sdkCallback.ChangeGroupNameCallback(groupId,group_name);
     }
 
     //设置组状态

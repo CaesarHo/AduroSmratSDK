@@ -115,6 +115,7 @@ public class UpdateGroupName implements Runnable {
                         System.out.println("Updatestrings = " + Arrays.toString(strings));
                     }
                 }
+                DataSources.getInstance().ChangeGroupName(group_id,group_name);
             }
         }
     }
