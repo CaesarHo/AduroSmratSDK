@@ -41,7 +41,7 @@ public interface InterfaceCallback {
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫面设备回调
-    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count);
+    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count,String device_zone_type);
 
     void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
                            byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
@@ -72,11 +72,11 @@ public interface InterfaceCallback {
 
     //==========================场景相关===========================
     //获取网关所有场景
-    void getSencesCallback(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac);
+    void getScenesCallback(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac);
     //添加场景
-    void addSencesCallback(short sencesid ,String sencesName,short group_id);
+    void addSceneCallback(short sencesid ,String sencesName,short group_id);
     //获取指定场景的详细信息，
-    void getSenceDetailsCallback(short senceId, String senceName,int uid,Short groupId);
+    void getSceneDetailsCallback(short senceId, String senceName,int uid,Short groupId);
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
     void addDeviceToSenceCallback(String senceName, int uid,short deviceId,int result);
     //删除场景中指定设备成员senceName  场景名 设备uId
@@ -84,6 +84,6 @@ public interface InterfaceCallback {
     //删除指定场景
     void deleteSence(int result);
     //修改指定场景
-    void ChangeSceneName(short sceneId, String newSceneName,int result);
+    void ChangeSceneName(short sceneId, String newSceneName);
 
 }

@@ -83,6 +83,7 @@ public class GetAllDevices implements Runnable {
                     int device_name_int = SearchUtils.searchString(str,"DEVICE_NAME:0X");
                     int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
                     int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
+                    int zone_type_int = SearchUtils.searchString(str, "ZONE_TYPE:0X");
                     int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
                     int in_cluster_count_int = SearchUtils.searchString(str,"IN_CLUSTER_COUNT:0X");
                     int out_cluster_count_int = SearchUtils.searchString(str,"OUT_CLUSTER_COUNT:0X");
@@ -94,26 +95,59 @@ public class GetAllDevices implements Runnable {
                         return;
                     }
 
-                    System.out.println("RESULT = " + SearchUtils.RESULT);
-
-                    System.out.println("profile_id_int = " + profile_id_int);
-                    System.out.println("device_id_int = " + device_id_int);
-                    System.out.println("device_name_int = " + device_name_int);
-                    System.out.println("device_mac_int = " + device_mac_int);
-                    System.out.println("device_shortaddr_int = " + device_shortaddr_int);
-                    System.out.println("main_endpoint_int = " + main_endpoint_int);
-
                     String profile_id = new String(str).substring(profile_id_int, profile_id_int + 4);
                     String device_id = new String(str).substring(device_id_int, device_id_int + 4);
                     String device_name = new String(str).substring(device_name_int,device_name_int+4);
                     String device_mac = new String(str).substring(device_mac_int, device_mac_int + 16);
                     String device_shortaddr = new String(str).substring(device_shortaddr_int, device_shortaddr_int + 4);
+                    String device_zone_type = new String(str).substring(zone_type_int, zone_type_int + 4);
                     String main_endpoint = new String(str).substring(main_endpoint_int,main_endpoint_int+2);
                     String in_cluster_count = new String(str).substring(in_cluster_count_int,in_cluster_count_int+2);
                     String out_cluster_count = new String(str).substring(out_cluster_count_int,out_cluster_count_int+2);
 
-                    Log.i("device_mac = ", device_mac);
-                    DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint,in_cluster_count,out_cluster_count);
+                    switch (device_id) {
+                        case "0105":
+                            device_name = "DimSwitch";
+                            break;
+                        case "0102":
+                            device_name = "ColorLamp";
+                            break;
+                        case "0110":
+                            device_name = "ColorTemperatureLamp";
+                            break;
+                        case "0210":
+                            device_name = "HueColorLamp";
+                            break;
+                        case "0200":
+                            device_name = "ColorLight";
+                            break;
+                        case "0220":
+                            device_name = "ColorTemperatureLampJZGD";
+                            break;
+                        case "0100":
+                            device_name = "DimmableLight";
+                            break;
+                        case "0101":
+                            device_name = "DimLamp";
+                            break;
+
+                        case "0402":
+                            device_name = "HumanSensor";
+                            break;
+                        case "0202":
+                            device_name = "WindowCurtain";
+                            break;
+                        case "0309":
+                            device_name = "PM2dot5Sensor";
+                            break;
+
+                        case "0310":
+                            device_name = "SmokingSensor";
+                            break;
+
+                    }
+                    DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint,
+                            in_cluster_count,out_cluster_count,device_zone_type);
                 }
                 Thread.sleep(500);
             } catch (Exception e) {

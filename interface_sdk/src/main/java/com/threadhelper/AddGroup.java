@@ -43,7 +43,7 @@ public class AddGroup implements Runnable{
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
 
             bt_send = NewCmdData.sendAddGroupCmd(group_name);
-            System.out.println("十六进制HUE = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("添加组CMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
 
             DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
             socket.send(packet_send);
@@ -55,19 +55,18 @@ public class AddGroup implements Runnable{
                 try {
                     socket.receive(packet);
 
-                    System.out.println("收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
+                    System.out.println("添加房间返回数据: ‘" + new String(packet.getData()).trim() + "’\n");
                     String str = new String(recbuf);
+
                     if(str.contains("GW")&&!str.contains("K64")){
                         //解析数据
                         ParseData.ParseGroupInfo parseData = new ParseData.ParseGroupInfo();
                         parseData.parseBytes(recbuf,group_name.length());
-                        if (parseData.mGroupID == 0){
+                        if (parseData.mGroupID == 0 && parseData.mGroupName == null){
                             return;
                         }
 
                         DataSources.getInstance().AddGroupResult(parseData.mGroupID,group_name);
-
-                        group_name = null;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

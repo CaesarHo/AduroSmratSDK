@@ -1,6 +1,7 @@
 package com.interfacecallback;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
 
 import com.threadhelper.AddDeviceToGroup;
 import com.threadhelper.AddDeviceToSence;
@@ -68,6 +69,10 @@ public class SerialHandler {
         this.ipaddress = GatewayInfo.getInstance().getInetAddress(context);
         this.port = GatewayInfo.getInstance().getPort(context);
         GatewayInfo.getInstance().setAesKey(context, aeskey);
+    }
+
+    public void ScanGatewayInfo(Context context , WifiManager wifiManager){
+        new Thread(new UDPHelper(context, wifiManager)).start();
     }
 
     //组操作 ===========================start ============================
@@ -198,8 +203,8 @@ public class SerialHandler {
      * @param deviceshortaddr
      * @param main_endpoint
      */
-    public void setDeviceSwitchState(String devicemac, String deviceshortaddr, String main_endpoint) {
-        new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint)).start();
+    public void setDeviceSwitchState(String devicemac, String deviceshortaddr, String main_endpoint,int value) {
+        new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint,value)).start();
     }
 
     //设置设备亮度回调
@@ -216,10 +221,9 @@ public class SerialHandler {
         new Thread(new SetDeviceHueSat(devicemac, shortaddr, main_point, hue, sat)).start();
     }
 
-
     //改变色温值
-    public void setColorTemperature(String deviceid, byte value) {
-        SetColorTemperature mSetColorTemperature = new SetColorTemperature(ipaddress, port, deviceid, value);
+    public void setColorTemperature(String devicemac , String shortaddr , String main_point,int value) {
+        SetColorTemperature mSetColorTemperature = new SetColorTemperature(devicemac,shortaddr,main_point,value);
         Thread thread = new Thread(mSetColorTemperature);
         thread.start();
     }
@@ -307,7 +311,7 @@ public class SerialHandler {
 
     //修改指定场景
     public void ChangeSceneName(short sceneId, String newSceneName) {
-        UpdateSceneName mChangeSceneName = new UpdateSceneName(ipaddress, port, sceneId, newSceneName);
+        UpdateSceneName mChangeSceneName = new UpdateSceneName(sceneId, newSceneName);
         Thread thread = new Thread(mChangeSceneName);
         thread.start();
     }

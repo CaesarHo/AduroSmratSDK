@@ -20,12 +20,14 @@ public class SetDeviceSwitchState implements Runnable {
     private String deviceshortaddr;
     private String main_endpoint ;
     private int port = 8888;
-    DatagramSocket m_CMDSocket = null;
+    private int value = -1;
+    private DatagramSocket m_CMDSocket = null;
 
-    public SetDeviceSwitchState(String devicemac,String deviceshortaddr, String main_endpoint){
+    public SetDeviceSwitchState(String devicemac,String deviceshortaddr, String main_endpoint,int value){
         this.devicemac = devicemac;
         this.deviceshortaddr = deviceshortaddr;
         this.main_endpoint = main_endpoint;
+        this.value = value;
     }
 
     @Override
@@ -41,7 +43,7 @@ public class SetDeviceSwitchState implements Runnable {
                 m_CMDSocket.bind(new InetSocketAddress(port));
             }
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
-            byte[] bt_send = NewCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint);
+            byte[] bt_send = NewCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint,value);
             DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 
@@ -53,7 +55,7 @@ public class SetDeviceSwitchState implements Runnable {
             Log.i("DeviceSwitchReturn = " , packet_receive.getData().toString().trim());
             //当result等于1时删除成功,0删除失败
             DataSources.getInstance().setDeviceStateResule(1);
-            m_CMDSocket.close();
+
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

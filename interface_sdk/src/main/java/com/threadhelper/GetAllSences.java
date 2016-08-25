@@ -47,7 +47,7 @@ public class GetAllSences implements Runnable {
 
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
             socket.send(datagramPacket);
-            System.out.println("发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("GetAllScenes = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {
@@ -84,10 +84,15 @@ public class GetAllSences implements Runnable {
                 System.out.println("Scene分割的Scene数组 = " + Arrays.toString(group_data));
                 //get scenes
                 for (int i = 1; i < group_data.length; i++) {
-                    if (group_data.length <= 2) {
+                    if (group_data.length < 2) {
                         continue;
                     }
+                    System.out.println("打印MAC = " + "------------------------------------------------");
                     if (group_data[i].contains("MAC:")){
+                        System.out.println("MAC: = " + group_data[i]);
+                        for(int j=0;j<SceneFormGroupDevlist.size();j++) {
+                            System.out.println("SceneDevlist = " +  SceneFormGroupDevlist.get(j));
+                        }
                         SceneFormGroupDevlist.add(group_data[i].substring(4,group_data[i].length()));
                     }
 
@@ -107,16 +112,18 @@ public class GetAllSences implements Runnable {
                         System.out.println("Scene_Id = " + Arrays.toString(Group_Id_Source));
                         Scene_Name = Utils.toStringHex2(Name_Source[1]);
                         Scene_Group_Id = Short.valueOf(Group_Id_Source[1]);
+                        Log.i("Scene_Group_Id = ", "" + Scene_Group_Id);
                     }
 
                     Log.i("Scene_Id = ", "" + Scene_Id);
                     Log.i("Scene_Name = ", Scene_Name);
-
-                    for(int j=0;j<SceneFormGroupDevlist.size();j++) {
-                        System.out.println("sdkmaclist  = " +  SceneFormGroupDevlist.get(j));
-                    }
                 }
-                DataSources.getInstance().getAllSences(Scene_Id,Scene_Name,Scene_Group_Id,SceneFormGroupDevlist);
+
+                for(int j=0;j<SceneFormGroupDevlist.size();j++) {
+                    System.out.println("SceneDevlist = " +  SceneFormGroupDevlist.get(j));
+                }
+
+                DataSources.getInstance().getAllScenes(Scene_Id,Scene_Name,Scene_Group_Id,SceneFormGroupDevlist);
             }
         }
     }

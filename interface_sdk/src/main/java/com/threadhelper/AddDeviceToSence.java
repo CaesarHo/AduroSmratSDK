@@ -77,7 +77,7 @@ public class AddDeviceToSence implements Runnable {
             e.printStackTrace();
         }finally {
             if (socket != null){
-                socket.close();
+//                socket.close();
             }
         }
     }

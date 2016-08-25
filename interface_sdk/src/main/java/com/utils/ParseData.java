@@ -44,4 +44,57 @@ public class ParseData {
             mGroupID = FtFormatTransfer.hBytesToShort(mId_Bt);
         }
     }
+
+
+    public static class ParseAddSceneInfo {
+        public short mSceneID;
+        public String mSceneName;
+        public short mGroupId;
+
+        public ParseAddSceneInfo(){
+            mSceneID = 0;
+            mSceneName = "";
+            mGroupId = 0;
+        }
+
+        public void parseBytes(byte[] data ,int len) {
+            byte[] mGroupId_Bt = new byte[2];
+            byte[] mName_Bt = new byte[len];
+
+            byte mSceneId = data[32];
+            int i = mSceneId & 0xff;
+            mSceneID = (short)i;
+
+            System.arraycopy(data, 35, mName_Bt, 0, len);
+            mSceneName = FtFormatTransfer.bytesToString(mName_Bt);
+
+            System.arraycopy(data,35 + len,mGroupId_Bt,0,2);
+            mGroupId = FtFormatTransfer.hBytesToShort(mGroupId_Bt);
+        }
+    }
+
+
+    /**
+     * 解析修改场景名称
+     */
+    public static class ParseModifySceneInfo {
+        public short mSceneID;
+        public String mSceneName;
+
+        public ParseModifySceneInfo(){
+            mSceneID = 0;
+            mSceneName = "";
+        }
+
+        public void parseBytes(byte[] data ,int len) {
+            byte[] mName_Bt = new byte[len];
+
+            byte mSceneId = data[32];
+            int i = mSceneId & 0xff;
+            mSceneID = (short)i;
+
+            System.arraycopy(data, 35, mName_Bt, 0, len);
+            mSceneName = FtFormatTransfer.bytesToString(mName_Bt);
+        }
+    }
 }

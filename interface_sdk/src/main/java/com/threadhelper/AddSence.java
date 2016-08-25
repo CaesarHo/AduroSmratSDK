@@ -6,6 +6,7 @@ import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
 import com.utils.FtFormatTransfer;
 import com.utils.NewCmdData;
+import com.utils.ParseData;
 import com.utils.Utils;
 
 import java.io.IOException;
@@ -24,11 +25,12 @@ public class AddSence implements Runnable {
     private byte[] bt_send;
     public static final int PORT = 8888;
     private DatagramSocket socket = null;
-    private Short Out_Group_Id = 0;
+    private Short Out_Group_Id;
     private String Out_Scene_Name = "";
-    private Short Scene_Id = 0;
-    private String Scene_Name = "";
-    private Short Scene_Group_Id = 0;
+
+//    private Short Scene_Id;
+//    private String Scene_Name = "";
+//    private Short Scene_Group_Id;
     private boolean isRun = true;
 
     public AddSence(String Out_Scene_Name, short Out_Group_Id) {
@@ -41,7 +43,7 @@ public class AddSence implements Runnable {
 
         try {
 
-            bt_send = NewCmdData.sendAddSceneCmd(Out_Scene_Name, Scene_Group_Id);
+            bt_send = NewCmdData.sendAddSceneCmd(Out_Scene_Name, Out_Group_Id);
 
             Log.i("网关IP = ", Constants.ipaddress);
 
@@ -64,43 +66,56 @@ public class AddSence implements Runnable {
                 final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 try {
                     socket.receive(packet);
-                    System.out.println("Scene_out1=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
-                    System.out.println("Scene_out2 = " + Arrays.toString(recbuf));
+                    System.out.println("添加场景返回(byte) = " + Arrays.toString(recbuf));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                String str = FtFormatTransfer.bytesToUTF8String(recbuf);// new String(recbuf);
+                String str = FtFormatTransfer.bytesToUTF8String(recbuf);
+
+                int strToint = str.indexOf(":");
+                String isScene = "";
+                if (strToint >= 0){
+                    isScene = str.substring(strToint-3,strToint);
+                    Log.i("isScene = " ,isScene);
+                }
 
                 if (str.contains("GW") && !str.contains("K64")) {
                     String[] group_data = str.split(",");
+                    Log.i("添加场景返回 = " ,str);
                     System.out.println("Scene分割的Scene数组 = " + Arrays.toString(group_data));
-                    //get scenes
-                    for (int i = 1; i < group_data.length; i++) {
-                        if (group_data.length <= 2) {
-                            return;
-                        }
-
-                        String[] Id_Source = group_data[0].split(":");
-                        String[] Group_Id_Source = group_data[1].split(":");
-                        String[] Name_Source = group_data[2].split(":");
-
-                        if (Id_Source.length >= 1 && Name_Source.length >= 1 && Group_Id_Source.length >= 1) {
-                            if (Id_Source.length >= 3){
-                                Scene_Id = Short.valueOf(Id_Source[2]);
-                            }else{
-                                Scene_Id = Short.valueOf(Id_Source[1]);
-                            }
-                            Log.i("Id_Source[1] = ", "" + Id_Source[1]);
-                            Scene_Name = Utils.toStringHex2(Name_Source[1]);
-                            Scene_Group_Id = Short.valueOf(Group_Id_Source[1]);
-                        }
-
-                        Log.i("Scene_Id = ", "" + Scene_Id);
-                        Log.i("Scene_Name = ", Scene_Name);
-
-                        DataSources.getInstance().AddSence(Scene_Id,Scene_Name,Scene_Group_Id);
+                    //解析数据
+                    ParseData.ParseAddSceneInfo parseData = new ParseData.ParseAddSceneInfo();
+                    parseData.parseBytes(recbuf,Out_Scene_Name.length());
+                    if (parseData.mGroupId == 0 && parseData.mSceneID == 0 && parseData.mSceneName == null){
+                        return;
                     }
+
+                    DataSources.getInstance().AddScene(parseData.mSceneID,parseData.mSceneName,Out_Group_Id);
+                    //get scenes
+//                    for (int i = 1; i < group_data.length; i++) {
+//                        if (group_data.length <= 2) {
+//                            return;
+//                        }
+//
+//                        String[] Id_Source = group_data[0].split(":");
+//                        String[] Group_Id_Source = group_data[1].split(":");
+//                        String[] Name_Source = group_data[2].split(":");
+//
+//                        if (Id_Source.length >= 1 && Name_Source.length >= 1 && Group_Id_Source.length >= 1) {
+//                            if (Id_Source.length >= 3){
+//                                Scene_Id = Short.valueOf(Id_Source[2]);
+//                            }else{
+//                                Scene_Id = Short.valueOf(Id_Source[1]);
+//                            }
+//                            Scene_Name = Utils.toStringHex2(Name_Source[1]);
+//                            Scene_Group_Id = Short.valueOf(Group_Id_Source[1]);
+//                            Log.i("Scene_Group_Id = ", "" + Scene_Group_Id);
+//                            Log.i("Scene_Id = ", "" + Scene_Id);
+//                            Log.i("Scene_Name = ", Scene_Name);
+//                        }
+//                    }
+//                    DataSources.getInstance().AddScene(Scene_Id,Scene_Name,Scene_Group_Id);
                 }
             }
         } catch (UnknownHostException e) {

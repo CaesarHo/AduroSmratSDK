@@ -45,7 +45,7 @@ public class GetSenceDetails implements Runnable{
 //            repdata.parseBytes(packet.getData());
 
             //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().getSencesDetails((short)123,"场景名称",123456,(short)321);
+//            DataSources.getInstance().getSencesDetails((short)123,"场景名称",123456,(short)321);
             m_CMDSocket.close();
         }catch (Exception e){
             e.printStackTrace();

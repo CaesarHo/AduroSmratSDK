@@ -43,8 +43,8 @@ public class DataSources {
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
 
-    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count){
-        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint,in_cluster_count,out_cluster_count);
+    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count,String device_zone_type){
+        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint,in_cluster_count,out_cluster_count,device_zone_type);
     }
 
     //添加设备
@@ -113,18 +113,18 @@ public class DataSources {
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景
-    public void getAllSences(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac){
-        sdkCallback.getSencesCallback(sencesId,sencesName,groups_id,devices_mac);
+    public void getAllScenes(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac){
+        sdkCallback.getScenesCallback(sencesId,sencesName,groups_id,devices_mac);
     }
 
     //添加场景
-    public void AddSence(short sencesid ,String sencesName,short group_id){
-        sdkCallback.addSencesCallback(sencesid,sencesName,group_id);
+    public void AddScene(short sencesid ,String sencesName,short group_id){
+        sdkCallback.addSceneCallback(sencesid,sencesName,group_id);
     }
 
-    //获取场景的详细信息
-    public void getSencesDetails(Short sencesId,String sencesName,int uid,Short roomId){
-        sdkCallback.getSenceDetailsCallback(sencesId,sencesName,uid,roomId);
+    //获取场景的详细信息说
+    public void getScenesDetails(Short sceneId,String sceneName,int uid,Short roomId){
+        sdkCallback.getSceneDetailsCallback(sceneId,sceneName,uid,roomId);
     }
 
     //添加指定设备至场景
@@ -143,8 +143,8 @@ public class DataSources {
     }
 
     //修改场景
-    public void ChangeSencesName(Short sencesId,String sencesName,int result){
-        sdkCallback.ChangeSceneName(sencesId,sencesName,result);
+    public void ChangeSencesName(Short sencesId,String sencesName){
+        sdkCallback.ChangeSceneName(sencesId,sencesName);
     }
 
     //--------------------------------组相关------------------------------

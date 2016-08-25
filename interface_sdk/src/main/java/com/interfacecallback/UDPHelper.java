@@ -13,6 +13,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 /**
  * Created by best on 2016/6/27.
@@ -58,7 +59,7 @@ public class UDPHelper implements Runnable {
                 socket.bind(new InetSocketAddress(port));
             }
             DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
-            try {
+
                 while (!IsThreadDisable && num < 10) {
                     num++;
                     // 准备接收数据
@@ -84,10 +85,12 @@ public class UDPHelper implements Runnable {
                         lock.release();
                     }
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (SocketException e) {
+
+        }catch(UnknownHostException e){
+            e.printStackTrace();
+        }catch(SocketException e){
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

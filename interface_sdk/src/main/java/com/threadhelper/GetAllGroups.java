@@ -33,13 +33,13 @@ public class GetAllGroups implements Runnable {
     private Short Group_Id = 0;
     private String Group_Name = "";
 
-    ArrayList<String> Devicelist =new ArrayList<String>();
+    ArrayList<String> Devicelist = new ArrayList<String>();
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (UDPHelper.localip == null && Constants.ipaddress == null) {
             DataSources.getInstance().SendExceptionResult(0);
-            return ;
+            return;
         }
         try {
             //获取组列表命令
@@ -53,14 +53,14 @@ public class GetAllGroups implements Runnable {
                 socket.bind(new InetSocketAddress(PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,PORT);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
             socket.send(datagramPacket);
             System.out.println("发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
-        } catch (UnknownHostException e){
+        } catch (UnknownHostException e) {
             e.printStackTrace();
-        } catch (SocketException e){
+        } catch (SocketException e) {
             e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -74,7 +74,7 @@ public class GetAllGroups implements Runnable {
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             try {
                 socket.receive(packet);
-                System.out.println("Group_out1="+new String(packet.getData(),packet.getOffset(),packet.getLength(),"UTF-8"));
+                System.out.println("Group_out1=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
                 System.out.println("Group_out2 = " + Arrays.toString(recbuf));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -84,9 +84,9 @@ public class GetAllGroups implements Runnable {
 
             int strToint = str.indexOf(":");
             String isGroup = "";
-            if (strToint >= 0){
-                isGroup = str.substring(strToint-4,strToint);
-                Log.i("isGroup = " ,isGroup);
+            if (strToint >= 0) {
+                isGroup = str.substring(strToint - 4, strToint);
+                Log.i("isGroup = ", isGroup);
             }
             Devicelist.clear();
 
@@ -94,7 +94,7 @@ public class GetAllGroups implements Runnable {
                 String[] group_data = str.split(",");
 
                 for (int i = 2; i < group_data.length; i++) {
-                    if (group_data.length < 2){
+                    if (group_data.length < 2) {
                         continue;
                     }
                     Devicelist.add(group_data[i]);
@@ -103,10 +103,10 @@ public class GetAllGroups implements Runnable {
                     String[] Name_Source = group_data[1].split(":");
 
                     if (Id_Source.length > 1 && Name_Source.length > 1) {
-                        if (Id_Source.length >= 3){
+                        if (Id_Source.length >= 3) {
                             Group_Id = Short.valueOf(Id_Source[2]);
                             System.out.println("Source1 = " + Arrays.toString(Id_Source));
-                        }else{
+                        } else {
                             Group_Id = Short.valueOf(Id_Source[1]);
                             System.out.println("Source2 = " + Arrays.toString(Id_Source));
                         }
@@ -114,18 +114,13 @@ public class GetAllGroups implements Runnable {
                         System.out.println("Source3 = " + Arrays.toString(Name_Source));
                     }
                 }
-                for(int j=0;j<Devicelist.size();j++) {
-                    System.out.println("sdkmaclist  = " +  Devicelist.get(j));
+                for (int j = 0; j < Devicelist.size(); j++) {
+                    System.out.println("sdkmaclist  = " + Devicelist.get(j));
                 }
                 DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
-
-                }
             }
         }
-
-
-
-
+    }
 
 
 //        if (UDPHelper.localip == null && Constants.ipaddress == null) {

@@ -2,57 +2,90 @@ package com.threadhelper;
 
 import android.util.Log;
 
+import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
+import com.utils.FtFormatTransfer;
+import com.utils.NewCmdData;
+import com.utils.ParseData;
+import com.utils.Utils;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Arrays;
 
 /**
  * Created by best on 2016/7/13.
  */
-public class UpdateSceneName implements Runnable{
-    private String ipaddress;
-    private int port = -1;
-    private Short sencesId;
-    private String sencesName;
-    private DatagramSocket m_CMDSocket = null;
-    private int uid = -1;
+public class UpdateSceneName implements Runnable {
+    private byte[] bt_send;
+    public static final int PORT = 8888;
+    private DatagramSocket socket = null;
+    private short scene_id;
+    private String scene_name;
 
-    public UpdateSceneName(String ipaddress, int port, short sencesId, String sencesName){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.sencesId = sencesId;
-        this.sencesName = sencesName;
+    public UpdateSceneName(short scene_id, String scene_name) {
+        this.scene_id = scene_id;
+        this.scene_name = scene_name;
     }
 
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            //获取组列表命令
+            bt_send = NewCmdData.sendUpdateSceneCmd(scene_id, scene_name);
+            Log.i("网关IP = ", Constants.ipaddress);
 
-            String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
-            m_CMDSocket.send(packet_send);
+            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            if (socket == null) {
+                socket = new DatagramSocket(null);
+                socket.setReuseAddress(true);
+                socket.bind(new InetSocketAddress(PORT));
+            }
 
-            // 接收数据
-            byte[] buf = new byte[24];
-            DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
-            m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+            socket.send(datagramPacket);
+            System.out.println("Update场景发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
 
-            //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().ChangeSencesName((short)123,"场景名称",1);
-            m_CMDSocket.close();
-        } catch (Exception e) {
-            Log.e("deviceinfo IOException", "Client: Error!");
+
+            while (true) {
+                final byte[] recbuf = new byte[1024];
+                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                socket.receive(packet);
+                System.out.println("UpdateScene_out2 = " + Arrays.toString(recbuf));
+
+                //71, 87, -64, -88, 1, 10, -101, 1, -80, 1, 0, 19, 0, 25, 65, 95, 90, 73, 71, 1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 23, 0, 4, 120, 120, 120, 120, 122, 120, 73
+                String str = FtFormatTransfer.bytesToUTF8String(recbuf);
+
+//                int strToint = str.indexOf(":");
+//                String isScene = "";
+//                if (strToint >= 0) {
+//                    isScene = str.substring(strToint - 3, strToint);
+//                    Log.i("isScene = ", isScene);
+//                }
+
+                if (str.contains("GW") && !str.contains("K64")) {
+
+                    //解析数据
+                    ParseData.ParseModifySceneInfo parseData = new ParseData.ParseModifySceneInfo();
+                    parseData.parseBytes(recbuf,scene_name.length());
+                    if (parseData.mSceneID == 0 && parseData.mSceneName.contains(scene_name)){
+                        return;
+                    }
+
+                    DataSources.getInstance().ChangeSencesName(parseData.mSceneID,parseData.mSceneName);
+                }
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

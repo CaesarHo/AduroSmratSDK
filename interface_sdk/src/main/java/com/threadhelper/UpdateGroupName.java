@@ -63,8 +63,7 @@ public class UpdateGroupName implements Runnable {
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             try {
                 socket.receive(packet);
-                System.out.println("UpdateGroup_out1=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
-                System.out.println("UpdateGroup_out2 = " + Arrays.toString(recbuf));
+                System.out.println("UpdateGroup_out = " + Arrays.toString(recbuf));
             } catch (IOException e) {
                 e.printStackTrace();
             }
