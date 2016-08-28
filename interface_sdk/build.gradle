@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 task makeJar(type: Copy) {
@@ -25,6 +29,7 @@ task makeJar(type: Copy) {
     include('classes.jar')
     rename ('classes.jar', 'sdk.jar')
 }
+
 makeJar.dependsOn(build)
 
 dependencies {

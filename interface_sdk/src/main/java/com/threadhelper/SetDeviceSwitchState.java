@@ -6,6 +6,7 @@ import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
 import com.interfacecallback.UDPHelper;
 import com.utils.NewCmdData;
+import com.utils.Utils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -44,6 +45,7 @@ public class SetDeviceSwitchState implements Runnable {
             }
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
             byte[] bt_send = NewCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint,value);
+            System.out.println("开关发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
             DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 

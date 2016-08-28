@@ -16,12 +16,12 @@
         "source": "G:\\SDK\\app\\src\\main\\res\\layout\\activity_publish.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_udp.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\layout\\activity_udp.xml"
-    },
-    {
         "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\connection_text_view.xml",
         "source": "G:\\SDK\\app\\src\\main\\res\\layout\\connection_text_view.xml"
+    },
+    {
+        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_udp.xml",
+        "source": "G:\\SDK\\app\\src\\main\\res\\layout\\activity_udp.xml"
     },
     {
         "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_advanced.xml",

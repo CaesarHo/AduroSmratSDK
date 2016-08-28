@@ -43,7 +43,7 @@ public class AddSence implements Runnable {
 
         try {
 
-            bt_send = NewCmdData.sendAddSceneCmd(Out_Scene_Name, Out_Group_Id);
+            bt_send = NewCmdData.sendAddSceneCmd(Out_Scene_Name, (int)Out_Group_Id);
 
             Log.i("网关IP = ", Constants.ipaddress);
 
@@ -80,14 +80,12 @@ public class AddSence implements Runnable {
                     Log.i("isScene = " ,isScene);
                 }
 
-                if (str.contains("GW") && !str.contains("K64")) {
-                    String[] group_data = str.split(",");
-                    Log.i("添加场景返回 = " ,str);
-                    System.out.println("Scene分割的Scene数组 = " + Arrays.toString(group_data));
-                    //解析数据
-                    ParseData.ParseAddSceneInfo parseData = new ParseData.ParseAddSceneInfo();
-                    parseData.parseBytes(recbuf,Out_Scene_Name.length());
-                    if (parseData.mGroupId == 0 && parseData.mSceneID == 0 && parseData.mSceneName == null){
+                //解析数据
+                ParseData.ParseAddSceneInfo parseData = new ParseData.ParseAddSceneInfo();
+                parseData.parseBytes(recbuf,Out_Scene_Name.length());
+                if (str.contains("GW") && !str.contains("K64") && parseData.mSceneName.equals(Out_Scene_Name)) {
+
+                    if (parseData.mSceneID == 0){
                         return;
                     }
 

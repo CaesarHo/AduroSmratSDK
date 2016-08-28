@@ -103,16 +103,6 @@ public class UpdateGroupName implements Runnable {
 
                     Log.i("UpdateId_Source = ", Group_Id);
                     Log.i("UpdateName_Source = ", group_name);
-
-                    //分组device
-                    if (group_data.length <= 3 && Id_Source.length <= 2) {
-                        return;
-                    }
-                    String[] strings = new String[group_data.length];
-                    for (int s = 0; s < strings.length; s++) {
-                        strings[s] = group_data[i + 1];
-                        System.out.println("Updatestrings = " + Arrays.toString(strings));
-                    }
                 }
                 DataSources.getInstance().ChangeGroupName(group_id,group_name);
             }

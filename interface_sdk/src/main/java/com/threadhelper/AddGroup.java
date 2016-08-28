@@ -57,11 +57,11 @@ public class AddGroup implements Runnable{
 
                     System.out.println("添加房间返回数据: ‘" + new String(packet.getData()).trim() + "’\n");
                     String str = new String(recbuf);
+                    ParseData.ParseGroupInfo parseData = new ParseData.ParseGroupInfo();
+                    //解析数据
+                    parseData.parseBytes(recbuf,group_name.length());
+                    if(str.contains("GW") && !str.contains("K64") && parseData.mGroupName.equals(group_name)){
 
-                    if(str.contains("GW")&&!str.contains("K64")){
-                        //解析数据
-                        ParseData.ParseGroupInfo parseData = new ParseData.ParseGroupInfo();
-                        parseData.parseBytes(recbuf,group_name.length());
                         if (parseData.mGroupID == 0 && parseData.mGroupName == null){
                             return;
                         }

@@ -21,6 +21,7 @@ import com.threadhelper.GetDeviceOnLinStatus;
 import com.threadhelper.GetDeviceSat;
 import com.threadhelper.GetDeviceSwitchState;
 import com.threadhelper.GetSenceDetails;
+import com.threadhelper.RecallScene;
 import com.threadhelper.SendDeleteDeviceCmd;
 import com.threadhelper.SetColorTemperature;
 import com.threadhelper.SetDeviceHue;
@@ -278,6 +279,13 @@ public class SerialHandler {
     public void AddSence(String Out_Scene_Name, short Out_Group_Id) {
         AddSence addSences = new AddSence(Out_Scene_Name,Out_Group_Id);
         Thread thread = new Thread(addSences);
+        thread.start();
+    }
+
+    //Recall场景
+    public void RecallScene(Short Group_Id, Short Scene_Id){
+        RecallScene recallScene = new RecallScene(Group_Id,Scene_Id);
+        Thread thread = new Thread(recallScene);
         thread.start();
     }
 

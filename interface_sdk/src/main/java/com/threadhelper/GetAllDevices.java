@@ -74,6 +74,7 @@ public class GetAllDevices implements Runnable {
                 socket.receive(packet);
                 System.out.println("收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
                 String str = new String(packet.getData()).trim();
+
                 if(str.contains("GW")&&ready&&!str.contains("K64")){
                     System.out.println("isGroupScene = " + !Constants.isGroupScene);
 
@@ -94,7 +95,9 @@ public class GetAllDevices implements Runnable {
                     if (!isMac.contains("DEVICE_MAC:0X") && isMac.length() < 13){
                         return;
                     }
-
+                    if (!isMac.equals("DEVICE_MAC:0X")){
+                        return;
+                    }
                     String profile_id = new String(str).substring(profile_id_int, profile_id_int + 4);
                     String device_id = new String(str).substring(device_id_int, device_id_int + 4);
                     String device_name = new String(str).substring(device_name_int,device_name_int+4);
