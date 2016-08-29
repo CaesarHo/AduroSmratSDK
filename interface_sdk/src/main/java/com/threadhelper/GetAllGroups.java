@@ -115,7 +115,7 @@ public class GetAllGroups implements Runnable {
                     }
                 }
                 for (int j = 0; j < Devicelist.size(); j++) {
-                    System.out.println("sdkmaclist  = " + Devicelist.get(j));
+                    System.out.println("sdkmaclist  = " + Group_Name +  Devicelist.get(j));
                 }
                 DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
             }

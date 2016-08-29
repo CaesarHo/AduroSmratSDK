@@ -27,6 +27,7 @@ public class AddDeviceToSence implements Runnable {
     private String main_endpoint;
     private DatagramSocket socket = null;
     private byte[] bt_send;
+    private int scenegroup_id = -1;
 
     public AddDeviceToSence(String mac,String shortaddr,String main_endpoint,short group_id,short scene_id){
         this.mac = mac;
@@ -41,7 +42,7 @@ public class AddDeviceToSence implements Runnable {
         try {
 
             Log.i("网关IP = ", Constants.ipaddress);
-            int scenegroup_id = (int)group_id;
+            scenegroup_id = (int)group_id;
             bt_send = NewCmdData.Add_DeviceToScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id);
 
             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
@@ -51,12 +52,9 @@ public class AddDeviceToSence implements Runnable {
                 socket.bind(new InetSocketAddress(port));
             }
 
-            if (bt_send == null){
-                return;
-            }
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, port);
             socket.send(datagramPacket);
-            System.out.println("发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("添加设备到场景for数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
 
             while (true) {
                 final byte[] recbuf = new byte[1024];
@@ -65,7 +63,12 @@ public class AddDeviceToSence implements Runnable {
                     socket.receive(packet);
                     System.out.println("Scene_outadd=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
                     System.out.println("Scene_outadd = " + Arrays.toString(recbuf));
-                } catch (IOException e) {
+
+                    Thread.sleep(500);
+                    //将设备存储至场景
+                    new Thread(new StoreScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id)).start();
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

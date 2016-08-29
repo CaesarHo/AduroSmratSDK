@@ -1234,7 +1234,6 @@ public class NewCmdData {
         return bt_send;
     }
 
-
     /**
      * 添加设备到Scene
      * @param group_id
@@ -1244,8 +1243,8 @@ public class NewCmdData {
      * @return
      */
     public static byte[] Add_DeviceToScene(String mac,String shortaddr,String main_endpoint,int group_id,int scene_id){
-        byte[] bt_send = new byte[42];
-        //415050C0A8016B 0101 43
+        byte[] bt_send = new byte[46];
+        //415050c0a801030101d7
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -1256,30 +1255,28 @@ public class NewCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
-            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,9));
             String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
             bt_send[9] = Utils.HexString2Bytes(ss)[0];
         }else{
-            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,9));
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
         }
-        //消息体  01 0002 0018
+        //消息体  010003001e
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = 0x03;//数据类型
         bt_send[13] = 0x00;
-        bt_send[14] = 0x1a;
-        //数据体头  415F5A4947
+        bt_send[14] = 0x1E;
+        //数据体头  415f5a4947
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
         bt_send[17] = 0x5A;
         bt_send[18] = 0x49;
         bt_send[19] = 0x47;
-        //数据体序号   01 00 92
+        //数据体序号  0100a1
         bt_send[20] = 0x01;
         bt_send[21] = (byte)0x00;
         bt_send[22] = (byte)0xA1;
-        //mac地址    00124b0001dd7ac1   124b0001dd7ac1
+        //mac地址    00158d0001310e4e
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
         bt_send[25] = Utils.HexString2Bytes(mac)[2];
@@ -1288,7 +1285,79 @@ public class NewCmdData {
         bt_send[28] = Utils.HexString2Bytes(mac)[5];
         bt_send[29] = Utils.HexString2Bytes(mac)[6];
         bt_send[30] = Utils.HexString2Bytes(mac)[7];
-        //数据长度   00 06  02   f767 01 0C 02 4c
+        //数据长度   00120255130101
+        bt_send[31] = (byte)0x00;
+        bt_send[32] = (byte)0x0c;
+        bt_send[33] = (byte)0x02;//短地址模式
+        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
+        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[36] = 0x01;//源端点
+        bt_send[37] = Utils.HexString2Bytes(main_endpoint)[0];//目标端点
+        bt_send[38] = (byte)(group_id >> 8 );
+        bt_send[39] = (byte)group_id;
+        bt_send[40] = (byte)scene_id;//000218000000006e
+        bt_send[41] = 0x00;
+        bt_send[42] = 0x00;
+        bt_send[43] = 0x00;
+        bt_send[44] = 0x00;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,bt_send.length-1))){
+            String ss = com.utils.Utils.StringToHexString(Utils.CrcToString(bt_send,bt_send.length-1));
+            bt_send[45] = com.utils.Utils.HexString2Bytes(ss)[0];
+        }else{
+            bt_send[45] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,bt_send.length-1))[0];
+        }
+
+        return bt_send;
+    }
+
+    /**
+     * 存储场景至设备
+     */
+    public static byte[] StoreScene(String mac,String shortaddr,String main_endpoint,int group_id,int scene_id){
+        byte[] bt_send = new byte[42];
+        //415050c0a801030101d7
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte)Constants.IpAddress.int_1;
+        bt_send[4] = (byte)Constants.IpAddress.int_2;
+        bt_send[5] = (byte)Constants.IpAddress.int_3;
+        bt_send[6] = (byte)Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,9))){
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        }else{
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,9))[0];
+        }
+        //消息体  010003001e
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = 0x03;//数据类型
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x1A;
+        //数据体头  415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号  0100a1
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte)0x00;
+        bt_send[22] = (byte)0xA4;
+        //mac地址    00158d0001310e4e
+        bt_send[23] = Utils.HexString2Bytes(mac)[0];
+        bt_send[24] = Utils.HexString2Bytes(mac)[1];
+        bt_send[25] = Utils.HexString2Bytes(mac)[2];
+        bt_send[26] = Utils.HexString2Bytes(mac)[3];
+        bt_send[27] = Utils.HexString2Bytes(mac)[4];
+        bt_send[28] = Utils.HexString2Bytes(mac)[5];
+        bt_send[29] = Utils.HexString2Bytes(mac)[6];
+        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        //数据长度   00120255130101
         bt_send[31] = (byte)0x00;
         bt_send[32] = (byte)0x08;
         bt_send[33] = (byte)0x02;//短地址模式
@@ -1298,15 +1367,15 @@ public class NewCmdData {
         bt_send[37] = Utils.HexString2Bytes(main_endpoint)[0];//目标端点
         bt_send[38] = (byte)(group_id >> 8 );
         bt_send[39] = (byte)group_id;
-        bt_send[40] = (byte)scene_id;
+        bt_send[40] = (byte)scene_id;//000218000000006e
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send,bt_send.length-1))){
-            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send,bt_send.length-1));
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send,bt_send.length-1));
-            bt_send[41] = Utils.HexString2Bytes(ss)[0];
+        if (!com.utils.Utils.isCRC8Value(com.utils.Utils.CrcToString(bt_send,bt_send.length-1))){
+            System.out.println("打印crc8结果false = " + com.utils.Utils.CrcToString(bt_send,bt_send.length-1));
+            String ss = com.utils.Utils.StringToHexString(com.utils.Utils.CrcToString(bt_send,bt_send.length-1));
+            bt_send[41] = com.utils.Utils.HexString2Bytes(ss)[0];
         }else{
-            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send,bt_send.length-1));
-            bt_send[41] = Utils.HexString2Bytes(Utils.CrcToString(bt_send,bt_send.length-1))[0];
+            System.out.println("打印crc8结果true = " + com.utils.Utils.CrcToString(bt_send,bt_send.length-1));
+            bt_send[41] = com.utils.Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send,bt_send.length-1))[0];
         }
 
         return bt_send;
