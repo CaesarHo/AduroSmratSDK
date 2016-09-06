@@ -33,14 +33,14 @@
         jar="G:\SDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="1c5a9e786d4980356f07764eda9f1f3d83575893">
+        sha1="919576c3a8518a0b32d0a6d2bde4a7d11b76103f">
         <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_1eba3100bab1406fbc0665e3d07ee21b522f8b8d\classes.dex" />
     </item>
     <item
         jar="G:\SDK\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="2e152ad885fe8f7dc88c887b69a7ce909a1d6c6d">
+        sha1="f4d222e9938c762d4a48470cc8abb5c9a12a91f6">
         <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d3a43ed4bf2c6da587634a145b8b1105e80ba6a8\classes.dex" />
     </item>
 

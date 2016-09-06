@@ -4,12 +4,12 @@
         "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_connections.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_publish.xml"
-    },
-    {
         "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe.xml",
         "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_subscribe.xml"
+    },
+    {
+        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish.xml",
+        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_publish.xml"
     },
     {
         "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections_logging.xml",
