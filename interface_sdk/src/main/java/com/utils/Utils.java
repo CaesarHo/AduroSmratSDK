@@ -1,5 +1,6 @@
 package com.utils;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.interfacecallback.Constants;
@@ -27,6 +28,25 @@ public class Utils {
         return sdf.format(date);
     }
 
+    public static String getFormatTellDate(String time){
+
+        String year = "-";
+
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy"+year+"MM" + year + "dd" + "" + " HH:mm:ss");
+        Date dt = null;
+        try {
+            dt = new Date(Long.parseLong(time));
+        } catch (Exception e) {
+        }
+
+        String s = "";
+        if(dt != null){
+            s = sd.format(dt);
+        }
+
+        return s;
+    }
+
     public static String intToIp(int i) {
         return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + (i >> 24 & 0xFF);
     }
@@ -40,6 +60,25 @@ public class Utils {
      */
     public static String binary(byte[] bytes, int radix) {
         return new BigInteger(1, bytes).toString(radix);// 这里的1代表正数
+    }
+
+
+    /**
+     * b >> 7 将原第8位的bit值移到了第1位上，& 0x1的作用是只保留第一位的值，其余7位与0与将为0
+     * @param b
+     * @return
+     */
+    public static String byteToBit(byte b) {
+
+        return ""
+                + (byte) ((b >> 7) & 0x1) + (byte) ((b >> 6) & 0x1)
+
+                + (byte) ((b >> 5) & 0x1) + (byte) ((b >> 4) & 0x1)
+
+                + (byte) ((b >> 3) & 0x1) + (byte) ((b >> 2) & 0x1)
+
+                + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);
+
     }
 
     /**

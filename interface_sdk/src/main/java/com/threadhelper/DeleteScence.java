@@ -62,8 +62,6 @@ public class DeleteScence implements Runnable{
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             try {
                 socket.receive(packet);
-                System.out.println("DeleteScene_out_str=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
-                System.out.println("DeleteScene_out_byte = " + Arrays.toString(recbuf));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,7 +70,6 @@ public class DeleteScence implements Runnable{
             if(str.contains("GW")&&!str.contains("K64")){
                 byte btToint = recbuf[32];
                 int i = btToint & 0xFF;
-                System.out.println("DeleteSceneCallback = " + i);
                 DataSources.getInstance().DeleteSences(i);
             }
         }

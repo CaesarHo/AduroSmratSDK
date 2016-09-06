@@ -54,17 +54,11 @@ public class SetDeviceHue implements Runnable{
             m_CMDSocket.send(packet_send);
 
             // 接收数据
-            while(true){
-                byte[] recbuf = new byte[1024];
-                final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
-                try {
-                    socket.receive(packet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Log.i("receive_huesat = " ,packet.getData().toString().trim());
-            }
+            byte[] recbuf = new byte[1024];
+            final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
 
+            socket.receive(packet);
+            Log.i("receive_huesat = " ,packet.getData().toString().trim());
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

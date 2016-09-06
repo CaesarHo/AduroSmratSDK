@@ -34,6 +34,7 @@ import com.threadhelper.SetGroupHueSat;
 import com.threadhelper.SetGroupLevel;
 import com.threadhelper.SetGroupSat;
 import com.threadhelper.SetGroupState;
+import com.threadhelper.UpdateDeviceName;
 import com.threadhelper.UpdateGroupName;
 import com.threadhelper.UpdateSceneName;
 
@@ -114,16 +115,18 @@ public class SerialHandler {
         getGroups.start();
     }
 
-    //设置房间中所有设备的状态roomId(房间ID),state(房间状态)(未实现)
-    public void setGroupState(Short groupId, byte state) {
-        SetGroupState mSetGroupState = new SetGroupState(ipaddress, port, groupId, state);
+    //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
+    public void setGroupState(short groupId, int state) {
+        int group_id_int = (int)groupId;
+        SetGroupState mSetGroupState = new SetGroupState(group_id_int, state);
         Thread thread = new Thread(mSetGroupState);
         thread.start();
     }
 
-    //设置房间中所有lamp的亮度(未实现)
-    public void setGroupLevel(short groupId, byte level) {
-        SetGroupLevel mSetGroupLevel = new SetGroupLevel(ipaddress, port, groupId, level);
+    //设置房间中所有lamp的亮度
+    public void setGroupLevel(short groupId, int level) {
+        int group_id_int = (int)groupId;
+        SetGroupLevel mSetGroupLevel = new SetGroupLevel(group_id_int, level);
         Thread thread = new Thread(mSetGroupLevel);
         thread.start();
     }
@@ -264,6 +267,14 @@ public class SerialHandler {
         Thread thread = new Thread(mDeviceSat);
         thread.start();
     }
+
+    //修改设备名称
+    public void UpdateDeviceName(String device_name,String mac,String shortaddr , String main_point){
+        UpdateDeviceName updateDeviceName = new UpdateDeviceName(device_name,mac,shortaddr,main_point);
+        Thread thread = new Thread(updateDeviceName);
+        thread.start();
+    }
+
 
     //设备 ==========================end============================
 

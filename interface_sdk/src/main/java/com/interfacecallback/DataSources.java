@@ -111,6 +111,14 @@ public class DataSources {
         sdkCallback.setColorTemperatureCallback(deviceid,value);
     }
 
+
+
+    //接受传感器数据
+    public void getReceiveSensor(String mDevMac,int state,String time){
+        sdkCallback.getReceiveSensorDataCallback(mDevMac,state,time);
+    }
+
+
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景
     public void getAllScenes(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac){

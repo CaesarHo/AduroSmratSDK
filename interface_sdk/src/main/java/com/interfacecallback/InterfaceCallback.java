@@ -70,6 +70,8 @@ public interface InterfaceCallback {
     //改变色温值
     void setColorTemperatureCallback(String deviceid,byte value);
 
+    void getReceiveSensorDataCallback(String deviceid,int state,String time_str);
+
     //==========================场景相关===========================
     //获取网关所有场景
     void getScenesCallback(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac);

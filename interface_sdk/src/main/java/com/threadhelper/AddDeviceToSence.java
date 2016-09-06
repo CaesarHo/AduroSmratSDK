@@ -56,21 +56,29 @@ public class AddDeviceToSence implements Runnable {
             socket.send(datagramPacket);
             System.out.println("添加设备到场景for数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
 
-            while (true) {
+//            while (true) {
+//                final byte[] recbuf = new byte[1024];
+//                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+//                try {
+//                    socket.receive(packet);
+//                    System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
+//                    Thread.sleep(500);
+//                    //将设备存储至场景
+//                    new Thread(new StoreScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id)).start();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+
+            try {
                 final byte[] recbuf = new byte[1024];
                 final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                try {
-                    socket.receive(packet);
-                    System.out.println("Scene_outadd=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
-                    System.out.println("Scene_outadd = " + Arrays.toString(recbuf));
-
-                    Thread.sleep(500);
-                    //将设备存储至场景
-                    new Thread(new StoreScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id)).start();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                socket.receive(packet);
+                System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
+                Thread.sleep(500);
+                new Thread(new StoreScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id)).start();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();

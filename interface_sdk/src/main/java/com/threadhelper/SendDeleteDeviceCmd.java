@@ -34,29 +34,26 @@ public class SendDeleteDeviceCmd implements Runnable{
         }
         try {
             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
-            byte[] bt_send = NewCmdData.DeleteDeviceCmd(devicemac);
-            System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
             if(socket==null){
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
                 socket.bind(new InetSocketAddress(PORT));
             }
 
+            byte[] bt_send = NewCmdData.DeleteDeviceCmd(devicemac);
+            System.out.println("SendDeleteDeviceCmd = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
             DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,PORT);
             socket.send(datagramPacket);
-            System.out.println("删除十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
 
-            while(true){
-                byte[] recbuf = new byte[1024];
-                final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
-                try {
-                    socket.receive(packet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("DeleteReply : ‘" + new String(packet.getData()).trim() + "’\n");
+            byte[] recbuf = new byte[1024];
+            final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
+            try {
+                socket.receive(packet);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
+            System.out.println("SendDeleteDeviceCmd_Rec : ‘" + new String(packet.getData()).trim() + "’\n");
         }catch(UnknownHostException e){
             e.printStackTrace();
         }catch(SocketException e){

@@ -26,7 +26,6 @@ public class StoreScene implements Runnable{
     private String main_endpoint;
     private int group_id = -1;
     private int scene_id = -1;
-    private boolean isRun = true;
 
     public StoreScene(String mac,String shortaddr,String main_endpoint,int group_id,int scene_id){
         this.mac = mac;
@@ -38,9 +37,7 @@ public class StoreScene implements Runnable{
     @Override
     public void run() {
         try {
-
             Log.i("网关IP = ", Constants.ipaddress);
-
             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
             if (socket == null) {
                 socket = new DatagramSocket(null);
@@ -54,26 +51,21 @@ public class StoreScene implements Runnable{
             socket.send(datagramPacket);
             System.out.println("存储场景 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send_store_scene, 16)), 16));
 
-            while (isRun) {
-                final byte[] recbuf = new byte[1024];
-                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                try {
-                    socket.receive(packet);
-                    System.out.println("存储场景 = " + Arrays.toString(recbuf));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            final byte[] recbuf = new byte[1024];
+            final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+            socket.receive(packet);
+            System.out.println("存储场景返回数据 = " + Arrays.toString(recbuf));
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             if (socket != null){
                 socket.close();
-                isRun = false;
             }
         }
     }

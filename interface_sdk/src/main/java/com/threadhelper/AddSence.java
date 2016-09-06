@@ -77,7 +77,6 @@ public class AddSence implements Runnable {
                 String isScene = "";
                 if (strToint >= 0){
                     isScene = str.substring(strToint-3,strToint);
-                    Log.i("isScene = " ,isScene);
                 }
 
                 //解析数据

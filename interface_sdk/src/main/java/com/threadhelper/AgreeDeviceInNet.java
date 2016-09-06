@@ -38,17 +38,14 @@ public class AgreeDeviceInNet implements  Runnable{
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
             byte[] bt_send = NewCmdData.Allow_DevicesAccesstoBytes();
             Utils.hexStringToByteArray(Utils.binary(bt_send,16));
-            System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
-            System.out.println("十进制DATA =" + Arrays.toString(bt_send));
+            System.out.println("AgreeDeviceInNet = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
             DatagramPacket packet_send = new DatagramPacket(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),Utils.hexStringToByteArray(Utils.binary(bt_send,16)).length,serverAddr, port);
             m_CMDSocket.send(packet_send);
-            Log.e("UDP_SEND = ", "-----------------------------------------");
 
             // 接收数据
             byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
-            System.out.println("out_bt_send =" + Arrays.toString(buf));
 
             //当result等于1时删除成功,0删除失败
             DataSources.getInstance().AgreeDeviceInNet(1);

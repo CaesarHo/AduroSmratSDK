@@ -2,53 +2,57 @@ package com.threadhelper;
 
 import android.util.Log;
 
+import com.interfacecallback.Constants;
 import com.interfacecallback.DataSources;
+import com.interfacecallback.UDPHelper;
+import com.utils.NewCmdData;
+import com.utils.Utils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 /**
  * Created by best on 2016/7/13.
  */
 public class SetGroupState implements Runnable {
+    private int port = 8888;
+    private int value = -1;
+    private int group_id = -1;
     private DatagramSocket m_CMDSocket = null;
-    private String ipaddress;
-    private int port = -1;
-    private Short groupId;
-    private byte state;
 
-    public SetGroupState(String ipaddress, int port, Short groupId, byte state){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.groupId = groupId;
-        this.state = state;
+    public SetGroupState(int group_id,int value){
+        this.group_id = group_id;
+        this.value = value;
     }
+
     @Override
     public void run() {
+        if (UDPHelper.localip == null && Constants.ipaddress == null){
+            DataSources.getInstance().SendExceptionResult(0);
+            return ;
+        }
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            if (m_CMDSocket == null){
+                m_CMDSocket = new DatagramSocket(null);
+                m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.bind(new InetSocketAddress(port));
+            }
+            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
 
-            String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
+            byte[] bt_send = NewCmdData.setGroupState(group_id,value);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 
             // 接收数据
-            byte[] buf = new byte[24];
+            byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
 
             //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().setGroupsState((short)123456,(byte)1);
-            m_CMDSocket.close();
+            DataSources.getInstance().setDeviceStateResule(1);
+
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

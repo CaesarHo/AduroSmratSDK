@@ -55,7 +55,7 @@ public class GetAllGroups implements Runnable {
 
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
             socket.send(datagramPacket);
-            System.out.println("发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("GetAllGroupsCMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {
@@ -65,17 +65,12 @@ public class GetAllGroups implements Runnable {
         }
 
         while (true) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             final byte[] recbuf = new byte[1024];
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             try {
                 socket.receive(packet);
-                System.out.println("Group_out1=" + new String(packet.getData(), packet.getOffset(), packet.getLength(), "UTF-8"));
-                System.out.println("Group_out2 = " + Arrays.toString(recbuf));
+                System.out.println("GetAllGroups = " + Arrays.toString(recbuf));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,7 +81,6 @@ public class GetAllGroups implements Runnable {
             String isGroup = "";
             if (strToint >= 0) {
                 isGroup = str.substring(strToint - 4, strToint);
-                Log.i("isGroup = ", isGroup);
             }
             Devicelist.clear();
 
@@ -105,18 +99,13 @@ public class GetAllGroups implements Runnable {
                     if (Id_Source.length > 1 && Name_Source.length > 1) {
                         if (Id_Source.length >= 3) {
                             Group_Id = Short.valueOf(Id_Source[2]);
-                            System.out.println("Source1 = " + Arrays.toString(Id_Source));
                         } else {
                             Group_Id = Short.valueOf(Id_Source[1]);
-                            System.out.println("Source2 = " + Arrays.toString(Id_Source));
                         }
                         Group_Name = Utils.toStringHex2(Name_Source[1]);
-                        System.out.println("Source3 = " + Arrays.toString(Name_Source));
                     }
                 }
-                for (int j = 0; j < Devicelist.size(); j++) {
-                    System.out.println("sdkmaclist  = " + Group_Name +  Devicelist.get(j));
-                }
+
                 DataSources.getInstance().GetAllGroups(Group_Id, Group_Name, null, Devicelist);
             }
         }

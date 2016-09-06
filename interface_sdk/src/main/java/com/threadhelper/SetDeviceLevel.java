@@ -48,7 +48,7 @@ public class SetDeviceLevel implements Runnable {
             m_CMDSocket.send(packet_send);
 
             // 接收数据
-            byte[] buf = new byte[24];
+            byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
             //当result等于1时删除成功,0删除失败

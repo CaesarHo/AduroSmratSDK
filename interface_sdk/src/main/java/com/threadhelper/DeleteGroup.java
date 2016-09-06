@@ -53,7 +53,6 @@ public class DeleteGroup implements Runnable{
                 try {
                     socket.receive(packet);
 
-                    System.out.println("收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
                     String str = new String(recbuf);
                     if(str.contains("GW")&&!str.contains("K64")){
                         //解析数据
@@ -62,8 +61,6 @@ public class DeleteGroup implements Runnable{
                         if (parseData.mGroupID == 0){
                             return;
                         }
-                        System.out.println("DeleteCallback = " + parseData.mGroupID);
-
                         DataSources.getInstance().DeleteGroupResult(parseData.mGroupID);
                     }
                 } catch (IOException e) {

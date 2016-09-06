@@ -45,7 +45,7 @@ public class SetDeviceSwitchState implements Runnable {
             }
             InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
             byte[] bt_send = NewCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint,value);
-            System.out.println("开关发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("SetDeviceSwitchStateCMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
             DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
             m_CMDSocket.send(packet_send);
 
@@ -54,7 +54,7 @@ public class SetDeviceSwitchState implements Runnable {
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
             m_CMDSocket.receive(packet_receive);
 
-            Log.i("DeviceSwitchReturn = " , packet_receive.getData().toString().trim());
+            Log.i("SetDeviceSwitchState = " , packet_receive.getData().toString().trim());
             //当result等于1时删除成功,0删除失败
             DataSources.getInstance().setDeviceStateResule(1);
 

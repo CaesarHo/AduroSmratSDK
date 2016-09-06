@@ -50,15 +50,13 @@ public class RecallScene implements Runnable {
             e.printStackTrace();
         }
 
-        while (true) {
-            byte[] recbuf = new byte[1024];
-            final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-            try {
-                socket.receive(packet);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("控制场景收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
+        byte[] recbuf = new byte[1024];
+        final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+        try {
+            socket.receive(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("控制场景收到的数据: ‘" + new String(packet.getData()).trim() + "’\n");
     }
 }
