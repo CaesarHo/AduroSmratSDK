@@ -32,7 +32,7 @@ public class ShakeThread extends Thread {
     private InetAddress inetAddress;
 
     //设备信息
-    private String profile_id,device_id,device_mac,device_shortaddr,main_endpoint;
+    private String profile_id,device_id,device_mac,device_shortaddr,main_endpoint,device_name,device_zone_type,in_cluster_count,out_cluster_count;
 
     public ShakeThread(Handler handler){
         this.port = DEFAULT_PORT;
@@ -123,14 +123,29 @@ public class ShakeThread extends Thread {
                     int device_mac_int = SearchUtils.searchString(rec_str, "DEVICE_MAC:");
                     int device_shortaddr_int = SearchUtils.searchString(rec_str, "DEVICE_SHORTADDR:");
                     int main_endpoint_int = SearchUtils.searchString(rec_str, "MAIN_ENDPOINT:");
-                    profile_id = new String(rec_str).substring(profile_id_int, profile_id_int + 6);
-                    device_id = new String(rec_str).substring(device_id_int, device_id_int + 6);
-                    device_mac = new String(rec_str).substring(device_mac_int, device_mac_int + 18);
-                    device_shortaddr = new String(rec_str).substring(device_shortaddr_int, device_shortaddr_int + 6);
-                    main_endpoint = new String(rec_str).substring(main_endpoint_int,device_shortaddr_int+4);
+
+                    int device_name_int = SearchUtils.searchString(rec_str,"DEVICE_NAME:0X");
+                    int zone_type_int = SearchUtils.searchString(rec_str, "ZONE_TYPE:0X");
+                    int in_cluster_count_int = SearchUtils.searchString(rec_str,"IN_CLUSTER_COUNT:0X");
+                    int out_cluster_count_int = SearchUtils.searchString(rec_str,"OUT_CLUSTER_COUNT:0X");
+
+
+                    String isMac = new String(rec_str).substring(device_mac_int - 13, device_mac_int);
+                    if (!isMac.equals("DEVICE_MAC:0X")){
+                        return;
+                    }
+
+                    profile_id = rec_str.substring(profile_id_int, profile_id_int + 4);
+                    device_id = rec_str.substring(device_id_int, device_id_int + 4);
+                    device_name = rec_str.substring(device_name_int,device_name_int+4);
+                    device_mac = rec_str.substring(device_mac_int, device_mac_int + 16);
+                    device_shortaddr = rec_str.substring(device_shortaddr_int, device_shortaddr_int + 4);
+                    device_zone_type = rec_str.substring(zone_type_int, zone_type_int + 4);
+                    main_endpoint = rec_str.substring(main_endpoint_int,main_endpoint_int+2);
+                    in_cluster_count = rec_str.substring(in_cluster_count_int,in_cluster_count_int+2);
+                    out_cluster_count = rec_str.substring(out_cluster_count_int,out_cluster_count_int+2);
 
                     Log.i("device_mac = ", device_mac);
-//                    DataSources.getInstance().ScanDeviceResult("Device",profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint);
                 }
 
                 if (null != handler) {
@@ -139,9 +154,13 @@ public class ShakeThread extends Thread {
                     Bundle bundle = new Bundle();
                     bundle.putString("profile_id", profile_id);
                     bundle.putString("device_id", device_id);
+                    bundle.putString("device_name",device_name);
                     bundle.putString("device_mac", device_mac);
                     bundle.putString("device_shortaddr",device_shortaddr);
+                    bundle.putString("device_zone_type",device_zone_type);
                     bundle.putString("main_endpoint",main_endpoint);
+                    bundle.putString("in_cluster_count",in_cluster_count);
+                    bundle.putString("out_cluster_count",out_cluster_count);
                     msg.setData(bundle);
                     handler.sendMessage(msg);
                 }
