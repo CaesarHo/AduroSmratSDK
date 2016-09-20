@@ -88,4 +88,15 @@ public interface InterfaceCallback {
     //修改指定场景
     void ChangeSceneName(short sceneId, String newSceneName);
 
+
+    //===============================================任务相关=======================================
+    void getAllTasksCallback(int task_no,String task_name,int isEnabled,int task_type,
+                             int task_cycle,int task_hour,int task_minute,int task_action,
+                             String device_mac,int cmd_size,
+                             String serial_type1, int action_state1,int action_state6,
+                             String serial_type2, int action_state2,int action_state7,
+                             String serial_type3, int action_state3,int action_state8,
+                             String serial_type4, int action_state4,int action_state9,
+                             String serial_type5, int action_state5,int action_state10);
+
 }

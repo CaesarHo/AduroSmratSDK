@@ -1,6 +1,7 @@
 package com.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 
 import com.interfacecallback.Constants;
@@ -17,6 +18,7 @@ import java.util.Date;
  * Created by best on 2016/7/14.
  */
 public class Utils {
+    public static final int INT = 100;
     public static byte ip_1[] = new byte[1];
     public static byte ip_2[] = new byte[1];
     public static byte ip_3[] = new byte[1];
@@ -28,11 +30,11 @@ public class Utils {
         return sdf.format(date);
     }
 
-    public static String getFormatTellDate(String time){
+    public static String getFormatTellDate(String time) {
 
         String year = "-";
 
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy"+year+"MM" + year + "dd" + "" + " HH:mm:ss");
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy" + year + "MM" + year + "dd" + "" + " HH:mm:ss");
         Date dt = null;
         try {
             dt = new Date(Long.parseLong(time));
@@ -40,11 +42,58 @@ public class Utils {
         }
 
         String s = "";
-        if(dt != null){
+        if (dt != null) {
             s = sd.format(dt);
         }
 
         return s;
+    }
+
+    public static int hsvToColor(int hue, int sat) {
+        float[] call_ft = new float[3];
+        call_ft[0] = hue / 255.0f * 360.0f;
+        call_ft[1] = sat / 255.0f;
+        call_ft[2] = 1.0f;
+
+        int color = Color.HSVToColor(call_ft);
+        System.out.println("call_color = " + color + "," + "call_ft[0] = " + call_ft[0] + "," + "call_ft[1] = " + call_ft[1]);
+        return color;
+    }
+
+    /**
+     * 计算命令长度
+     *
+     * @param serial_type
+     * @return
+     */
+    public static int cDataByteLen(String serial_type) {
+        int commandDataByte_Len = 0;
+        if (serial_type != null) {
+            switch (serial_type) {
+                case "0092"://开关
+                    //10 + 40
+                    commandDataByte_Len = 50;
+                    break;
+                case "0081"://亮度
+                    //10 + 43
+                    commandDataByte_Len = 53;
+                    break;
+                case "00B6"://颜色
+                    commandDataByte_Len = 54;
+                    //10 + 44
+                    break;
+                case "00C0"://色温
+                    commandDataByte_Len = 53;
+                    //10 + 43
+                    break;
+                case "00A5"://调用场景
+                    //10 + 42
+                    commandDataByte_Len = 52;
+                    break;
+            }
+        }
+
+        return commandDataByte_Len;
     }
 
     public static String intToIp(int i) {
@@ -65,6 +114,7 @@ public class Utils {
 
     /**
      * b >> 7 将原第8位的bit值移到了第1位上，& 0x1的作用是只保留第一位的值，其余7位与0与将为0
+     *
      * @param b
      * @return
      */
@@ -206,16 +256,16 @@ public class Utils {
     //判断CRC8结果长度是否为1
     public static boolean isCRC8Value(String crc8value) {
 
-        if (crc8value.length() != 2){
+        if (crc8value.length() != 2) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    public static String StringToHexString(String string){
+    public static String StringToHexString(String string) {
         String result = "";
-        switch (string){
+        switch (string) {
             case "a":
             case "A":
                 result = "0a";
@@ -246,10 +296,10 @@ public class Utils {
                 result = "0f";
                 break;
         }
-        if (result.length() == 2){
+        if (result.length() == 2) {
             return result;
-        }else{
-            return "0"+string;
+        } else {
+            return "0" + string;
         }
     }
 
@@ -258,8 +308,7 @@ public class Utils {
         byte[] baKeyword = new byte[s.length() / 2];
         for (int i = 0; i < baKeyword.length; i++) {
             try {
-                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(
-                        i * 2, i * 2 + 2), 16));
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -270,5 +319,227 @@ public class Utils {
             e1.printStackTrace();
         }
         return s;
+    }
+
+    public static byte[] tCmdData(String device_mac, String device_shortaddr, String device_main_point,
+                                  String dev_switch, int switch_state, String dev_level, int level_value,
+                                  String dev_hue, int hue_value, int sat_value, String dev_temp, int temp_value,
+                                  String recall_scene, int group_id, int scene_id) {
+        int switch_cmd_len = 0;
+        if (dev_switch != null) {
+            switch_cmd_len = 50;
+        }
+        if (dev_switch != null & dev_level == null & dev_hue == null & dev_temp == null & recall_scene == null) {
+            switch_cmd_len = 57;
+        }
+        System.out.println("switch_cmd_len = " + switch_cmd_len);
+
+        byte[] switch_cmd = new byte[switch_cmd_len];
+        if (dev_switch != null) {
+            switch_cmd[0] = 0x63;
+            switch_cmd[1] = 0x6f;
+            switch_cmd[2] = 0x6d;
+            switch_cmd[3] = 0x6d;
+            switch_cmd[4] = 0x61;
+            switch_cmd[5] = 0x6e;
+            switch_cmd[6] = 0x64;
+
+            switch_cmd[7] = 0x00;
+            byte[] cmdNo_1 = NewCmdData.DevSwitchCmd(device_mac, device_shortaddr, device_main_point, switch_state);
+            int cmd_switch_len = cmdNo_1.length;
+            switch_cmd[8] = ((byte) (cmd_switch_len << 8));
+            switch_cmd[9] = ((byte) cmd_switch_len);
+
+            for (int i = 0; i < cmd_switch_len; i++) {
+                switch_cmd[(10 + i)] = cmdNo_1[i];
+            }
+
+            if (dev_level == null & dev_hue == null & dev_temp == null & recall_scene == null) {
+                switch_cmd[(10 + cmdNo_1.length)] = 0x63;
+                switch_cmd[(11 + cmdNo_1.length)] = 0x6f;
+                switch_cmd[(12 + cmdNo_1.length)] = 0x6d;
+                switch_cmd[(13 + cmdNo_1.length)] = 0x6d;
+                switch_cmd[(14 + cmdNo_1.length)] = 0x61;
+                switch_cmd[(15 + cmdNo_1.length)] = 0x6e;
+                switch_cmd[(16 + cmdNo_1.length)] = 0x64;
+            }
+
+        }
+
+        int level_cmd_len = 0;
+        if (dev_level != null) {
+            level_cmd_len = 53;
+        }
+        if (dev_level != null & dev_hue == null & dev_temp == null & recall_scene == null) {
+            level_cmd_len = 60;
+        }
+        System.out.println("level_cmd_len = " + level_cmd_len);
+        byte[] level_cmd = new byte[level_cmd_len];
+        if (dev_level != null) {
+            level_cmd[0] = 0x63;
+            level_cmd[1] = 0x6f;
+            level_cmd[2] = 0x6d;
+            level_cmd[3] = 0x6d;
+            level_cmd[4] = 0x61;
+            level_cmd[5] = 0x6e;
+            level_cmd[6] = 0x64;
+
+            level_cmd[7] = 0x01;
+
+            byte[] cmdNo_2 = NewCmdData.setDeviceLevelCmd(device_mac, device_shortaddr, device_main_point, level_value);
+
+            int cmd_level_len = cmdNo_2.length;
+            System.out.println("cmd_level_len2 = " + cmd_level_len);
+            level_cmd[8] = ((byte) (cmd_level_len << 8));
+            level_cmd[9] = ((byte) cmd_level_len);
+            for (int i = 0; i < cmd_level_len; i++) {
+                level_cmd[(10 + i)] = cmdNo_2[i];
+            }
+
+            if (dev_hue == null & dev_temp == null & recall_scene == null) {
+                level_cmd[(10 + cmdNo_2.length)] = 0x63;
+                level_cmd[(11 + cmdNo_2.length)] = 0x6f;
+                level_cmd[(12 + cmdNo_2.length)] = 0x6d;
+                level_cmd[(13 + cmdNo_2.length)] = 0x6d;
+                level_cmd[(14 + cmdNo_2.length)] = 0x61;
+                level_cmd[(15 + cmdNo_2.length)] = 0x6e;
+                level_cmd[(16 + cmdNo_2.length)] = 0x64;
+            }
+
+        }
+
+        int hue_cmd_len = 0;
+        if (dev_hue != null) {
+            hue_cmd_len = 54;
+        }
+        if (dev_hue != null & dev_temp == null & recall_scene == null) {
+            hue_cmd_len = 61;
+        }
+        System.out.println("hue_cmd_len = " + hue_cmd_len);
+        byte[] hue_cmd = new byte[hue_cmd_len];
+        if (dev_hue != null) {
+            hue_cmd[0] = 0x63;
+            hue_cmd[1] = 0x6f;
+            hue_cmd[2] = 0x6d;
+            hue_cmd[3] = 0x6d;
+            hue_cmd[4] = 0x61;
+            hue_cmd[5] = 0x6e;
+            hue_cmd[6] = 0x64;
+
+            hue_cmd[7] = 0x02;
+
+            byte[] cmdNo_3 = NewCmdData.setDeviceHueSatCmd(device_mac, device_shortaddr, device_main_point, hue_value, sat_value);
+
+            int cmd_hue_sat_len = cmdNo_3.length;
+            System.out.println("cmd_hue_sat_len3 = " + cmd_hue_sat_len);
+            hue_cmd[8] = ((byte) (cmd_hue_sat_len << 8));
+            hue_cmd[9] = ((byte) cmd_hue_sat_len);
+            for (int i = 0; i < cmd_hue_sat_len; i++) {
+                hue_cmd[(10 + i)] = cmdNo_3[i];
+            }
+
+            if (dev_temp == null & recall_scene == null) {
+                hue_cmd[(10 + cmdNo_3.length)] = 0x63;
+                hue_cmd[(11 + cmdNo_3.length)] = 0x6f;
+                hue_cmd[(12 + cmdNo_3.length)] = 0x6d;
+                hue_cmd[(13 + cmdNo_3.length)] = 0x6d;
+                hue_cmd[(14 + cmdNo_3.length)] = 0x61;
+                hue_cmd[(15 + cmdNo_3.length)] = 0x6e;
+                hue_cmd[(16 + cmdNo_3.length)] = 0x64;
+            }
+
+        }
+
+        int temp_cmd_len = 0;
+        if (dev_temp != null) {
+            temp_cmd_len = 53;
+        }
+        if (dev_temp != null & recall_scene == null) {
+            temp_cmd_len = 60;
+        }
+        System.out.println("temp_cmd_len = " + temp_cmd_len);
+        byte[] temp_cmd = new byte[temp_cmd_len];
+        if (dev_temp != null) {
+            temp_cmd[0] = 0x63;
+            temp_cmd[1] = 0x6f;
+            temp_cmd[2] = 0x6d;
+            temp_cmd[3] = 0x6d;
+            temp_cmd[4] = 0x61;
+            temp_cmd[5] = 0x6e;
+            temp_cmd[6] = 0x64;
+
+            temp_cmd[7] = 0x03;
+
+            byte[] cmdNo_4 = NewCmdData.setDeviceColorsTemp(device_mac, device_shortaddr, device_main_point, temp_value);
+
+            int cmd_colors_temp_len = cmdNo_4.length;
+            System.out.println("cmdNo_len = " + cmd_colors_temp_len);
+            temp_cmd[8] = ((byte) (cmd_colors_temp_len << 8));
+            temp_cmd[9] = ((byte) cmd_colors_temp_len);
+            for (int i = 0; i < cmd_colors_temp_len; i++) {
+                temp_cmd[(10 + i)] = cmdNo_4[i];
+            }
+
+            if (recall_scene == null) {
+                temp_cmd[(10 + cmdNo_4.length)] = 0x63;
+                temp_cmd[(11 + cmdNo_4.length)] = 0x6f;
+                temp_cmd[(12 + cmdNo_4.length)] = 0x6d;
+                temp_cmd[(13 + cmdNo_4.length)] = 0x6d;
+                temp_cmd[(14 + cmdNo_4.length)] = 0x61;
+                temp_cmd[(15 + cmdNo_4.length)] = 0x6e;
+                temp_cmd[(16 + cmdNo_4.length)] = 0x64;
+            }
+
+        }
+
+        int recall_cmd_len = 0;
+        if (recall_scene != null) {
+            recall_cmd_len = 52;
+        }
+        if (recall_scene != null & recall_scene != null) {
+            recall_cmd_len = 59;
+        }
+        System.out.println("recall_cmd_len = " + recall_cmd_len);
+        byte[] recall_cmd = new byte[recall_cmd_len];
+        if (recall_scene != null) {
+            recall_cmd[0] = 0x63;
+            recall_cmd[1] = 0x6f;
+            recall_cmd[2] = 0x6d;
+            recall_cmd[3] = 0x6d;
+            recall_cmd[4] = 0x61;
+            recall_cmd[5] = 0x6e;
+            recall_cmd[6] = 0x64;
+
+            recall_cmd[7] = 0x04;
+
+            byte[] cmdNo_5 = NewCmdData.RecallScene(group_id, scene_id);
+
+            int cmd_recall_scene_len = cmdNo_5.length;
+            recall_cmd[8] = ((byte) (cmd_recall_scene_len << 8));
+            recall_cmd[9] = ((byte) cmd_recall_scene_len);
+            for (int i = 0; i < cmd_recall_scene_len; i++) {
+                recall_cmd[(10 + i)] = cmdNo_5[i];
+            }
+
+            recall_cmd[(10 + cmdNo_5.length)] = 0x63;
+            recall_cmd[(11 + cmdNo_5.length)] = 0x6f;
+            recall_cmd[(12 + cmdNo_5.length)] = 0x6d;
+            recall_cmd[(13 + cmdNo_5.length)] = 0x6d;
+            recall_cmd[(14 + cmdNo_5.length)] = 0x61;
+            recall_cmd[(15 + cmdNo_5.length)] = 0x6e;
+            recall_cmd[(16 + cmdNo_5.length)] = 0x64;
+        }
+        byte[] bt_1 = FtFormatTransfer.byteMerger(switch_cmd, level_cmd);
+        byte[] bt_2 = FtFormatTransfer.byteMerger(hue_cmd, temp_cmd);
+        byte[] bt_3 = FtFormatTransfer.byteMerger(bt_1, bt_2);
+
+        byte[] cmddata = FtFormatTransfer.byteMerger(bt_3, recall_cmd);
+        System.out.println("cmddata = " + cmddata.length);
+        String task_str = "";
+        for (int i = 0; i < cmddata.length; i++) {
+            task_str = task_str + Integer.toHexString(cmddata[i] & 0xFF);
+        }
+        System.out.println("task_str = " + task_str);
+        return cmddata;
     }
 }

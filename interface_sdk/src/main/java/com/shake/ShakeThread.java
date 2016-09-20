@@ -66,110 +66,113 @@ public class ShakeThread extends Thread {
                 @Override
                 public void run() {
                     try {
-                        int times = 0;
-                        if (socket == null) {
-                            socket = new DatagramSocket(null);
-                            socket.setReuseAddress(true);
-                            socket.bind(new InetSocketAddress(port));
-                        }
-                        while (times < SEND_TIMES) {
+//                        int times = 0;
+//                        while (times < SEND_TIMES) {
                             if (!isRun) {
                                 return;
                             }
-                            times++;
+//                            times++;
                             Log.e("myshake", "shake thread send broadcast.");
 
                             byte[] bt_send = NewCmdData.GetAllDeviceListCmd();
                             Log.i("GATEWATEIPADDRESS = " ,Constants.ipaddress);
                             InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
 
-                            DatagramPacket datagramPacket = new DatagramPacket(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), Utils.hexStringToByteArray(Utils.binary(bt_send, 16)).length, inetAddress, port);
+                            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length, inetAddress, port);
                             socket.send(datagramPacket);
                             System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
                             System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
-
-                            Thread.sleep(1000);
-                        }
+//
+//                            Thread.sleep(1000);
+//                        }
 
                         Log.e("myshake", "shake thread broadcast end.");
+
+
+
+
+
+
+
+
+                        while (isRun) {
+                            byte[] recbuf = new byte[1024];
+                            final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                            try {
+                                socket.receive(packet);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            String rec_str = new String(packet.getData()).trim();
+                            Log.i("myshake = ", rec_str);
+
+                            if(rec_str.contains("GW")&&!rec_str.contains("K64")){
+                                int profile_id_int = SearchUtils.searchString(rec_str, "PROFILE_ID:");
+                                int device_id_int = SearchUtils.searchString(rec_str, "DEVICE_ID:");
+                                int device_mac_int = SearchUtils.searchString(rec_str, "DEVICE_MAC:");
+                                int device_shortaddr_int = SearchUtils.searchString(rec_str, "DEVICE_SHORTADDR:");
+                                int main_endpoint_int = SearchUtils.searchString(rec_str, "MAIN_ENDPOINT:");
+
+                                int device_name_int = SearchUtils.searchString(rec_str,"DEVICE_NAME:0X");
+                                int zone_type_int = SearchUtils.searchString(rec_str, "ZONE_TYPE:0X");
+                                int in_cluster_count_int = SearchUtils.searchString(rec_str,"IN_CLUSTER_COUNT:0X");
+                                int out_cluster_count_int = SearchUtils.searchString(rec_str,"OUT_CLUSTER_COUNT:0X");
+
+
+                                String isMac = new String(rec_str).substring(device_mac_int - 13, device_mac_int);
+                                if (!isMac.equals("DEVICE_MAC:0X")){
+                                    return;
+                                }
+
+                                profile_id = rec_str.substring(profile_id_int, profile_id_int + 4);
+                                device_id = rec_str.substring(device_id_int, device_id_int + 4);
+                                device_name = rec_str.substring(device_name_int,device_name_int+4);
+                                device_mac = rec_str.substring(device_mac_int, device_mac_int + 16);
+                                device_shortaddr = rec_str.substring(device_shortaddr_int, device_shortaddr_int + 4);
+                                device_zone_type = rec_str.substring(zone_type_int, zone_type_int + 4);
+                                main_endpoint = rec_str.substring(main_endpoint_int,main_endpoint_int+2);
+                                in_cluster_count = rec_str.substring(in_cluster_count_int,in_cluster_count_int+2);
+                                out_cluster_count = rec_str.substring(out_cluster_count_int,out_cluster_count_int+2);
+
+//                                DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,device_shortaddr ,device_id,main_endpoint,
+//                                        in_cluster_count,out_cluster_count,device_zone_type);
+
+                    if (null != handler) {
+                        Message msg = new Message();
+                        msg.what = ShakeManager.HANDLE_ID_RECEIVE_DEVICE_INFO;
+                        Bundle bundle = new Bundle();
+                        bundle.putString("profile_id", profile_id);
+                        bundle.putString("device_id", device_id);
+                        bundle.putString("device_name",device_name);
+                        bundle.putString("device_mac", device_mac);
+                        bundle.putString("device_shortaddr",device_shortaddr);
+                        bundle.putString("device_zone_type",device_zone_type);
+                        bundle.putString("main_endpoint",main_endpoint);
+                        bundle.putString("in_cluster_count",in_cluster_count);
+                        bundle.putString("out_cluster_count",out_cluster_count);
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+                    }
+                                Log.i("device_mac = ", device_mac);
+                            }
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
-//                        try {
+                        try {
 //                            socket.close();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 //                        ShakeManager.getInstance().stopShaking();
                     }
                 }
             }.start();
-
-            while (isRun) {
-                byte[] recbuf = new byte[1024];
-                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                try {
-                    socket.receive(packet);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String rec_str = packet.getData().toString();
-                Log.i("myshake = ", rec_str);
-
-                if(rec_str.contains("GW")&&!rec_str.contains("K64")){
-                    int profile_id_int = SearchUtils.searchString(rec_str, "PROFILE_ID:");
-                    int device_id_int = SearchUtils.searchString(rec_str, "DEVICE_ID:");
-                    int device_mac_int = SearchUtils.searchString(rec_str, "DEVICE_MAC:");
-                    int device_shortaddr_int = SearchUtils.searchString(rec_str, "DEVICE_SHORTADDR:");
-                    int main_endpoint_int = SearchUtils.searchString(rec_str, "MAIN_ENDPOINT:");
-
-                    int device_name_int = SearchUtils.searchString(rec_str,"DEVICE_NAME:0X");
-                    int zone_type_int = SearchUtils.searchString(rec_str, "ZONE_TYPE:0X");
-                    int in_cluster_count_int = SearchUtils.searchString(rec_str,"IN_CLUSTER_COUNT:0X");
-                    int out_cluster_count_int = SearchUtils.searchString(rec_str,"OUT_CLUSTER_COUNT:0X");
-
-
-                    String isMac = new String(rec_str).substring(device_mac_int - 13, device_mac_int);
-                    if (!isMac.equals("DEVICE_MAC:0X")){
-                        return;
-                    }
-
-                    profile_id = rec_str.substring(profile_id_int, profile_id_int + 4);
-                    device_id = rec_str.substring(device_id_int, device_id_int + 4);
-                    device_name = rec_str.substring(device_name_int,device_name_int+4);
-                    device_mac = rec_str.substring(device_mac_int, device_mac_int + 16);
-                    device_shortaddr = rec_str.substring(device_shortaddr_int, device_shortaddr_int + 4);
-                    device_zone_type = rec_str.substring(zone_type_int, zone_type_int + 4);
-                    main_endpoint = rec_str.substring(main_endpoint_int,main_endpoint_int+2);
-                    in_cluster_count = rec_str.substring(in_cluster_count_int,in_cluster_count_int+2);
-                    out_cluster_count = rec_str.substring(out_cluster_count_int,out_cluster_count_int+2);
-
-                    Log.i("device_mac = ", device_mac);
-                }
-
-                if (null != handler) {
-                    Message msg = new Message();
-                    msg.what = ShakeManager.HANDLE_ID_RECEIVE_DEVICE_INFO;
-                    Bundle bundle = new Bundle();
-                    bundle.putString("profile_id", profile_id);
-                    bundle.putString("device_id", device_id);
-                    bundle.putString("device_name",device_name);
-                    bundle.putString("device_mac", device_mac);
-                    bundle.putString("device_shortaddr",device_shortaddr);
-                    bundle.putString("device_zone_type",device_zone_type);
-                    bundle.putString("main_endpoint",main_endpoint);
-                    bundle.putString("in_cluster_count",in_cluster_count);
-                    bundle.putString("out_cluster_count",out_cluster_count);
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
-                }
-            }
             Log.e("my", "shake thread end.");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            ShakeManager.getInstance().stopShaking();
+//            ShakeManager.getInstance().stopShaking();
 
             if (null != handler) {
                 Message msg = new Message();
@@ -178,7 +181,7 @@ public class ShakeThread extends Thread {
             }
 
             try {
-                socket.close();
+//                socket.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

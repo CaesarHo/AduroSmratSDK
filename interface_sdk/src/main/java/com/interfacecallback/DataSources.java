@@ -215,4 +215,20 @@ public class DataSources {
     public void deleteDeviceFromGroup(int result){
         sdkCallback.deleteDeviceFromGroupCallback(result);
     }
+
+    //=================================任务相关==================================
+    //获取网关所有任务
+    public void getAllTasks(int task_no,String task_name,int isEnabled,int task_type,
+                           int task_cycle,int task_hour,int task_minute,int task_action,
+                           String device_mac,int cmd_size,
+                           String serial_type1, int action_state1,int action_state6,
+                           String serial_type2, int action_state2,int action_state7,
+                           String serial_type3, int action_state3,int action_state8,
+                           String serial_type4, int action_state4,int action_state9,
+                           String serial_type5, int action_state5,int action_state10){
+        sdkCallback.getAllTasksCallback(task_no,task_name,isEnabled,task_type, task_cycle,task_hour,
+                task_minute,task_action, device_mac,cmd_size, serial_type1,action_state1,action_state6,
+                serial_type2, action_state2, action_state7, serial_type3,action_state3,action_state8,
+                serial_type4,action_state4,action_state9,serial_type5,action_state5,action_state10);
+    }
 }

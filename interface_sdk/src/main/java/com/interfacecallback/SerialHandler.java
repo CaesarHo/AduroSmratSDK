@@ -8,13 +8,16 @@ import com.threadhelper.AddDeviceToSence;
 import com.threadhelper.AddGroup;
 import com.threadhelper.AddSence;
 import com.threadhelper.AgreeDeviceInNet;
+import com.threadhelper.CreateTask;
 import com.threadhelper.DeleteDeviceFromGroup;
 import com.threadhelper.DeleteGroup;
 import com.threadhelper.DeleteScence;
 import com.threadhelper.DeleteDeviceFromScene;
+import com.threadhelper.DeleteTask;
 import com.threadhelper.GetAllDevices;
 import com.threadhelper.GetAllGroups;
 import com.threadhelper.GetAllSences;
+import com.threadhelper.GetAllTask;
 import com.threadhelper.GetDeviceHue;
 import com.threadhelper.GetDeviceLevel;
 import com.threadhelper.GetDeviceOnLinStatus;
@@ -37,6 +40,7 @@ import com.threadhelper.SetGroupState;
 import com.threadhelper.UpdateDeviceName;
 import com.threadhelper.UpdateGroupName;
 import com.threadhelper.UpdateSceneName;
+import com.threadhelper.setGateWayTime;
 
 /**
  * Created by best on 2016/7/11.
@@ -73,9 +77,30 @@ public class SerialHandler {
         GatewayInfo.getInstance().setAesKey(context, aeskey);
     }
 
-    public void ScanGatewayInfo(Context context , WifiManager wifiManager){
+    /**
+     * 扫描网关信息
+     *
+     * @param context
+     * @param wifiManager
+     */
+    public void ScanGatewayInfo(Context context, WifiManager wifiManager) {
         new Thread(new UDPHelper(context, wifiManager)).start();
     }
+
+    /**
+     * 设置网关时间
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param hour
+     * @param minute
+     * @param second
+     */
+    public void setGateWayTime(int year, int month, int day, int hour, int minute, int second) {
+        new Thread(new setGateWayTime(year, month, day, hour, minute, second)).start();
+    }
+
 
     //组操作 ===========================start ============================
 
@@ -90,6 +115,7 @@ public class SerialHandler {
 
     /**
      * 删除房间
+     *
      * @param groupid
      */
     public void DeleteGroup(short groupid) {
@@ -102,8 +128,8 @@ public class SerialHandler {
      * @param group_id
      * @param group_name
      */
-    public void ChangeGroupName(short group_id,String group_name) {
-        UpdateGroupName mUpdateGroup = new UpdateGroupName(group_id,group_name);
+    public void ChangeGroupName(short group_id, String group_name) {
+        UpdateGroupName mUpdateGroup = new UpdateGroupName(group_id, group_name);
         Thread thread = new Thread(mUpdateGroup);
         thread.start();
     }
@@ -117,7 +143,7 @@ public class SerialHandler {
 
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
     public void setGroupState(short groupId, int state) {
-        int group_id_int = (int)groupId;
+        int group_id_int = (int) groupId;
         SetGroupState mSetGroupState = new SetGroupState(group_id_int, state);
         Thread thread = new Thread(mSetGroupState);
         thread.start();
@@ -125,7 +151,7 @@ public class SerialHandler {
 
     //设置房间中所有lamp的亮度
     public void setGroupLevel(short groupId, int level) {
-        int group_id_int = (int)groupId;
+        int group_id_int = (int) groupId;
         SetGroupLevel mSetGroupLevel = new SetGroupLevel(group_id_int, level);
         Thread thread = new Thread(mSetGroupLevel);
         thread.start();
@@ -160,15 +186,15 @@ public class SerialHandler {
     }
 
     //将指定的设备加入到指定的组中
-    public void addDeviceToGroup(short group_id,String device_mac,String device_shortaddr,String main_endpoint) {
-        AddDeviceToGroup mAddDeviceToGroup = new AddDeviceToGroup(group_id,device_mac,device_shortaddr,main_endpoint);
+    public void addDeviceToGroup(short group_id, String device_mac, String device_shortaddr, String main_endpoint) {
+        AddDeviceToGroup mAddDeviceToGroup = new AddDeviceToGroup(group_id, device_mac, device_shortaddr, main_endpoint);
         Thread thread = new Thread(mAddDeviceToGroup);
         thread.start();
     }
 
     //将指定的设备从组中删除
-    public void deleteDeviceFromGroup(short group_id,String device_mac,String shortaddr,String main_endpoint) {
-        DeleteDeviceFromGroup mDeleteDeviceFromGroup = new DeleteDeviceFromGroup(group_id,device_mac,shortaddr,main_endpoint);
+    public void deleteDeviceFromGroup(short group_id, String device_mac, String shortaddr, String main_endpoint) {
+        DeleteDeviceFromGroup mDeleteDeviceFromGroup = new DeleteDeviceFromGroup(group_id, device_mac, shortaddr, main_endpoint);
         Thread thread = new Thread(mDeleteDeviceFromGroup);
         thread.start();
     }
@@ -207,8 +233,8 @@ public class SerialHandler {
      * @param deviceshortaddr
      * @param main_endpoint
      */
-    public void setDeviceSwitchState(String devicemac, String deviceshortaddr, String main_endpoint,int value) {
-        new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint,value)).start();
+    public void setDeviceSwitchState(String devicemac, String deviceshortaddr, String main_endpoint, int value) {
+        new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint, value)).start();
     }
 
     //设置设备亮度回调
@@ -226,8 +252,8 @@ public class SerialHandler {
     }
 
     //改变色温值
-    public void setColorTemperature(String devicemac , String shortaddr , String main_point,int value) {
-        SetColorTemperature mSetColorTemperature = new SetColorTemperature(devicemac,shortaddr,main_point,value);
+    public void setColorTemperature(String devicemac, String shortaddr, String main_point, int value) {
+        SetColorTemperature mSetColorTemperature = new SetColorTemperature(devicemac, shortaddr, main_point, value);
         Thread thread = new Thread(mSetColorTemperature);
         thread.start();
     }
@@ -269,8 +295,8 @@ public class SerialHandler {
     }
 
     //修改设备名称
-    public void UpdateDeviceName(String device_name,String mac,String shortaddr , String main_point){
-        UpdateDeviceName updateDeviceName = new UpdateDeviceName(device_name,mac,shortaddr,main_point);
+    public void UpdateDeviceName(String device_name, String mac, String shortaddr, String main_point) {
+        UpdateDeviceName updateDeviceName = new UpdateDeviceName(device_name, mac, shortaddr, main_point);
         Thread thread = new Thread(updateDeviceName);
         thread.start();
     }
@@ -288,14 +314,14 @@ public class SerialHandler {
 
     //添加场景
     public void AddSence(String Out_Scene_Name, short Out_Group_Id) {
-        AddSence addSences = new AddSence(Out_Scene_Name,Out_Group_Id);
+        AddSence addSences = new AddSence(Out_Scene_Name, Out_Group_Id);
         Thread thread = new Thread(addSences);
         thread.start();
     }
 
     //Recall场景
-    public void RecallScene(Short Group_Id, Short Scene_Id){
-        RecallScene recallScene = new RecallScene(Group_Id,Scene_Id);
+    public void RecallScene(Short Group_Id, Short Scene_Id) {
+        RecallScene recallScene = new RecallScene(Group_Id, Scene_Id);
         Thread thread = new Thread(recallScene);
         thread.start();
     }
@@ -308,15 +334,15 @@ public class SerialHandler {
     }
 
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
-    public void addDeviceToSence(String mac,String shortaddr,String main_endpoint,short group_id,short scene_id) {
-        AddDeviceToSence mAddDeviceToSence = new AddDeviceToSence(mac,shortaddr,main_endpoint,group_id,scene_id);
+    public void addDeviceToSence(String mac, String shortaddr, String main_endpoint, short group_id, short scene_id) {
+        AddDeviceToSence mAddDeviceToSence = new AddDeviceToSence(mac, shortaddr, main_endpoint, group_id, scene_id);
         Thread thread = new Thread(mAddDeviceToSence);
         thread.start();
     }
 
     //删除场景中指定设备成员 senceName场景名 设备Id
-    public void deleteDeviceFromScene(short scene_id,String mac,String shortaddr,String main_endpoint) {
-        DeleteDeviceFromScene mDeleteSenceMember = new DeleteDeviceFromScene(scene_id, mac,shortaddr,main_endpoint);
+    public void deleteDeviceFromScene(short scene_id, String mac, String shortaddr, String main_endpoint) {
+        DeleteDeviceFromScene mDeleteSenceMember = new DeleteDeviceFromScene(scene_id, mac, shortaddr, main_endpoint);
         Thread thread = new Thread(mDeleteSenceMember);
         thread.start();
     }
@@ -336,4 +362,34 @@ public class SerialHandler {
     }
     //场景操作 =========================end============================
 
+
+    //任务操作============================start==============================
+
+    /**
+     * 获取网关所有设备
+     */
+    public void GetAllTask() {
+        new Thread(new GetAllTask()).start();
+    }
+
+    /**
+     * 创建任务
+     */
+    public void CreateTask(String task_name, byte is_run, byte task_type, byte task_cycle, int task_hour, int task_minute,
+                           int device_action, String action_mac, String device_mac, String task_device_shortaddr,
+                           String task_device_main_point, int cmd_size, String dev_switch, int switch_state, String dev_level,
+                           int level_value, String dev_hue, int hue_value, int sat_value, String dev_temp, int temp_value,
+                           String recall_scene, int group_id, int scene_id) {
+        new Thread(new CreateTask(task_name, is_run, task_type, task_cycle, task_hour, task_minute, device_action,
+                action_mac, device_mac, task_device_shortaddr, task_device_main_point, cmd_size, dev_switch, switch_state,
+                dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value, recall_scene, group_id, scene_id))
+                .start();
+    }
+
+    /**
+     * 删除任务
+     */
+    public void DeleteTask(int task_id) {
+        new Thread(new DeleteTask(task_id)).start();
+    }
 }

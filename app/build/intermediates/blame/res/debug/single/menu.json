@@ -1,50 +1,50 @@
 [
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_connections.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_connections.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_subscribe.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_connection_details.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_publish.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_new_connection.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_new_connection.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections_logging.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_connections_logging.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_subscribe.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe_disconnected.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_subscribe_disconnected.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_subscribe_disconnected.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_subscribe_disconnected.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_client_connections_contextual.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_client_connections_contextual.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_advanced.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_advanced.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish_disconnected.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_publish_disconnected.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details_disconnected.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_connection_details_disconnected.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_new_connection.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_new_connection.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_last_will.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_last_will.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details_disconnected.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_connection_details_disconnected.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish_disconnected.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_publish_disconnected.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_last_will.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_last_will.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_client_connections_contextual.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_client_connections_contextual.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_advanced.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_advanced.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connections_logging.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_connections_logging.xml"
     },
     {
-        "merged": "G:\\SDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_connection_details.xml",
-        "source": "G:\\SDK\\app\\src\\main\\res\\menu\\activity_connection_details.xml"
+        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_publish.xml",
+        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\menu\\activity_publish.xml"
     }
 ]
