@@ -174,6 +174,80 @@ public class NewCmdData {
         return bt_send;
     }
 
+    /**
+     * 选择设备提示
+     *
+     * @param mac
+     * @param shortaddr
+     * @param main_point
+     * @param second
+     * @return
+     */
+    public static byte[] IdentifyDeviceCmd(String mac, String shortaddr, String main_point, int second) {
+        byte[] bt_send = new byte[41];
+        //415050C0A8016B 0101 43
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+        if (!com.utils.Utils.isCRC8Value(com.utils.Utils.CrcToString(bt_send, 9))) {
+            String ss = com.utils.Utils.StringToHexString(com.utils.Utils.CrcToString(bt_send, 9));
+            bt_send[9] = com.utils.Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = com.utils.Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体 01 0002 0018
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = 0x02;
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x19;
+        //数据体头  415F5A4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号   01 00 92
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) 0x00;
+        bt_send[22] = (byte) 0x70;
+        //mac地址    00124b0001dd7ac1   124b0001dd7ac1
+        bt_send[23] = com.utils.Utils.HexString2Bytes(mac)[0];
+        bt_send[24] = com.utils.Utils.HexString2Bytes(mac)[1];
+        bt_send[25] = com.utils.Utils.HexString2Bytes(mac)[2];
+        bt_send[26] = com.utils.Utils.HexString2Bytes(mac)[3];
+        bt_send[27] = com.utils.Utils.HexString2Bytes(mac)[4];
+        bt_send[28] = com.utils.Utils.HexString2Bytes(mac)[5];
+        bt_send[29] = com.utils.Utils.HexString2Bytes(mac)[6];
+        bt_send[30] = com.utils.Utils.HexString2Bytes(mac)[7];
+        //数据长度   00 06  02   f767 01 0C 02 4c
+        bt_send[31] = (byte) 0x00;
+        bt_send[32] = (byte) 0x07;
+        bt_send[33] = (byte) 0x02;
+        bt_send[34] = com.utils.Utils.HexString2Bytes(shortaddr)[0];
+        bt_send[35] = com.utils.Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[36] = 0x01;//源端点
+        bt_send[37] = com.utils.Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[38] = 0x00;
+        bt_send[39] = (byte) second;//持续时间
+
+
+        if (!com.utils.Utils.isCRC8Value(com.utils.Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = com.utils.Utils.StringToHexString(com.utils.Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[40] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[40] = Utils.HexString2Bytes(com.utils.Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+
+        return bt_send;
+    }
+
     public static byte[] DevSwitchCmd(String mac, String shortaddr, String main_endpoint, int value) {
         byte[] bt_send = new byte[40];
         //415050C0A8016B 0101 43

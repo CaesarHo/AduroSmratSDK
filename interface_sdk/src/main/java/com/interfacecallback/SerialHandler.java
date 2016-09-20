@@ -24,6 +24,7 @@ import com.threadhelper.GetDeviceOnLinStatus;
 import com.threadhelper.GetDeviceSat;
 import com.threadhelper.GetDeviceSwitchState;
 import com.threadhelper.GetSenceDetails;
+import com.threadhelper.IdentifyDevice;
 import com.threadhelper.RecallScene;
 import com.threadhelper.SendDeleteDeviceCmd;
 import com.threadhelper.SetColorTemperature;
@@ -225,6 +226,18 @@ public class SerialHandler {
     public void DeleteDevice(String devicemac) {
         new Thread(new SendDeleteDeviceCmd(devicemac)).start();
     }
+
+    /**
+     *
+     * @param devicemac
+     * @param shortaddr
+     * @param main_point
+     * @param second
+     */
+    public void IdentifyDevice(String devicemac , String shortaddr , String main_point,int second){
+        new Thread(new IdentifyDevice(devicemac,shortaddr,main_point,second)).start();
+    }
+
 
     /**
      * 改变设备状态(0关1开)
