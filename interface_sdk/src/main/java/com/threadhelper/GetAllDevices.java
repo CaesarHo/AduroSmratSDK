@@ -179,8 +179,9 @@ public class GetAllDevices implements Runnable {
                 System.out.println("GetAllDevices: ‘" + new String(packet.getData()).trim() + "’\n");
                 System.out.println("GetAllDevices: ‘" + Arrays.toString(recbuf) + "’\n");
                 String str = new String(packet.getData()).trim();
+                System.out.println("str长度 = " + str.length());
 
-                if(str.contains("GW")&&ready&&!str.contains("K64")){
+                if(str.length() > 46){
 
                     ParseData.ParseSensorData parseSensorData = new ParseData.ParseSensorData();
                     parseSensorData.parseBytes(recbuf);
@@ -194,34 +195,34 @@ public class GetAllDevices implements Runnable {
                     System.out.println("isGroupScene = " + !Constants.isGroupScene);
 
                     ready = true;
-                    int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:0X");
-                    int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:0X");
-                    int device_name_int = SearchUtils.searchString(str,"DEVICE_NAME:0X");
-                    int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:0X");
-                    int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:0X");
-                    int zone_type_int = SearchUtils.searchString(str, "ZONE_TYPE:0X");
-                    int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:0X");
-                    int in_cluster_count_int = SearchUtils.searchString(str,"IN_CLUSTER_COUNT:0X");
-                    int out_cluster_count_int = SearchUtils.searchString(str,"OUT_CLUSTER_COUNT:0X");
+                    int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:");
+                    int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:");
+                    int device_name_int = SearchUtils.searchString(str,"DEVICE_NAME:");
+                    int device_mac_int = SearchUtils.searchString(str, "DEVICE_MAC:");
+                    int device_shortaddr_int = SearchUtils.searchString(str, "DEVICE_SHORTADDR:");
+                    int zone_type_int = SearchUtils.searchString(str, "ZONE_TYPE:");
+                    int main_endpoint_int = SearchUtils.searchString(str, "MAIN_ENDPOINT:");
+                    int in_cluster_count_int = SearchUtils.searchString(str,"IN_CLUSTER_COUNT:");
+                    int out_cluster_count_int = SearchUtils.searchString(str,"OUT_CLUSTER_COUNT:");
 
-                    String isMac = new String(str).substring(device_mac_int - 13, device_mac_int);
+                    String isMac = new String(str).substring(device_mac_int - 11, device_mac_int);
 
                     System.out.println("isMac = " + isMac);
-                    if (!isMac.contains("DEVICE_MAC:0X") && isMac.length() < 13){
+                    if (!isMac.contains("DEVICE_MAC:") && isMac.length() < 11){
                         return;
                     }
-                    if (!isMac.equals("DEVICE_MAC:0X")){
+                    if (!isMac.equals("DEVICE_MAC:")){
                         return;
                     }
-                    String profile_id = str.substring(profile_id_int, profile_id_int + 4);
-                    String device_id = str.substring(device_id_int, device_id_int + 4);
-                    String device_name = str.substring(device_name_int,device_name_int+4);
-                    String device_mac = str.substring(device_mac_int, device_mac_int + 16);
-                    String device_shortaddr = str.substring(device_shortaddr_int, device_shortaddr_int + 4);
-                    String device_zone_type = str.substring(zone_type_int, zone_type_int + 4);
-                    String main_endpoint = str.substring(main_endpoint_int,main_endpoint_int+2);
-                    String in_cluster_count = str.substring(in_cluster_count_int,in_cluster_count_int+2);
-                    String out_cluster_count = str.substring(out_cluster_count_int,out_cluster_count_int+2);
+                    String profile_id = str.substring(profile_id_int + 2, profile_id_int + 6);
+                    String device_id = str.substring(device_id_int + 2, device_id_int + 6);
+                    String device_name = str.substring(device_name_int + 2,device_name_int+6);
+                    String device_mac = str.substring(device_mac_int + 2, device_mac_int + 18);
+                    String device_shortaddr = str.substring(device_shortaddr_int + 2, device_shortaddr_int + 6);
+                    String device_zone_type = str.substring(zone_type_int + 2, zone_type_int + 6);
+                    String main_endpoint = str.substring(main_endpoint_int + 2,main_endpoint_int+4);
+                    String in_cluster_count = str.substring(in_cluster_count_int + 2,in_cluster_count_int+4);
+                    String out_cluster_count = str.substring(out_cluster_count_int + 2,out_cluster_count_int+4);
 
                     switch (device_id) {
                         case "0105":

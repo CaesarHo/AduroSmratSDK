@@ -2,46 +2,58 @@
 <items version="2" >
 
     <item
-        jar="G:\SDK\app\src\main\libs\sdk.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="c46c58c2164783dd7e9f05ea57b4bc5427cd7cab">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_394e6f8773d36b3ca7c5ecec636e349b46eeb38e\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f\classes.dex" />
-    </item>
-    <item
+        is-multidex="true"
         jar="D:\Android\android-sdk-windows\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="true"
+        optimize="true"
         revision="21.1.2"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000\classes.dex" />
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000\classes.dex" />
     </item>
     <item
-        jar="G:\SDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        is-multidex="true"
+        jar="G:\AndroidAduroSmratSDK\app\src\main\libs\sdk.jar"
         jumboMode="true"
+        optimize="true"
         revision="21.1.2"
-        sha1="919576c3a8518a0b32d0a6d2bde4a7d11b76103f">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_1eba3100bab1406fbc0665e3d07ee21b522f8b8d\classes.dex" />
+        sha1="c46c58c2164783dd7e9f05ea57b4bc5427cd7cab">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_653e6c9b41d147544e2062d0192ccd5313744e6f\classes.dex" />
     </item>
     <item
-        jar="G:\SDK\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        is-multidex="true"
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
         jumboMode="true"
+        optimize="true"
         revision="21.1.2"
-        sha1="f4d222e9938c762d4a48470cc8abb5c9a12a91f6">
-        <dex dex="G:\SDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d3a43ed4bf2c6da587634a145b8b1105e80ba6a8\classes.dex" />
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="b024baf88a51aaea2312e24c7d4ce79c8c80c412">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="816104b77ea28227f2c20556f276cca5c05aad76">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed\classes.dex" />
     </item>
 
 </items>

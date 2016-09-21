@@ -2254,7 +2254,7 @@ public class NewCmdData {
         bt_send[11] = 0x00;
         bt_send[12] = 0x19;//数据类型
         bt_send[13] = 0x00;
-        bt_send[14] = (byte) 0x16;//数据体长度
+        bt_send[14] = (byte) 0x14;//数据体长度
         //数据体头   415f5a4947
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
@@ -2276,7 +2276,7 @@ public class NewCmdData {
         bt_send[30] = 0x09;
         //数据长度   00060001
         bt_send[31] = (byte) 0x00;
-        bt_send[32] = (byte) 0x04;
+        bt_send[32] = (byte) 0x02;
 
         bt_send[33] = (byte) (task_id >> 8);
         bt_send[34] = (byte) task_id;

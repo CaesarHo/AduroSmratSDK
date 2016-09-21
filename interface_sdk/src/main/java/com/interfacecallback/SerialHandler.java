@@ -228,7 +228,7 @@ public class SerialHandler {
     }
 
     /**
-     *
+     * 选择设备提示
      * @param devicemac
      * @param shortaddr
      * @param main_point
@@ -390,8 +390,11 @@ public class SerialHandler {
      */
     public void CreateTask(String task_name, byte is_run, byte task_type, byte task_cycle, int task_hour, int task_minute,
                            int device_action, String action_mac, String device_mac, String task_device_shortaddr,
-                           String task_device_main_point, int cmd_size, String dev_switch, int switch_state, String dev_level,
-                           int level_value, String dev_hue, int hue_value, int sat_value, String dev_temp, int temp_value,
+                           String task_device_main_point, int cmd_size,
+                           String dev_switch, int switch_state,
+                           String dev_level, int level_value,
+                           String dev_hue, int hue_value, int sat_value,
+                           String dev_temp, int temp_value,
                            String recall_scene, int group_id, int scene_id) {
         new Thread(new CreateTask(task_name, is_run, task_type, task_cycle, task_hour, task_minute, device_action,
                 action_mac, device_mac, task_device_shortaddr, task_device_main_point, cmd_size, dev_switch, switch_state,
