@@ -4,29 +4,29 @@
     density="tvdpi"
     format="8"
     plugin-version="2.2.0"
-    timestamp="39797967038693"
+    timestamp="37575912374229"
     token="4248176631140908628"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="822" />
+        duration="403" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="421" />
+        duration="382" />
     <task
         name="verifier"
-        duration="70" />
+        duration="92" />
 
     <artifact
         location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="39797967038693"
+        timestamp="37575912374229"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="G:\AndroidAduroSmratSDK\app\build\outputs\apk\app-debug.apk"

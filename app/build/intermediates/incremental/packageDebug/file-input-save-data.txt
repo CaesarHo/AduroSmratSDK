@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Sep 21 19:23:10 CST 2016
+#Fri Sep 23 18:46:19 CST 2016
 5.base=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_
 42.base=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_7
 32.set=ANDROID_RESOURCE
@@ -35,7 +35,7 @@
 35.set=JAVA_RESOURCE
 21.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\jars\\2\\1f\\main.jar\\org\\eclipse\\paho\\client\\mqttv3\\internal\\nls\\messages_it.properties
 16.base=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_
-49.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\activity_connection_details.xml
+49.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_advanced.xml
 31.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\activity_connection_details_disconnected.xml
 59.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\jars\\2\\1f\\main.jar\\org\\eclipse\\paho\\client\\mqttv3\\internal\\nls\\messages_hu.properties
 24.set=ANDROID_RESOURCE
@@ -161,7 +161,7 @@ count=63
 40.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_launcher.png
 35.base=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\jars\\2\\1f\\main.jar
 9.set=ANDROID_RESOURCE
-50.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_advanced.xml
+50.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\activity_connection_details.xml
 47.set=DEX
 19.base=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\jars\\2\\1f\\main.jar
 60.file=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\jars\\2\\1f\\main.jar\\org\\eclipse\\paho\\client\\mqttv3\\internal\\nls\\logcat.properties

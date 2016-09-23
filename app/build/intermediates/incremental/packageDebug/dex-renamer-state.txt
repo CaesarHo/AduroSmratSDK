@@ -1,4 +1,4 @@
-#Wed Sep 21 19:23:10 CST 2016
+#Fri Sep 23 18:46:19 CST 2016
 base.0=G\:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75
 renamed.1=classes2.dex
 renamed.0=classes.dex
