@@ -2,7 +2,7 @@ package com.core.threadhelper;
 
 import android.util.Log;
 
-import com.core.data.SceneCmdData;
+import com.core.cmddata.SceneCmdData;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.utils.FtFormatTransfer;

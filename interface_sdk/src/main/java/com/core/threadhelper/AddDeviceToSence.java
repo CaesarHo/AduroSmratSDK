@@ -2,10 +2,9 @@ package com.core.threadhelper;
 
 import android.util.Log;
 
-import com.core.data.SceneCmdData;
+import com.core.cmddata.SceneCmdData;
 import com.core.global.Constants;
 import com.core.utils.Utils;
-import com.core.threadhelper.StoreScene;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

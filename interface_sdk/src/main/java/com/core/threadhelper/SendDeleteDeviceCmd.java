@@ -1,6 +1,6 @@
 package com.core.threadhelper;
 
-import com.core.data.DeviceCmdData;
+import com.core.cmddata.DeviceCmdData;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.utils.Utils;

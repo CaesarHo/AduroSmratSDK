@@ -2,56 +2,78 @@ package com.core.threadhelper;
 
 import android.util.Log;
 
+import com.core.cmddata.DeviceCmdData;
+import com.core.cmddata.GroupCmdData;
+import com.core.db.AppDeviceInfo;
 import com.core.gatewayinterface.DataSources;
+import com.core.global.Constants;
+import com.core.utils.ParseData;
+import com.core.utils.Utils;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 /**
  * Created by best on 2016/7/12.
  */
 public class GetDeviceSwitchState implements Runnable {
-    private String ipaddress;
-    int port = -1;
-    String devicename;
-    String deviceid;
-    int state = -1;
-    DatagramSocket m_CMDSocket = null;
+    private int PORT = 8888;
+    private DatagramSocket socket = null;
+    private AppDeviceInfo appDeviceInfo;
+    private byte[] bt_send = null;
 
-    public GetDeviceSwitchState(String ipaddress, int port,String devicename,String deviceid, int state){
-        this.ipaddress = ipaddress;
-        this.port = port;
-        this.devicename = devicename;
-        this.deviceid = deviceid;
-        this.state = state;
+    public GetDeviceSwitchState(AppDeviceInfo appDeviceInfo) {
+        this.appDeviceInfo = appDeviceInfo;
     }
 
     @Override
     public void run() {
         try {
-            m_CMDSocket = new DatagramSocket();
-            InetAddress serverAddr = InetAddress.getByName(ipaddress);
+            if (UDPHelper.localip == null && Constants.ipaddress == null) {
+                DataSources.getInstance().SendExceptionResult(0);
+                return;
+            }
 
-            String mDeleteRoom = "DeleteRoom";
-//            NewCmdData.add_cmd_remove cmdInfo = new NewCmdData.add_cmd_remove();
-//            cmdInfo.id = id;
-//            cmdInfo.Cmd = cmd;
-//            cmdInfo.Length = 20;
-//            cmdInfo.app_id = app_id;
-            DatagramPacket packet_send = new DatagramPacket(mDeleteRoom.getBytes(),mDeleteRoom.getBytes().length,serverAddr, port);
-            m_CMDSocket.send(packet_send);
+            Log.i("网关IP地址 = ", Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+
+            if (socket == null) {
+                socket = new DatagramSocket(null);
+                socket.setReuseAddress(true);
+                socket.bind(new InetSocketAddress(PORT));
+            }
+            bt_send = DeviceCmdData.ReadAttrbuteCmd(appDeviceInfo.getDeviceMac(),
+                    appDeviceInfo.getShortaddr(), appDeviceInfo.getEndpoint(), "0100","0006");
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+            socket.send(datagramPacket);
+            System.out.println("SendReadAttrbuteCmd十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
 
             // 接收数据
-            byte[] buf = new byte[24];
-            DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);
-            m_CMDSocket.receive(packet_receive);
-//            NewCmdData.add_cmd_remove_Rep repdata = new NewCmdData.add_cmd_remove_Rep();
-//            repdata.parseBytes(packet.getData());
+            while (true) {
+                byte[] recbuf = new byte[1024];
+                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                socket.receive(packet);
 
-            //当result等于1时删除成功,0删除失败
-            DataSources.getInstance().getDeviceState(deviceid,(byte)state);
-            m_CMDSocket.close();
+                String str = new String(packet.getData()).trim();
+                if (str.contains("GW") && !str.contains("K64")) {
+                    /**
+                     * 解析设备属性数据
+                     */
+                    ParseData.ParseAttributeData parseAttributeData = new ParseData.ParseAttributeData();
+                    parseAttributeData.parseBytes(recbuf);
+
+                    if (parseAttributeData.mZigbeeType.contains("8100")) {
+                        DataSources.getInstance().getDeviceState(parseAttributeData.mDevMac,parseAttributeData.attribValue);
+                        System.out.println("ParseAttributeDatamDevMac" + parseAttributeData.mDevMac);
+                        System.out.println("ParseAttributeDataclusterID" + parseAttributeData.clusterID);
+                        System.out.println("ParseAttributeDatastate" + parseAttributeData.state);
+                        System.out.println("ParseAttributeDataattributeID" + parseAttributeData.attributeID);
+                    }
+                }
+            }
         } catch (Exception e) {
             Log.e("deviceinfo IOException", "Client: Error!");
         }

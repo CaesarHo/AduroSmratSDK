@@ -2,696 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a8b0c7c-1708-43bf-8b45-387a609f6f80" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/DeviceCmdData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/GroupCmdData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/SceneCmdData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/TaskCmdData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/AlarmPingSender.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttAndroidClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttDeliveryTokenAndroid.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttServiceBinder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttServiceConstants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttTokenAndroid.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/MqttTraceHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/ParcelableMqttMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/Status.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/CallbackBundle.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/Connection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/Connections.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTConstants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MqttCallbackHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MqttTraceCallback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToGroup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToSence.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddGroup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddSence.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AgreeDeviceInNet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingDeviceTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingSceneTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerDeviceTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerSceneTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromGroup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromScene.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteGroup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteScence.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllGroups.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllSences.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceHue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceLevel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceOnLinStatus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetSenceDetails.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/IdentifyDevice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/RecallScene.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SendDeleteDeviceCmd.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetColorTemperature.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHueSat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceLevel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceSwitchState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupColorTemperature.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupHue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupHueSat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupLevel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupSat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/StoreScene.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateDeviceName.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateGroupName.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateSceneName.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/setGateWayTime.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/CRC8.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/SearchUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/file" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/MainActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/MainActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/TraceableActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$DevInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$GetIpAddress.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity$Send.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/activitys/UpdActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/adapters/SimpleAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/adapters/TestUPDAdapters$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/adapters/TestUPDAdapters.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/bean/DeviceInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/bean/GatewayInfo$Adapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/bean/GatewayInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/bean/LocalDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/connectivity/NewCmdData$add_cmd_add.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/connectivity/NewCmdData$add_cmd_add_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/connectivity/NewCmdData$add_cmd_detect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/connectivity/NewCmdData$add_cmd_detect_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/connectivity/NewCmdData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/data/SharedPreferencesManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/AutoStartReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/AutoStartReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$ActivityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$ActivityStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$CHANGE_FOCUS_ZOOM.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$DefenceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$DeviceFlag.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$DeviceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$FOCUS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$Languege.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$LoginType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$MessageType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$ModifyAccountType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$RegisterType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$ReplaceStyle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$SettingConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants$Update.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/FList$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/FList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/ListenCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/MainService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/MainService$MQTTReconnectThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/MainService$MyBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/global/MainService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/mqtt/MQTTHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/mqtt/MQTTHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/mqtt/MqttSendData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/thread/MainThread$Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/thread/MainThread$SearchUpdate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/thread/MainThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/udpshake/ShakeData$Cmd.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/udpshake/ShakeData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/udpshake/ShakeManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/udpshake/ShakeThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/udpshake/ShakeThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/AESUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/Bytes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/FtFormatTransfer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/StandardCharsets.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/T.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/UDPHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/UDPHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/UDPHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/UDPHelper2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/Utils$FileComparatorDown.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/Utils$FileComparatorUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/Utils$FileInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/adurosmart/utils/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/AlarmPingSender.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/DatabaseMessageStore$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/DatabaseMessageStore$DbStoredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/DatabaseMessageStore$MQTTDatabaseHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/DatabaseMessageStore$MqttMessageHack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/DatabaseMessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MessageStore$StoredMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttAndroidClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttAndroidClient$Ack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttAndroidClient$MyServiceConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttAndroidClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttConnection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttConnection$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttConnection$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttConnection$MqttConnectionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttDeliveryTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttService$BackgroundDataPreferenceReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttService$NetworkConnectionIntentReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttServiceBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttServiceConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/MqttTraceHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/ParcelableMqttMessage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/ParcelableMqttMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ActionListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ActionListener$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ActionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ActivityConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Advanced$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Advanced$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Advanced$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Advanced$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Advanced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/CallbackBundle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ClientConnections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Connection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Connection$ConnectionStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Connection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/ConnectionDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Connections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/HistoryFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/LastWill$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/LastWill.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/MqttCallbackHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/MqttTraceCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/MyApp$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/MyApp$MyThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/MyApp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/NewConnection$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/NewConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Notify.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/OpenFileDialog$FileSelectView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/OpenFileDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/Persistence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/PersistenceException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/PublishFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/org/eclipse/paho/android/service/sample/SubscribeFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/Z4kK89znZME8o9tYYTIBylV2t9g=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/oWH12He5pofd62ccYhRF2FB9T08=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageInstantRunResourcesDebug/dex-renamer-state.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageInstantRunResourcesDebug/file-input-save-data.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageInstantRunResourcesDebug/zip-cache/oWH12He5pofd62ccYhRF2FB9T08=" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-resources/resources-debug.ir.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/instant-run.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/manifest.crc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/manifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/instant-run/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_93620e631c253782659e2469dd14eec8a1bfcf75/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/2/sdk_653e6c9b41d147544e2062d0192ccd5313744e6f/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/MainActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/MainActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/TraceableActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$DevInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$GetIpAddress.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity$Send.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/activitys/UpdActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/adapters/SimpleAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/adapters/TestUPDAdapters$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/adapters/TestUPDAdapters.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/bean/DeviceInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/bean/GatewayInfo$Adapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/bean/GatewayInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/bean/LocalDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/connectivity/NewCmdData$add_cmd_add.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/connectivity/NewCmdData$add_cmd_add_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/connectivity/NewCmdData$add_cmd_detect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/connectivity/NewCmdData$add_cmd_detect_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/connectivity/NewCmdData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/data/SharedPreferencesManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/AutoStartReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/AutoStartReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$ActivityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$ActivityStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$CHANGE_FOCUS_ZOOM.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$DefenceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$DeviceFlag.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$DeviceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$FOCUS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$Languege.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$LoginType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$MessageType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$ModifyAccountType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$RegisterType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$ReplaceStyle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$SettingConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants$Update.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/FList$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/FList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/ListenCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/MainService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/MainService$MQTTReconnectThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/MainService$MyBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/global/MainService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/mqtt/MQTTHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/mqtt/MQTTHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/mqtt/MqttSendData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/thread/MainThread$Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/thread/MainThread$SearchUpdate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/thread/MainThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/udpshake/ShakeData$Cmd.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/udpshake/ShakeData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/udpshake/ShakeManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/udpshake/ShakeThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/udpshake/ShakeThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/AESUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/Bytes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/FtFormatTransfer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/StandardCharsets.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/T.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/UDPHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/UDPHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/UDPHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/UDPHelper2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/Utils$FileComparatorDown.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/Utils$FileComparatorUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/Utils$FileInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/adurosmart/utils/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/AlarmPingSender.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/DatabaseMessageStore$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/DatabaseMessageStore$DbStoredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/DatabaseMessageStore$MQTTDatabaseHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/DatabaseMessageStore$MqttMessageHack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/DatabaseMessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MessageStore$StoredMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttAndroidClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttAndroidClient$Ack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttAndroidClient$MyServiceConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttAndroidClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttConnection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttConnection$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttConnection$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttConnection$MqttConnectionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttDeliveryTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttService$BackgroundDataPreferenceReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttService$NetworkConnectionIntentReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttServiceBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttServiceConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/MqttTraceHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/ParcelableMqttMessage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/ParcelableMqttMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ActionListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ActionListener$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ActionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ActivityConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Advanced$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Advanced$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Advanced$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Advanced$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Advanced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/CallbackBundle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ClientConnections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Connection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Connection$ConnectionStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Connection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ConnectionDetails$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ConnectionDetails$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/ConnectionDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Connections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/HistoryFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/LastWill$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/LastWill.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/MqttCallbackHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/MqttTraceCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/MyApp$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/MyApp$MyThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/MyApp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/NewConnection$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/NewConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Notify.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/OpenFileDialog$FileSelectView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/OpenFileDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/Persistence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/PersistenceException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/PublishFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/org/eclipse/paho/android/service/sample/SubscribeFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_0/com/android/tools/fd/dummy/slice_0.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_1/com/adurosmart/adapters/SimpleAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_1/com/adurosmart/adapters/TestUPDAdapters$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_1/com/adurosmart/adapters/TestUPDAdapters.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_1/com/android/tools/fd/dummy/slice_1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/adurosmart/connectivity/NewCmdData$add_cmd_add.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/adurosmart/connectivity/NewCmdData$add_cmd_add_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/adurosmart/connectivity/NewCmdData$add_cmd_detect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/adurosmart/connectivity/NewCmdData$add_cmd_detect_Rep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/adurosmart/connectivity/NewCmdData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_2/com/android/tools/fd/dummy/slice_2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_3/com/adurosmart/data/SharedPreferencesManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_3/com/android/tools/fd/dummy/slice_3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/AESUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/Bytes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/FtFormatTransfer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/StandardCharsets.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/T.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/UDPHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/UDPHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/UDPHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/UDPHelper2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/Utils$FileComparatorDown.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/Utils$FileComparatorUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/Utils$FileInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/adurosmart/utils/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/android/tools/fd/dummy/slice_4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/adurosmart/thread/MainThread$Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/adurosmart/thread/MainThread$SearchUpdate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/adurosmart/thread/MainThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/com/android/tools/fd/dummy/slice_5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ActionListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ActionListener$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ActionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ActivityConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Advanced$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Advanced$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Advanced$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Advanced$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Advanced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/CallbackBundle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ClientConnections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Connection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Connection$ConnectionStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Connection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ConnectionDetails$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ConnectionDetails$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/ConnectionDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Connections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/HistoryFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/LastWill$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/LastWill.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/MqttCallbackHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/MqttTraceCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/MyApp$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/MyApp$MyThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/MyApp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/NewConnection$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/NewConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Notify.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/OpenFileDialog$FileSelectView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/OpenFileDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/Persistence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/PersistenceException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/PublishFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_5/org/eclipse/paho/android/service/sample/SubscribeFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/AutoStartReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/AutoStartReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$ActivityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$ActivityStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$CHANGE_FOCUS_ZOOM.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$DefenceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$DeviceFlag.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$DeviceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$FOCUS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$Languege.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$LoginType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$MessageType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$ModifyAccountType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$RegisterType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$ReplaceStyle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$SettingConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants$Update.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/FList$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/FList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/ListenCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/MainService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/MainService$MQTTReconnectThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/MainService$MyBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/adurosmart/global/MainService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_6/com/android/tools/fd/dummy/slice_6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/adurosmart/bean/DeviceInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/adurosmart/bean/GatewayInfo$Adapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/adurosmart/bean/GatewayInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/adurosmart/bean/LocalDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/com/android/tools/fd/dummy/slice_7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/AlarmPingSender.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/DatabaseMessageStore$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/DatabaseMessageStore$DbStoredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/DatabaseMessageStore$MQTTDatabaseHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/DatabaseMessageStore$MqttMessageHack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/DatabaseMessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MessageStore$StoredMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttAndroidClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttAndroidClient$Ack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttAndroidClient$MyServiceConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttAndroidClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttConnection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttConnection$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttConnection$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttConnection$MqttConnectionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttDeliveryTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttService$BackgroundDataPreferenceReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttService$NetworkConnectionIntentReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttServiceBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttServiceConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/MqttTraceHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/ParcelableMqttMessage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/ParcelableMqttMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_7/org/eclipse/paho/android/service/Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/adurosmart/udpshake/ShakeData$Cmd.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/adurosmart/udpshake/ShakeData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/adurosmart/udpshake/ShakeManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/adurosmart/udpshake/ShakeThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/adurosmart/udpshake/ShakeThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_8/com/android/tools/fd/dummy/slice_8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/MainActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/MainActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/TraceableActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$DevInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$GetIpAddress.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity$Send.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/activitys/UpdActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/mqtt/MQTTHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/mqtt/MQTTHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/adurosmart/mqtt/MqttSendData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_9/com/android/tools/fd/dummy/slice_9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/Constants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/DataSources.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/GatewayInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/InterfaceCallback.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/SerialHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/interfacecallback/UDPHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/AlarmPingSender.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttAndroidClient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttConnection.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttDeliveryTokenAndroid.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttServiceBinder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttServiceConstants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttTokenAndroid.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/MqttTraceHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/ParcelableMqttMessage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/Status.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/CallbackBundle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/Connection.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/Connections.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/MQTTConstants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/MQTTHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/MQTTService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/MqttCallbackHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/mqttglobal/handle/MqttTraceCallback.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/shake/ShakeManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/shake/ShakeThread.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/AddDeviceToGroup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/AddDeviceToSence.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/AddGroup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/AddSence.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/AgreeDeviceInNet.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/CreateTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/DeleteDeviceFromGroup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/DeleteDeviceFromScene.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/DeleteGroup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/DeleteScence.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/DeleteTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetAllDevices.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetAllGroups.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetAllSences.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetAllTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetDeviceHue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetDeviceLevel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetDeviceOnLinStatus.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetDeviceSat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetDeviceSwitchState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/GetSenceDetails.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/IdentifyDevice.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/RecallScene.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SendDeleteDeviceCmd.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetColorTemperature.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetDeviceHue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetDeviceHueSat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetDeviceLevel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetDeviceSwitchState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupColorTemperature.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupHue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupHueSat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupLevel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupSat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/SetGroupState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/StoreScene.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/UpdateDeviceName.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/UpdateGroupName.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/UpdateSceneName.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/threadhelper/setGateWayTime.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/CRC8.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/FtFormatTransfer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/NewCmdData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/ParseData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/SearchUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/utils/Utils.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/AppDeviceInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/DeviceInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceZoneType.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sdk.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_19_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_4_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
@@ -702,10 +31,51 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" afterPath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToSence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToSence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddSence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddSence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AgreeDeviceInNet.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AgreeDeviceInNet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingDeviceTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingDeviceTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingSceneTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingSceneTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerDeviceTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerDeviceTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerSceneTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerSceneTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromScene.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteDeviceFromScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteScence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteScence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteTask.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllGroups.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllGroups.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllSences.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllSences.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/IdentifyDevice.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/IdentifyDevice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/RecallScene.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/RecallScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SendDeleteDeviceCmd.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SendDeleteDeviceCmd.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetColorTemperature.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetColorTemperature.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHue.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHueSat.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHueSat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceLevel.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceSwitchState.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceSwitchState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupLevel.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupState.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetGroupState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/StoreScene.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/StoreScene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateDeviceName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateDeviceName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateGroupName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateGroupName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateSceneName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateSceneName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/setGateWayTime.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/setGateWayTime.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/DeviceCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/DeviceCmdData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/GroupCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/GroupCmdData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/SceneCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/SceneCmdData.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/TaskCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/TaskCmdData.java" />
     </list>
     <ignored path="AndroidAduroSmratSDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -738,26 +108,141 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GetAllDevices.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GetAllDevices.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+            <state relative-caret-position="168">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
-                <element signature="e#7064#8408#0" expanded="true" />
-                <element signature="e#8407#8408#0" expanded="true" />
-                <element signature="e#8469#9993#0" expanded="true" />
-                <element signature="e#9992#9993#0" expanded="true" />
+                <element signature="e#7994#9338#0" expanded="true" />
+                <element signature="e#9337#9338#0" expanded="true" />
+                <element signature="e#9444#10636#0" expanded="true" />
+                <element signature="e#10635#10636#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceCmdData.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/DeviceCmdData.java">
+      <file leaf-file-name="AppDeviceInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/AppDeviceInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="244" column="9" selection-start-line="244" selection-start-column="9" selection-end-line="244" selection-end-column="9" />
+            <state relative-caret-position="660">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <folding>
+                <element signature="e#952#953#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
+                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#1100#1101#0" expanded="true" />
+                <element signature="e#1131#1132#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#1216#1217#0" expanded="true" />
+                <element signature="e#1251#1252#0" expanded="true" />
+                <element signature="e#1285#1286#0" expanded="true" />
+                <element signature="e#1336#1337#0" expanded="true" />
+                <element signature="e#1382#1383#0" expanded="true" />
+                <element signature="e#1412#1413#0" expanded="true" />
+                <element signature="e#1441#1442#0" expanded="true" />
+                <element signature="e#1482#1483#0" expanded="true" />
+                <element signature="e#1518#1519#0" expanded="true" />
+                <element signature="e#1547#1548#0" expanded="true" />
+                <element signature="e#1575#1576#0" expanded="true" />
+                <element signature="e#1614#1615#0" expanded="true" />
+                <element signature="e#1648#1649#0" expanded="true" />
+                <element signature="e#1676#1677#0" expanded="true" />
+                <element signature="e#1703#1704#0" expanded="true" />
+                <element signature="e#1740#1741#0" expanded="true" />
+                <element signature="e#1772#1773#0" expanded="true" />
+                <element signature="e#1807#1808#0" expanded="true" />
+                <element signature="e#1838#1839#0" expanded="true" />
+                <element signature="e#1886#1887#0" expanded="true" />
+                <element signature="e#1926#1927#0" expanded="true" />
+                <element signature="e#1962#1963#0" expanded="true" />
+                <element signature="e#1993#1994#0" expanded="true" />
+                <element signature="e#2042#2043#0" expanded="true" />
+                <element signature="e#2082#2083#0" expanded="true" />
+                <element signature="e#2119#2120#0" expanded="true" />
+                <element signature="e#2152#2153#0" expanded="true" />
+                <element signature="e#2198#2199#0" expanded="true" />
+                <element signature="e#2236#2237#0" expanded="true" />
+                <element signature="e#2272#2273#0" expanded="true" />
+                <element signature="e#2304#2305#0" expanded="true" />
+                <element signature="e#2354#2355#0" expanded="true" />
+                <element signature="e#2396#2397#0" expanded="true" />
+                <element signature="e#2432#2433#0" expanded="true" />
+                <element signature="e#2464#2465#0" expanded="true" />
+                <element signature="e#2514#2515#0" expanded="true" />
+                <element signature="e#2556#2557#0" expanded="true" />
+                <element signature="e#2592#2593#0" expanded="true" />
+                <element signature="e#2624#2625#0" expanded="true" />
+                <element signature="e#2674#2675#0" expanded="true" />
+                <element signature="e#2716#2717#0" expanded="true" />
+                <element signature="e#2751#2752#0" expanded="true" />
+                <element signature="e#2782#2783#0" expanded="true" />
+                <element signature="e#2830#2831#0" expanded="true" />
+                <element signature="e#2870#2871#0" expanded="true" />
+                <element signature="e#2905#2906#0" expanded="true" />
+                <element signature="e#2936#2937#0" expanded="true" />
+                <element signature="e#2984#2985#0" expanded="true" />
+                <element signature="e#3024#3025#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetDeviceZoneType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceZoneType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="52" column="93" selection-start-line="52" selection-start-column="93" selection-end-line="52" selection-end-column="93" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetDeviceSwitchState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-154">
+              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#825#826#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerialHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="283" column="67" selection-start-line="283" selection-start-column="67" selection-end-line="283" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeviceCmdData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/DeviceCmdData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="892" column="15" selection-start-line="892" selection-start-column="15" selection-end-line="892" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -3215,11 +2700,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTConstants.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MqttTraceCallback.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTService.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqttglobal/handle/MQTTHelper.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/interfacecallback/UDPHelper.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToSence.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/interfacecallback/SerialHandler.java" />
@@ -3238,7 +2718,6 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceHue.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceLevel.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSat.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SendDeleteDeviceCmd.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetColorTemperature.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/SetDeviceHue.java" />
@@ -3258,14 +2737,20 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTimingSceneTask.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerSceneTask.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTriggerDeviceTask.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/TaskCmdData.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/CreateTask.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/DeviceCmdData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/DeviceInfo.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/AppDeviceInfo.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/DeviceCmdData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceZoneType.java" />
       </list>
     </option>
   </component>
@@ -3300,11 +2785,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3437,27 +2917,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="threadhelper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="gatewayinterface" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3776,30 +3247,29 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23496659" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38641426" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09131403" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31514478" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24253732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3964365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3807,6 +3277,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3964365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3827,57 +3298,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/eclipse/paho/android/service/sample/MqttCallbackHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="95" column="37" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToSence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/eclipse/paho/android/service/sample/MyApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="83" column="126" selection-start-line="83" selection-start-column="126" selection-end-line="83" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/interfacecallback/SerialHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="345" column="8" selection-start-line="345" selection-start-column="8" selection-end-line="345" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddDeviceToGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddSence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="90" column="109" selection-start-line="90" selection-start-column="109" selection-end-line="90" selection-end-column="109" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/AddGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -3900,7 +3320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3908,15 +3327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3924,7 +3334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3932,15 +3341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllSences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3948,7 +3348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3956,15 +3355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3972,7 +3362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4020,7 +3409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4036,7 +3424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4044,7 +3431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4052,7 +3438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4068,7 +3453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4076,7 +3460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4084,7 +3467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4092,7 +3474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4140,7 +3521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="97" column="62" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4148,7 +3528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="446" column="61" selection-start-line="446" selection-start-column="61" selection-end-line="446" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4156,70 +3535,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#13165#13166#0" expanded="false" />
-            <element signature="e#13218#13219#0" expanded="false" />
-            <element signature="e#15979#15980#0" expanded="false" />
-            <element signature="e#16038#16039#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="215" column="0" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="476" column="19" selection-start-line="476" selection-start-column="19" selection-end-line="476" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/TaskCmdData.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/TaskCmdData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="839" column="32" selection-start-line="839" selection-start-column="32" selection-end-line="839" selection-end-column="32" />
           <folding>
-            <element signature="e#271#280#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllGroups.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="85" column="16" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#274#283#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4228,44 +3552,257 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="240" column="57" selection-start-line="240" selection-start-column="57" selection-end-line="240" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+        <state relative-caret-position="616">
+          <caret line="65" column="54" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/DeviceInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="136" column="1" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
+          <folding>
+            <element signature="e#2530#2531#0" expanded="false" />
+            <element signature="e#2574#2575#0" expanded="false" />
+            <element signature="e#2601#2602#0" expanded="false" />
+            <element signature="e#2627#2628#0" expanded="false" />
+            <element signature="e#2662#2663#0" expanded="false" />
+            <element signature="e#2692#2693#0" expanded="false" />
+            <element signature="e#2727#2728#0" expanded="false" />
+            <element signature="e#2758#2759#0" expanded="false" />
+            <element signature="e#2794#2795#0" expanded="false" />
+            <element signature="e#2826#2827#0" expanded="false" />
+            <element signature="e#2876#2877#0" expanded="false" />
+            <element signature="e#2913#2914#0" expanded="false" />
+            <element signature="e#2950#2951#0" expanded="false" />
+            <element signature="e#2985#2986#0" expanded="false" />
+            <element signature="e#3039#3040#0" expanded="false" />
+            <element signature="e#3087#3088#0" expanded="false" />
+            <element signature="e#3123#3124#0" expanded="false" />
+            <element signature="e#3157#3158#0" expanded="false" />
+            <element signature="e#3209#3210#0" expanded="false" />
+            <element signature="e#3255#3256#0" expanded="false" />
+            <element signature="e#3289#3290#0" expanded="false" />
+            <element signature="e#3322#3323#0" expanded="false" />
+            <element signature="e#3371#3372#0" expanded="false" />
+            <element signature="e#3410#3411#0" expanded="false" />
+            <element signature="e#3445#3446#0" expanded="false" />
+            <element signature="e#3477#3478#0" expanded="false" />
+            <element signature="e#3526#3527#0" expanded="false" />
+            <element signature="e#3568#3569#0" expanded="false" />
+            <element signature="e#3601#3602#0" expanded="false" />
+            <element signature="e#3632#3633#0" expanded="false" />
+            <element signature="e#3678#3679#0" expanded="false" />
+            <element signature="e#3718#3719#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-579">
-          <caret line="340" column="49" selection-start-line="340" selection-start-column="49" selection-end-line="340" selection-end-column="49" />
+        <state relative-caret-position="331">
+          <caret line="270" column="25" selection-start-line="270" selection-start-column="25" selection-end-line="270" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllGroups.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="787">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllSences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="100" column="30" selection-start-line="100" selection-start-column="30" selection-end-line="100" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllTasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-242">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/DeleteGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceOnLinStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/AppDeviceInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding>
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+            <element signature="e#1131#1132#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1285#1286#0" expanded="true" />
+            <element signature="e#1336#1337#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1441#1442#0" expanded="true" />
+            <element signature="e#1482#1483#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1547#1548#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+            <element signature="e#1648#1649#0" expanded="true" />
+            <element signature="e#1676#1677#0" expanded="true" />
+            <element signature="e#1703#1704#0" expanded="true" />
+            <element signature="e#1740#1741#0" expanded="true" />
+            <element signature="e#1772#1773#0" expanded="true" />
+            <element signature="e#1807#1808#0" expanded="true" />
+            <element signature="e#1838#1839#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
+            <element signature="e#1926#1927#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+            <element signature="e#1993#1994#0" expanded="true" />
+            <element signature="e#2042#2043#0" expanded="true" />
+            <element signature="e#2082#2083#0" expanded="true" />
+            <element signature="e#2119#2120#0" expanded="true" />
+            <element signature="e#2152#2153#0" expanded="true" />
+            <element signature="e#2198#2199#0" expanded="true" />
+            <element signature="e#2236#2237#0" expanded="true" />
+            <element signature="e#2272#2273#0" expanded="true" />
+            <element signature="e#2304#2305#0" expanded="true" />
+            <element signature="e#2354#2355#0" expanded="true" />
+            <element signature="e#2396#2397#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+            <element signature="e#2464#2465#0" expanded="true" />
+            <element signature="e#2514#2515#0" expanded="true" />
+            <element signature="e#2556#2557#0" expanded="true" />
+            <element signature="e#2592#2593#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#2674#2675#0" expanded="true" />
+            <element signature="e#2716#2717#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#2782#2783#0" expanded="true" />
+            <element signature="e#2830#2831#0" expanded="true" />
+            <element signature="e#2870#2871#0" expanded="true" />
+            <element signature="e#2905#2906#0" expanded="true" />
+            <element signature="e#2936#2937#0" expanded="true" />
+            <element signature="e#2984#2985#0" expanded="true" />
+            <element signature="e#3024#3025#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="80" column="60" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="283" column="67" selection-start-line="283" selection-start-column="67" selection-end-line="283" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/cmddata/DeviceCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="892" column="15" selection-start-line="892" selection-start-column="15" selection-end-line="892" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceSwitchState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#825#826#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetDeviceZoneType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="52" column="93" selection-start-line="52" selection-start-column="93" selection-end-line="52" selection-end-column="93" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/ParseData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/GetAllDevices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+        <state relative-caret-position="168">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
-            <element signature="e#7064#8408#0" expanded="true" />
-            <element signature="e#8407#8408#0" expanded="true" />
-            <element signature="e#8469#9993#0" expanded="true" />
-            <element signature="e#9992#9993#0" expanded="true" />
+            <element signature="e#7994#9338#0" expanded="true" />
+            <element signature="e#9337#9338#0" expanded="true" />
+            <element signature="e#9444#10636#0" expanded="true" />
+            <element signature="e#10635#10636#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/data/DeviceCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="244" column="9" selection-start-line="244" selection-start-column="9" selection-end-line="244" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,7 @@
 package com.core.gatewayinterface;
 
+import com.core.db.AppDeviceInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +42,12 @@ public interface InterfaceCallback {
     void SendExceptionCallack(int result);
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
-    //扫面设备回调
-    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count,String device_zone_type);
+//    //扫面设备回调
+//    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,
+//                            String deviceshortaddr,String deviceid,String main_endpoint,
+//                            String in_cluster_count,String out_cluster_count,String device_zone_type);
+    //扫描设备回调
+    void ScanDeviceCallback(AppDeviceInfo appDeviceInfo);
 
     void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
                            byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
@@ -54,7 +60,7 @@ public interface InterfaceCallback {
     //设置设备开关
     void setDeviceStateCallback(int result);
     //获取设备状态开关
-    void getDeviceStateCallback(String deviceid,byte state);
+    void getDeviceStateCallback(String deviceid,int state);
     //获取设备在线状态
     void getDeviceOnLinStatus(String deviceName,String deviceId,byte status);
     //设置设备亮度回调

@@ -1,6 +1,6 @@
 package com.core.threadhelper;
 
-import com.core.data.SceneCmdData;
+import com.core.cmddata.SceneCmdData;
 import com.core.global.Constants;
 import com.core.utils.Utils;
 

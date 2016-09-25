@@ -2,7 +2,7 @@ package com.core.threadhelper;
 
 import android.util.Log;
 
-import com.core.data.TaskCmdData;
+import com.core.cmddata.TaskCmdData;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.utils.Utils;

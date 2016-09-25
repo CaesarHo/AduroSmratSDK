@@ -3,6 +3,7 @@ package com.core.gatewayinterface;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 
+import com.core.db.AppDeviceInfo;
 import com.core.db.GatewayInfo;
 import com.core.threadhelper.AddDeviceToGroup;
 import com.core.threadhelper.AddDeviceToSence;
@@ -280,8 +281,8 @@ public class SerialHandler {
     /**
      * 获得设备状态
      */
-    public void getDeviceSwitchState(String devicename, String deviceid, int state) {
-        GetDeviceSwitchState mDeviceSwitchState = new GetDeviceSwitchState(ipaddress, port, devicename, deviceid, state);
+    public void getDeviceSwitchState(AppDeviceInfo appDeviceInfo) {
+        GetDeviceSwitchState mDeviceSwitchState = new GetDeviceSwitchState(appDeviceInfo);
         Thread thread = new Thread(mDeviceSwitchState);
         thread.start();
     }

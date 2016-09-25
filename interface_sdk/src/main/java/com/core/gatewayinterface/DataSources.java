@@ -2,6 +2,8 @@ package com.core.gatewayinterface;
 
 import android.net.wifi.WifiManager;
 
+import com.core.db.AppDeviceInfo;
+
 import java.util.ArrayList;
 
 /**
@@ -41,8 +43,14 @@ public class DataSources {
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
 
-    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,String deviceid,String main_endpoint,String in_cluster_count,String out_cluster_count,String device_zone_type){
-        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,deviceid,main_endpoint,in_cluster_count,out_cluster_count,device_zone_type);
+//    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,
+//                                 String deviceid,String main_endpoint,String in_cluster_count,
+//                                 String out_cluster_count,String device_zone_type){
+//        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,
+//                deviceid,main_endpoint,in_cluster_count,out_cluster_count,device_zone_type);
+//    }
+    public void ScanDeviceResult(AppDeviceInfo appDeviceInfo){
+        sdkCallback.ScanDeviceCallback(appDeviceInfo);
     }
 
     //添加设备
@@ -70,8 +78,8 @@ public class DataSources {
     }
 
     //获取设备状态
-    public void getDeviceState(String deviceid,byte state){
-        sdkCallback.getDeviceStateCallback(deviceid,state);
+    public void getDeviceState(String device_mac,int state){
+        sdkCallback.getDeviceStateCallback(device_mac,state);
     }
 
     //获取设备在线状态
