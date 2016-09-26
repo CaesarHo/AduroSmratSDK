@@ -15,8 +15,6 @@ public class AppDeviceInfo implements Serializable{
     private String deviceid;
     private String endpoint;
     private String zonetype;
-    private String clusterId;
-    private String attribID;
     private Boolean selected = false;
 
     private byte deviceStatus;// 设备是否在线；
@@ -25,6 +23,8 @@ public class AppDeviceInfo implements Serializable{
     public String type = "Unknown Device";
 
     private int Sensordata = -1;// 用来存储传感器设备上传的数据
+    private short clusterId;
+    private short attribID;
 
     int bright = -1;  //设备亮度:
     int color = -1;   //设备颜色
@@ -147,5 +147,26 @@ public class AppDeviceInfo implements Serializable{
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
+    }
+
+
+    public int getSensordata() {
+        return Sensordata;
+    }
+
+    public void setSensordata(int sensordata) {
+        Sensordata = sensordata;
+    }
+    public short getClusterId() {
+        return clusterId;
+    }
+    public void setClusterId(short clusterId) {
+        this.clusterId = clusterId;
+    }
+    public short getAttribID() {
+        return attribID;
+    }
+    public void setAttribID(short attribID) {
+        this.attribID = attribID;
     }
 }

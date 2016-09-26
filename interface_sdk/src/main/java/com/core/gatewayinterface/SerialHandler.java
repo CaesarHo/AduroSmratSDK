@@ -294,8 +294,8 @@ public class SerialHandler {
     }
 
     //获取设备亮度回调
-    public void getDeviceLevel(String deviceid) {
-        GetDeviceLevel mDeviceLevel = new GetDeviceLevel(ipaddress, port, deviceid);
+    public void getDeviceLevel(AppDeviceInfo appDeviceInfo) {
+        GetDeviceLevel mDeviceLevel = new GetDeviceLevel(appDeviceInfo);
         Thread thread = new Thread(mDeviceLevel);
         thread.start();
     }

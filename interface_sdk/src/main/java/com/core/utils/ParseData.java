@@ -187,7 +187,13 @@ public class ParseData {
             byte[] shortaddress = new byte[2];
             System.arraycopy(data,36,shortaddress,0,2);
             for (int i = 0;i < shortaddress.length;i++){
-                shortaddr_str += Integer.toHexString(shortaddress[i] & 0xFF);
+                String shortaddr_zero = "";
+                if ( shortaddress[i] >= 0 &&  shortaddress[i] <= 16){
+                    shortaddr_zero = "0" + (shortaddress[i] & 0xFF);
+                    shortaddr_str = shortaddr_str + shortaddr_zero;
+                }else{
+                    shortaddr_str = shortaddr_str + Integer.toHexString(shortaddress[i] & 0xFF);
+                }
             }
             System.out.println("ParseSensorData shortAddr =" + shortaddr_str);
 
@@ -220,11 +226,11 @@ public class ParseData {
         public ParseAttributeData(){
             mDevMac = "";
             mZigbeeType = "";
+            shortaddr_str = "";
         }
 
         public void parseBytes(byte[] data) {
             byte[] mZigbee_bt = new byte[2];
-            byte[] mSensorState_bt = new byte[2];
             byte[] mDevMac_bt = new byte[8];
 
             //Zigbee串口类型
@@ -267,7 +273,13 @@ public class ParseData {
             byte[] shortaddress = new byte[2];
             System.arraycopy(data,32,shortaddress,0,2);
             for (int i = 0;i < shortaddress.length;i++){
-                shortaddr_str += Integer.toHexString(shortaddress[i] & 0xFF);
+                String shortaddr_zero = "";
+                if ( shortaddress[i] >= 0 &&  shortaddress[i] <= 16){
+                    shortaddr_zero = "0" + (shortaddress[i] & 0xFF);
+                    shortaddr_str = shortaddr_str + shortaddr_zero;
+                }else{
+                    shortaddr_str = shortaddr_str + Integer.toHexString(shortaddress[i] & 0xFF);
+                }
             }
             System.out.println("ParseAttributeData shortAddr = " + shortaddr_str);
 
@@ -296,20 +308,20 @@ public class ParseData {
             {
                 case 0x10:
                 {
-                    attribValue = data[40];
-                    System.out.println("attribValue = " + attribValue);
+                    attribValue = data[40] & 0xFF;
+                    System.out.println("attribValue 0x10= " + attribValue);
                 }
                 break;
                 case 0x18:
                 {
-                    attribValue = data[40];
-                    System.out.println("attribValue = " + attribValue);
+                    attribValue = data[40] & 0xFF;
+                    System.out.println("attribValue 0x18= " + attribValue);
                 }
                 break;
                 case 0x20:
                 {
-                    attribValue = data[40];
-                    System.out.println("attribValue = " + attribValue);
+                    attribValue = data[40] & 0xFF;
+                    System.out.println("attribValue 0x20= " + attribValue);
                 }
                 break;
                 case 0x21:
@@ -317,7 +329,7 @@ public class ParseData {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data,40,attribValue_bt,0,2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
-                    Log.i("clusterID = %x","" + clusterID);
+                    Log.i("clusterID 0x21= ","" + clusterID);
                 }
                 break;
                 case 0x23:
@@ -325,7 +337,7 @@ public class ParseData {
                     byte[] attribValue_bt = new byte[4];
                     System.arraycopy(data,40,attribValue_bt,0,4);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
-                    Log.i("attribValue = %x","" + attribValue);
+                    Log.i("attribValue 0x23= ","" + attribValue);
                 }
                 break;
                 case 0x29:

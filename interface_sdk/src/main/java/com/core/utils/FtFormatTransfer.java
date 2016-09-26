@@ -528,4 +528,16 @@ public class FtFormatTransfer {
         ret = (ret << 8) | ((int) (b[0]) & 0xff);
         return ret;
     }
+
+    /**
+     * 通过byte数组取到short
+     *
+     * @param b
+     * @param index
+     *            第几位开始取
+     * @return
+     */
+    public static short getShort(byte[] b, int index) {
+        return (short) (((b[index + 1] << 8) | b[index + 0] & 0xff));
+    }
 }

@@ -65,7 +65,7 @@ public class GetDeviceSwitchState implements Runnable {
                     ParseData.ParseAttributeData parseAttributeData = new ParseData.ParseAttributeData();
                     parseAttributeData.parseBytes(recbuf);
 
-                    if (parseAttributeData.mZigbeeType.contains("8100")) {
+                    if (parseAttributeData.mZigbeeType.contains("8100") & parseAttributeData.clusterID == 6) {
                         DataSources.getInstance().getDeviceState(parseAttributeData.mDevMac,parseAttributeData.attribValue);
                         System.out.println("ParseAttributeDatamDevMac" + parseAttributeData.mDevMac);
                         System.out.println("ParseAttributeDataclusterID" + parseAttributeData.clusterID);

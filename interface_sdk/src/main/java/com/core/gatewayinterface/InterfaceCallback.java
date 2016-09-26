@@ -66,7 +66,7 @@ public interface InterfaceCallback {
     //设置设备亮度回调
     void setDeviceLevelCallback(String deviceid,byte value);
     //获取设备亮度回调
-    void getDeviceLevelCallback(String deviceid,byte value);
+    void getDeviceLevelCallback(String deviceid,int value);
     //改变设备色调,饱和度
     void setDeviceHueSatCallback(String deviceid,int result);
     //获取设备色调

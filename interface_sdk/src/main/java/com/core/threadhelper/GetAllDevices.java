@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.core.cmddata.DeviceCmdData;
 import com.core.db.AppDeviceInfo;
-import com.core.db.DeviceInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.utils.FtFormatTransfer;
@@ -37,6 +36,7 @@ public class GetAllDevices implements Runnable {
     private String device_zone_type;
     private String in_cluster_count;
     private String out_cluster_count;
+    private short clusterId = -1;
     @Override
     public void run() {
         if (UDPHelper.localip == null && Constants.ipaddress == null){
@@ -59,7 +59,7 @@ public class GetAllDevices implements Runnable {
                 ParseData.ParseSensorData parseSensorData = new ParseData.ParseSensorData();
                 parseSensorData.parseBytes(recbuf);
                 if (parseSensorData.mZigbeeType.contains("8401")){
-                    System.out.println("传感器返回数据state" + parseSensorData.mSensorState);
+                    System.out.println("传感器返回数据stateSDK = " + parseSensorData.state);
                     String time_str = String.valueOf(System.currentTimeMillis());
                     DataSources.getInstance().getReceiveSensor(parseSensorData.mDevMac,parseSensorData.state,Utils.getFormatTellDate(time_str));
                 }
@@ -94,13 +94,20 @@ public class GetAllDevices implements Runnable {
 
                     //根据cluster_id读取相应属性
                     String[] cluster_id_array = str.split("CLUSTER_ID:");
-//                    for (int i = 0;i<cluster_id_array.length;i++){
-//                        String CLUSTER_ID = cluster_id_array[i].substring(2);
-//                        if (CLUSTER_ID.contains("0006") || CLUSTER_ID.contains("0008")){
-//                            SendReadAttrbuteCmd(CLUSTER_ID);
-//                            System.out.println("CLUSTER_ID = " + CLUSTER_ID);
-//                        }
-//                    }
+                    for (int i = 0;i<cluster_id_array.length;i++){
+                        String CLUSTER_ID = cluster_id_array[i].substring(2);
+                        System.out.println("CLUSTER_ID = " + CLUSTER_ID);
+
+                        if (CLUSTER_ID == "0500"){
+                            byte[] bt_clu = new byte[2];
+                            bt_clu[0] = Utils.HexString2Bytes(CLUSTER_ID)[0];
+                            bt_clu[1] = Utils.HexString2Bytes(CLUSTER_ID)[1];
+                            System.out.println("bt_clu = " + Arrays.toString(bt_clu));
+                            short clusterId_short = FtFormatTransfer.getShort(bt_clu,0);
+                            System.out.println("clusterId_short = " + clusterId_short);
+                            clusterId = clusterId_short;
+                        }
+                    }
 
                     switch (device_id) {
                         case "0105":
@@ -157,9 +164,6 @@ public class GetAllDevices implements Runnable {
 
                         System.out.println("AppDeviceInfo = " + device_mac);
 
-//                        DataSources.getInstance().ScanDeviceResult(device_name,profile_id ,device_mac ,
-//                                device_shortaddr ,device_id,main_endpoint,
-//                                in_cluster_count,out_cluster_count,device_zone_type);
                         DataSources.getInstance().ScanDeviceResult(appDeviceInfo);
                     }
                 }
@@ -240,39 +244,5 @@ public class GetAllDevices implements Runnable {
             }
         }.start();
     }
-
-
-
-
-
-
-
-    //读取相应属性
-//    public void SendReadAttrbuteCmd(final String value){
-//        bt_send = null;
-//        new Thread(){
-//            @Override
-//            public void run() {
-//                try {
-//                    Log.i("网关IP地址 = " , Constants.ipaddress);
-//                    InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
-//
-//                    if (socket == null) {
-//                        socket = new DatagramSocket(null);
-//                        socket.setReuseAddress(true);
-//                        socket.bind(new InetSocketAddress(PORT));
-//                    }
-//                    bt_send = DeviceCmdData.ReadAttrbuteCmd(device_mac,device_shortaddr,main_endpoint,(short)0x0500,value);
-//                    DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
-//                    socket.send(datagramPacket);
-//                    System.out.println("SendReadAttrbuteCmd十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
-//                    Thread.sleep(500);
-//                    SendGetDeviceCmd();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }.start();
-//    }
 }
 

@@ -93,7 +93,7 @@ public class DataSources {
     }
 
     //获取设备亮度值
-    public void getDeviceLevel(String deviceId,byte value){
+    public void getDeviceLevel(String deviceId,int value){
         sdkCallback.getDeviceLevelCallback(deviceId,value);
     }
 
