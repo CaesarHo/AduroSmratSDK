@@ -1,6 +1,7 @@
 package com.core.cmddata;
 
 import com.core.global.Constants;
+import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
@@ -12,164 +13,164 @@ import java.io.UnsupportedEncodingException;
  */
 
 public class TaskCmdData {
-//    /**
-//     * 创建任务
-//     * @throws UnsupportedEncodingException
-//     */
-//    public static byte[] CreateTask(String taskname, byte isRun, byte task_type, byte task_cycle, int hour, int minute, int device_action,
-//                                    String action_mac, String device_mac, String device_shortaddr, String device_main_point, int cmd_size,
-//                                    String dev_switch, int switch_state, String dev_level, int level_value, String dev_hue, int hue_value,
-//                                    int sat_value, String dev_temp, int temp_value, String recall_scene, int group_id, int scene_id) throws UnsupportedEncodingException {
-//        byte[] strTobt = taskname.getBytes("UTF-8");
-//        int task_name_len = taskname.length();
-//
-//        byte[] cmddatabt = TaskCmdData.tCmdData(device_mac, device_shortaddr, device_main_point, dev_switch,
-//                switch_state, dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value,
-//                recall_scene, group_id, scene_id);
-//
-//        int commandDataByte_Len = cmddatabt.length;
-//
-//        //---------------------------------数据开始------------------------------
-//        byte[] commandDataByte = new byte[22 + task_name_len + commandDataByte_Len];
-//        //任务相关
-//        commandDataByte[0] = 0x00;//任务编号
-//        commandDataByte[1] = 0x00;//任务编号
-//        commandDataByte[2] = isRun;//任务是否启用(0x00启用，0x01禁用)
-//        commandDataByte[3] = task_type;//任务类型-（0x01定时设备、0x02定时场景、0x03触发设备、0x04触发场景）
-//        commandDataByte[4] = task_cycle;//任务周期 //0x01 周一 0x02 周二 0x04 周三 0x08 周四 0x10 周五 0x20 周六 0x40 周日(可任意组合)
-//        commandDataByte[5] = (byte) hour;//任务小时-15点
-//        commandDataByte[6] = (byte) minute;//任务分钟-58分
-//        //串口数据类型SerialLinkMessageTypes 8001
-//        if (task_type == 1 | task_type == 2) {
-//            commandDataByte[7] = (byte) 0x80;//串口数据类型
-//            commandDataByte[8] = 0x01;//串口数据类型
-//            //0001
-//            commandDataByte[9] = 0x00;//设备动作
-//            commandDataByte[10] = 0x00;//设备动作
-//            //产生动作的设备mac开始   00158d0001310e1b
-//            commandDataByte[11] = 0x11;
-//            commandDataByte[12] = 0x22;
-//            commandDataByte[13] = 0x33;
-//            commandDataByte[14] = 0x44;
-//            commandDataByte[15] = 0x55;
-//            commandDataByte[16] = 0x66;
-//            commandDataByte[17] = 0x77;
-//            commandDataByte[18] = (byte) 0x88;
-//        } else {
-//            commandDataByte[7] = (byte) 0x84;//串口数据类型
-//            commandDataByte[8] = 0x01;//串口数据类型
-//            //0001
-//            commandDataByte[9] = (byte) (device_action << 8);//设备动作
-//            commandDataByte[10] = (byte) device_action;//设备动作
-//            //产生动作的设备mac开始   00158d0001310e1b
-//            commandDataByte[11] = Utils.HexString2Bytes(action_mac)[0];
-//            commandDataByte[12] = Utils.HexString2Bytes(action_mac)[1];
-//            commandDataByte[13] = Utils.HexString2Bytes(action_mac)[2];
-//            commandDataByte[14] = Utils.HexString2Bytes(action_mac)[3];
-//            commandDataByte[15] = Utils.HexString2Bytes(action_mac)[4];
-//            commandDataByte[16] = Utils.HexString2Bytes(action_mac)[5];
-//            commandDataByte[17] = Utils.HexString2Bytes(action_mac)[6];
-//            commandDataByte[18] = Utils.HexString2Bytes(action_mac)[7];
-//        }
-//
-//        //产生动作的设备mac结束   0004
-//        commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
-//        commandDataByte[20] = (byte) task_name_len;//任务名称长度
-//
-//        //任务名称   65643963
-//        String task_str = "";
-//        byte[] task_data = null;//任务byte数组
-//        for (int i = 0; i < strTobt.length; i++) {
-//            task_str += Integer.toHexString(strTobt[i] & 0xFF);
-//            task_data = Utils.HexString2Bytes(task_str);
-//        }
-//
-//        System.out.println("task_name_len = " + task_name_len);
-//        for (int i = 0; i < task_name_len; i++) {
-//            commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
-//        }
-//
-//        //被触发要执行的命令列表  01
-//        commandDataByte[21 + task_name_len] = (byte) cmd_size;//要执行的命令列表数量
-//
-//        for (int i = 0; i < cmddatabt.length; i++) {
-//            commandDataByte[(22 + task_name_len + i)] = cmddatabt[i];
-//        }
-//
-//        int dataByte_Len = commandDataByte.length + 18 ;
-//        int dataByte_Len2 = commandDataByte.length;
-//        //415050c0a801050101aa
-//        byte[] bt_send = new byte[33];
-//        //415050c0a801020101bc
-//        bt_send[0] = 0x41;
-//        bt_send[1] = 0x50;
-//        bt_send[2] = 0x50;
-//        bt_send[3] = (byte) Constants.IpAddress.int_1;
-//        bt_send[4] = (byte) Constants.IpAddress.int_2;
-//        bt_send[5] = (byte) Constants.IpAddress.int_3;
-//        bt_send[6] = (byte) Constants.IpAddress.int_4;
-//        bt_send[7] = 0x01;//序号
-//        bt_send[8] = 0x01;//消息段数
-//
-//        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-//            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-//            bt_send[9] = Utils.HexString2Bytes(ss)[0];
-//        } else {
-//            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
-//        }
-//        //消息体   0100180065
-//        bt_send[10] = 0x01;
-//        bt_send[11] = 0x00;
-//        bt_send[12] = 0x18;//数据类型 枚举A
-//        bt_send[13] = (byte)( dataByte_Len << 8);
-//        bt_send[14] = (byte) dataByte_Len;//数据体长度
-//        System.out.println("commandDataByte.length = " + dataByte_Len);
-//        //数据体头   415f5a4947
-//        bt_send[15] = 0x41;
-//        bt_send[16] = 0x5F;
-//        bt_send[17] = 0x5A;
-//        bt_send[18] = 0x49;
-//        bt_send[19] = 0x47;
-//        //数据体序号  01ffff
-//        bt_send[20] = 0x01;
-//        bt_send[21] = (byte) 0xFF;//枚举B
-//        bt_send[22] = (byte) 0xFF;
-//        //macaddr  00124b00076afe09
-//        if (task_type == 1 | task_type == 2) {
-//            bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
-//            bt_send[24] = Utils.HexString2Bytes(device_mac)[1];
-//            bt_send[25] = Utils.HexString2Bytes(device_mac)[2];
-//            bt_send[26] = Utils.HexString2Bytes(device_mac)[3];
-//            bt_send[27] = Utils.HexString2Bytes(device_mac)[4];
-//            bt_send[28] = Utils.HexString2Bytes(device_mac)[5];
-//            bt_send[29] = Utils.HexString2Bytes(device_mac)[6];
-//            bt_send[30] = Utils.HexString2Bytes(device_mac)[7];
-//        } else {
-//            bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
-//            bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
-//            bt_send[25] = Utils.HexString2Bytes(action_mac)[2];
-//            bt_send[26] = Utils.HexString2Bytes(action_mac)[3];
-//            bt_send[27] = Utils.HexString2Bytes(action_mac)[4];
-//            bt_send[28] = Utils.HexString2Bytes(action_mac)[5];
-//            bt_send[29] = Utils.HexString2Bytes(action_mac)[6];
-//            bt_send[30] = Utils.HexString2Bytes(action_mac)[7];
-//        }
-//        //数据长度   0053
-//        bt_send[31] = (byte) (dataByte_Len2 << 8);
-//        bt_send[32] = (byte) dataByte_Len2;
-//
-//        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
-//
-//        //将前面数据CRC8校验
-//        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
-//        String hex = Integer.toHexString(bt_crc8 & 0xFF);
-//        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
-//
-//        //Cmd 数据与CRC8相加
-//        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
-//
-//        return bt_send_cmd;
-//    }
+    /**
+     * 创建任务
+     * @throws UnsupportedEncodingException
+     */
+    public static byte[] EditTask(String taskname, byte isRun, byte task_type, byte task_cycle, int hour, int minute, int device_action,
+                                    String action_mac, String device_mac, String device_shortaddr, String device_main_point, int cmd_size,
+                                    String dev_switch, int switch_state, String dev_level, int level_value, String dev_hue, int hue_value,
+                                    int sat_value, String dev_temp, int temp_value, String recall_scene, int group_id, int scene_id) throws UnsupportedEncodingException {
+        byte[] strTobt = taskname.getBytes("UTF-8");
+        int task_name_len = taskname.length();
+
+        byte[] cmddatabt = TaskCmdData.tCmdData(device_mac, device_shortaddr, device_main_point, dev_switch,
+                switch_state, dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value,
+                recall_scene, group_id, scene_id);
+
+        int commandDataByte_Len = cmddatabt.length;
+
+        //---------------------------------数据开始------------------------------
+        byte[] commandDataByte = new byte[22 + task_name_len + commandDataByte_Len];
+        //任务相关
+        commandDataByte[0] = 0x00;//任务编号
+        commandDataByte[1] = 0x00;//任务编号
+        commandDataByte[2] = isRun;//任务是否启用(0x00启用，0x01禁用)
+        commandDataByte[3] = task_type;//任务类型-（0x01定时设备、0x02定时场景、0x03触发设备、0x04触发场景）
+        commandDataByte[4] = task_cycle;//任务周期 //0x01 周一 0x02 周二 0x04 周三 0x08 周四 0x10 周五 0x20 周六 0x40 周日(可任意组合)
+        commandDataByte[5] = (byte) hour;//任务小时-15点
+        commandDataByte[6] = (byte) minute;//任务分钟-58分
+        //串口数据类型SerialLinkMessageTypes 8001
+        if (task_type == 1 | task_type == 2) {
+            commandDataByte[7] = (byte) 0x80;
+            commandDataByte[8] = 0x01;
+            commandDataByte[9] = 0x00;
+            commandDataByte[10] = 0x00;
+            commandDataByte[11] = 0x11;
+            commandDataByte[12] = 0x22;
+            commandDataByte[13] = 0x33;
+            commandDataByte[14] = 0x44;
+            commandDataByte[15] = 0x55;
+            commandDataByte[16] = 0x66;
+            commandDataByte[17] = 0x77;
+            commandDataByte[18] = (byte) 0x88;
+        } else {
+            commandDataByte[7] = (byte) 0x84;//串口数据类型
+            commandDataByte[8] = 0x01;//串口数据类型
+            commandDataByte[9] = (byte) (device_action << 8);//设备动作
+            commandDataByte[10] = (byte) device_action;//设备动作
+            //产生动作的设备mac开始   00158d0001310e1b
+            commandDataByte[11] = Utils.HexString2Bytes(action_mac)[0];
+            commandDataByte[12] = Utils.HexString2Bytes(action_mac)[1];
+            commandDataByte[13] = Utils.HexString2Bytes(action_mac)[2];
+            commandDataByte[14] = Utils.HexString2Bytes(action_mac)[3];
+            commandDataByte[15] = Utils.HexString2Bytes(action_mac)[4];
+            commandDataByte[16] = Utils.HexString2Bytes(action_mac)[5];
+            commandDataByte[17] = Utils.HexString2Bytes(action_mac)[6];
+            commandDataByte[18] = Utils.HexString2Bytes(action_mac)[7];
+        }
+
+        //产生动作的设备mac结束   0004
+        commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
+        commandDataByte[20] = (byte) task_name_len;//任务名称长度
+
+        //任务名称   65643963
+        String task_str = "";
+        byte[] task_data = null;//任务byte数组
+        for (int i = 0; i < strTobt.length; i++) {
+            task_str += Integer.toHexString(strTobt[i] & 0xFF);
+            task_data = Utils.HexString2Bytes(task_str);
+        }
+
+        System.out.println("task_name_len = " + task_name_len);
+        for (int i = 0; i < task_name_len; i++) {
+            commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
+        }
+
+        //被触发要执行的命令列表  01
+        commandDataByte[21 + task_name_len] = (byte) cmd_size;//要执行的命令列表数量
+
+        for (int i = 0; i < cmddatabt.length; i++) {
+            commandDataByte[(22 + task_name_len + i)] = cmddatabt[i];
+        }
+
+        int dataByte_Len = commandDataByte.length + 18 ;
+        int dataByte_Len2 = commandDataByte.length;
+        //415050c0a801050101aa
+        byte[] bt_send = new byte[33];
+        //415050c0a801020101bc
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体   0100180065
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
+        bt_send[13] = (byte)( dataByte_Len << 8);
+        bt_send[14] = (byte) dataByte_Len;//数据体长度
+        //数据体头   415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号  01ffff
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) 0xFF;//枚举B
+        bt_send[22] = (byte) 0xFF;
+        //macaddr  00124b00076afe09
+        if (task_type == 1 | task_type == 2) {
+            bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
+            bt_send[24] = Utils.HexString2Bytes(device_mac)[1];
+            bt_send[25] = Utils.HexString2Bytes(device_mac)[2];
+            bt_send[26] = Utils.HexString2Bytes(device_mac)[3];
+            bt_send[27] = Utils.HexString2Bytes(device_mac)[4];
+            bt_send[28] = Utils.HexString2Bytes(device_mac)[5];
+            bt_send[29] = Utils.HexString2Bytes(device_mac)[6];
+            bt_send[30] = Utils.HexString2Bytes(device_mac)[7];
+        } else {
+            bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
+            bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
+            bt_send[25] = Utils.HexString2Bytes(action_mac)[2];
+            bt_send[26] = Utils.HexString2Bytes(action_mac)[3];
+            bt_send[27] = Utils.HexString2Bytes(action_mac)[4];
+            bt_send[28] = Utils.HexString2Bytes(action_mac)[5];
+            bt_send[29] = Utils.HexString2Bytes(action_mac)[6];
+            bt_send[30] = Utils.HexString2Bytes(action_mac)[7];
+        }
+        //数据长度   0053
+        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[32] = (byte) dataByte_Len2;
+
+        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+
+        //将前面数据CRC8校验
+        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        String hex = Integer.toHexString(bt_crc8 & 0xFF);
+        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+
+        //Cmd 数据与CRC8相加
+        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+
+        return bt_send_cmd;
+    }
+
+
+
+
 
     /**
      * 创建定时设备任务
@@ -267,7 +268,7 @@ public class TaskCmdData {
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x18;//数据类型 枚举A
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
         bt_send[13] = (byte)( dataByte_Len << 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
@@ -398,7 +399,7 @@ public class TaskCmdData {
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x18;//数据类型 枚举A
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
         bt_send[13] = (byte)( dataByte_Len << 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
@@ -533,7 +534,7 @@ public class TaskCmdData {
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x18;//数据类型 枚举A
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
         bt_send[13] = (byte)( dataByte_Len << 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
@@ -665,7 +666,7 @@ public class TaskCmdData {
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x18;//数据类型 枚举A
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
         bt_send[13] = (byte)( dataByte_Len << 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
@@ -731,7 +732,7 @@ public class TaskCmdData {
         //消息体
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x1b;//数据类型   枚举A
+        bt_send[12] = MessageType.A.GET_ALL_TASK.value();//0x1b;//数据类型   枚举A
         bt_send[13] = 0x00;
         bt_send[14] = 0x12;
         //数据体-----头
@@ -789,7 +790,7 @@ public class TaskCmdData {
         //消息体   0100 0f 0018  0100100016
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x19;//数据类型
+        bt_send[12] = MessageType.A.DELETE_TASK.value();//0x19;//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) 0x14;//数据体长度
         //数据体头   415f5a4947

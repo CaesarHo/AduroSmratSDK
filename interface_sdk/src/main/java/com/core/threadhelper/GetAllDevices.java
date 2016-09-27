@@ -64,6 +64,18 @@ public class GetAllDevices implements Runnable {
                     DataSources.getInstance().getReceiveSensor(parseSensorData.mDevMac,parseSensorData.state,Utils.getFormatTellDate(time_str));
                 }
 
+                /**
+                 * 解析设备属性数据
+                 */
+                ParseData.ParseAttributeData parseAttributeData = new ParseData.ParseAttributeData();
+                parseAttributeData.parseBytes(recbuf);
+                if (parseAttributeData.mZigbeeType.contains("8100")) {
+                    System.out.println("ParseAttributeDataattribValue" + parseAttributeData.attribValue);
+                    if (parseAttributeData.clusterID == 5){
+                        SendSaveZoneTypeCmd((short)parseAttributeData.attribValue);
+                    }
+                }
+
                 if(str.length() > 46){
                     int profile_id_int = SearchUtils.searchString(str, "PROFILE_ID:");
                     int device_id_int = SearchUtils.searchString(str, "DEVICE_ID:");
@@ -136,6 +148,9 @@ public class GetAllDevices implements Runnable {
                             break;
                         case "0402":
                             device_name = "HumanSensor";
+                            if (device_zone_type.equalsIgnoreCase("ffff")){
+                                SendReadZoneTypeCmd();
+                            }
                             break;
                         case "0202":
                             device_name = "WindowCurtain";
@@ -175,18 +190,6 @@ public class GetAllDevices implements Runnable {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     //发送获取设备命令
     public void SendGetDeviceCmd(){
         new Thread(){
@@ -203,10 +206,9 @@ public class GetAllDevices implements Runnable {
                         socket.bind(new InetSocketAddress(PORT));
                     }
 
-                    DatagramPacket datagramPacket = new DatagramPacket(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), Utils.hexStringToByteArray(Utils.binary(bt_send, 16)).length, inetAddress, PORT);
+                    DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length, inetAddress, PORT);
                     socket.send(datagramPacket);
-                    System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
-                    System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+                    System.out.println("SendGetDeviceCmd十六进制 = " + Utils.binary(bt_send, 16));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 } catch (SocketException e) {
@@ -233,9 +235,64 @@ public class GetAllDevices implements Runnable {
                         socket.bind(new InetSocketAddress(PORT));
                     }
                     bt_send = DeviceCmdData.ActiveReqDeviceCmd(device_mac,device_shortaddr,main_endpoint);
-                    DatagramPacket datagramPacket = new DatagramPacket(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), Utils.hexStringToByteArray(Utils.binary(bt_send, 16)).length, inetAddress, PORT);
+                    DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length, inetAddress, PORT);
                     socket.send(datagramPacket);
-                    System.out.println("SendActiveReqCmd十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+                    System.out.println("SendActiveReqCmd十六进制 = " + Utils.binary(bt_send, 16));
+                    Thread.sleep(500);
+                    SendGetDeviceCmd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    //当device id 位0402且device_zone_type为ffff时发送此命令读取属性
+    public void SendReadZoneTypeCmd(){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Log.i("网关IP地址 = " , Constants.ipaddress);
+                    InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+
+                    if (socket == null) {
+                        socket = new DatagramSocket(null);
+                        socket.setReuseAddress(true);
+                        socket.bind(new InetSocketAddress(PORT));
+                    }
+                    bt_send = DeviceCmdData.ReadZoneTypeCmd(device_mac,device_shortaddr,main_endpoint);
+                    DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+                    socket.send(datagramPacket);
+                    System.out.println("SendReadZoneTypeCmd十六进制 = " + Utils.binary(bt_send, 16));
+                    Thread.sleep(500);
+                    SendGetDeviceCmd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+
+    //当有傳感器上傳時保存device_zone_type为时发送此命令读取属性
+    public void SendSaveZoneTypeCmd(final short zonetype){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Log.i("网关IP地址 = " , Constants.ipaddress);
+                    InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+
+                    if (socket == null) {
+                        socket = new DatagramSocket(null);
+                        socket.setReuseAddress(true);
+                        socket.bind(new InetSocketAddress(PORT));
+                    }
+                    bt_send = DeviceCmdData.SaveZoneTypeCmd(device_mac,device_shortaddr,main_endpoint,zonetype);
+                    DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+                    socket.send(datagramPacket);
+                    System.out.println("SendSaveZoneTypeCmd十六进制 = " + Utils.binary(bt_send, 16));
                     Thread.sleep(500);
                     SendGetDeviceCmd();
                 } catch (Exception e) {

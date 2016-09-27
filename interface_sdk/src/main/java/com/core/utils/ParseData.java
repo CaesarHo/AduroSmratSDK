@@ -112,7 +112,7 @@ public class ParseData {
         public String  mZigbeeType = "";
         public short data_len_s;
         public String srcEndpoint;
-        public String clusterID = "";
+        public short clusterID = -1;
         public int srcEndpoint_mode;
         public String shortaddr_str = "";
         public int state = -1;
@@ -167,15 +167,16 @@ public class ParseData {
             //簇ID
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data,33,clusterid_bt,0,2);
-            for (int i = 0;i < clusterid_bt.length;i++){
-                String clusterID_zero = "";
-                if ( clusterid_bt[i] >= 0 &&  clusterid_bt[i] <= 16){
-                    clusterID_zero = "0" + (clusterid_bt[i] & 0xFF);
-                    clusterID = clusterID + clusterID_zero;
-                }else{
-                    clusterID = clusterID + Integer.toHexString(clusterid_bt[i] & 0xFF);
-                }
-            }
+            clusterID = FtFormatTransfer.lBytesToShort(clusterid_bt);
+//            for (int i = 0;i < clusterid_bt.length;i++){
+//                String clusterID_zero = "";
+//                if ( clusterid_bt[i] >= 0 &&  clusterid_bt[i] <= 16){
+//                    clusterID_zero = "0" + (clusterid_bt[i] & 0xFF);
+//                    clusterID = clusterID + clusterID_zero;
+//                }else{
+//                    clusterID = clusterID + Integer.toHexString(clusterid_bt[i] & 0xFF);
+//                }
+//            }
             System.out.println("ParseSensorData clusterID =" + clusterID);
 
 
@@ -329,7 +330,7 @@ public class ParseData {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data,40,attribValue_bt,0,2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
-                    Log.i("clusterID 0x21= ","" + clusterID);
+                    Log.i("attribValue 0x21= ","" + clusterID);
                 }
                 break;
                 case 0x23:
@@ -348,6 +349,7 @@ public class ParseData {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data,40,attribValue_bt,0,2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    Log.i("attribValue 0x30= ","" + attribValue);
                 }
                 break;
                 case 0x31:
@@ -355,6 +357,7 @@ public class ParseData {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data,40,attribValue_bt,0,2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    Log.i("attribValue 0x31= ","" + attribValue);
                 }
                 break;
                 case 0x42:

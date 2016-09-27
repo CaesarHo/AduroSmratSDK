@@ -13,4 +13,10 @@ public class Constants {
         public static int int_3 = -1;
         public static int int_4 = -1;
     }
+
+    public static class MessageType{
+        public static final long MAX_VALUE_U_INT_32 = (long) Math.pow(2, 32) - 1;
+        public static final int MAX_VALUE_U_INT_16 = (int) (Math.pow(2, 16) - 1);
+        public static final int MAX_VALUE_U_INT_8 = (int) (Math.pow(2, 8) - 1);
+    }
 }

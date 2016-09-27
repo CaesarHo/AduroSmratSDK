@@ -3,6 +3,7 @@ package com.core.cmddata;
 import android.util.Log;
 
 import com.core.global.Constants;
+import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
@@ -42,7 +43,7 @@ public class GroupCmdData {
         //消息体
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x11;
+        bt_send[12] = MessageType.A.GET_ALL_GROUP.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x12;
         //数据体-----头
@@ -111,7 +112,7 @@ public class GroupCmdData {
         //消息体   0100 0f 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x0f;//数据类型
+        bt_send[12] = MessageType.A.ADD_GROUP_NAME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) data_style_len;//数据体长度
         //数据体头   415f5a4947
@@ -195,7 +196,7 @@ public class GroupCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x0c;
+        bt_send[12] = MessageType.A.ADD_DEVICE_TO_GROUP.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -261,7 +262,7 @@ public class GroupCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x18;
         //数据体头  415F5A4947
@@ -328,7 +329,7 @@ public class GroupCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -403,7 +404,7 @@ public class GroupCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x0e;
+        bt_send[12] = MessageType.A.REMOVE_GROUP.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -480,7 +481,7 @@ public class GroupCmdData {
         //消息体   0100 0f 0018  0100100016
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x10;//数据类型
+        bt_send[12] = MessageType.A.CHANGE_GROUP_NAME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) 0x16;//数据体长度
         //数据体头   415f5a4947
@@ -570,7 +571,7 @@ public class GroupCmdData {
         //消息体   01001000    010010001b
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x10;//数据类型 枚举A
+        bt_send[12] = MessageType.A.CHANGE_GROUP_NAME.value();//数据类型 枚举A
         bt_send[13] = 0x00;
         bt_send[14] = (byte) data_style_len;//数据体长度  1b = 27
         //数据体头   415f5a4947   415f5a4947

@@ -10,7 +10,7 @@ import com.core.threadhelper.AddDeviceToSence;
 import com.core.threadhelper.AddGroup;
 import com.core.threadhelper.AddSence;
 import com.core.threadhelper.AgreeDeviceInNet;
-import com.core.threadhelper.CreateTask;
+import com.core.threadhelper.EditTask;
 import com.core.threadhelper.CreateTimingDeviceTask;
 import com.core.threadhelper.CreateTimingSceneTask;
 import com.core.threadhelper.CreateTriggerDeviceTask;
@@ -32,7 +32,7 @@ import com.core.threadhelper.GetDeviceSwitchState;
 import com.core.threadhelper.GetSenceDetails;
 import com.core.threadhelper.IdentifyDevice;
 import com.core.threadhelper.RecallScene;
-import com.core.threadhelper.SendDeleteDeviceCmd;
+import com.core.threadhelper.DeleteDevice;
 import com.core.threadhelper.SetColorTemperature;
 import com.core.threadhelper.SetDeviceHue;
 import com.core.threadhelper.SetDeviceHueSat;
@@ -231,7 +231,7 @@ public class SerialHandler {
      * @param devicemac
      */
     public void DeleteDevice(String devicemac) {
-        new Thread(new SendDeleteDeviceCmd(devicemac)).start();
+        new Thread(new DeleteDevice(devicemac)).start();
     }
 
     /**
@@ -462,9 +462,9 @@ public class SerialHandler {
 
 
     /**
-     * 创建任务
+     * 編輯任务
      */
-    public void CreateTask(String task_name, byte is_run, byte task_type, byte task_cycle, int task_hour, int task_minute,
+    public void EditTask(String task_name, byte is_run, byte task_type, byte task_cycle, int task_hour, int task_minute,
                            int device_action, String action_mac, String device_mac, String task_device_shortaddr,
                            String task_device_main_point, int cmd_size,
                            String dev_switch, int switch_state,
@@ -472,7 +472,7 @@ public class SerialHandler {
                            String dev_hue, int hue_value, int sat_value,
                            String dev_temp, int temp_value,
                            String recall_scene, int group_id, int scene_id) {
-        new Thread(new CreateTask(task_name, is_run, task_type, task_cycle, task_hour, task_minute, device_action,
+        new Thread(new EditTask(task_name, is_run, task_type, task_cycle, task_hour, task_minute, device_action,
                 action_mac, device_mac, task_device_shortaddr, task_device_main_point, cmd_size, dev_switch, switch_state,
                 dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value, recall_scene, group_id, scene_id))
                 .start();

@@ -32,11 +32,6 @@ public class AppDeviceInfo implements Serializable{
     int colorSat = -1;
     int colorHue = -1;
 
-
-//    public AppDeviceInfo(String deviceName) {
-//        this.deviceName = deviceName;
-//    }
-
     public int getColorSat() {
         return colorSat;
     }

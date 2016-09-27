@@ -3,6 +3,7 @@ package com.core.cmddata;
 import android.util.Log;
 
 import com.core.global.Constants;
+import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
@@ -37,7 +38,7 @@ public class SceneCmdData {
         //消息体
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x14;
+        bt_send[12] = MessageType.A.GET_ALL_SCENE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x12;
         //数据体-----头
@@ -101,7 +102,7 @@ public class SceneCmdData {
         //消息体   1010012001a
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x12;//数据类型
+        bt_send[12] = MessageType.A.ADD_SCENE_NAME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) data_style_len;//数据体长度
         //数据体头   415f5a4947
@@ -191,7 +192,7 @@ public class SceneCmdData {
         //消息体    0100130015
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x13;//数据类型
+        bt_send[12] = MessageType.A.CHANGE_SCENE_NAME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) 0x15;//数据体长度
         //数据体头   415f5a4947
@@ -263,7 +264,7 @@ public class SceneCmdData {
         //消息体  010003001e
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x03;//数据类型
+        bt_send[12] = MessageType.A.ADD_SCENE.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x1E;
         //数据体头  415f5a4947
@@ -335,7 +336,7 @@ public class SceneCmdData {
         //消息体  010003001e
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x03;//数据类型
+        bt_send[12] = MessageType.A.ADD_SCENE.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x1A;
         //数据体头  415f5a4947
@@ -408,7 +409,7 @@ public class SceneCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x04;//数据类型
+        bt_send[12] = MessageType.A.DELETE_SCENE.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -498,7 +499,7 @@ public class SceneCmdData {
         //消息体   01001000    010010001b
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x13;//数据类型
+        bt_send[12] = MessageType.A.CHANGE_SCENE_NAME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) data_style_len;//数据体长度  1b = 27
         //数据体头   415f5a4947   415f5a4947
@@ -571,7 +572,7 @@ public class SceneCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x05;//数据类型
+        bt_send[12] = MessageType.A.CONTROL_SCENE.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x1A;
         //数据体头  415F5A4947

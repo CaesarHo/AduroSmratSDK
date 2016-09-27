@@ -3,6 +3,7 @@ package com.core.cmddata;
 import android.util.Log;
 
 import com.core.global.Constants;
+import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
@@ -40,7 +41,7 @@ public class DeviceCmdData {
         //消息体   0100 0f 0018  0100100016
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x17;//数据类型
+        bt_send[12] = MessageType.A.SET_GETEWAY_TIME.value();//数据类型
         bt_send[13] = 0x00;
         bt_send[14] = (byte) 0x19;//数据体长度
         //数据体头   415f5a4947
@@ -105,7 +106,7 @@ public class DeviceCmdData {
         }
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x00;
+        bt_send[12] = MessageType.A.CHECK_NEW_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x00;
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
@@ -204,7 +205,7 @@ public class DeviceCmdData {
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -277,7 +278,7 @@ public class DeviceCmdData {
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x19;
         //数据体头  415F5A4947
@@ -344,7 +345,7 @@ public class DeviceCmdData {
         //消息体  01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x18;
         //数据体头  415F5A4947
@@ -411,7 +412,7 @@ public class DeviceCmdData {
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x1b;
         //数据体头  415F5A4947
@@ -491,7 +492,7 @@ public class DeviceCmdData {
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x1b;
         //数据体头  415F5A4947
@@ -570,7 +571,7 @@ public class DeviceCmdData {
         //消息体 01 0002 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x1c;
         //数据体头  415F5A4947
@@ -643,7 +644,7 @@ public class DeviceCmdData {
         //消息体 010002001b
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x02;
+        bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x1b;
         //数据体头  415f5a4947
@@ -736,7 +737,7 @@ public class DeviceCmdData {
         //消息体 010015001d
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x15;//枚举A
+        bt_send[12] = MessageType.A.CHANGE_DEVICE_NAME.value();//枚举A
         bt_send[13] = (byte) (data_style_len << 8);
         bt_send[14] = (byte) data_style_len;//以下数据长度
         //数据体头 415f5a4947
@@ -816,7 +817,7 @@ public class DeviceCmdData {
         //消息体   01 00 01 00 12
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x01;
+        bt_send[12] = MessageType.A.DELETE_DEVICE.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x12;
         //数据体头  41 5F 5A 49 47
@@ -854,6 +855,7 @@ public class DeviceCmdData {
         return bt_send;
     }
 
+
     /**
      * 读属性
      * @param devicemac
@@ -881,7 +883,7 @@ public class DeviceCmdData {
         //消息体   0100080020
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x08;//数据体类型
+        bt_send[12] = MessageType.A.UPLOAD_DEVICE_INFO.value();//数据体类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x20;//数据体长度
         //数据体-----头   415f5a4947010100
@@ -934,6 +936,159 @@ public class DeviceCmdData {
             bt_send[47] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
 
+        return bt_send;
+    }
+
+    /**
+     * 读取ZoneType属性
+     * @param devicemac
+     * @return
+     */
+    public static byte[] ReadZoneTypeCmd(String devicemac, String shortaddr, String main_point) {
+        //415050c0 a8010a0101ed
+        byte[] bt_send = new byte[48];
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;
+        bt_send[8] = 0x01;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体   0100080020
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.UPLOAD_DEVICE_INFO.value();//数据体类型
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x20;//数据体长度
+        //数据体-----头   415f5a4947010100
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) 0x01;//枚举B
+        bt_send[22] = (byte) 0x00;//枚举B
+
+        //mac地址    00158d0000ecc9a7
+        bt_send[23] = Utils.HexString2Bytes(devicemac)[0];
+        bt_send[24] = Utils.HexString2Bytes(devicemac)[1];
+        bt_send[25] = Utils.HexString2Bytes(devicemac)[2];
+        bt_send[26] = Utils.HexString2Bytes(devicemac)[3];
+        bt_send[27] = Utils.HexString2Bytes(devicemac)[4];
+        bt_send[28] = Utils.HexString2Bytes(devicemac)[5];
+        bt_send[29] = Utils.HexString2Bytes(devicemac)[6];
+        bt_send[30] = Utils.HexString2Bytes(devicemac)[7];
+        bt_send[31] = (byte) 0x00;//下面数据长度    000e
+        bt_send[32] = (byte) 0x0E;//下面数据长度
+
+        bt_send[33] = (byte) 0x02;//段地址模式   02d008
+        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
+        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[36] = 0x01;//01ff
+        bt_send[37] = (byte)0xFF; //Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[38] = 0x05;//ClusterID  0500
+        bt_send[39] = 0x00;//ClusterID
+
+        //00000000
+        bt_send[40] = 0x00;//Direction  填0
+        bt_send[41] = 0x00;//ManuSpecific  填0
+        bt_send[42] = 0x00;//ManuID    填0
+        bt_send[43] = 0x00;//ManuID    填0
+
+        bt_send[44] = 0x01;//AttribCount   010001   00
+        bt_send[45] = 0x00;
+        bt_send[46] = 0x01;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[47] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[47] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+
+        return bt_send;
+    }
+
+    /**
+     * 保存設備ZoneType
+     * @param devicemac
+     * @param shortaddr
+     * @param main_point
+     * @return
+     */
+    public static byte[] SaveZoneTypeCmd(String devicemac, String shortaddr, String main_point,short zonetype){
+        //415050c0 a8010a0101ed
+        byte[] bt_send = new byte[41];
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;
+        bt_send[8] = 0x01;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体   0100080020
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.SAVE_ZONE_TYPE.value();//数据体类型
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x19;//数据体长度
+        //数据体-----头   415f5a4947010100
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) 0xFF;//枚举B
+        bt_send[22] = (byte) 0xFF;//枚举B
+
+        //mac地址    00158d0000ecc9a7
+        bt_send[23] = Utils.HexString2Bytes(devicemac)[0];
+        bt_send[24] = Utils.HexString2Bytes(devicemac)[1];
+        bt_send[25] = Utils.HexString2Bytes(devicemac)[2];
+        bt_send[26] = Utils.HexString2Bytes(devicemac)[3];
+        bt_send[27] = Utils.HexString2Bytes(devicemac)[4];
+        bt_send[28] = Utils.HexString2Bytes(devicemac)[5];
+        bt_send[29] = Utils.HexString2Bytes(devicemac)[6];
+        bt_send[30] = Utils.HexString2Bytes(devicemac)[7];
+        bt_send[31] = (byte) 0x00;//下面数据长度    000e
+        bt_send[32] = (byte) 0x07;//下面数据长度
+
+        bt_send[33] = (byte) 0x02;//段地址模式   02d008
+        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
+        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[36] = 0x01;//01ff
+        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[38] = (byte)(zonetype << 8);//zonetype  0500
+        bt_send[39] = (byte)zonetype;//zonetype
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[40] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[40] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
         return bt_send;
     }
 
