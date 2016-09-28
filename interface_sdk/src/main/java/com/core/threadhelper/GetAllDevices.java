@@ -3,7 +3,7 @@ package com.core.threadhelper;
 import android.util.Log;
 
 import com.core.cmddata.DeviceCmdData;
-import com.core.db.AppDeviceInfo;
+import com.core.entity.AppDeviceInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.utils.FtFormatTransfer;

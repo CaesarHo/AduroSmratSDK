@@ -43,9 +43,9 @@ public class UDPHelper implements Runnable {
 
     @Override
     public void run() {
-        if (localip == null){
+        if (localip == null) {
             DataSources.getInstance().SendExceptionResult(0);
-            return ;
+            return;
         }
         StartListen();
     }
@@ -63,35 +63,38 @@ public class UDPHelper implements Runnable {
             }
             DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
 
-                while (!IsThreadDisable && num < 10) {
-                    num++;
-                    // 准备接收数据
-                    lock.acquire();
-                    socket.receive(datagramPacket);
-                    String strMsg = new String(datagramPacket.getData()).trim();
-                    String ipstr = datagramPacket.getAddress().getHostAddress().toString();
-                    int port_int = datagramPacket.getPort();
-                    long time = System.currentTimeMillis();
+            while (!IsThreadDisable && num < 10) {
+                num++;
+                // 准备接收数据
+                lock.acquire();
+                socket.receive(datagramPacket);
+                String strMsg = new String(datagramPacket.getData()).trim();
+                String ipstr = datagramPacket.getAddress().getHostAddress().toString();
+                int port_int = datagramPacket.getPort();
+                long time = System.currentTimeMillis();
 
-                    Constants.ipaddress = ipstr;
+                Constants.ipaddress = ipstr;
 
-                    if (strMsg.contains("K64_SEARCH_GW")){
-                        DataSources.getInstance().GatewayInfo("GatewatName",strMsg,"SoftwareVersion", "HarddwareVersion",ipstr,Utils.ConvertTimeByLong(time));
+                if (strMsg.contains("K64_SEARCH_GW")) {
+                    DataSources.getInstance().GatewayInfo("GatewatName", strMsg, "SoftwareVersion", "HarddwareVersion", ipstr, Utils.ConvertTimeByLong(time));
 
-                        GatewayInfo.getInstance().setInetAddress(context,ipstr);
-                        GatewayInfo.getInstance().setPort(context,port_int);
-                        GatewayInfo.getInstance().setGatewayNo(context,strMsg);
-                    }
-
-                    Log.d("UDP = ", datagramPacket.getAddress().getHostAddress().toString() + ":" + strMsg);
-                    if (lock.isHeld()){
-                        lock.release();
-                    }
+                    String[] gw_no_arr = strMsg.split(":");
+                    String gw_no = gw_no_arr[1];
+                    System.out.println("gw_no = " + gw_no);
+                    System.out.println("strMsg = " + strMsg);
+                    GatewayInfo.getInstance().setInetAddress(context, ipstr);
+                    GatewayInfo.getInstance().setPort(context, port_int);
+                    GatewayInfo.getInstance().setGatewayNo(context, gw_no);
                 }
 
-        }catch(UnknownHostException e){
+                if (lock.isHeld()) {
+                    lock.release();
+                }
+            }
+
+        } catch (UnknownHostException e) {
             e.printStackTrace();
-        }catch(SocketException e){
+        } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

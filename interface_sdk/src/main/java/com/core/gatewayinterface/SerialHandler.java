@@ -1,10 +1,15 @@
 package com.core.gatewayinterface;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 
-import com.core.db.AppDeviceInfo;
+import com.core.cmddata.DeviceCmdData;
+import com.core.entity.AppDeviceInfo;
 import com.core.db.GatewayInfo;
+import com.core.global.Constants;
+import com.core.mqtt.MqttManager;
 import com.core.threadhelper.AddDeviceToGroup;
 import com.core.threadhelper.AddDeviceToSence;
 import com.core.threadhelper.AddGroup;
@@ -31,6 +36,7 @@ import com.core.threadhelper.GetDeviceSat;
 import com.core.threadhelper.GetDeviceSwitchState;
 import com.core.threadhelper.GetSenceDetails;
 import com.core.threadhelper.IdentifyDevice;
+import com.core.threadhelper.MqttHelper;
 import com.core.threadhelper.RecallScene;
 import com.core.threadhelper.DeleteDevice;
 import com.core.threadhelper.SetColorTemperature;
@@ -49,6 +55,7 @@ import com.core.threadhelper.UpdateDeviceName;
 import com.core.threadhelper.UpdateGroupName;
 import com.core.threadhelper.UpdateSceneName;
 import com.core.threadhelper.setGateWayTime;
+import com.core.utils.NetworkUtil;
 
 /**
  * Created by best on 2016/7/11.
@@ -83,6 +90,12 @@ public class SerialHandler {
         this.ipaddress = GatewayInfo.getInstance().getInetAddress(context);
         this.port = GatewayInfo.getInstance().getPort(context);
         GatewayInfo.getInstance().setAesKey(context, aeskey);
+
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+        }
     }
 
     /**
@@ -92,7 +105,15 @@ public class SerialHandler {
      * @param wifiManager
      */
     public void ScanGatewayInfo(Context context, WifiManager wifiManager) {
-        new Thread(new UDPHelper(context, wifiManager)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            System.out.println("NetWorkType: " + "NetWorkType");
+        }else{
+            new Thread(new UDPHelper(context, wifiManager)).start();
+            System.out.println("UDPHelper: " + "UDPHelper");
+        }
     }
 
     /**
@@ -109,12 +130,14 @@ public class SerialHandler {
         new Thread(new setGateWayTime(year, month, day, hour, minute, second)).start();
     }
 
+    public void setMqttCommunication(Context context){
+        new Thread(new MqttHelper(context)).start();
+    }
 
     //组操作 ===========================start ============================
 
     /**
      * 添加房间
-     *
      * @param group_name
      */
     public void CreateGroup(String group_name) {
@@ -215,14 +238,31 @@ public class SerialHandler {
      * 允许设备入网
      */
     public void AgreeDeviceInNet() {
-        new Thread(new AgreeDeviceInNet()).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else {
+            new Thread(new AgreeDeviceInNet()).start();
+        }
     }
 
     /**
      * search device
      */
     public void GetAllDeviceListen() {
-        new Thread(new GetAllDevices()).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new GetAllDevices()).start();
+        }
+
     }
 
     /**
@@ -231,7 +271,16 @@ public class SerialHandler {
      * @param devicemac
      */
     public void DeleteDevice(String devicemac) {
-        new Thread(new DeleteDevice(devicemac)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.DeleteDeviceCmd(devicemac);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new DeleteDevice(devicemac)).start();
+        }
+
     }
 
     /**
@@ -242,7 +291,16 @@ public class SerialHandler {
      * @param second
      */
     public void IdentifyDevice(String devicemac , String shortaddr , String main_point,int second){
-        new Thread(new IdentifyDevice(devicemac,shortaddr,main_point,second)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.IdentifyDeviceCmd(devicemac,shortaddr,main_point,second);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new IdentifyDevice(devicemac,shortaddr,main_point,second)).start();
+        }
+
     }
 
 
@@ -254,28 +312,73 @@ public class SerialHandler {
      * @param main_endpoint
      */
     public void setDeviceSwitchState(String devicemac, String deviceshortaddr, String main_endpoint, int value) {
-        new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint, value)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.DevSwitchCmd(devicemac,deviceshortaddr,main_endpoint,value);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else {
+            new Thread(new SetDeviceSwitchState(devicemac, deviceshortaddr, main_endpoint, value)).start();
+        }
+
     }
 
     //设置设备亮度回调
     public void setDeviceLevel(String devicemac, String shortaddr, String main_point, int Level) {
-        new Thread(new SetDeviceLevel(devicemac, shortaddr, main_point, Level)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.setDeviceLevelCmd(devicemac,shortaddr,main_point,Level);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new SetDeviceLevel(devicemac, shortaddr, main_point, Level)).start();
+        }
+
     }
 
     public void setDeviceHue(String devicemac, String shortaddr, String main_point, int hue) {
-        new Thread(new SetDeviceHue(devicemac, shortaddr, main_point, hue)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.setDeviceHueCmd(devicemac,shortaddr,main_point,hue);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new SetDeviceHue(devicemac, shortaddr, main_point, hue)).start();
+        }
+
     }
 
     //改变设备色调,饱和度
     public void setDeviceHueSat(String devicemac, String shortaddr, String main_point, int hue, int sat) {
-        new Thread(new SetDeviceHueSat(devicemac, shortaddr, main_point, hue, sat)).start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.setDeviceHueSatCmd(devicemac,shortaddr,main_point,hue,sat);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else{
+            new Thread(new SetDeviceHueSat(devicemac, shortaddr, main_point, hue, sat)).start();
+        }
+
     }
 
     //改变色温值
     public void setColorTemperature(String devicemac, String shortaddr, String main_point, int value) {
-        SetColorTemperature mSetColorTemperature = new SetColorTemperature(devicemac, shortaddr, main_point, value);
-        Thread thread = new Thread(mSetColorTemperature);
-        thread.start();
+        //初始化mqtt
+        if (!NetworkUtil.NetWorkType(context)){
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication(context);
+            byte[] bt_send = DeviceCmdData.setDeviceColorsTemp(devicemac,shortaddr,main_point,value);
+            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+        }else {
+            SetColorTemperature mSetColorTemperature = new SetColorTemperature(devicemac, shortaddr, main_point, value);
+            Thread thread = new Thread(mSetColorTemperature);
+            thread.start();
+        }
+
     }
 
     /**

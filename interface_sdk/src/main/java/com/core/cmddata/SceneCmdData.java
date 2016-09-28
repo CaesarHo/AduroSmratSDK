@@ -49,8 +49,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
         bt_send[25] = (byte) 0x4b;
@@ -113,8 +113,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  01ffff00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -203,8 +203,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -275,8 +275,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号  0100a1
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xA1;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ADD_SCENE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_ADD_SCENE.value();      //(byte) 0xA1;
         //mac地址    00158d0001310e4e
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -347,8 +347,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号  0100a1
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xA4;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_STORE_SCENE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_STORE_SCENE.value();      //(byte) 0xA4;
         //mac地址    00158d0001310e4e
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -420,8 +420,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xA2;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_REMOVE_SCENE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_REMOVE_SCENE.value();      //(byte) 0xA2;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -510,8 +510,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff     01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09   00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -583,8 +583,8 @@ public class SceneCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xA5;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_RECALL_SCENE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_RECALL_SCENE.value();      //(byte) 0xA5;
         //
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
@@ -599,11 +599,11 @@ public class SceneCmdData {
         bt_send[32] = (byte) 0x08;
         bt_send[33] = (byte) 0x01;//组控模式
         bt_send[34] = (byte) (GroupId << 8);
-        bt_send[35] = (byte) GroupId;
+        bt_send[35] = (byte)  GroupId;
         bt_send[36] = 0x01;//源端点
         bt_send[37] = (byte) 0xFF;//目标端点
         bt_send[38] = (byte) (GroupId << 8);
-        bt_send[39] = (byte) GroupId;
+        bt_send[39] = (byte)  GroupId;
         bt_send[40] = (byte) SceneId;
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {

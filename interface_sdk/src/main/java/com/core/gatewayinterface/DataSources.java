@@ -2,7 +2,7 @@ package com.core.gatewayinterface;
 
 import android.net.wifi.WifiManager;
 
-import com.core.db.AppDeviceInfo;
+import com.core.entity.AppDeviceInfo;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,6 @@ import java.util.ArrayList;
 public class DataSources {
     private static DataSources manager = null;
     private static InterfaceCallback sdkCallback;
-    public Boolean IsThreadDisable = false;
-    public static WifiManager.MulticastLock lock;
     public static DataSources getInstance() {
         if (manager == null) {
             manager = new DataSources();

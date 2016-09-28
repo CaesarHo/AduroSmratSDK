@@ -3,14 +3,12 @@ package com.core.threadhelper;
 import android.util.Log;
 
 import com.core.cmddata.DeviceCmdData;
-import com.core.cmddata.GroupCmdData;
-import com.core.db.AppDeviceInfo;
+import com.core.entity.AppDeviceInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.utils.ParseData;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;

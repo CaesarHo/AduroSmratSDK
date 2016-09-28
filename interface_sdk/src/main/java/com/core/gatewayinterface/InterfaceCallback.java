@@ -1,9 +1,8 @@
 package com.core.gatewayinterface;
 
-import com.core.db.AppDeviceInfo;
+import com.core.entity.AppDeviceInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by best on 2016/7/11.

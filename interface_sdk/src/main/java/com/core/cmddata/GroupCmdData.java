@@ -54,8 +54,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;;//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();        //0xFF;;//(byte) 0xFF;
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
         bt_send[25] = (byte) 0x4b;
@@ -123,8 +123,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte)MessageType.B.E_SL_MSG_DEFAULT.value();       //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -207,8 +207,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x60;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ADD_GROUP.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte)MessageType.B.E_SL_MSG_ADD_GROUP.value();       //(byte) 0x60;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -273,8 +273,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x92;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value();       //(byte) 0x92;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -340,8 +340,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x81;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte)MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value();       //(byte) 0x81;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -415,8 +415,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x63;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_REMOVE_GROUP.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte)MessageType.B.E_SL_MSG_REMOVE_GROUP.value();       //(byte) 0x63;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -492,8 +492,8 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();        //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -582,9 +582,9 @@ public class GroupCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff     01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
-        //macaddr  00124b00076afe09   00124b00076afe09
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();        //(byte) 0xFF;
+        //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
         bt_send[25] = 0x4b;

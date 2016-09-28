@@ -129,8 +129,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号  01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         if (task_type == 1 | task_type == 2) {
             bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
@@ -280,8 +280,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号  01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
         bt_send[24] = Utils.HexString2Bytes(device_mac)[1];
@@ -411,8 +411,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号  01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -546,8 +546,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号  01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
         bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
@@ -678,8 +678,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号  01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
         bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
@@ -743,8 +743,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
         bt_send[25] = (byte) 0x4b;
@@ -801,8 +801,8 @@ public class TaskCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -1021,7 +1021,7 @@ public class TaskCmdData {
             recall_cmd[5] = 0x6e;
             recall_cmd[6] = 0x64;
 
-            recall_cmd[7] = 0x04;
+            recall_cmd[7] = 0x01;
 
             byte[] cmdNo_5 = SceneCmdData.RecallScene(group_id, scene_id);
 

@@ -52,8 +52,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
@@ -154,8 +154,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;
-        bt_send[22] = (byte) 0xFF;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
         bt_send[25] = (byte) 0x4b;
@@ -216,8 +216,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x45;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ACTIVE_ENDPOINT_REQUEST.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_ACTIVE_ENDPOINT_REQUEST.value();      //(byte) 0x45;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -289,8 +289,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x70;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_IDENTIFY_SEND.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_IDENTIFY_SEND.value();      //(byte) 0x70;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -356,8 +356,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x92;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value();      //(byte) 0x92;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -423,8 +423,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0x81;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value();      //(byte) 0x81;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -503,8 +503,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xB0;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_HUE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_HUE.value();      //(byte) 0xB0;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -582,8 +582,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xB6;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_HUE_SATURATION.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_HUE_SATURATION.value();      //(byte) 0xB6;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -655,8 +655,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号  0100c0
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x00;
-        bt_send[22] = (byte) 0xC0;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_COLOUR_TEMPERATURE.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_COLOUR_TEMPERATURE.value();      //(byte) 0xC0;
         //mac地址    00158d0001310dfe
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -748,8 +748,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号 01ffff
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;//枚举B
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;//枚举B
         //mac地址    00124b0001de5be4
         bt_send[23] = Utils.HexString2Bytes(mac)[0];
         bt_send[24] = Utils.HexString2Bytes(mac)[1];
@@ -977,8 +977,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0x01;//枚举B
-        bt_send[22] = (byte) 0x00;//枚举B
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_READ_ATTRIBUTE_REQUEST.value() >> 8);//(byte) 0x01;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_READ_ATTRIBUTE_REQUEST.value();      //(byte) 0x00;//枚举B
 
         //mac地址    00158d0000ecc9a7
         bt_send[23] = Utils.HexString2Bytes(devicemac)[0];
@@ -1060,8 +1060,8 @@ public class DeviceCmdData {
         bt_send[19] = 0x47;
         //数据体序号
         bt_send[20] = 0x01;
-        bt_send[21] = (byte) 0xFF;//枚举B
-        bt_send[22] = (byte) 0xFF;//枚举B
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;//枚举B
 
         //mac地址    00158d0000ecc9a7
         bt_send[23] = Utils.HexString2Bytes(devicemac)[0];
