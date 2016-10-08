@@ -1,12 +1,12 @@
 package com.core.cmddata;
 
+import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
 
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by best on 2016/9/23.
@@ -15,18 +15,22 @@ import java.io.UnsupportedEncodingException;
 public class TaskCmdData {
     /**
      * 创建任务
-     * @throws UnsupportedEncodingException
      */
-    public static byte[] EditTask(String taskname, byte isRun, byte task_type, byte task_cycle, int hour, int minute, int device_action,
-                                    String action_mac, String device_mac, String device_shortaddr, String device_main_point, int cmd_size,
-                                    String dev_switch, int switch_state, String dev_level, int level_value, String dev_hue, int hue_value,
-                                    int sat_value, String dev_temp, int temp_value, String recall_scene, int group_id, int scene_id) throws UnsupportedEncodingException {
-        byte[] strTobt = taskname.getBytes("UTF-8");
+    public static byte[] EditTask(String taskname, byte isRun, byte task_type, byte task_cycle, int hour, int minute,
+                                  int device_action, String action_mac,
+                                  AppDevice appDevice, int cmd_size,
+                                  String dev_switch, String dev_level, String dev_hue, String dev_temp,
+                                  String recall_scene, int group_id, int scene_id) {
+        byte[] strTobt = null;
+        try {
+            strTobt = taskname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int task_name_len = taskname.length();
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(device_mac, device_shortaddr, device_main_point, dev_switch,
-                switch_state, dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value,
-                recall_scene, group_id, scene_id);
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, dev_switch, dev_level, dev_hue,dev_temp, recall_scene, group_id, scene_id);
 
         int commandDataByte_Len = cmddatabt.length;
 
@@ -133,14 +137,14 @@ public class TaskCmdData {
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         if (task_type == 1 | task_type == 2) {
-            bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
-            bt_send[24] = Utils.HexString2Bytes(device_mac)[1];
-            bt_send[25] = Utils.HexString2Bytes(device_mac)[2];
-            bt_send[26] = Utils.HexString2Bytes(device_mac)[3];
-            bt_send[27] = Utils.HexString2Bytes(device_mac)[4];
-            bt_send[28] = Utils.HexString2Bytes(device_mac)[5];
-            bt_send[29] = Utils.HexString2Bytes(device_mac)[6];
-            bt_send[30] = Utils.HexString2Bytes(device_mac)[7];
+            bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+            bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+            bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+            bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+            bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+            bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+            bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+            bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         } else {
             bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
             bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
@@ -176,20 +180,26 @@ public class TaskCmdData {
      * 创建定时设备任务
      */
     public static byte[] CreateTimingDeviceTaskCmd(String taskname, byte isRun,byte task_cycle, int hour, int minute,
-                                                String device_mac, String device_shortaddr, String device_main_point,
+                                                AppDevice appDevice,
                                                 int cmd_size,
-                                                String dev_switch, int switch_state,
-                                                String dev_level, int level_value,
-                                                String dev_hue, int hue_value, int sat_value,
-                                                String dev_temp, int temp_value)throws UnsupportedEncodingException {
-        byte[] strTobt = taskname.getBytes("UTF-8");
+                                                String dev_switch,
+                                                String dev_level,
+                                                String dev_hue,
+                                                String dev_temp) {
+        byte[] strTobt = null;
+        try {
+            strTobt = taskname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int task_name_len = taskname.length();
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(device_mac, device_shortaddr, device_main_point,
-                dev_switch, switch_state,
-                dev_level, level_value,
-                dev_hue, hue_value, sat_value,
-                dev_temp, temp_value,
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,
+                dev_switch,
+                dev_level,
+                dev_hue,
+                dev_temp,
                 null, 0, 0);
 
         int commandDataByte_Len = cmddatabt.length;
@@ -283,14 +293,14 @@ public class TaskCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
-        bt_send[23] = Utils.HexString2Bytes(device_mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(device_mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(device_mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(device_mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(device_mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(device_mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(device_mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(device_mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
 
         //数据长度   0053
         bt_send[31] = (byte) (dataByte_Len2 << 8);
@@ -315,13 +325,18 @@ public class TaskCmdData {
      * 创建定时场景任务
      */
     public static byte[] CreateTimingSceneTaskCmd(String taskname, byte isRun,byte task_cycle, int hour, int minute,
-                                                int cmd_size,int group_id, int scene_id)throws UnsupportedEncodingException {
-        byte[] strTobt = taskname.getBytes("UTF-8");
+                                                int cmd_size,int group_id, int scene_id){
+        byte[] strTobt = null;
+        try {
+            strTobt = taskname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int task_name_len = taskname.length();
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(null, null, null, null,
-                0, null, 0, null, 0, 0, null, 0,
-                "00A5", group_id, scene_id);
+        AppDevice appDevice = new AppDevice();
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,null,null,null,null,"00A5",group_id,scene_id);
 
         int commandDataByte_Len = cmddatabt.length;
 
@@ -445,18 +460,22 @@ public class TaskCmdData {
      */
     public static byte[] CreateTriggerDeviceTaskCmd(String taskname, byte isRun,
                                                     int device_action, String action_mac,
-                                                    String device_mac, String device_shortaddr, String device_main_point,
+                                                    AppDevice appDevice,
                                                     int cmd_size,
-                                                    String dev_switch, int switch_state,
-                                                    String dev_level, int level_value,
-                                                    String dev_hue, int hue_value, int sat_value,
-                                                    String dev_temp, int temp_value) throws UnsupportedEncodingException {
-        byte[] strTobt = taskname.getBytes("UTF-8");
+                                                    String dev_switch,
+                                                    String dev_level,
+                                                    String dev_hue,
+                                                    String dev_temp){
+        byte[] strTobt = null;
+        try {
+            strTobt = taskname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int task_name_len = taskname.length();
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(device_mac, device_shortaddr, device_main_point, dev_switch,
-                switch_state, dev_level, level_value, dev_hue, hue_value, sat_value, dev_temp, temp_value,
-                null, 0, 0);
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,dev_switch,dev_level,dev_hue,dev_temp,null, 0, 0);
 
         int commandDataByte_Len = cmddatabt.length;
 
@@ -578,16 +597,18 @@ public class TaskCmdData {
     /**
      * 创建触发场景任务cmd
      */
-    public static byte[] CreateTriggerSceneTaskCmd(String taskname, byte isRun,
-                                                   int device_action, String action_mac,
-                                                   int cmd_size,
-                                                   int group_id, int scene_id) throws UnsupportedEncodingException {
-        byte[] strTobt = taskname.getBytes("UTF-8");
-        int task_name_len = taskname.length();
+    public static byte[] CreateTriggerSceneTaskCmd(String taskname, byte isRun, int device_action, String action_mac, int cmd_size,
+                                                   int group_id, int scene_id){
+        byte[] strTobt = null;
+        try {
+            strTobt = taskname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(null, null, null, null,
-                0, null, 0, null, 0, 0, null, 0,
-                "00A5", group_id, scene_id);
+        int task_name_len = taskname.length();
+        AppDevice appDevice = new AppDevice();
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, null, null, null, null, "00A5", group_id, scene_id);
 
         int commandDataByte_Len = cmddatabt.length;
 
@@ -833,9 +854,11 @@ public class TaskCmdData {
      * 合并任务数据命令
      * @return
      */
-    public static byte[] tCmdData(String device_mac, String device_shortaddr, String device_main_point,
-                                  String dev_switch, int switch_state, String dev_level, int level_value,
-                                  String dev_hue, int hue_value, int sat_value, String dev_temp, int temp_value,
+    public static byte[] tCmdData(AppDevice appDevice,
+                                  String dev_switch,
+                                  String dev_level,
+                                  String dev_hue,
+                                  String dev_temp,
                                   String recall_scene, int group_id, int scene_id) {
         int switch_cmd_len = 0;
         if (dev_switch != null) {
@@ -857,7 +880,7 @@ public class TaskCmdData {
             switch_cmd[6] = 0x64;
 
             switch_cmd[7] = 0x00;
-            byte[] cmdNo_1 = DeviceCmdData.DevSwitchCmd(device_mac, device_shortaddr, device_main_point, switch_state);
+            byte[] cmdNo_1 = DeviceCmdData.DevSwitchCmd(appDevice, appDevice.getDeviceState());
             int cmd_switch_len = cmdNo_1.length;
             switch_cmd[8] = ((byte) (cmd_switch_len << 8));
             switch_cmd[9] = ((byte) cmd_switch_len);
@@ -897,7 +920,7 @@ public class TaskCmdData {
 
             level_cmd[7] = 0x01;
 
-            byte[] cmdNo_2 = DeviceCmdData.setDeviceLevelCmd(device_mac, device_shortaddr, device_main_point, level_value);
+            byte[] cmdNo_2 = DeviceCmdData.setDeviceLevelCmd(appDevice, appDevice.getBright());
 
             int cmd_level_len = cmdNo_2.length;
             System.out.println("cmd_level_len2 = " + cmd_level_len);
@@ -939,7 +962,7 @@ public class TaskCmdData {
 
             hue_cmd[7] = 0x02;
 
-            byte[] cmdNo_3 = DeviceCmdData.setDeviceHueSatCmd(device_mac, device_shortaddr, device_main_point, hue_value, sat_value);
+            byte[] cmdNo_3 = DeviceCmdData.setDeviceHueSatCmd(appDevice, appDevice.getColorHue(), appDevice.getColorSat());
 
             int cmd_hue_sat_len = cmdNo_3.length;
             System.out.println("cmd_hue_sat_len3 = " + cmd_hue_sat_len);
@@ -981,7 +1004,7 @@ public class TaskCmdData {
 
             temp_cmd[7] = 0x03;
 
-            byte[] cmdNo_4 = DeviceCmdData.setDeviceColorsTemp(device_mac, device_shortaddr, device_main_point, temp_value);
+            byte[] cmdNo_4 = DeviceCmdData.setDeviceColorsTemp(appDevice, appDevice.getTemp());
 
             int cmd_colors_temp_len = cmdNo_4.length;
             System.out.println("cmdNo_len = " + cmd_colors_temp_len);

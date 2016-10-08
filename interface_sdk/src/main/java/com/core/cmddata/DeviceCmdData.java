@@ -2,13 +2,12 @@ package com.core.cmddata;
 
 import android.util.Log;
 
+import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
-
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 /**
@@ -17,8 +16,8 @@ import java.util.Arrays;
 
 public class DeviceCmdData {
     /*
-   *设置网关时间
-   */
+     *设置网关时间
+     */
     public static byte[] setGateWayTimeCmd(int year,int month ,int day,int hour,int minute,int second){
         byte[] bt_send = new byte[41];
         //415050c0a8016b010143
@@ -251,13 +250,10 @@ public class DeviceCmdData {
     /**
      * 选择设备提示
      *
-     * @param mac
-     * @param shortaddr
-     * @param main_point
      * @param second
      * @return
      */
-    public static byte[] IdentifyDeviceCmd(String mac, String shortaddr, String main_point, int second) {
+    public static byte[] IdentifyDeviceCmd(AppDevice appDevice, int second) {
         byte[] bt_send = new byte[41];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -292,22 +288,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_IDENTIFY_SEND.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_IDENTIFY_SEND.value();      //(byte) 0x70;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x07;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = 0x00;
         bt_send[39] = (byte) second;//持续时间
 
@@ -321,7 +317,7 @@ public class DeviceCmdData {
         return bt_send;
     }
 
-    public static byte[] DevSwitchCmd(String mac, String shortaddr, String main_endpoint, int value) {
+    public static byte[] DevSwitchCmd(AppDevice appDevice, int value) {
         byte[] bt_send = new byte[40];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -359,22 +355,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_ONOFF_NOEFFECTS.value();      //(byte) 0x92;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x06;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_endpoint)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) value;
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
@@ -389,7 +385,7 @@ public class DeviceCmdData {
         return bt_send;
     }
 
-    public static byte[] setDeviceLevelCmd(String mac, String shortaddr, String main_point, int value) {
+    public static byte[] setDeviceLevelCmd(AppDevice appDevice, int value) {
         byte[] bt_send = new byte[43];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -426,22 +422,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value();      //(byte) 0x81;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x09;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = 0x00;//不带有开关
         bt_send[39] = (byte) value;
         bt_send[40] = 0x00;
@@ -462,14 +458,10 @@ public class DeviceCmdData {
 
     /**
      * 改变设备颜色
-     *
-     * @param mac
-     * @param shortaddr
-     * @param main_point
      * @param hue
      * @return
      */
-    public static byte[] setDeviceHueCmd(String mac, String shortaddr, String main_point, int hue) {
+    public static byte[] setDeviceHueCmd(AppDevice appDevice, int hue) {
         byte[] bt_send = new byte[42];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -506,22 +498,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_HUE.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_HUE.value();      //(byte) 0xB0;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x09;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) hue;
         bt_send[39] = 0x00;//不带有开关
         bt_send[40] = 0x00;
@@ -540,15 +532,11 @@ public class DeviceCmdData {
 
     /**
      * 改变设备饱和度
-     *
-     * @param mac
-     * @param shortaddr
-     * @param main_point
      * @param hue
      * @param sat
      * @return
      */
-    public static byte[] setDeviceHueSatCmd(String mac, String shortaddr, String main_point, int hue, int sat) {
+    public static byte[] setDeviceHueSatCmd(AppDevice appDevice, int hue, int sat) {
         byte[] bt_send = new byte[44];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -585,22 +573,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_HUE_SATURATION.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_HUE_SATURATION.value();      //(byte) 0xB6;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x10;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) hue;
         bt_send[39] = (byte) sat;
         bt_send[40] = 0x00;//不带有开关
@@ -621,14 +609,10 @@ public class DeviceCmdData {
 
     /**
      * 改变设备色温值
-     *
-     * @param mac
-     * @param shortaddr
-     * @param main_point
      * @param value
      * @return
      */
-    public static byte[] setDeviceColorsTemp(String mac, String shortaddr, String main_point, int value) {
+    public static byte[] setDeviceColorsTemp(AppDevice appDevice, int value) {
         byte[] bt_send = new byte[43];
         //415050c0a801030101d7
         bt_send[0] = 0x41;
@@ -658,23 +642,23 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_MOVE_TO_COLOUR_TEMPERATURE.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_COLOUR_TEMPERATURE.value();      //(byte) 0xC0;
         //mac地址    00158d0001310dfe
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   000902
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x09;
         bt_send[33] = (byte) 0x02;
         //d206010100f40000ea
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) (value << 8);//不带有开关
         bt_send[39] = (byte) value;
         bt_send[40] = 0x00;
@@ -693,16 +677,16 @@ public class DeviceCmdData {
 
     /**
      * 修改设备名称cmd
-     *
-     * @param mac
-     * @param shortaddr
-     * @param main_point
-     * @param device_name
      * @return
      */
-    public static byte[] sendUpdateDeviceCmd(String device_name, String mac, String shortaddr, String main_point) throws UnsupportedEncodingException {
+    public static byte[] sendUpdateDeviceCmd(AppDevice appDevice,String device_name){
+        byte[] strTobt = null;
+        try {
+            strTobt = device_name.getBytes("utf-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        byte[] strTobt = device_name.getBytes("utf-8");
         int device_name_len = strTobt.length;
         int data_style_len = 25 + device_name_len;
         int data_len = 7 + device_name_len;
@@ -751,22 +735,22 @@ public class DeviceCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;//枚举B
         //mac地址    00124b0001de5be4
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   000b02f796010c
         bt_send[31] = (byte) (data_len << 8);
         bt_send[32] = (byte) data_len;//以下数据长度
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];//目标端点
         bt_send[38] = (byte) (device_name_len << 8);//00046d6d6d6db3
         bt_send[39] = (byte) device_name_len;
 
@@ -858,10 +842,10 @@ public class DeviceCmdData {
 
     /**
      * 读属性
-     * @param devicemac
+     * @param appDevice
      * @return
      */
-    public static byte[] ReadAttrbuteCmd(String devicemac, String shortaddr, String main_point,String SerialType,String value) {
+    public static byte[] ReadAttrbuteCmd(AppDevice appDevice, String SerialType, String value) {
         //415050c0a801040101c1
         byte[] bt_send = new byte[48];
         bt_send[0] = 0x41;
@@ -898,22 +882,22 @@ public class DeviceCmdData {
         bt_send[22] = Utils.HexString2Bytes(SerialType)[1];//枚举B
 
         //mac地址    00158d0001310e1b
-        bt_send[23] = Utils.HexString2Bytes(devicemac)[0];
-        bt_send[24] = Utils.HexString2Bytes(devicemac)[1];
-        bt_send[25] = Utils.HexString2Bytes(devicemac)[2];
-        bt_send[26] = Utils.HexString2Bytes(devicemac)[3];
-        bt_send[27] = Utils.HexString2Bytes(devicemac)[4];
-        bt_send[28] = Utils.HexString2Bytes(devicemac)[5];
-        bt_send[29] = Utils.HexString2Bytes(devicemac)[6];
-        bt_send[30] = Utils.HexString2Bytes(devicemac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         bt_send[31] = (byte) 0x00;//下面数据长度    000e
         bt_send[32] = (byte) 0x0E;//下面数据长度
 
         bt_send[33] = (byte) 0x02;//段地址模式   02f1bc
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//0101
-        bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = Utils.HexString2Bytes(value)[0];//(byte) (value << 8);//ClusterID    0006000000000100019a
         bt_send[39] = Utils.HexString2Bytes(value)[1];//(byte) value;//ClusterID
 

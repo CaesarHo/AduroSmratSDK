@@ -26,15 +26,12 @@ public class MqttManager {
     private boolean clean = true;
 
     public MqttManager() {
-        System.out.println("isConnected0: " + "isConnect");
         mCallback = new MqttCallbackBus();
-        System.out.println("isConnected1: " + "isConnect");
     }
 
     public static MqttManager getInstance() {
         if (null == mInstance) {
             mInstance = new MqttManager();
-            System.out.println("isConnected2: " + "isConnect");
         }
         return mInstance;
     }
@@ -64,7 +61,7 @@ public class MqttManager {
     /**
      * 创建Mqtt 连接
      *
-     * @param brokerUrl Mqtt服务器地址(tcp://xxxx:1863)
+     * @param brokerUrl Mqtt服务器地址
      * @param userName  用户名
      * @param password  密码
      * @param clientId  clientId
@@ -74,7 +71,6 @@ public class MqttManager {
         boolean flag = false;
         String tmpDir = System.getProperty("java.io.tmpdir");
         MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence(tmpDir);
-        System.out.println("isConnected3: " + "isConnect");
         try {
             // Construct the connection options object that contains connection parameters
             // such as cleanSession and LWT
@@ -89,10 +85,8 @@ public class MqttManager {
             }
             // Construct an MQTT blocking mode client
             client = new MqttClient(brokerUrl, clientId, dataStore);
-            System.out.println("isConnected4: " + "isConnect");
             // Set this wrapper as the callback handler
             client.setCallback(mCallback);
-            System.out.println("isConnected5: " + "isConnect");
             flag = doConnect();
         } catch (MqttException e) {
             Log.e(TAG, e.getMessage());
@@ -109,7 +103,6 @@ public class MqttManager {
         boolean flag = false;
         if (client != null) {
             try {
-                System.out.println("isConnected6: " + "isConnect");
                 client.connect(conOpt);
                 Log.d(TAG, "Connected to " + client.getServerURI() + " with client ID " + client.getClientId());
                 flag = true;

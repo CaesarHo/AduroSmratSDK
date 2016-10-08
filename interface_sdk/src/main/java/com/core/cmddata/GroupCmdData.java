@@ -2,13 +2,12 @@ package com.core.cmddata;
 
 import android.util.Log;
 
+import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.utils.CRC8;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
-
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by best on 2016/9/23.
@@ -82,11 +81,16 @@ public class GroupCmdData {
      *
      * @param groupname
      * @return
-     * @throws UnsupportedEncodingException
      */
-    public static byte[] sendAddGroupCmd(String groupname) throws UnsupportedEncodingException {
+    public static byte[] sendAddGroupCmd(String groupname){
         int data_style_len = 20 + groupname.length();
-        byte[] strTobt = groupname.getBytes("UTF-8");
+        byte[] strTobt = null;
+        try {
+            strTobt = groupname.getBytes("UTF-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         int group_name_len = groupname.length();
         int len = 2 + group_name_len;
 
@@ -166,14 +170,10 @@ public class GroupCmdData {
 
     /**
      * 添加一个设备到组里面
-     *
      * @param group_id
-     * @param mac
-     * @param shortaddr
-     * @param main_endpoint
      * @return
      */
-    public static byte[] Add_DeviceToGroup(int group_id, String mac, String shortaddr, String main_endpoint) {
+    public static byte[] Add_DeviceToGroup(AppDevice appDevice,int group_id) {
         byte[] bt_send = new byte[41];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -210,22 +210,22 @@ public class GroupCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_ADD_GROUP.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte)MessageType.B.E_SL_MSG_ADD_GROUP.value();       //(byte) 0x60;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x07;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_endpoint)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) (group_id >> 8);
         bt_send[39] = (byte) group_id;
 
@@ -377,11 +377,9 @@ public class GroupCmdData {
 
     /**
      * 从组里删除Device
-     *
-     * @param group_id
      * @return
      */
-    public static byte[] DeleteDeviceFromGroup(int group_id, String mac, String shortaddr, String main_endpoint) {
+    public static byte[] DeleteDeviceFromGroup(AppDevice appDevice,int group_id) {
         byte[] bt_send = new byte[41];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -418,22 +416,22 @@ public class GroupCmdData {
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_REMOVE_GROUP.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte)MessageType.B.E_SL_MSG_REMOVE_GROUP.value();       //(byte) 0x63;
         //mac地址    00124b0001dd7ac1   124b0001dd7ac1
-        bt_send[23] = Utils.HexString2Bytes(mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(mac)[7];
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x07;
         bt_send[33] = (byte) 0x02;
-        bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
+        bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = Utils.HexString2Bytes(main_endpoint)[0];//目标端点
+        bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
         bt_send[38] = (byte) (group_id >> 8);
         bt_send[39] = (byte) group_id;
 
@@ -532,11 +530,15 @@ public class GroupCmdData {
      *
      * @param groupname
      * @return
-     * @throws UnsupportedEncodingException
      */
-    public static byte[] sendUpdateGroupCmd(int group_id, String groupname) throws UnsupportedEncodingException {
+    public static byte[] sendUpdateGroupCmd(int group_id, String groupname){
+        byte[] strTobt = null;
+        try {
+            strTobt = groupname.getBytes("utf-8");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        byte[] strTobt = groupname.getBytes("utf-8");
         int group_name_len = strTobt.length;
         int data_style_len = 22 + group_name_len;
         int data_len = 4 + group_name_len;

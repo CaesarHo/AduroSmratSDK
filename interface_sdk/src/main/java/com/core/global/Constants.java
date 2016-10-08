@@ -22,4 +22,8 @@ public class Constants {
         public static final int MAX_VALUE_U_INT_16 = (int) (Math.pow(2, 16) - 1);
         public static final int MAX_VALUE_U_INT_8 = (int) (Math.pow(2, 8) - 1);
     }
+
+    public static class GatewayInfo{
+        public static  String GatewayNo = "";
+    }
 }

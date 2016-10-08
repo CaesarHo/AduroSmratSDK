@@ -3,12 +3,11 @@ package com.core.utils;
 import android.util.Log;
 
 import com.core.cmddata.DeviceCmdData;
-import com.core.entity.AppDeviceInfo;
+import com.core.entity.AppDevice;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
-import com.core.threadhelper.GetAllDevices;
+import com.core.threadhelper.devices.GetAllDevices;
 
-import java.lang.ref.PhantomReference;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -145,18 +144,18 @@ public class ParseData {
                 }
 
                 if (!device_id.equalsIgnoreCase("ffff")) {
-                    AppDeviceInfo appDeviceInfo = new AppDeviceInfo();
-                    appDeviceInfo.setProfileid(profile_id);
-                    appDeviceInfo.setDeviceName(device_name);
-                    appDeviceInfo.setDeviceMac(device_mac);
-                    appDeviceInfo.setDeviceid(device_id);
-                    appDeviceInfo.setShortaddr(device_shortaddr);
-                    appDeviceInfo.setEndpoint(main_endpoint);
-                    appDeviceInfo.setZonetype(device_zone_type);
+                    AppDevice appDevice = new AppDevice();
+                    appDevice.setProfileid(profile_id);
+                    appDevice.setDeviceName(device_name);
+                    appDevice.setDeviceMac(device_mac);
+                    appDevice.setDeviceid(device_id);
+                    appDevice.setShortaddr(device_shortaddr);
+                    appDevice.setEndpoint(main_endpoint);
+                    appDevice.setZonetype(device_zone_type);
 
                     System.out.println("AppDeviceInfo = " + device_mac);
 
-                    DataSources.getInstance().ScanDeviceResult(appDeviceInfo);
+                    DataSources.getInstance().ScanDeviceResult(appDevice);
                 }
             }
         }

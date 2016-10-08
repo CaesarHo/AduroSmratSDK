@@ -144,5 +144,4 @@ public class NetworkUtil {
         System.out.println("isWiFi = " + isWiFi);
         return isWiFi;
     }
-
 }

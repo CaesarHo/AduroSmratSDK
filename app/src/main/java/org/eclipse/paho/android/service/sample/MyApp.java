@@ -8,7 +8,6 @@ import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.adurosmart.mqtt.MQTTHelper;
 import com.adurosmart.utils.UDPHelper2;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -23,7 +22,6 @@ public class MyApp extends Application {
 	public static int port = 1883;
 	public static String mAndroidId;
 	public String clientHandle = null;
-	MQTTHelper mqttHelper;
 	Thread thread;
 
 	Thread tReceived;
@@ -39,7 +37,6 @@ public class MyApp extends Application {
 		connectAction();
 		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
 
-		mqttHelper = new MQTTHelper(app,clientHandle);
 		thread = new Thread();
 		thread.start();
 

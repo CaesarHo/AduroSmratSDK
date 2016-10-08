@@ -1,6 +1,9 @@
 package com.core.gatewayinterface;
 
-import com.core.entity.AppDeviceInfo;
+import com.core.entity.AppDevice;
+import com.core.entity.AppGroup;
+import com.core.entity.AppScene;
+import com.core.entity.AppTask;
 
 import java.util.ArrayList;
 
@@ -19,7 +22,7 @@ public interface InterfaceCallback {
     //修改房间
     void ChangeGroupNameCallback(short groupId,String group_name);
     //获取网关所有房间
-    void getAllGroupsCallback(Short groupId,String groupsName,String groupIconPath,ArrayList<String> mac_data);
+    void getAllGroupsCallback(AppGroup appGroup);
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
     void setGroupsStateCallback(short groupId,byte state);
     //设置房间中所有lamp的亮度
@@ -46,7 +49,7 @@ public interface InterfaceCallback {
 //                            String deviceshortaddr,String deviceid,String main_endpoint,
 //                            String in_cluster_count,String out_cluster_count,String device_zone_type);
     //扫描设备回调
-    void ScanDeviceCallback(AppDeviceInfo appDeviceInfo);
+    void ScanDeviceCallback(AppDevice appDevice);
 
     void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
                            byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
@@ -79,7 +82,7 @@ public interface InterfaceCallback {
 
     //==========================场景相关===========================
     //获取网关所有场景
-    void getScenesCallback(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac);
+    void getScenesCallback(AppScene appScene);
     //添加场景
     void addSceneCallback(short sencesid ,String sencesName,short group_id);
     //获取指定场景的详细信息，
@@ -93,15 +96,6 @@ public interface InterfaceCallback {
     //修改指定场景
     void ChangeSceneName(short sceneId, String newSceneName);
 
-
     //===============================================任务相关=======================================
-    void getAllTasksCallback(int task_no,String task_name,int isEnabled,int task_type,
-                             int task_cycle,int task_hour,int task_minute,
-                             int sensor_state,String sensor,String device_mac,int cmd_size,
-                             String serial_type1, int action_state1,int action_state6,
-                             String serial_type2, int action_state2,int action_state7,
-                             String serial_type3, int action_state3,int action_state8,
-                             String serial_type4, int action_state4,int action_state9,
-                             String serial_type5, int action_state5,int action_state10);
-
+    void getAllTasksCallback(AppTask appTask);
 }

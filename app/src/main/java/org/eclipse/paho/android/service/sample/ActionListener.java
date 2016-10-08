@@ -15,8 +15,6 @@ package org.eclipse.paho.android.service.sample;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.adurosmart.mqtt.MQTTHelper;
-
 import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
@@ -135,9 +133,6 @@ public class ActionListener implements IMqttActionListener {
         Connection c = Connections.getInstance(context).getConnection(clientHandle);
         c.changeConnectionStatus(Connection.ConnectionStatus.CONNECTED);
         //重新连接时重新订阅MQTT
-        MQTTHelper mqttHelper = new MQTTHelper(context,clientHandle);
-        Thread thread = new Thread(mqttHelper);
-        thread.start();
         c.addAction("Client Connected");
     }
 

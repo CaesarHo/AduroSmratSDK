@@ -1,8 +1,9 @@
 package com.core.gatewayinterface;
 
-import android.net.wifi.WifiManager;
-
-import com.core.entity.AppDeviceInfo;
+import com.core.entity.AppDevice;
+import com.core.entity.AppGroup;
+import com.core.entity.AppScene;
+import com.core.entity.AppTask;
 
 import java.util.ArrayList;
 
@@ -47,8 +48,8 @@ public class DataSources {
 //        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,
 //                deviceid,main_endpoint,in_cluster_count,out_cluster_count,device_zone_type);
 //    }
-    public void ScanDeviceResult(AppDeviceInfo appDeviceInfo){
-        sdkCallback.ScanDeviceCallback(appDeviceInfo);
+    public void ScanDeviceResult(AppDevice appDevice){
+        sdkCallback.ScanDeviceCallback(appDevice);
     }
 
     //添加设备
@@ -125,8 +126,8 @@ public class DataSources {
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景
-    public void getAllScenes(short sencesId,String sencesName,short groups_id,ArrayList<String> devices_mac){
-        sdkCallback.getScenesCallback(sencesId,sencesName,groups_id,devices_mac);
+    public void getAllScenes(AppScene appScene){
+        sdkCallback.getScenesCallback(appScene);
     }
 
     //添加场景
@@ -161,8 +162,8 @@ public class DataSources {
 
     //--------------------------------组相关------------------------------
     //获取网关所有组
-    public void GetAllGroups(Short groupId,String groupsName,String groupIconPath,ArrayList<String> mac_data){
-        sdkCallback.getAllGroupsCallback(groupId,groupsName,groupIconPath,mac_data);
+    public void GetAllGroups(AppGroup appGroup){
+        sdkCallback.getAllGroupsCallback(appGroup);
     }
 
     //添加组
@@ -222,17 +223,7 @@ public class DataSources {
 
     //=================================任务相关==================================
     //获取网关所有任务
-    public void getAllTasks(int task_no,String task_name,int isEnabled,int task_type,
-                           int task_cycle,int task_hour,int task_minute,
-                           int sensor_state, String sensor,String device_mac,int cmd_size,
-                           String serial_type1, int action_state1,int action_state6,
-                           String serial_type2, int action_state2,int action_state7,
-                           String serial_type3, int action_state3,int action_state8,
-                           String serial_type4, int action_state4,int action_state9,
-                           String serial_type5, int action_state5,int action_state10){
-        sdkCallback.getAllTasksCallback(task_no,task_name,isEnabled,task_type, task_cycle,task_hour,
-                task_minute,sensor_state, sensor,device_mac,cmd_size, serial_type1,action_state1,action_state6,
-                serial_type2, action_state2, action_state7, serial_type3,action_state3,action_state8,
-                serial_type4,action_state4,action_state9,serial_type5,action_state5,action_state10);
+    public void getAllTasks(AppTask appTask){
+        sdkCallback.getAllTasksCallback(appTask);
     }
 }
