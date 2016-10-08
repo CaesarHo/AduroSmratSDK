@@ -11,10 +11,6 @@ import android.net.NetworkInfo;
 /**
  * 工具类。
  * 判断终端联网与否，及联网类型
- *
- * @author Bruce
- * @version V1.0 2012-12-12 友盟E用车版本号及日期
- * @since V1.0 启动模块版本号
  */
 public class NetworkUtil {
     private static final String TAG = NetworkUtil.class.getSimpleName();
