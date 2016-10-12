@@ -94,8 +94,8 @@ public class SerialHandler {
         this.port = GatewayInfo.getInstance().getPort(context);
         GatewayInfo.getInstance().setAesKey(context, aeskey);
 
-        Constants.clientId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        System.out.println("clientId: " + Constants.clientId);
+        Constants.CLIENT_ID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        System.out.println("clientId: " + Constants.CLIENT_ID);
 
 //        Constants.GatewayInfo.GatewayNo = GatewayInfo.getInstance().getGatewayNo(context);
         //初始化mqtt
@@ -318,6 +318,7 @@ public class SerialHandler {
      * @param group_name
      */
     public void CreateGroup(String group_name){
+        Constants.GROUP_GLOBAL.ADD_GROUP_NAME = group_name;
         if (!NetworkUtil.NetWorkType(context)) {
             byte[] bt_send = GroupCmdData.sendAddGroupCmd(group_name);
             MqttManager.getInstance().publish("170005203637", 2, bt_send);
@@ -461,6 +462,8 @@ public class SerialHandler {
 
     //添加场景
     public void AddSence(String Out_Scene_Name, short Out_Group_Id){
+        Constants.SCENE_GLOBAL.ADD_SCENE_NAME = Out_Scene_Name;
+        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = Out_Group_Id;
         if (!NetworkUtil.NetWorkType(context)) {
             byte[] bt_send = SceneCmdData.sendAddSceneCmd(Out_Scene_Name, Out_Group_Id);
             MqttManager.getInstance().publish("170005203637", 2, bt_send);
