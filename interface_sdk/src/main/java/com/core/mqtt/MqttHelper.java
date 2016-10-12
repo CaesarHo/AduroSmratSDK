@@ -29,7 +29,7 @@ public class MqttHelper implements Runnable {
     @Override
     public void run() {
         //連接MQTT服務器
-        boolean isConnect = MqttManager.getInstance().creatConnect(Constants.uri, null, null, Constants.clientId);
+        boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
         System.out.println("isConnected: " + isConnect);
         if (isConnect) {
             MqttManager.getInstance().subscribe("170005203637", 2);

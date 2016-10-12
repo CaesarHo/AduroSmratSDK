@@ -142,7 +142,7 @@ public class DeviceCmdData {
         //消息体
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = 0x0B;
+        bt_send[12] = MessageType.A.UPLOAD_ALL_TXT.value();
         bt_send[13] = 0x00;
         bt_send[14] = 0x12;
         //数据体-----头

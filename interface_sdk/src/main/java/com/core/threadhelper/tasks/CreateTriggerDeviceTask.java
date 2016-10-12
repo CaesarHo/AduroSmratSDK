@@ -23,19 +23,14 @@ import java.util.Arrays;
 
 public class CreateTriggerDeviceTask implements Runnable {
     private byte[] bt_send;
-    public static final int PORT = 8888;
     private DatagramSocket socket = null;
     private String task_name = "";
     private byte is_run;
     private int sensor_state;
-    private String sensor_mac;
 
     private AppDevice appDevice;
     private int cmd_size;
-    private String dev_switch;
-    private String dev_level;
-    private String dev_hue;
-    private String dev_temp;
+    private String sensor_mac,dev_switch,dev_level,dev_hue,dev_temp;
 
     public CreateTriggerDeviceTask(String task_name, byte is_run, int sensor_state,String sensor_mac, AppDevice appDevice,
                                    int cmd_size, String dev_switch, String dev_level, String dev_hue, String dev_temp) {
@@ -57,17 +52,17 @@ public class CreateTriggerDeviceTask implements Runnable {
             Log.i("task_name = ", this.task_name);
             this.bt_send = TaskCmdData.CreateTriggerDeviceTaskCmd(task_name,is_run,
                     sensor_state,sensor_mac, appDevice, cmd_size,dev_switch,dev_level, dev_hue,dev_temp);
-            Log.i("网关IP = ", Constants.ipaddress);
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (this.socket == null) {
                 this.socket = new DatagramSocket(null);
                 this.socket.setReuseAddress(true);
-                this.socket.bind(new InetSocketAddress(8888));
+                this.socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(this.bt_send, this.bt_send.length, inetAddress, 8888);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,Constants.UDP_PORT);
             this.socket.send(datagramPacket);
-            System.out.println("CreateTask发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(this.bt_send, 16)), 16));
+            System.out.println("CreateTask发送的十六进制数据 = " + Utils.binary(bt_send, 16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {

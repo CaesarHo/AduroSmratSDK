@@ -17,10 +17,10 @@ import java.net.InetSocketAddress;
  * Created by best on 2016/7/13.
  */
 public class SetGroupLevel implements Runnable {
-    private int port = 8888;
-    private int value = -1;
-    private int group_id = -1;
+
     private DatagramSocket m_CMDSocket = null;
+    private int group_id = -1;
+    private int value = -1;
 
     public SetGroupLevel(int group_id,int value){
         this.group_id = group_id;
@@ -29,7 +29,7 @@ public class SetGroupLevel implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -37,14 +37,14 @@ public class SetGroupLevel implements Runnable {
             if (m_CMDSocket == null){
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(port));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
             byte[] bt_send = GroupCmdData.setGroupLevel(group_id,value);
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
             m_CMDSocket.send(packet_send);
-            System.out.println("房间亮度调节 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("房间亮度调节 = " + Utils.binary(bt_send, 16));
             // 接收数据
             byte[] buf = new byte[1024];
             DatagramPacket packet_receive = new DatagramPacket(buf, buf.length);

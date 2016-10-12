@@ -20,7 +20,6 @@ import java.util.Arrays;
  * Created by best on 2016/7/13.
  */
 public class AddDeviceToSence implements Runnable {
-    private int port = 8888;
     private DatagramSocket socket = null;
     private byte[] bt_send;
     private Short scene_id;
@@ -36,41 +35,27 @@ public class AddDeviceToSence implements Runnable {
     @Override
     public void run() {
         try {
-            Log.i("网关IP = ", Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
             bt_send = SceneCmdData.Add_DeviceToScene(appDevice,(int)group_id,scene_id);
 
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(port));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, port);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("添加设备到场景for数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("添加设备到场景for数据 = " + Utils.binary(bt_send, 16));
 
-//            while (true) {
-//                final byte[] recbuf = new byte[1024];
-//                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-//                try {
-//                    socket.receive(packet);
-//                    System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
-//                    Thread.sleep(500);
-//                    //将设备存储至场景
-//                    new Thread(new StoreScene(mac,shortaddr,main_endpoint,scenegroup_id,scene_id)).start();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-
+            new Thread(new StoreScene(appDevice,(int)group_id,scene_id)).start();
             try {
                 final byte[] recbuf = new byte[1024];
                 final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 socket.receive(packet);
                 System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
                 Thread.sleep(500);
-                new Thread(new StoreScene(appDevice,(int)group_id,scene_id)).start();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

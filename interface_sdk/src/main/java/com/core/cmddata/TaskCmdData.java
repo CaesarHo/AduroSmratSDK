@@ -195,12 +195,7 @@ public class TaskCmdData {
 
         int task_name_len = taskname.length();
 
-        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,
-                dev_switch,
-                dev_level,
-                dev_hue,
-                dev_temp,
-                null, 0, 0);
+        byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, dev_switch, dev_level, dev_hue, dev_temp, null, 0, 0);
 
         int commandDataByte_Len = cmddatabt.length;
 
@@ -854,11 +849,7 @@ public class TaskCmdData {
      * 合并任务数据命令
      * @return
      */
-    public static byte[] tCmdData(AppDevice appDevice,
-                                  String dev_switch,
-                                  String dev_level,
-                                  String dev_hue,
-                                  String dev_temp,
+    public static byte[] tCmdData(AppDevice appDevice, String dev_switch, String dev_level, String dev_hue, String dev_temp,
                                   String recall_scene, int group_id, int scene_id) {
         int switch_cmd_len = 0;
         if (dev_switch != null) {

@@ -23,7 +23,6 @@ import java.net.UnknownHostException;
 public class DeleteDeviceFromScene implements Runnable {
     private byte[] bt_send;
     private DatagramSocket socket = null;
-    private int port = 8888;
     private short scene_id;
     private AppDevice appDevice;
 
@@ -34,24 +33,24 @@ public class DeleteDeviceFromScene implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
 
         try {
             bt_send = SceneCmdData.DeleteDeviceFromScene(appDevice,(int)scene_id);
-            Log.i("网关IP = ", Constants.ipaddress);
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(port));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, port);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("发送的十六进制数据 = " + Utils.binary(bt_send, 16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {

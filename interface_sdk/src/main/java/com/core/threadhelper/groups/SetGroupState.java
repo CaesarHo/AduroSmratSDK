@@ -16,10 +16,10 @@ import java.net.InetSocketAddress;
  * Created by best on 2016/7/13.
  */
 public class SetGroupState implements Runnable {
-    private int port = 8888;
+
+    private DatagramSocket m_CMDSocket = null;
     private int value = -1;
     private int group_id = -1;
-    private DatagramSocket m_CMDSocket = null;
 
     public SetGroupState(int group_id,int value){
         this.group_id = group_id;
@@ -28,7 +28,7 @@ public class SetGroupState implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -36,12 +36,12 @@ public class SetGroupState implements Runnable {
             if (m_CMDSocket == null){
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(port));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
             byte[] bt_send = GroupCmdData.setGroupState(group_id,value);
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据

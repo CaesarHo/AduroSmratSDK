@@ -17,10 +17,11 @@ import java.net.InetSocketAddress;
  * Created by best on 2016/7/12.
  */
 public class SetDeviceLevel implements Runnable {
+
     private int Level = 1;
-    private static final int PORT = 8888;
     private DatagramSocket m_CMDSocket = null;
     private AppDevice appDevice;
+
     public SetDeviceLevel (AppDevice appDevice, int Level){
         this.appDevice = appDevice;
         this.Level = Level;
@@ -28,7 +29,7 @@ public class SetDeviceLevel implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -36,12 +37,12 @@ public class SetDeviceLevel implements Runnable {
             if (m_CMDSocket == null) {
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(PORT));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
             byte[] bt_send = DeviceCmdData.setDeviceLevelCmd(appDevice,Level);
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据

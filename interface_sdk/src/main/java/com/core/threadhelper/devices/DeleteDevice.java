@@ -18,7 +18,6 @@ import java.net.UnknownHostException;
  * Created by best on 2016/7/12.
  */
 public class DeleteDevice implements Runnable{
-    private static final int PORT = 8888;
     private DatagramSocket socket = null;
     private String  devicemac;
     public DeleteDevice(String devicemac){
@@ -28,31 +27,27 @@ public class DeleteDevice implements Runnable{
     @Override
     public void run() {
 
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.GW_IP_ADDRESS == null && Constants.APP_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
         try {
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if(socket==null){
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
             byte[] bt_send = DeviceCmdData.DeleteDeviceCmd(devicemac);
-            System.out.println("SendDeleteDeviceCmd = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,PORT);
+            System.out.println("SendDeleteDeviceCmd = " + Utils.binary(bt_send,16));
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,Constants.UDP_PORT);
             socket.send(datagramPacket);
 
             byte[] recbuf = new byte[1024];
             final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
-            try {
-                socket.receive(packet);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
+            socket.receive(packet);
             System.out.println("SendDeleteDeviceCmd_Rec : ‘" + new String(packet.getData()).trim() + "’\n");
         }catch(UnknownHostException e){
             e.printStackTrace();

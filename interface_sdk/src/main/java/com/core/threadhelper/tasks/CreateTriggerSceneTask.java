@@ -22,16 +22,12 @@ import java.util.Arrays;
 
 public class CreateTriggerSceneTask implements Runnable{
     private byte[] bt_send;
-    public static final int PORT = 8888;
     private DatagramSocket socket = null;
     private String task_name = "";
     private byte is_run;
 
-    private int sensor_state;
+    private int sensor_state,group_id,scene_id,cmd_size;
     private String sensor_mac;
-    private int group_id;
-    private int scene_id;
-    private int cmd_size;
 
     public CreateTriggerSceneTask(String task_name, byte is_run, int sensor_state,
                                   String sensor_mac,int cmd_size, int group_id, int scene_id) {
@@ -52,18 +48,18 @@ public class CreateTriggerSceneTask implements Runnable{
             this.bt_send = TaskCmdData.CreateTriggerSceneTaskCmd(task_name,is_run,
                     sensor_state,sensor_mac,cmd_size,group_id,scene_id);
 
-            Log.i("网关IP = ", Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
 
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (this.socket == null) {
                 this.socket = new DatagramSocket(null);
                 this.socket.setReuseAddress(true);
-                this.socket.bind(new InetSocketAddress(8888));
+                this.socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(this.bt_send, this.bt_send.length, inetAddress, 8888);
+            DatagramPacket datagramPacket = new DatagramPacket(this.bt_send, this.bt_send.length, inetAddress, Constants.UDP_PORT);
             this.socket.send(datagramPacket);
-            System.out.println("CreateTask发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(this.bt_send, 16)), 16));
+            System.out.println("CreateTask发送的十六进制数据 = " + Utils.binary(bt_send, 16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {

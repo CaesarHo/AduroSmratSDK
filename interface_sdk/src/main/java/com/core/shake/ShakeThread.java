@@ -74,13 +74,13 @@ public class ShakeThread extends Thread {
                             Log.e("myshake", "shake thread send broadcast.");
 
                             byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-                            Log.i("GATEWATEIPADDRESS = " , Constants.ipaddress);
-                            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+                            Log.i("GATEWATEIPADDRESS = " , Constants.GW_IP_ADDRESS);
+                            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
                             DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length, inetAddress, port);
                             socket.send(datagramPacket);
                             System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
-                            System.out.println("十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+                            System.out.println("十六进制 = " + Utils.binary(bt_send, 16));
 //
 //                            Thread.sleep(1000);
 //                        }

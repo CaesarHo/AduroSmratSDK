@@ -20,22 +20,22 @@ public class AppTask implements Serializable {
     private String device_mac;
     private int cmd_size;
 
-    private String serial_type1;
-    private int action_state1;
-    private int action_state6;
-    private String serial_type2;
-    private int action_state2;
-    private int action_state7;
-    private String serial_type3;
-    private int action_state3;
-    private int action_state8;
-    private String serial_type4;
-    private int action_state4;
-    private int action_state9;
-    private String serial_type5;
-    private int action_state5;
-    private int action_state10;
 
+
+    private String is_device_switch_type;
+    private String is_device_level_type;
+    private String is_device_hue_sat_type;
+    private String is_device_temp_type;
+    private String is_scene_type;
+
+    private int device_State; // 设备状态（灯:开、关)0 开 1 关
+    private int device_level = -1;  //设备亮度:
+    private int device_temp = -1;   //色温
+    private int device_colorSat = -1;
+    private int device_colorHue = -1;
+
+    private int task_scene_id = -1;
+    private int task_group_id = -1;
 
     public int getTask_no() {
         return task_no;
@@ -128,144 +128,102 @@ public class AppTask implements Serializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public String getSerial_type1() {
-        return serial_type1;
+    public String getIs_device_switch() {
+        return is_device_switch_type;
     }
 
-    public void setSerial_type1(String serial_type1) {
-        this.serial_type1 = serial_type1;
+    public void setIs_device_switch(String type){
+        this.is_device_switch_type = type;
     }
 
-    public int getAction_state1() {
-        return action_state1;
+    public String getIs_device_level(){
+        return is_device_level_type;
     }
 
-    public void setAction_state1(int action_state1) {
-        this.action_state1 = action_state1;
+    public void setIs_device_level(String type){
+        this.is_device_level_type = type;
     }
 
-    public int getAction_state6() {
-        return action_state6;
+    public String getIs_device_hue(){
+        return is_device_hue_sat_type;
     }
 
-    public void setAction_state6(int action_state6) {
-        this.action_state6 = action_state6;
+    public void setIs_device_hue(String type){
+        this.is_device_hue_sat_type = type;
     }
 
-    public String getSerial_type2() {
-        return serial_type2;
+    public String getIs_device_temp(){
+        return is_device_temp_type;
     }
 
-    public void setSerial_type2(String serial_type2) {
-        this.serial_type2 = serial_type2;
+    public void setIs_device_temp(String type){
+        this.is_device_temp_type = type;
     }
 
-    public int getAction_state2() {
-        return action_state2;
+    public String getIs_scene_type(){
+        return is_scene_type;
     }
 
-    public void setAction_state2(int action_state2) {
-        this.action_state2 = action_state2;
+    public void setIs_scene_type(String type){
+        this.is_scene_type = type;
     }
 
-    public int getAction_state7() {
-        return action_state7;
+
+
+
+    public int getDevice_State(){
+        return device_State;
     }
 
-    public void setAction_state7(int action_state7) {
-        this.action_state7 = action_state7;
+    public void setDevice_State(int state){
+        this.device_State = state;
     }
 
-    public String getSerial_type3() {
-        return serial_type3;
+    public int getDevice_level(){
+        return device_level;
     }
 
-    public void setSerial_type3(String serial_type3) {
-        this.serial_type3 = serial_type3;
+    public void setDevice_level(int level){
+        this.device_level = level;
     }
 
-    public int getAction_state3() {
-        return action_state3;
+    public int getDevice_temp(){
+        return device_temp;
     }
 
-    public void setAction_state3(int action_state3) {
-        this.action_state3 = action_state3;
+    public void setDevice_temp(int temp){
+        this.device_temp = temp;
     }
 
-    public int getAction_state8() {
-        return action_state8;
+    public int getDevice_colorSat(){
+        return device_colorSat;
     }
 
-    public void setAction_state8(int action_state8) {
-        this.action_state8 = action_state8;
+    public void setDevice_colorSat(int sat){
+        this.device_colorSat = sat;
     }
 
-    public String getSerial_type4() {
-        return serial_type4;
+    public int getDevice_colorHue(){
+        return device_colorHue;
     }
 
-    public void setSerial_type4(String serial_type4) {
-        this.serial_type4 = serial_type4;
+    public void setDevice_colorHue(int hue){
+        this.device_colorHue = hue;
     }
 
-    public int getAction_state4() {
-        return action_state4;
+    public int getTask_scene_id(){
+        return task_scene_id;
     }
 
-    public void setAction_state4(int action_state4) {
-        this.action_state4 = action_state4;
+    public void setTask_scene_id(int scene_id){
+        this.task_scene_id = scene_id;
     }
 
-    public int getAction_state9() {
-        return action_state9;
+    public int getTask_group_id(){
+        return task_group_id;
     }
 
-    public void setAction_state9(int action_state9) {
-        this.action_state9 = action_state9;
-    }
-
-    public String getSerial_type5() {
-        return serial_type5;
-    }
-
-    public void setSerial_type5(String serial_type5) {
-        this.serial_type5 = serial_type5;
-    }
-
-    public int getAction_state5() {
-        return action_state5;
-    }
-
-    public void setAction_state5(int action_state5) {
-        this.action_state5 = action_state5;
-    }
-
-    public int getAction_state10() {
-        return action_state10;
-    }
-
-    public void setAction_state10(int action_state10) {
-        this.action_state10 = action_state10;
+    public void setTask_group_id(int group_id){
+        this.task_group_id = group_id;
     }
 }

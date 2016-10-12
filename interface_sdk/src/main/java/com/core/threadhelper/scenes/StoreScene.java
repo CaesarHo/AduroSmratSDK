@@ -21,7 +21,6 @@ import java.util.Arrays;
  */
 public class StoreScene implements Runnable{
     private DatagramSocket socket = null;
-    private final int PORT = 8888;
     private AppDevice appDevice;
     private int group_id = -1;
     private int scene_id = -1;
@@ -34,19 +33,19 @@ public class StoreScene implements Runnable{
     @Override
     public void run() {
         try {
-            Log.i("网关IP = ", Constants.ipaddress);
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            byte[] bt_send_store_scene = SceneCmdData.StoreScene(appDevice,group_id,scene_id);
+            byte[] store_scene = SceneCmdData.StoreScene(appDevice,group_id,scene_id);
 
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send_store_scene, bt_send_store_scene.length, inetAddress, PORT);
+            DatagramPacket datagramPacket = new DatagramPacket(store_scene,store_scene.length,inetAddress,Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("存储场景 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send_store_scene, 16)), 16));
+            System.out.println("存储场景 = " + Utils.binary(store_scene, 16));
 
             final byte[] recbuf = new byte[1024];
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);

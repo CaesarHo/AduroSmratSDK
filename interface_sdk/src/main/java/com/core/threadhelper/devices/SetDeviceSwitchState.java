@@ -18,7 +18,6 @@ import java.net.InetSocketAddress;
  * Created by best on 2016/7/12.
  */
 public class SetDeviceSwitchState implements Runnable {
-    private int port = 8888;
     private int value = -1;
     private DatagramSocket m_CMDSocket = null;
     private AppDevice appDevice;
@@ -30,7 +29,7 @@ public class SetDeviceSwitchState implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -38,12 +37,12 @@ public class SetDeviceSwitchState implements Runnable {
             if (m_CMDSocket == null){
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(port));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             byte[] bt_send = DeviceCmdData.DevSwitchCmd(appDevice,value);
-            System.out.println("SetDeviceSwitchStateCMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, port);
+            System.out.println("SetDeviceSwitchStateCMD = " + Utils.binary(bt_send, 16));
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据

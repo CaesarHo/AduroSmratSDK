@@ -22,14 +22,11 @@ import java.net.UnknownHostException;
  * Created by best on 2016/6/27.
  */
 public class UDPHelper implements Runnable {
-    Context context;
-    public Boolean IsThreadDisable = false;//指示监听线程是否终止
-    private static WifiManager.MulticastLock lock;
-    InetAddress mInetAddress;
+    private Context context;
+    private Boolean IsThreadDisable = false;//指示监听线程是否终止
+    private WifiManager.MulticastLock lock;
     // UDP服务器监听的端口
-    int port = 8888;
-    DatagramSocket socket = null;
-    public static String localip;
+    private DatagramSocket socket = null;
 
     public UDPHelper(Context context, WifiManager manager) {
         this.context = context;
@@ -37,13 +34,13 @@ public class UDPHelper implements Runnable {
         //获取本地IP地址
         WifiInfo wifiInfo = manager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
-        localip = Utils.intToIp(ipAddress);
-        Utils.SplitToIp(localip);
+        Constants.APP_IP_ADDRESS = Utils.intToIp(ipAddress);
+        Utils.SplitToIp(Constants.APP_IP_ADDRESS);
     }
 
     @Override
     public void run() {
-        if (localip == null) {
+        if (Constants.APP_IP_ADDRESS == null) {
             DataSources.getInstance().SendExceptionResult(0);
             return;
         }
@@ -59,7 +56,7 @@ public class UDPHelper implements Runnable {
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(port));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
             DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
 
@@ -73,10 +70,11 @@ public class UDPHelper implements Runnable {
                 int port_int = datagramPacket.getPort();
                 long time = System.currentTimeMillis();
 
-                Constants.ipaddress = ipstr;
+                Constants.GW_IP_ADDRESS = ipstr;
 
                 if (strMsg.contains("K64_SEARCH_GW")) {
-                    DataSources.getInstance().GatewayInfo("GatewatName", strMsg, "SoftwareVersion", "HarddwareVersion", ipstr, Utils.ConvertTimeByLong(time));
+                    DataSources.getInstance().GatewayInfo("GatewatName", strMsg,
+                            "SoftwareVersion", "HarddwareVersion", ipstr, Utils.ConvertTimeByLong(time));
 
                     String[] gw_no_arr = strMsg.split(":");
                     String gw_no = gw_no_arr[1];

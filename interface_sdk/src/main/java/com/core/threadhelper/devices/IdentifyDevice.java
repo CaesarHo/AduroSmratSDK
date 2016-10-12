@@ -18,7 +18,6 @@ import java.net.UnknownHostException;
 
 public class IdentifyDevice implements Runnable{
     private int second = 1;
-    private static final int PORT = 8888;
     private DatagramSocket socket = null;
     private AppDevice appDevice;
     public IdentifyDevice (AppDevice appDevice,int second){
@@ -28,14 +27,14 @@ public class IdentifyDevice implements Runnable{
     @Override
     public void run() {
         try {
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if(socket==null){
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
             byte[] bt_send = DeviceCmdData.IdentifyDeviceCmd(appDevice,second);
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,PORT);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,Constants.UDP_PORT);
             socket.send(datagramPacket);
         }catch(UnknownHostException e){
             e.printStackTrace();

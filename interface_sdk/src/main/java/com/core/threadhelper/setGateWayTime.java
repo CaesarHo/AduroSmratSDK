@@ -16,16 +16,10 @@ import java.net.UnknownHostException;
  * Created by best on 2016/9/13.
  */
 public class setGateWayTime implements Runnable {
-    public static final int PORT = 8888;
     private DatagramSocket socket = null;
-    private int year;
-    private int month;
-    private int day;
-    private int hour;
-    private int minute;
-    private int second;
+    private int year,month,day,hour,minute,second;
 
-    public setGateWayTime(int year,int month ,int day,int hour,int minute,int second){
+    public setGateWayTime(int year, int month, int day, int hour, int minute, int second) {
         this.year = year;
         this.month = month;
         this.day = day;
@@ -37,34 +31,30 @@ public class setGateWayTime implements Runnable {
     @Override
     public void run() {
         try {
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
-            if(socket==null){
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+            if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            byte[] bt_send = DeviceCmdData.setGateWayTimeCmd(year,month,day,hour,minute,second);
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send,bt_send.length,inetAddress,PORT);
+            byte[] bt_send = DeviceCmdData.setGateWayTimeCmd(year, month, day, hour, minute, second);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("开关十六进制 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
+            System.out.println("开关十六进制 = " + Utils.binary(bt_send, 16));
 
-        }catch(UnknownHostException e){
+
+            while (true) {
+                byte[] recbuf = new byte[1024];
+                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                socket.receive(packet);
+                String isGW = new String(recbuf);
+            }
+        } catch (UnknownHostException e) {
             e.printStackTrace();
-        }catch(SocketException e){
+        } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        while(true){
-            byte[] recbuf = new byte[1024];
-            final DatagramPacket packet = new DatagramPacket(recbuf,recbuf.length);
-            try {
-                socket.receive(packet);
-                String isGW = new String(recbuf);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

@@ -44,17 +44,10 @@ public interface InterfaceCallback {
     void SendExceptionCallack(int result);
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
-//    //扫面设备回调
-//    void ScanDeviceCallback(String deviceName,String profile_id,String devicemac,
-//                            String deviceshortaddr,String deviceid,String main_endpoint,
-//                            String in_cluster_count,String out_cluster_count,String device_zone_type);
     //扫描设备回调
     void ScanDeviceCallback(AppDevice appDevice);
 
-    void AddDeviceCallback(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
-                           byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
-                           byte deviceLightColorTemperature,String deviceID,int deviceTypeID,
-                           String deviceType,int Sensordata,Short clusterId,Short attribID,Short zoneType);
+    void AddDeviceCallback(AppDevice appDevice);
     //添加设备
     void DeleteDeviceCallback(int result);
     //删除设备

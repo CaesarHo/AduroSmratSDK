@@ -19,7 +19,6 @@ import java.net.InetSocketAddress;
  */
 public class SetDeviceColorTemp implements Runnable {
     private int value = 1;
-    private static final int PORT = 8888;
     private DatagramSocket m_CMDSocket = null;
     private AppDevice appDevice;
     public SetDeviceColorTemp(AppDevice appDevice, int value){
@@ -29,7 +28,7 @@ public class SetDeviceColorTemp implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -37,13 +36,13 @@ public class SetDeviceColorTemp implements Runnable {
             if (m_CMDSocket == null) {
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(PORT));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
             byte[] bt_send = DeviceCmdData.setDeviceColorsTemp(appDevice,value);
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
-            System.out.println("调色温CMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send,16)),16));
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
+            System.out.println("调色温CMD = " + Utils.binary(bt_send,16));
             m_CMDSocket.send(packet_send);
 
             // 接收数据

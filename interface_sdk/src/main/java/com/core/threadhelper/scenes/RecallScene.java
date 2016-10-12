@@ -16,7 +16,6 @@ import java.net.UnknownHostException;
  * Created by best on 2016/8/28.
  */
 public class RecallScene implements Runnable {
-    private static final int PORT = 8888;
     private DatagramSocket socket = null;
     private Short Group_Id;
     private Short Scene_Id;
@@ -29,18 +28,18 @@ public class RecallScene implements Runnable {
     @Override
     public void run() {
         try {
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
             int grouId_i = (int)Group_Id;
             int SceneId_i = (int)Scene_Id;
             byte[] bt_send = SceneCmdData.RecallScene(grouId_i, SceneId_i);
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("控制场景CMD = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("控制场景CMD = " + Utils.binary(bt_send, 16));
 
         } catch (UnknownHostException e) {
             e.printStackTrace();

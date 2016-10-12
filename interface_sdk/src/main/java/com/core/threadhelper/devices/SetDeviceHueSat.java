@@ -18,8 +18,6 @@ import java.net.InetSocketAddress;
  * Created by best on 2016/8/3.
  */
 public class SetDeviceHueSat implements Runnable {
-    private static final int PORT = 8888;
-    private DatagramSocket socket = null;
     private DatagramSocket m_CMDSocket = null;
     private int hue = -1;
     private int sat = -1;
@@ -33,7 +31,7 @@ public class SetDeviceHueSat implements Runnable {
 
     @Override
     public void run() {
-        if (UDPHelper.localip == null && Constants.ipaddress == null){
+        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
             DataSources.getInstance().SendExceptionResult(0);
             return ;
         }
@@ -41,14 +39,14 @@ public class SetDeviceHueSat implements Runnable {
             if (m_CMDSocket == null) {
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
-                m_CMDSocket.bind(new InetSocketAddress(PORT));
+                m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            InetAddress serverAddr = InetAddress.getByName(Constants.ipaddress);
+            InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
 
             byte[]  bt_send = DeviceCmdData.setDeviceHueSatCmd(appDevice,hue,sat);
-            System.out.println("十六进制SAT = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("十六进制SAT = " + Utils.binary(bt_send, 16));
 
-            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, PORT);
+            DatagramPacket packet_send = new DatagramPacket(bt_send,bt_send.length,serverAddr, Constants.UDP_PORT);
             m_CMDSocket.send(packet_send);
 
             // 接收数据

@@ -53,12 +53,8 @@ public class DataSources {
     }
 
     //添加设备
-    public void AddDeviceResult(String deviceName,byte deviceNetStatus,byte deviceSwitchState,
-                                byte deviceLightLevel,byte deviceLightHue,byte deviceLightSat,
-                                byte deviceLightColorTemperature,String deviceID,int deviceTypeID,
-                                String deviceType,int Sensordata,Short clusterId,Short attribID,Short zoneType){
-        sdkCallback.AddDeviceCallback(deviceName,deviceNetStatus,deviceSwitchState,deviceLightLevel,deviceLightHue,
-        deviceLightSat,deviceLightColorTemperature,deviceID,deviceTypeID,deviceType,Sensordata,clusterId,attribID,zoneType);
+    public void AddDeviceResult(AppDevice appDevice){
+        sdkCallback.AddDeviceCallback(appDevice);
     }
 
     //设备删除回调

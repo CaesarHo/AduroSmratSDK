@@ -20,7 +20,6 @@ import java.net.UnknownHostException;
  */
 public class DeleteTask implements Runnable{
     private byte[] bt_send;
-    public static final int PORT = 8888;
     private DatagramSocket socket = null;
     private int task_id;
     public DeleteTask(int task_id){
@@ -32,18 +31,18 @@ public class DeleteTask implements Runnable{
         try {
             //获取组列表命令
             bt_send = TaskCmdData.DeleteTaskCmd(task_id);
-            Log.i("网关IP = ", Constants.ipaddress);
+            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
 
-            InetAddress inetAddress = InetAddress.getByName(Constants.ipaddress);
+            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
                 socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(PORT));
+                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, PORT);
+            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("Delete发送的十六进制数据 = " + Utils.binary(Utils.hexStringToByteArray(Utils.binary(bt_send, 16)), 16));
+            System.out.println("Delete发送的十六进制数据 = " + Utils.binary(bt_send,16));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (SocketException e) {
