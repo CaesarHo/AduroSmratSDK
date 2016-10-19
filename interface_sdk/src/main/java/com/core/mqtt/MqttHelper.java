@@ -1,24 +1,6 @@
 package com.core.mqtt;
 
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.provider.Settings;
-import android.util.Log;
-
-import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
-import com.core.mqtt.MqttManager;
-import com.core.utils.Utils;
-
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 /**
  * Created by best on 2016/9/28.

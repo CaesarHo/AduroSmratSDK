@@ -14,6 +14,9 @@ public class AppGroup implements Serializable{
     private String icon_path;
     private ArrayList<String> mac_data;
     private Boolean selected = false;
+    private int group_state = -1;
+    private int group_level = -1;
+
     public Short getGroup_id() {
         return group_id;
     }
@@ -52,5 +55,19 @@ public class AppGroup implements Serializable{
 
     public void setSelected(Boolean selected) {
         this.selected = selected;
+    }
+
+    public int getGroup_state(){
+        return group_state;
+    }
+    public void setGroup_state(int group_state){
+        this.group_state = group_state;
+    }
+
+    public int getGroup_level(){
+        return group_level;
+    }
+    public void setGroup_level(int group_level){
+        this.group_level = group_level;
     }
 }

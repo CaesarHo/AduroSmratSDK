@@ -48,14 +48,13 @@ public class ParseGroupData {
                     Group_Name = Utils.toStringHex2(Name_Source[1]);
                 }
             }
-
-            AppGroup appGroup = new AppGroup();
-            appGroup.setGroup_id(Group_Id);
-            appGroup.setGroup_name(Group_Name);
-            appGroup.setMac_data(Devicelist);
-
-            DataSources.getInstance().GetAllGroups(appGroup);
         }
+        AppGroup appGroup = new AppGroup();
+        appGroup.setGroup_id(Group_Id);
+        appGroup.setGroup_name(Group_Name);
+        appGroup.setMac_data(Devicelist);
+
+        DataSources.getInstance().GetAllGroups(appGroup);
     }
 
     //return data

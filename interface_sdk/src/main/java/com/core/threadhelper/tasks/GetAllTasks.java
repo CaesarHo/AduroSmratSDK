@@ -25,15 +25,12 @@ import java.util.Arrays;
  * Created by best on 2016/9/12.
  */
 public class GetAllTasks implements Runnable {
-    private byte[] bt_send;
     private DatagramSocket socket = null;
-
     @Override
     public void run() {
         try {
             //获取组列表命令
             Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
-            bt_send = TaskCmdData.GetAllTasks();
             InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
                 socket = new DatagramSocket(null);
@@ -41,6 +38,7 @@ public class GetAllTasks implements Runnable {
                 socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
 
+            byte[] bt_send = TaskCmdData.GetAllTasks();
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
             System.out.println("getTask发送的十六进制数据 = " + Utils.binary(bt_send, 16));
@@ -48,9 +46,8 @@ public class GetAllTasks implements Runnable {
             final byte[] recbuf = new byte[1024];
             final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
             while (true) {
-                Thread.sleep(500);
                 socket.receive(packet);
-                System.out.println("CreateTask接收byte = " + Arrays.toString(recbuf));
+                System.out.println("GetAllTasks接收byte = " + Arrays.toString(recbuf));
                 //解析获取到的任务信息
                 ParseTaskData.ParseGetTaskInfo parseGetTaskInfo = new ParseTaskData.ParseGetTaskInfo();
                 parseGetTaskInfo.parseBytes(recbuf);

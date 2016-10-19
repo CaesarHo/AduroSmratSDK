@@ -17,7 +17,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class MyApp extends Application {
 	public static final String MAIN_SERVICE_START = "com.adurosmart.service.MAINSERVICE";
 	public static MyApp app;
-	public static String mServer = "www.adurosmart.com";
+	public static String mServer = "data.adurosmart.com";
 	public static String clientId;
 	public static int port = 1883;
 	public static String mAndroidId;

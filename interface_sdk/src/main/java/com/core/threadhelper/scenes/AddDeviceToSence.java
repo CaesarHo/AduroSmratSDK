@@ -26,7 +26,7 @@ public class AddDeviceToSence implements Runnable {
     private Short group_id;
     private AppDevice appDevice;
 
-    public AddDeviceToSence(AppDevice appDevice, short group_id, short scene_id){
+    public AddDeviceToSence(AppDevice appDevice, short group_id, short scene_id) {
         this.appDevice = appDevice;
         this.scene_id = scene_id;
         this.group_id = group_id;
@@ -36,7 +36,7 @@ public class AddDeviceToSence implements Runnable {
     public void run() {
         try {
             Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
-            bt_send = SceneCmdData.Add_DeviceToScene(appDevice,(int)group_id,scene_id);
+            bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, scene_id);
 
             InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
             if (socket == null) {
@@ -49,25 +49,17 @@ public class AddDeviceToSence implements Runnable {
             socket.send(datagramPacket);
             System.out.println("添加设备到场景for数据 = " + Utils.binary(bt_send, 16));
 
-            new Thread(new StoreScene(appDevice,(int)group_id,scene_id)).start();
-            try {
-                final byte[] recbuf = new byte[1024];
-                final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                socket.receive(packet);
-                System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } catch (UnknownHostException e) {
+            Thread.sleep(500);
+            new Thread(new StoreScene(appDevice, (int) group_id, scene_id)).start();
+            byte[] recbuf = new byte[1024];
+            DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+            socket.receive(packet);
+            System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if (socket != null){
-//                socket.close();
+        } finally {
+            if (socket != null) {
+                socket.close();
             }
         }
     }

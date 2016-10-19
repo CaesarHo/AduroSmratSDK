@@ -22,7 +22,9 @@ public class ParseDeviceData {
         String in_cluster_count;
         String out_cluster_count;
         short clusterId = -1;
+        System.out.println("ParseGetDeviceInfo = " + "ParseGetDeviceInfo1");
         if (deviceinfo.length() > 46) {
+            System.out.println("ParseGetDeviceInfo = " + "ParseGetDeviceInfo2");
             int profile_id_int = SearchUtils.searchString(deviceinfo, "PROFILE_ID:");
             int device_id_int = SearchUtils.searchString(deviceinfo, "DEVICE_ID:");
             int device_name_int = SearchUtils.searchString(deviceinfo, "DEVICE_NAME:");
@@ -75,7 +77,7 @@ public class ParseDeviceData {
                     device_name = "ColorLamp";
                     break;
                 case "0110":
-                    device_name = "ColorTemperatureLamp";
+                    device_name = "ColorTemp";
                     break;
                 case "0210":
                     device_name = "HueColorLamp";
@@ -84,7 +86,7 @@ public class ParseDeviceData {
                     device_name = "ColorLight";
                     break;
                 case "0220":
-                    device_name = "ColorTemperatureLampJZGD";
+                    device_name = "ColorTempJZGD";
                     break;
                 case "0100":
                     device_name = "DimmableLight";

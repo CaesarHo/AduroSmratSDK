@@ -23,7 +23,8 @@ import java.net.UnknownHostException;
  */
 public class UDPHelper implements Runnable {
     private Context context;
-    private Boolean IsThreadDisable = false;//指示监听线程是否终止
+    //指示监听线程是否终止
+    private Boolean IsThreadDisable = false;
     private WifiManager.MulticastLock lock;
     // UDP服务器监听的端口
     private DatagramSocket socket = null;

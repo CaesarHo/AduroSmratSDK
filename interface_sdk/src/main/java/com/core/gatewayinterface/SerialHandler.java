@@ -37,7 +37,6 @@ import com.core.threadhelper.devices.GetDeviceSat;
 import com.core.threadhelper.devices.GetDeviceSwitchState;
 import com.core.threadhelper.scenes.GetSenceDetails;
 import com.core.threadhelper.devices.IdentifyDevice;
-import com.core.mqtt.MqttHelper;
 import com.core.threadhelper.scenes.RecallScene;
 import com.core.threadhelper.devices.DeleteDevice;
 import com.core.threadhelper.devices.SetDeviceColorTemp;
@@ -65,7 +64,7 @@ import java.io.UnsupportedEncodingException;
  */
 public class SerialHandler {
     private static SerialHandler manager = null;
-    Context context;
+    public Context context;
     private String ipaddress;
     private int port = -1;
     private String aeskey;
@@ -86,9 +85,9 @@ public class SerialHandler {
     /**
      * 初始化
      */
-    public void Init(Context context, String aeskey, InterfaceCallback sdkCallback) {
+    public void Init(Context mContext, String aeskey, InterfaceCallback sdkCallback) {
         DataSources.getInstance().setSettingInterface(sdkCallback);
-        this.context = context;
+        this.context = mContext;
         this.aeskey = aeskey;
         this.ipaddress = GatewayInfo.getInstance().getInetAddress(context);
         this.port = GatewayInfo.getInstance().getPort(context);
@@ -97,11 +96,24 @@ public class SerialHandler {
         Constants.CLIENT_ID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         System.out.println("clientId: " + Constants.CLIENT_ID);
 
-//        Constants.GatewayInfo.GatewayNo = GatewayInfo.getInstance().getGatewayNo(context);
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            MqttManager.getInstance().init(context);
             //如果網絡是3G網，則連接mqtt及訂閱mqtt
             setMqttCommunication();
+        }
+    }
+
+    /**
+     * MQTT连接订阅
+     */
+    public void setMqttCommunication() {
+        //連接MQTT服務器
+        boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
+        System.out.println("isConnected: " + isConnect);
+        if (isConnect) {
+            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
+            System.out.println("网关编号 = " + GatewayInfo.getInstance().getGatewayNo(context));
         }
     }
 
@@ -130,13 +142,6 @@ public class SerialHandler {
         new Thread(new setGateWayTime(year, month, day, hour, minute, second)).start();
     }
 
-    /**
-     * MQTT连接订阅
-     */
-    public void setMqttCommunication() {
-        new Thread(new MqttHelper()).start();
-    }
-
     //===============================设备操作 start============================
 
     /**
@@ -146,7 +151,8 @@ public class SerialHandler {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
             byte[] bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
+            System.out.println("远程打开 = " + "AgreeDeviceInNet");
         } else {
             new Thread(new AgreeDeviceInNet()).start();
         }
@@ -158,8 +164,10 @@ public class SerialHandler {
     public void GetAllDeviceListen() {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "GetAllDeviceListen");
             byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
+            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
         } else {
             new Thread(new GetAllDevices()).start();
         }
@@ -173,8 +181,9 @@ public class SerialHandler {
     public void DeleteDevice(String devicemac) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "DeleteDevice");
             byte[] bt_send = DeviceCmdData.DeleteDeviceCmd(devicemac);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new DeleteDevice(devicemac)).start();
         }
@@ -186,8 +195,9 @@ public class SerialHandler {
     public void IdentifyDevice(AppDevice appDevice, int second) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "IdentifyDevice");
             byte[] bt_send = DeviceCmdData.IdentifyDeviceCmd(appDevice, second);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new IdentifyDevice(appDevice, second)).start();
         }
@@ -199,8 +209,9 @@ public class SerialHandler {
     public void setDeviceSwitchState(AppDevice appDevice, int value) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setDeviceSwitchState");
             byte[] bt_send = DeviceCmdData.DevSwitchCmd(appDevice, value);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetDeviceSwitchState(appDevice, value)).start();
         }
@@ -210,8 +221,9 @@ public class SerialHandler {
     public void setDeviceLevel(AppDevice appDevice, int Level) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setDeviceLevel");
             byte[] bt_send = DeviceCmdData.setDeviceLevelCmd(appDevice, Level);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetDeviceLevel(appDevice, Level)).start();
         }
@@ -221,8 +233,9 @@ public class SerialHandler {
     public void setDeviceHue(AppDevice appDevice, int hue) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setDeviceHue");
             byte[] bt_send = DeviceCmdData.setDeviceHueCmd(appDevice, hue);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetDeviceHue(appDevice, hue)).start();
         }
@@ -232,8 +245,9 @@ public class SerialHandler {
     public void setDeviceHueSat(AppDevice appDevice, int hue, int sat) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setDeviceHueSat");
             byte[] bt_send = DeviceCmdData.setDeviceHueSatCmd(appDevice, hue, sat);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetDeviceHueSat(appDevice, hue, sat)).start();
         }
@@ -243,8 +257,9 @@ public class SerialHandler {
     public void setColorTemperature(AppDevice appDevice, int value) {
         //初始化mqtt
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setColorTemperature");
             byte[] bt_send = DeviceCmdData.setDeviceColorsTemp(appDevice, value);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetDeviceColorTemp(appDevice, value)).start();
         }
@@ -255,8 +270,9 @@ public class SerialHandler {
      */
     public void getDeviceSwitchState(AppDevice appDevice) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getDeviceSwitchState");
             byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetDeviceSwitchState(appDevice)).start();
         }
@@ -271,8 +287,9 @@ public class SerialHandler {
     //获取设备亮度回调
     public void getDeviceLevel(AppDevice appDevice) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getDeviceLevel");
             byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetDeviceLevel(appDevice)).start();
         }
@@ -281,8 +298,9 @@ public class SerialHandler {
     //获取设备色调
     public void getDeviceHue(String deviceid) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getDeviceHue");
             byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetDeviceHue(ipaddress, port, deviceid)).start();
         }
@@ -291,8 +309,9 @@ public class SerialHandler {
     //获取设备饱和度
     public void getDeviceSat(String deviceid) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getDeviceSat");
             byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetDeviceSat(ipaddress, port, deviceid)).start();
         }
@@ -301,8 +320,9 @@ public class SerialHandler {
     //修改设备名称
     public void UpdateDeviceName(AppDevice appDevice, String device_name){
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "UpdateDeviceName");
             byte[] bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new UpdateDeviceName(appDevice, device_name)).start();
         }
@@ -320,8 +340,9 @@ public class SerialHandler {
     public void CreateGroup(String group_name){
         Constants.GROUP_GLOBAL.ADD_GROUP_NAME = group_name;
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "CreateGroup");
             byte[] bt_send = GroupCmdData.sendAddGroupCmd(group_name);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new AddGroup(group_name)).start();
         }
@@ -334,8 +355,9 @@ public class SerialHandler {
      */
     public void DeleteGroup(short groupid) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "DeleteGroup");
             byte[] bt_send = GroupCmdData.sendDeleteGroupCmd((int) groupid);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new DeleteGroup(groupid)).start();
         }
@@ -349,8 +371,9 @@ public class SerialHandler {
      */
     public void ChangeGroupName(short group_id, String group_name){
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "ChangeGroupName");
             byte[] bt_send = GroupCmdData.sendUpdateGroupCmd((int) group_id, group_name);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new UpdateGroupName(group_id, group_name)).start();
         }
@@ -359,8 +382,9 @@ public class SerialHandler {
     //获取网关所有房间
     public void getGroups() {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getGroups");
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetAllGroups()).start();
         }
@@ -369,8 +393,9 @@ public class SerialHandler {
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
     public void setGroupState(short groupId, int state) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupState");
             byte[] bt_send = GroupCmdData.setGroupState((int) groupId, (int) state);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupState((int) groupId, state)).start();
         }
@@ -379,8 +404,9 @@ public class SerialHandler {
     //设置房间中所有lamp的亮度
     public void setGroupLevel(short groupId, int level) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupLevel");
             byte[] bt_send = GroupCmdData.setGroupLevel((int) groupId, (int) level);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupLevel((int) groupId, level)).start();
         }
@@ -389,8 +415,9 @@ public class SerialHandler {
     //设置房间中所有lamp的色调(未实现)
     public void setGroupHue(short groupId, byte hue) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupHue");
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupHue(ipaddress, port, groupId, hue)).start();
         }
@@ -399,8 +426,9 @@ public class SerialHandler {
     //设置房间中所有lamp的饱和度(未实现)
     public void setGroupSat(short groupId, byte sat) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupSat");
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupSat(ipaddress, port, groupId, sat)).start();
         }
@@ -409,8 +437,9 @@ public class SerialHandler {
     //设置房间中所有设备的饱和度及色调(未实现)
     public void setGroupHueSat(short groupId, byte hue, byte sat) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupHueSat");
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupHueSat(ipaddress, port, groupId, hue, sat)).start();
         }
@@ -419,8 +448,9 @@ public class SerialHandler {
     //设置房间中所有设备的色温(未实现)
     public void setGroupColorTemperature(short groupId, int value) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "setGroupColorTemperature");
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new SetGroupColorTemp(ipaddress, port, groupId, value)).start();
         }
@@ -429,8 +459,9 @@ public class SerialHandler {
     //将指定的设备加入到指定的组中
     public void addDeviceToGroup(AppDevice appDevice, short group_id) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "AgreeDeviceInNet");
             byte[] bt_send = GroupCmdData.Add_DeviceToGroup(appDevice, group_id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new AddDeviceToGroup(appDevice, group_id)).start();
         }
@@ -439,8 +470,9 @@ public class SerialHandler {
     //将指定的设备从组中删除
     public void deleteDeviceFromGroup(AppDevice appDevice, short group_id) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "deleteDeviceFromGroup");
             byte[] bt_send = GroupCmdData.DeleteDeviceFromGroup(appDevice, group_id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new DeleteDeviceFromGroup(appDevice, group_id)).start();
         }
@@ -453,8 +485,9 @@ public class SerialHandler {
     //获取网关所有场景
     public void getSences() {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getSences");
             byte[] bt_send = SceneCmdData.GetAllScenesListCmd();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetAllSences()).start();
         }
@@ -465,8 +498,9 @@ public class SerialHandler {
         Constants.SCENE_GLOBAL.ADD_SCENE_NAME = Out_Scene_Name;
         Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = Out_Group_Id;
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "AddSence");
             byte[] bt_send = SceneCmdData.sendAddSceneCmd(Out_Scene_Name, Out_Group_Id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new AddSence(Out_Scene_Name, Out_Group_Id)).start();
         }
@@ -475,8 +509,9 @@ public class SerialHandler {
     //Recall场景
     public void RecallScene(Short Group_Id, Short Scene_Id) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "RecallScene");
             byte[] bt_send = SceneCmdData.RecallScene((int) Group_Id, (int) Scene_Id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new RecallScene(Group_Id, Scene_Id)).start();
         }
@@ -485,8 +520,9 @@ public class SerialHandler {
     //获取指定场景的详细信息，
     public void getSenceDetails(short senceId, String senceName) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "getSenceDetails");
             byte[] bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new GetSenceDetails(ipaddress, port, senceId, senceName)).start();
         }
@@ -495,8 +531,9 @@ public class SerialHandler {
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
     public void addDeviceToSence(AppDevice appDevice, short group_id, short scene_id) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "addDeviceToSence");
             byte[] bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new AddDeviceToSence(appDevice, group_id, scene_id)).start();
         }
@@ -505,8 +542,9 @@ public class SerialHandler {
     //删除场景中指定设备成员 senceName场景名 设备Id
     public void deleteDeviceFromScene(AppDevice appDevice, short scene_id) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "deleteDeviceFromScene");
             byte[] bt_send = SceneCmdData.DeleteDeviceFromScene(appDevice, (int) scene_id);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new DeleteDeviceFromScene(appDevice, scene_id)).start();
         }
@@ -515,8 +553,9 @@ public class SerialHandler {
     //删除指定场景
     public void deleteScence(short scenceId) {
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "deleteScence");
             byte[] bt_send = SceneCmdData.sendDeleteSceneCmd((int) scenceId);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new DeleteScence(scenceId)).start();
         }
@@ -525,8 +564,9 @@ public class SerialHandler {
     //修改指定场景
     public void ChangeSceneName(short sceneId, String newSceneName){
         if (!NetworkUtil.NetWorkType(context)) {
+            System.out.println("远程打开 = " + "ChangeSceneName");
             byte[] bt_send = SceneCmdData.sendUpdateSceneCmd((int) sceneId, newSceneName);
-            MqttManager.getInstance().publish("170005203637", 2, bt_send);
+            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
         } else {
             new Thread(new UpdateSceneName(sceneId, newSceneName)).start();
         }

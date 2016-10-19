@@ -52,14 +52,9 @@ public class StoreScene implements Runnable{
             socket.receive(packet);
             System.out.println("存储场景返回数据 = " + Arrays.toString(recbuf));
 
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (socket != null){
                 socket.close();
             }

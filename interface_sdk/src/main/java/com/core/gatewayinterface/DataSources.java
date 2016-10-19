@@ -42,12 +42,6 @@ public class DataSources {
         gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
     }
 
-//    public void ScanDeviceResult(String deviceName,String profileid,String devicemac,String deviceshortaddr,
-//                                 String deviceid,String main_endpoint,String in_cluster_count,
-//                                 String out_cluster_count,String device_zone_type){
-//        sdkCallback.ScanDeviceCallback(deviceName,profileid,devicemac,deviceshortaddr,
-//                deviceid,main_endpoint,in_cluster_count,out_cluster_count,device_zone_type);
-//    }
     public void ScanDeviceResult(AppDevice appDevice){
         sdkCallback.ScanDeviceCallback(appDevice);
     }

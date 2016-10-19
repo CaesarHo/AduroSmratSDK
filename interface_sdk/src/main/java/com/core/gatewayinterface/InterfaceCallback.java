@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface InterfaceCallback {
     //-------------------------------网关相关------------------------------
     //网关信息回调
-    void GatewatInfoCallback(String gatewayName,String gatewayNo,String gatewaySoftwareVersion,String gatewayHardwareVersion,String gatewayIPv4Address,String gatewayDatetime);
+    void GatewatInfoCallback(String gwName,String gwNo,String gwSoftwareVersion,String gwHardwareVersion,String gwIPv4Address,String gwDatetime);
     //===============================房间相关==============================
     //添加房间
     void AddGroupCallback(Short group_id,String group_name);

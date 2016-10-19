@@ -1,5 +1,6 @@
 package com.core.mqtt;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -15,7 +16,7 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
 public class MqttManager {
     private static final String TAG = "MqttManager";
-
+    private Context mContext;
     // 单例
     private static MqttManager mInstance = null;
     // 回调
@@ -26,7 +27,7 @@ public class MqttManager {
     private boolean clean = true;
 
     public MqttManager() {
-        mCallback = new MqttCallbackBus();
+        mCallback = new MqttCallbackBus(mContext);
     }
 
     public static MqttManager getInstance() {
@@ -34,6 +35,10 @@ public class MqttManager {
             mInstance = new MqttManager();
         }
         return mInstance;
+    }
+
+    public void init(Context context){
+        mContext = context;
     }
 
 //    public synchronized static MqttManager getInstance() {
@@ -133,6 +138,7 @@ public class MqttManager {
             try {
                 client.publish(topicName, message);
                 flag = true;
+                System.out.println("发布状态 = " + flag);
             } catch (MqttException e) {
             }
         }
@@ -161,6 +167,7 @@ public class MqttManager {
             try {
                 client.subscribe(topicName, qos);
                 flag = true;
+                System.out.println("订阅状态 = " + flag);
             } catch (MqttException e) {
             }
         }

@@ -1,5 +1,8 @@
 package com.core.threadhelper.devices;
 
+import android.content.Context;
+import android.net.wifi.WifiManager;
+
 import com.core.cmddata.DeviceCmdData;
 import com.core.cmddata.parsedata.ParseDeviceData;
 import com.core.global.Constants;
@@ -12,6 +15,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.MulticastSocket;
 import java.util.Arrays;
 
 /**
@@ -19,19 +23,18 @@ import java.util.Arrays;
  */
 public class AgreeDeviceInNet implements  Runnable{
     private DatagramSocket m_CMDSocket = null;
-
     @Override
     public void run() {
-
-        if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
-            DataSources.getInstance().SendExceptionResult(0);
-            return ;
-        }
-
         try {
+            if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null){
+                DataSources.getInstance().SendExceptionResult(0);
+                return ;
+            }
+
             if(m_CMDSocket==null){
                 m_CMDSocket = new DatagramSocket(null);
                 m_CMDSocket.setReuseAddress(true);
+                m_CMDSocket.setBroadcast(true);
                 m_CMDSocket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
             InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
