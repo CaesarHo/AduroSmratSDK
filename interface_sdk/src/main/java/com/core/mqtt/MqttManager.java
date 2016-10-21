@@ -42,15 +42,6 @@ public class MqttManager {
         System.out.println("MqttManager = " + "Context");
     }
 
-//    public synchronized static MqttManager getInstance() {
-//        if (null == mInstance) {
-//            synchronized (MqttManager.class) {
-//                mInstance = new MqttManager();
-//            }
-//        }
-//        return mInstance;
-//    }
-
     /**
      * 释放单例, 及其所引用的资源
      */
