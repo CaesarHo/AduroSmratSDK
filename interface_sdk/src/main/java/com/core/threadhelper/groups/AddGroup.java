@@ -15,6 +15,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.util.Arrays;
 
 /**
  * Created by best on 2016/7/11.
@@ -54,7 +55,7 @@ public class AddGroup implements Runnable {
                 final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 socket.receive(packet);
 
-                System.out.println("添加房间返回数据: ‘" + new String(packet.getData()).trim() + "’\n");
+                System.out.println("添加房间返回数据: =" + Arrays.toString(recbuf));
                 String str = new String(recbuf);
                 if (str.contains("GW") && !str.contains("K64")) {
                     ParseGroupData.ParseAddGroupBack(recbuf,group_name.length());

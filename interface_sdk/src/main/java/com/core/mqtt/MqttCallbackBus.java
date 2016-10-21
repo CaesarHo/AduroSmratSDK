@@ -24,6 +24,7 @@ public class MqttCallbackBus implements MqttCallback {
 
     public MqttCallbackBus (Context context){
         mContext = context;
+        System.out.println("MqttCallbackBus = " + "Context");
     }
 
     @Override
@@ -40,15 +41,21 @@ public class MqttCallbackBus implements MqttCallback {
 
         //解析获取设备信息
         ParseDeviceData.ParseGetDeviceInfo(message.toString(),false);
+        System.out.println("ParseGetDeviceInfo" + "ParseGetDeviceInfo");
         //解析获取groupinfo
         ParseGroupData.ParseGetGroupsInfo(message.toString());
+        System.out.println("ParseGetGroupsInfo" + "ParseGetGroupsInfo");
         //解析获取sceneinfo
         ParseSceneData.ParseGetScenesInfo(message.toString());
+        System.out.println("ParseGetScenesInfo" + "ParseGetScenesInfo");
 
         //解析添加组返回数据
         ParseGroupData.ParseAddGroupBack(message.getPayload(),Constants.GROUP_GLOBAL.ADD_GROUP_NAME.length());
+        System.out.println("ParseAddGroupBack" + "ParseAddGroupBack");
+
         //解析添加场景返回数据
         ParseSceneData.ParseAddSceneBackInfo(message.getPayload(),Constants.SCENE_GLOBAL.ADD_SCENE_NAME.length());
+        System.out.println("ParseAddSceneBackInfo" + "ParseAddSceneBackInfo");
     }
 
     @Override

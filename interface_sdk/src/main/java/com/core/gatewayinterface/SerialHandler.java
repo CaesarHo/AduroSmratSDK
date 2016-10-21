@@ -148,29 +148,21 @@ public class SerialHandler {
      * 允许设备入网
      */
     public void AgreeDeviceInNet() {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            byte[] bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-            System.out.println("远程打开 = " + "AgreeDeviceInNet");
-        } else {
-            new Thread(new AgreeDeviceInNet()).start();
-        }
+        new Thread(new AgreeDeviceInNet(context)).start();
     }
 
     /**
      * search device
      */
     public void GetAllDeviceListen() {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "GetAllDeviceListen");
-            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
-        } else {
-            new Thread(new GetAllDevices()).start();
-        }
+//        if (!NetworkUtil.NetWorkType(context)) {
+//            System.out.println("远程打开 = " + "GetAllDeviceListen");
+//            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
+//            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
+//            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
+//        } else {
+            new Thread(new GetAllDevices(context)).start();
+//        }
     }
 
     /**
@@ -179,103 +171,48 @@ public class SerialHandler {
      * @param devicemac
      */
     public void DeleteDevice(String devicemac) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "DeleteDevice");
-            byte[] bt_send = DeviceCmdData.DeleteDeviceCmd(devicemac);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new DeleteDevice(devicemac)).start();
-        }
+        new Thread(new DeleteDevice(context,devicemac)).start();
     }
 
     /**
      * 选择设备提示
      */
     public void IdentifyDevice(AppDevice appDevice, int second) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "IdentifyDevice");
-            byte[] bt_send = DeviceCmdData.IdentifyDeviceCmd(appDevice, second);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new IdentifyDevice(appDevice, second)).start();
-        }
+        new Thread(new IdentifyDevice(context,appDevice, second)).start();
     }
 
     /**
      * 改变设备状态(0关1开)
      */
     public void setDeviceSwitchState(AppDevice appDevice, int value) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setDeviceSwitchState");
-            byte[] bt_send = DeviceCmdData.DevSwitchCmd(appDevice, value);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetDeviceSwitchState(appDevice, value)).start();
-        }
+        new Thread(new SetDeviceSwitchState(context,appDevice, value)).start();
     }
 
     //设置设备亮度回调
     public void setDeviceLevel(AppDevice appDevice, int Level) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setDeviceLevel");
-            byte[] bt_send = DeviceCmdData.setDeviceLevelCmd(appDevice, Level);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetDeviceLevel(appDevice, Level)).start();
-        }
+        new Thread(new SetDeviceLevel(context,appDevice, Level)).start();
     }
 
     //设置颜色
     public void setDeviceHue(AppDevice appDevice, int hue) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setDeviceHue");
-            byte[] bt_send = DeviceCmdData.setDeviceHueCmd(appDevice, hue);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetDeviceHue(appDevice, hue)).start();
-        }
+        new Thread(new SetDeviceHue(context,appDevice, hue)).start();
     }
 
     //改变设备色调,饱和度
     public void setDeviceHueSat(AppDevice appDevice, int hue, int sat) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setDeviceHueSat");
-            byte[] bt_send = DeviceCmdData.setDeviceHueSatCmd(appDevice, hue, sat);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetDeviceHueSat(appDevice, hue, sat)).start();
-        }
+        new Thread(new SetDeviceHueSat(context,appDevice, hue, sat)).start();
     }
 
     //改变色温值
     public void setColorTemperature(AppDevice appDevice, int value) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setColorTemperature");
-            byte[] bt_send = DeviceCmdData.setDeviceColorsTemp(appDevice, value);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetDeviceColorTemp(appDevice, value)).start();
-        }
+        new Thread(new SetDeviceColorTemp(context,appDevice, value)).start();
     }
 
     /**
      * 获得设备状态
      */
     public void getDeviceSwitchState(AppDevice appDevice) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getDeviceSwitchState");
-            byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetDeviceSwitchState(appDevice)).start();
-        }
+        new Thread(new GetDeviceSwitchState(context,appDevice)).start();
     }
 
     public void getDeviceOnLinStatus(String devicename, String deviceid) {
@@ -286,46 +223,22 @@ public class SerialHandler {
 
     //获取设备亮度回调
     public void getDeviceLevel(AppDevice appDevice) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getDeviceLevel");
-            byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetDeviceLevel(appDevice)).start();
-        }
+        new Thread(new GetDeviceLevel(context,appDevice)).start();
     }
 
     //获取设备色调
     public void getDeviceHue(String deviceid) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getDeviceHue");
-            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetDeviceHue(ipaddress, port, deviceid)).start();
-        }
+        new Thread(new GetDeviceHue(context,ipaddress, port, deviceid)).start();
     }
 
     //获取设备饱和度
     public void getDeviceSat(String deviceid) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getDeviceSat");
-            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetDeviceSat(ipaddress, port, deviceid)).start();
-        }
+        new Thread(new GetDeviceSat(context,ipaddress, port, deviceid)).start();
     }
 
     //修改设备名称
     public void UpdateDeviceName(AppDevice appDevice, String device_name){
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "UpdateDeviceName");
-            byte[] bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new UpdateDeviceName(appDevice, device_name)).start();
-        }
+        new Thread(new UpdateDeviceName(context,appDevice, device_name)).start();
     }
     //设备 ==========================end============================
 
