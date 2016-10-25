@@ -9,6 +9,7 @@ import com.core.cmddata.parsedata.ParseSceneData;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
+import com.core.global.MessageType;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -24,7 +25,6 @@ public class MqttCallbackBus implements MqttCallback {
 
     public MqttCallbackBus (Context context){
         mContext = context;
-        System.out.println("MqttCallbackBus = " + "Context");
     }
 
     @Override
@@ -39,23 +39,38 @@ public class MqttCallbackBus implements MqttCallback {
         Log.e(TAG,topic + "=" + message.toString());
         System.out.println(TAG + "=" +message.getPayload());
 
-        //解析获取设备信息
-        ParseDeviceData.ParseGetDeviceInfo(message.toString(),false);
-        System.out.println("ParseGetDeviceInfo" + "ParseGetDeviceInfo");
-        //解析获取groupinfo
-        ParseGroupData.ParseGetGroupsInfo(message.toString());
-        System.out.println("ParseGetGroupsInfo" + "ParseGetGroupsInfo");
-        //解析获取sceneinfo
-        ParseSceneData.ParseGetScenesInfo(message.toString());
-        System.out.println("ParseGetScenesInfo" + "ParseGetScenesInfo");
+        if ((int) MessageType.A.GET_ALL_GROUP.value() == message.getPayload()[11]){
+            //解析接受到的数据
+            ParseGroupData.ParseGetGroupsInfo(message.toString());
+            return;
+        }
 
-        //解析添加组返回数据
-        ParseGroupData.ParseAddGroupBack(message.getPayload(),Constants.GROUP_GLOBAL.ADD_GROUP_NAME.length());
-        System.out.println("ParseAddGroupBack" + "ParseAddGroupBack");
+        if((int) MessageType.A.UPLOAD_TXT.value() == message.getPayload()[11]){
+            //新入网的设备
+            ParseDeviceData.ParseGetDeviceInfo(message.toString(),true);
+            return;
+        }else if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == message.getPayload()[11]){
+            //解析获取设备信息
+            ParseDeviceData.ParseGetDeviceInfo(message.toString(),false);
+            return;
+        }
 
-        //解析添加场景返回数据
-        ParseSceneData.ParseAddSceneBackInfo(message.getPayload(),Constants.SCENE_GLOBAL.ADD_SCENE_NAME.length());
-        System.out.println("ParseAddSceneBackInfo" + "ParseAddSceneBackInfo");
+        if ((int) MessageType.A.GET_ALL_SCENE.value() == message.getPayload()[11]){
+            //解析获取sceneinfo
+            ParseSceneData.ParseGetScenesInfo(message.toString());
+            return;
+        }
+
+        if((int)MessageType.A.ADD_GROUP_NAME.value() == message.getPayload()[11]){
+            //解析添加组返回数据
+            ParseGroupData.ParseAddGroupBack(message.getPayload(),Constants.GROUP_GLOBAL.ADD_GROUP_NAME.length());
+            System.out.println("ParseAddGroupBack" + "ParseAddGroupBack");
+        }
+
+        if ((int) MessageType.A.ADD_SCENE_NAME.value() == message.getPayload()[11]) {
+            //解析添加场景返回数据
+            ParseSceneData.ParseAddSceneBackInfo(message.getPayload(),Constants.SCENE_GLOBAL.ADD_SCENE_NAME.length());
+        }
     }
 
     @Override

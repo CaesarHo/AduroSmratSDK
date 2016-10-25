@@ -60,7 +60,12 @@ public class SceneCmdData {
         bt_send[30] = (byte) 0x09;
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x00;
-        bt_send[33] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[33] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[33] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
         return bt_send;
     }
 

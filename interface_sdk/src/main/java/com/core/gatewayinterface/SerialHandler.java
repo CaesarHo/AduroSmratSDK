@@ -124,13 +124,7 @@ public class SerialHandler {
      * @param wifiManager
      */
     public void ScanGatewayInfo(Context context, WifiManager wifiManager) {
-        //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
-            //如果網絡是3G網，則連接mqtt及訂閱mqtt
-//            setMqttCommunication(Constants.clientId );
-        } else {
-            new Thread(new UDPHelper(context, wifiManager)).start();
-        }
+        new Thread(new UDPHelper(context, wifiManager)).start();
     }
 
     /**
@@ -155,14 +149,7 @@ public class SerialHandler {
      * search device
      */
     public void GetAllDeviceListen() {
-//        if (!NetworkUtil.NetWorkType(context)) {
-//            System.out.println("远程打开 = " + "GetAllDeviceListen");
-//            byte[] bt_send = DeviceCmdData.GetAllDeviceListCmd();
-//            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-//            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
-//        } else {
-            new Thread(new GetAllDevices(context)).start();
-//        }
+        new Thread(new GetAllDevices(context)).start();
     }
 
     /**
@@ -247,18 +234,10 @@ public class SerialHandler {
 
     /**
      * 添加房间
-     *
      * @param group_name
      */
     public void CreateGroup(String group_name){
-        Constants.GROUP_GLOBAL.ADD_GROUP_NAME = group_name;
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "CreateGroup");
-            byte[] bt_send = GroupCmdData.sendAddGroupCmd(group_name);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new AddGroup(group_name)).start();
-        }
+        new Thread(new AddGroup(context,group_name)).start();
     }
 
     /**
@@ -267,13 +246,7 @@ public class SerialHandler {
      * @param groupid
      */
     public void DeleteGroup(short groupid) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "DeleteGroup");
-            byte[] bt_send = GroupCmdData.sendDeleteGroupCmd((int) groupid);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new DeleteGroup(groupid)).start();
-        }
+        new Thread(new DeleteGroup(context,groupid)).start();
     }
 
     /**
@@ -283,46 +256,22 @@ public class SerialHandler {
      * @param group_name
      */
     public void ChangeGroupName(short group_id, String group_name){
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "ChangeGroupName");
-            byte[] bt_send = GroupCmdData.sendUpdateGroupCmd((int) group_id, group_name);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new UpdateGroupName(group_id, group_name)).start();
-        }
+        new Thread(new UpdateGroupName(context,group_id, group_name)).start();
     }
 
     //获取网关所有房间
     public void getGroups() {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getGroups");
-            byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetAllGroups()).start();
-        }
+        new Thread(new GetAllGroups(context)).start();
     }
 
     //设置房间中所有设备的状态roomId(房间ID),state(房间状态)
     public void setGroupState(short groupId, int state) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setGroupState");
-            byte[] bt_send = GroupCmdData.setGroupState((int) groupId, (int) state);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetGroupState((int) groupId, state)).start();
-        }
+        new Thread(new SetGroupState(context,(int)groupId,state)).start();
     }
 
     //设置房间中所有lamp的亮度
     public void setGroupLevel(short groupId, int level) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "setGroupLevel");
-            byte[] bt_send = GroupCmdData.setGroupLevel((int) groupId, (int) level);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new SetGroupLevel((int) groupId, level)).start();
-        }
+        new Thread(new SetGroupLevel(context,(int)groupId,level)).start();
     }
 
     //设置房间中所有lamp的色调(未实现)
@@ -371,24 +320,12 @@ public class SerialHandler {
 
     //将指定的设备加入到指定的组中
     public void addDeviceToGroup(AppDevice appDevice, short group_id) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "AgreeDeviceInNet");
-            byte[] bt_send = GroupCmdData.Add_DeviceToGroup(appDevice, group_id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new AddDeviceToGroup(appDevice, group_id)).start();
-        }
+        new Thread(new AddDeviceToGroup(context,appDevice, group_id)).start();
     }
 
     //将指定的设备从组中删除
     public void deleteDeviceFromGroup(AppDevice appDevice, short group_id) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "deleteDeviceFromGroup");
-            byte[] bt_send = GroupCmdData.DeleteDeviceFromGroup(appDevice, group_id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new DeleteDeviceFromGroup(appDevice, group_id)).start();
-        }
+        new Thread(new DeleteDeviceFromGroup(context,appDevice, group_id)).start();
     }
 
     //组操作============================end====================================
@@ -397,37 +334,19 @@ public class SerialHandler {
     //=======================场景操作 start========================
     //获取网关所有场景
     public void getSences() {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "getSences");
-            byte[] bt_send = SceneCmdData.GetAllScenesListCmd();
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new GetAllSences()).start();
-        }
+        new Thread(new GetAllSences(context)).start();
     }
 
     //添加场景
-    public void AddSence(String Out_Scene_Name, short Out_Group_Id){
-        Constants.SCENE_GLOBAL.ADD_SCENE_NAME = Out_Scene_Name;
-        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = Out_Group_Id;
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "AddSence");
-            byte[] bt_send = SceneCmdData.sendAddSceneCmd(Out_Scene_Name, Out_Group_Id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new AddSence(Out_Scene_Name, Out_Group_Id)).start();
-        }
+    public void AddSence(String scene_Name, short group_Id){
+        Constants.SCENE_GLOBAL.ADD_SCENE_NAME = scene_Name;
+        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = group_Id;
+        new Thread(new AddSence(context,scene_Name, group_Id)).start();
     }
 
     //Recall场景
-    public void RecallScene(Short Group_Id, Short Scene_Id) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "RecallScene");
-            byte[] bt_send = SceneCmdData.RecallScene((int) Group_Id, (int) Scene_Id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new RecallScene(Group_Id, Scene_Id)).start();
-        }
+    public void RecallScene(Short group_Id, Short scene_Id) {
+        new Thread(new RecallScene(context,group_Id, scene_Id)).start();
     }
 
     //获取指定场景的详细信息，
@@ -443,46 +362,22 @@ public class SerialHandler {
 
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
     public void addDeviceToSence(AppDevice appDevice, short group_id, short scene_id) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "addDeviceToSence");
-            byte[] bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new AddDeviceToSence(appDevice, group_id, scene_id)).start();
-        }
+        new Thread(new AddDeviceToSence(context,appDevice, group_id, scene_id)).start();
     }
 
     //删除场景中指定设备成员 senceName场景名 设备Id
     public void deleteDeviceFromScene(AppDevice appDevice, short scene_id) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "deleteDeviceFromScene");
-            byte[] bt_send = SceneCmdData.DeleteDeviceFromScene(appDevice, (int) scene_id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new DeleteDeviceFromScene(appDevice, scene_id)).start();
-        }
+        new Thread(new DeleteDeviceFromScene(context,appDevice, scene_id)).start();
     }
 
     //删除指定场景
     public void deleteScence(short scenceId) {
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "deleteScence");
-            byte[] bt_send = SceneCmdData.sendDeleteSceneCmd((int) scenceId);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new DeleteScence(scenceId)).start();
-        }
+        new Thread(new DeleteScence(context,scenceId)).start();
     }
 
     //修改指定场景
-    public void ChangeSceneName(short sceneId, String newSceneName){
-        if (!NetworkUtil.NetWorkType(context)) {
-            System.out.println("远程打开 = " + "ChangeSceneName");
-            byte[] bt_send = SceneCmdData.sendUpdateSceneCmd((int) sceneId, newSceneName);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
-        } else {
-            new Thread(new UpdateSceneName(sceneId, newSceneName)).start();
-        }
+    public void ChangeSceneName(short scene_Id, String scene_Name){
+        new Thread(new UpdateSceneName(context,scene_Id, scene_Name)).start();
     }
     //场景操作 =========================end============================
 

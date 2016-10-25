@@ -37,9 +37,8 @@ public class MqttManager {
         return mInstance;
     }
 
-    public void init(Context context){
+    public void init(Context context) {
         mContext = context;
-        System.out.println("MqttManager = " + "Context");
     }
 
     /**

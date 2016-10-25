@@ -46,29 +46,25 @@ public class ParseSceneData {
         Short Scene_Id = 0;
         String Scene_Name = "";
         boolean isRun = true;
-        ArrayList<String> SceneFormGroupDevlist = new ArrayList<String>();
+        ArrayList<String> mac_list = new ArrayList<String>();
         int strToint = sceneinfo.indexOf(":");
         String isScene = "";
         if (strToint >= 0) {
             isScene = sceneinfo.substring(strToint - 3, strToint);
             Log.i("isScene = ", isScene);
         }
-        SceneFormGroupDevlist.clear();
+        mac_list.clear();
 
         if (sceneinfo.contains("GW") && !sceneinfo.contains("K64") && isScene.contains("eId")) {
-
             String[] group_data = sceneinfo.split(",");
-
             //get scenes
             for (int i = 1; i < group_data.length; i++) {
                 if (group_data.length < 2) {
                     continue;
                 }
-
                 if (group_data[i].contains("MAC:")) {
-                    SceneFormGroupDevlist.add(group_data[i].substring(4, group_data[i].length()));
+                    mac_list.add(group_data[i].substring(4, group_data[i].length()));
                 }
-
                 String[] Id_Source = group_data[0].split(":");
                 String[] Group_Id_Source = group_data[1].split(":");
                 String[] Name_Source = group_data[2].split(":");
@@ -83,20 +79,14 @@ public class ParseSceneData {
                     }
                     Scene_Name = Utils.toStringHex2(Name_Source[1]);
                     Scene_Group_Id = Short.valueOf(Group_Id_Source[1]);
-
                 }
-
-                Log.i("Scene_Group_Id = ", "" + Scene_Group_Id);
-                Log.i("Scene_Id = ", "" + Scene_Id);
-                Log.i("Scene_Name = ", Scene_Name);
+                AppScene appScene = new AppScene();
+                appScene.setSencesId(Scene_Id);
+                appScene.setSencesName(Scene_Name);
+                appScene.setGroups_id(Scene_Group_Id);
+                appScene.setDevices_mac(mac_list);
+                DataSources.getInstance().getAllScenes(appScene);
             }
-            AppScene appScene = new AppScene();
-            appScene.setSencesId(Scene_Id);
-            appScene.setSencesName(Scene_Name);
-            appScene.setGroups_id(Scene_Group_Id);
-            appScene.setDevices_mac(SceneFormGroupDevlist);
-
-            DataSources.getInstance().getAllScenes(appScene);
         }
     }
 

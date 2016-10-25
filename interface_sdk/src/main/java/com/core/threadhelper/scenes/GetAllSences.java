@@ -1,13 +1,18 @@
 package com.core.threadhelper.scenes;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.core.cmddata.SceneCmdData;
 import com.core.cmddata.parsedata.ParseSceneData;
+import com.core.db.GatewayInfo;
 import com.core.entity.AppScene;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
+import com.core.global.MessageType;
+import com.core.mqtt.MqttManager;
 import com.core.utils.FtFormatTransfer;
+import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.io.IOException;
@@ -24,52 +29,50 @@ import java.util.Arrays;
  * Created by best on 2016/7/13.
  */
 public class GetAllSences implements Runnable {
+    private Context mContext;
     private byte[] bt_send;
     private DatagramSocket socket = null;
-    private Short Scene_Group_Id = 0;
-    private Short Scene_Id = 0;
-    private String Scene_Name = "";
-    private boolean isRun = true;
-    ArrayList<String> SceneFormGroupDevlist =new ArrayList<>();
+
+    public GetAllSences(Context context) {
+        this.mContext = context;
+    }
 
     @Override
     public void run() {
         try {
-            //获取组列表命令
-            bt_send = SceneCmdData.GetAllScenesListCmd();
-            Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+            if (!NetworkUtil.NetWorkType(mContext)) {
+                System.out.println("远程打开 = " + "getSences");
+                byte[] bt_send = SceneCmdData.GetAllScenesListCmd();
+                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
+            } else {
+                //获取组列表命令
+                bt_send = SceneCmdData.GetAllScenesListCmd();
+                Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+                InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+                if (socket == null) {
+                    socket = new DatagramSocket(null);
+                    socket.setReuseAddress(true);
+                    socket.bind(new InetSocketAddress(Constants.UDP_PORT));
+                }
 
-            InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
-            if (socket == null) {
-                socket = new DatagramSocket(null);
-                socket.setReuseAddress(true);
-                socket.bind(new InetSocketAddress(Constants.UDP_PORT));
+                DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
+                socket.send(datagramPacket);
+                System.out.println("GetAllScenes = " + Utils.binary(bt_send, 16));
+
+                while (true) {
+                    final byte[] recbuf = new byte[1024];
+                    final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                    socket.receive(packet);
+                    String str = FtFormatTransfer.bytesToUTF8String(recbuf);
+                    System.out.println("Scene_out2 = " + recbuf[11]);
+                    if ((int) MessageType.A.GET_ALL_SCENE.value() == recbuf[11]) {
+                        ParseSceneData.ParseGetScenesInfo(str);
+                        System.out.println("Scene_out2 = " + recbuf[11]);
+                    }
+                }
             }
-
-            DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
-            socket.send(datagramPacket);
-            System.out.println("GetAllScenes = " + Utils.binary(bt_send, 16));
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        while (true) {
-            final byte[] recbuf = new byte[1024];
-            final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-            try {
-                socket.receive(packet);
-                System.out.println("Scene_out2 = " + Arrays.toString(recbuf));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            String str = FtFormatTransfer.bytesToUTF8String(recbuf);
-
-            ParseSceneData.ParseGetScenesInfo(str);
         }
     }
 }

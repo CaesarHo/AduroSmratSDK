@@ -7,6 +7,7 @@ import com.core.cmddata.parsedata.ParseDeviceData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
+import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
 import com.core.threadhelper.UDPHelper;
 import com.core.utils.NetworkUtil;
@@ -88,12 +89,10 @@ public class GetAllDevices implements Runnable {
                         }
                     }
 
-                    //如果str长度大于46则解析设备信息
-                    if (str.length() > 46) {
+                    if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == recbuf[11]) {
                         System.out.println("str.length = " + str.length());
                         ParseDeviceData.ParseGetDeviceInfo(str, false);
                     }
-//                    Thread.sleep(500);
                 }
             }
         } catch (Exception e) {

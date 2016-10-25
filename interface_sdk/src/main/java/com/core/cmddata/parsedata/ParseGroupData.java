@@ -19,13 +19,13 @@ public class ParseGroupData {
         Short Group_Id = 0;
         String Group_Name = "";
 
-        ArrayList<String> Devicelist = new ArrayList<String>();
+        ArrayList<String> device_list = new ArrayList<>();
         int strToint = groupsinfo.indexOf(":");
         String isGroup = "";
         if (strToint >= 0) {
             isGroup = groupsinfo.substring(strToint - 4, strToint);
         }
-        Devicelist.clear();
+        device_list.clear();
 
         if (groupsinfo.contains("GW") && !groupsinfo.contains("K64") && isGroup.contains("upId")) {
             String[] group_data = groupsinfo.split(",");
@@ -34,7 +34,7 @@ public class ParseGroupData {
                 if (group_data.length < 2) {
                     continue;
                 }
-                Devicelist.add(group_data[i]);
+                device_list.add(group_data[i]);
 
                 String[] Id_Source = group_data[0].split(":");
                 String[] Name_Source = group_data[1].split(":");
@@ -48,13 +48,13 @@ public class ParseGroupData {
                     Group_Name = Utils.toStringHex2(Name_Source[1]);
                 }
             }
-        }
-        AppGroup appGroup = new AppGroup();
-        appGroup.setGroup_id(Group_Id);
-        appGroup.setGroup_name(Group_Name);
-        appGroup.setMac_data(Devicelist);
+            AppGroup appGroup = new AppGroup();
+            appGroup.setGroup_id(Group_Id);
+            appGroup.setGroup_name(Group_Name);
+            appGroup.setMac_data(device_list);
 
-        DataSources.getInstance().GetAllGroups(appGroup);
+            DataSources.getInstance().GetAllGroups(appGroup);
+        }
     }
 
     //return data
@@ -69,11 +69,9 @@ public class ParseGroupData {
         String mGroupName = FtFormatTransfer.bytesToString(mName_Bt);
         //判断是否是所添加的组
         if (mGroupName.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
-
             if (mGroupID == 0 && mGroupName == null) {
                 return;
             }
-
             DataSources.getInstance().AddGroupResult(mGroupID, Constants.GROUP_GLOBAL.ADD_GROUP_NAME);
         }
     }
