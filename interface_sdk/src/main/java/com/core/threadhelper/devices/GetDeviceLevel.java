@@ -73,12 +73,8 @@ public class GetDeviceLevel implements Runnable {
                         ParseDeviceData.ParseAttributeData parseAttributeData = new ParseDeviceData.ParseAttributeData();
                         parseAttributeData.parseBytes(recbuf);
 
-                        if (parseAttributeData.mZigbeeType.contains("8100") & parseAttributeData.clusterID == 8) {
-                            DataSources.getInstance().getDeviceLevel(parseAttributeData.mDevMac, parseAttributeData.attribValue);
-                            System.out.println("ParseAttributeDatamDevMac" + parseAttributeData.mDevMac);
-                            System.out.println("ParseAttributeDataclusterID" + parseAttributeData.clusterID);
-                            System.out.println("ParseAttributeDatastate" + parseAttributeData.state);
-                            System.out.println("ParseAttributeDataattributeID" + parseAttributeData.attributeID);
+                        if (parseAttributeData.zigbee_type.contains("8100") & parseAttributeData.clusterID == 8) {
+                            DataSources.getInstance().getDeviceLevel(parseAttributeData.dev_mac, parseAttributeData.attribValue);
                         }
                     }
                 }

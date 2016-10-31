@@ -35,7 +35,7 @@ public class MqttCallbackBus implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(String topic, MqttMessage message) {
+    public void messageArrived(String topic,final MqttMessage message) {
         Log.e(TAG,topic + "=" + message.toString());
         System.out.println(TAG + "=" +message.getPayload());
 

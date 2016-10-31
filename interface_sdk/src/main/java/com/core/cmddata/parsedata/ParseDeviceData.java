@@ -251,8 +251,8 @@ public class ParseDeviceData {
      * 解析设备属性
      */
     public static class ParseAttributeData{
-        public String  mZigbeeType;
-        public String mDevMac;
+        public String  zigbee_type;
+        public String dev_mac;
         public short data_len_s;
         public String shortaddr_str = "";
         public int srcEndpoint;
@@ -262,8 +262,8 @@ public class ParseDeviceData {
         public short clusterID;
 
         public ParseAttributeData(){
-            mDevMac = "";
-            mZigbeeType = "";
+            dev_mac = "";
+            zigbee_type = "";
             shortaddr_str = "";
         }
 
@@ -277,15 +277,15 @@ public class ParseDeviceData {
                 String str_zero = "";
                 if ( mZigbee_bt[i] >= 0 &&  mZigbee_bt[i] <= 16){
                     str_zero = "0" + (mZigbee_bt[i] & 0xFF);
-                    mZigbeeType = mZigbeeType + str_zero;
+                    zigbee_type = zigbee_type + str_zero;
                 }else{
-                    mZigbeeType = mZigbeeType + Integer.toHexString(mZigbee_bt[i] & 0xFF);
+                    zigbee_type = zigbee_type + Integer.toHexString(mZigbee_bt[i] & 0xFF);
                 }
             }
-            if (!mZigbeeType.contains("8100")){
+            if (!zigbee_type.contains("8100")){
                 return;
             }
-            System.out.println("ParseAttributeData mZigbeeType = " + mZigbeeType);
+            System.out.println("ParseAttributeData mZigbeeType = " + zigbee_type);
 
             //设备MAC地址
             System.arraycopy(data,22,mDevMac_bt,0,8);
@@ -294,12 +294,12 @@ public class ParseDeviceData {
                 if ( mDevMac_bt[i] >= 0 &&  mDevMac_bt[i] <= 16){
                     String hexTostr = Integer.toHexString(mDevMac_bt[i]);
                     str_zero = "0" + hexTostr;
-                    mDevMac = mDevMac + str_zero;
+                    dev_mac = dev_mac + str_zero;
                 }else{
-                    mDevMac = mDevMac + Integer.toHexString(mDevMac_bt[i] & 0xFF);
+                    dev_mac = dev_mac + Integer.toHexString(mDevMac_bt[i] & 0xFF);
                 }
             }
-            System.out.println("ParseAttributeData mDevMac = " + mDevMac);
+            System.out.println("ParseAttributeData mDevMac = " + dev_mac);
 
             //数据长度
             byte[] data_len = new byte[2];
@@ -419,4 +419,100 @@ public class ParseDeviceData {
         }
     }
 
+    public static class ParseIEEEData {
+        public String gateway_mac = "";
+
+        public ParseIEEEData() {
+            gateway_mac = "";
+        }
+
+        public void parseBytes(byte[] data) {
+            byte[] gateway_bt = new byte[8];
+
+            if (data[31] == 8 || data[31] == 10) {
+                System.arraycopy(data, 32, gateway_bt, 0, 8);
+                String str_zero = "";
+                for (int i = 0; i < gateway_bt.length; i++) {
+                    if (gateway_bt[i] >= 0 && gateway_bt[i] <= 16) {
+                        if (gateway_bt[i] >= 10 && gateway_bt[i] <= 16){
+                            str_zero = "0" + Integer.toHexString(gateway_bt[i] & 0xFF) ;
+                        }else{
+                            str_zero = "0" + (gateway_bt[i] & 0xFF);
+                        }
+                        gateway_mac = gateway_mac + str_zero;
+                        System.out.println("str_zero = " + str_zero);
+                    } else {
+                        gateway_mac = gateway_mac + Integer.toHexString(gateway_bt[i] & 0xFF);
+                    }
+
+                    System.out.println("gateway_mac = " + gateway_mac);
+                }
+            }
+        }
+    }
+
+
+
+    public static class ParseBindVCPFPData {
+
+        public short  frequency = -1;
+        public double  voltage = -1;
+        public double  current = -1;
+        public double  power = -1;
+        public double  power_factor = -1;
+
+        public ParseBindVCPFPData() {
+            frequency = -1;
+        }
+
+        public void parseBytes(byte[] data) {
+            byte[] type_bt = new byte[2];
+
+            byte[] frequency_bt = new byte[2];
+            byte[] voltage_bt = new byte[2];
+            byte[] current_bt = new byte[2];
+            byte[] power_bt = new byte[2];
+            byte[] power_factor_bt = new byte[2];
+
+            //Zigbee串口类型
+            System.arraycopy(data,20, type_bt, 0, 2);
+            String type = "";
+            for (int i = 0; i < type_bt.length; i++) {
+                type += Integer.toHexString(type_bt[i] & 0xFF);
+            }
+            System.out.println("BytesToShort = " + type);
+            if (!type.contains("802")){
+                return;
+            }
+
+            System.arraycopy(data, 58, frequency_bt, 0, 2);//frequency_bt
+            frequency = FtFormatTransfer.lBytesToShort(frequency_bt);
+            System.out.println("parseBytes_frequency = " + frequency);
+
+            System.arraycopy(data, 63, voltage_bt, 0, 2);//voltage_bt
+            short voltage_s = FtFormatTransfer.lBytesToShort(voltage_bt);
+            System.out.println("parseBytes_voltage = " + voltage_s);
+            voltage = voltage_s / 100.00;
+            System.out.println("parseBytes_voltage_1 = " + voltage);
+
+            System.arraycopy(data, 68, current_bt, 0, 2);//current_bt
+            short current_s = FtFormatTransfer.lBytesToShort(current_bt);
+            System.out.println("parseBytes_current = " + current_s);
+            current = current_s /1000.0000;
+            System.out.println("parseBytes_current_1 = " + current);
+
+            System.arraycopy(data, 73, power_bt, 0, 2);//power_bt
+            short power_s = FtFormatTransfer.lBytesToShort(power_bt);
+            System.out.println("parseBytes_power = " + power);
+            power = power_s /1000.0000;
+            System.out.println("parseBytes_power_1 = " + power);
+
+            System.arraycopy(data, 78, power_factor_bt, 0, 2);//power_factor_bt
+            short power_factor_s = FtFormatTransfer.lBytesToShort(power_factor_bt);
+            power_factor = power_factor_s /100.00;
+            System.out.println("parseBytes_power_factor_1 = " + power_factor);
+
+            DataSources.getInstance().BindDevice(frequency,voltage,current,power,power_factor);
+        }
+    }
 }

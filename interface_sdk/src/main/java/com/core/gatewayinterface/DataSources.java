@@ -113,6 +113,11 @@ public class DataSources {
         sdkCallback.getReceiveSensorDataCallback(mDevMac,state,time);
     }
 
+    //绑定设备
+    public void BindDevice(short frequency,double voltage,double current,double power,double power_factor){
+        sdkCallback.bingdevicecallback(frequency,voltage,current,power,power_factor);
+    }
+
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景

@@ -59,9 +59,9 @@ public class GetAllDevices implements Runnable {
                 while (true) {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-
                     socket.receive(packet);
                     System.out.println("设备信息byte = " + Arrays.toString(recbuf));
+
                     String str = new String(packet.getData()).trim();
                     /**
                      * 接受传感器数据并解析
@@ -79,11 +79,11 @@ public class GetAllDevices implements Runnable {
                      */
                     ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
                     attribute.parseBytes(recbuf);
-                    if (attribute.mZigbeeType.contains("8100")) {
+                    if (attribute.zigbee_type.contains("8100")) {
                         System.out.println("返回设备属性Value" + attribute.attribValue);
                         //如果设备属性簇ID等于5则发送保存zonetypecmd
                         if (attribute.clusterID == 5) {
-                            SetDeviceAttribute.SendSaveZoneTypeCmd(attribute.mDevMac,
+                            SetDeviceAttribute.SendSaveZoneTypeCmd(attribute.zigbee_type,
                                     attribute.shortaddr_str, attribute.srcEndpoint + "",
                                     (short) attribute.attribValue);
                         }

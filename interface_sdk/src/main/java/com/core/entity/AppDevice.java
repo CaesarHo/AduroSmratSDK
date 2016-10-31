@@ -1,12 +1,20 @@
 package com.core.entity;
 
+import android.widget.TextView;
+
 import java.io.Serializable;
 
 /**
  * Created by best on 2016/9/25.
  */
 
-public class AppDevice implements Serializable{
+public class AppDevice implements Serializable {
+    public short frequency = 0;
+    public double voltage = 0;
+    public double current = 0;
+    public double power = 0;
+    public double power_factor = 0;
+
     private static final long serialVersionUID = 1L;
     private String deviceName;
     private String profileid;
@@ -152,16 +160,62 @@ public class AppDevice implements Serializable{
     public void setSensordata(int sensordata) {
         Sensordata = sensordata;
     }
+
     public short getClusterId() {
         return clusterId;
     }
+
     public void setClusterId(short clusterId) {
         this.clusterId = clusterId;
     }
+
     public short getAttribID() {
         return attribID;
     }
+
     public void setAttribID(short attribID) {
         this.attribID = attribID;
+    }
+
+
+    public short getFrequency() {
+        return frequency;
+    }
+
+    public double getVoltage() {
+        return voltage;
+    }
+
+
+    public double getCurrent() {
+        return current;
+    }
+
+    public double getPower() {
+        return power;
+    }
+
+    public double getPower_factor() {
+        return power_factor;
+    }
+
+    public void setFrequency(short frequency) {
+        this.frequency = frequency;
+    }
+
+    public void setVoltage(double voltage) {
+        this.voltage = voltage;
+    }
+
+    public void setCurrent(double current) {
+        this.current = current;
+    }
+
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    public void setPower_factor(double power_factor) {
+        this.power_factor = power_factor;
     }
 }

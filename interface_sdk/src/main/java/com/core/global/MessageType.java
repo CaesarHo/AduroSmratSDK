@@ -41,7 +41,9 @@ public class MessageType {
         CREATE_AND_EDITTASK((byte) 0x18),
         DELETE_TASK((byte) 0x19),
         CHECK_TASK((byte) 0x1A),
-        GET_ALL_TASK((byte) 0x1B);
+        GET_ALL_TASK((byte) 0x1B),
+        GET_GATEWAY_IEEE((byte)0x1C),
+        BIND_DEVICE((byte)0x1D);
 
         private byte value = 0;
 

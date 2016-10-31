@@ -65,11 +65,8 @@ public class GetDeviceZoneType implements Runnable{
                      */
                     ParseDeviceData.ParseAttributeData parseAttributeData = new ParseDeviceData.ParseAttributeData();
                     parseAttributeData.parseBytes(recbuf);
-                    if (parseAttributeData.mZigbeeType.contains("8100")) {
-                        System.out.println("ParseAttributeDatamDevMac" + parseAttributeData.mDevMac);
-                        System.out.println("ParseAttributeDataclusterID" + parseAttributeData.clusterID);
-                        System.out.println("ParseAttributeDatastate" + parseAttributeData.state);
-                        System.out.println("ParseAttributeDataattributeID" + parseAttributeData.attributeID);
+                    if (parseAttributeData.zigbee_type.contains("8100")) {
+                        System.out.println("ParseAttributeDatamDevMac" + parseAttributeData.dev_mac);
                     }
                 }
             }

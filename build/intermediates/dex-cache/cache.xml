@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="577f45741fff1af6c830c3fcdb3f791706030ccc">
+        sha1="cd4601629996079d256f222ddeb1cd9d9bbe6700">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
     </item>
     <item
@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="cf789fc858caae3935efc1503cb21f7f3532578e">
+        sha1="39f883ebffa178d2d5397abc62eb93a965284f66">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
     </item>
     <item

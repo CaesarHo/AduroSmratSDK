@@ -9,8 +9,10 @@ import com.core.cmddata.GroupCmdData;
 import com.core.cmddata.SceneCmdData;
 import com.core.entity.AppDevice;
 import com.core.db.GatewayInfo;
+import com.core.entity.AppScene;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
+import com.core.threadhelper.devices.BindDevice;
 import com.core.threadhelper.groups.AddDeviceToGroup;
 import com.core.threadhelper.scenes.AddDeviceToSence;
 import com.core.threadhelper.groups.AddGroup;
@@ -227,6 +229,11 @@ public class SerialHandler {
     public void UpdateDeviceName(AppDevice appDevice, String device_name){
         new Thread(new UpdateDeviceName(context,appDevice, device_name)).start();
     }
+
+    public void BindDevice(AppDevice appDevice){
+        new Thread(new BindDevice(context,appDevice)).start();
+    }
+
     //设备 ==========================end============================
 
 

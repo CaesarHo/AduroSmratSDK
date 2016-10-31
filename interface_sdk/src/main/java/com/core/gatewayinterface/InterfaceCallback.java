@@ -73,6 +73,8 @@ public interface InterfaceCallback {
 
     void getReceiveSensorDataCallback(String deviceid,int state,String time_str);
 
+    void bingdevicecallback(short frequency,double voltage,double current,double power,double power_factor);
+
     //==========================场景相关===========================
     //获取网关所有场景
     void getScenesCallback(AppScene appScene);
