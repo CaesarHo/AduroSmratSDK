@@ -13,6 +13,74 @@ import com.core.utils.Utils;
  */
 
 public class TaskCmdData {
+    /*
+ *设置网关时间
+ */
+    public static byte[] setGateWayTimeCmd(int year,int month ,int day,int hour,int minute,int second){
+        byte[] bt_send = new byte[41];
+        //415050c0a8016b010143
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体   0100 0f 0018  0100100016
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.SET_GETEWAY_TIME.value();//数据类型
+        bt_send[13] = 0x00;
+        bt_send[14] = (byte) 0x19;//数据体长度
+        //数据体头   415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号   01ffff
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
+        //macaddr  00124b00076afe09
+        bt_send[23] = 0x00;
+        bt_send[24] = 0x12;
+        bt_send[25] = 0x4b;
+        bt_send[26] = 0x00;
+        bt_send[27] = 0x07;
+        bt_send[28] = 0x6a;
+        bt_send[29] = (byte) 0xfe;
+        bt_send[30] = 0x09;
+        //数据长度   00060001
+        bt_send[31] = (byte) 0x00;
+        bt_send[32] = (byte) 0x07;
+
+        bt_send[33] = (byte)( year>>8);
+        bt_send[34] = (byte) year;
+        bt_send[35] = (byte) month;
+        bt_send[36] = (byte) day;
+        bt_send[37] = (byte) hour;
+        bt_send[38] = (byte) minute;
+        bt_send[39] = (byte) second;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[40] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[40] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+        return bt_send;
+    }
+
     /**
      * 创建任务
      */
@@ -23,12 +91,12 @@ public class TaskCmdData {
                                   String recall_scene, int group_id, int scene_id) {
         byte[] strTobt = null;
         try {
-            strTobt = taskname.getBytes("UTF-8");
+            strTobt = taskname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int task_name_len = taskname.length();
+        int task_name_len = strTobt.length;
 
         byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, dev_switch, dev_level, dev_hue,dev_temp, recall_scene, group_id, scene_id);
 
@@ -188,12 +256,12 @@ public class TaskCmdData {
                                                 String dev_temp) {
         byte[] strTobt = null;
         try {
-            strTobt = taskname.getBytes("UTF-8");
+            strTobt = taskname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int task_name_len = taskname.length();
+        int task_name_len = strTobt.length;
 
         byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, dev_switch, dev_level, dev_hue, dev_temp, null, 0, 0);
 
@@ -323,12 +391,12 @@ public class TaskCmdData {
                                                 int cmd_size,int group_id, int scene_id){
         byte[] strTobt = null;
         try {
-            strTobt = taskname.getBytes("UTF-8");
+            strTobt = taskname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int task_name_len = taskname.length();
+        int task_name_len = strTobt.length;
 
         AppDevice appDevice = new AppDevice();
         byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,null,null,null,null,"00A5",group_id,scene_id);
@@ -463,12 +531,12 @@ public class TaskCmdData {
                                                     String dev_temp){
         byte[] strTobt = null;
         try {
-            strTobt = taskname.getBytes("UTF-8");
+            strTobt = taskname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int task_name_len = taskname.length();
+        int task_name_len = strTobt.length;
 
         byte[] cmddatabt = TaskCmdData.tCmdData(appDevice,dev_switch,dev_level,dev_hue,dev_temp,null, 0, 0);
 
@@ -596,12 +664,12 @@ public class TaskCmdData {
                                                    int group_id, int scene_id){
         byte[] strTobt = null;
         try {
-            strTobt = taskname.getBytes("UTF-8");
+            strTobt = taskname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int task_name_len = taskname.length();
+        int task_name_len = strTobt.length;
         AppDevice appDevice = new AppDevice();
         byte[] cmddatabt = TaskCmdData.tCmdData(appDevice, null, null, null, null, "00A5", group_id, scene_id);
 

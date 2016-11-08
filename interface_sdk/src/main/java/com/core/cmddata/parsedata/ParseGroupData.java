@@ -15,7 +15,8 @@ import java.util.Arrays;
 
 public class ParseGroupData {
 
-    public static void ParseGetGroupsInfo(String groupsinfo) {
+    public static void ParseGetGroupsInfo(byte[] bt) {
+        String groupsinfo = FtFormatTransfer.bytesToUTF8String(bt);
         Short Group_Id = 0;
         String Group_Name = "";
 
@@ -59,20 +60,24 @@ public class ParseGroupData {
 
     //return data
     public static void ParseAddGroupBack(byte[] data, int len) {
-        byte[] mId_Bt = new byte[2];
-        byte[] mName_Bt = new byte[len];
+        byte[] id_bt = new byte[2];
+        byte[] name_bt = new byte[len];
 
-        System.arraycopy(data, 32, mId_Bt, 0, 2);
-        short mGroupID = FtFormatTransfer.hBytesToShort(mId_Bt);
+        System.arraycopy(data, 32, id_bt, 0, 2);
+        short group_id = FtFormatTransfer.hBytesToShort(id_bt);
+        System.out.println("添加房间返回数据4: =" + group_id);
 
-        System.arraycopy(data, 36, mName_Bt, 0, len);
-        String mGroupName = FtFormatTransfer.bytesToString(mName_Bt);
+        System.arraycopy(data, 36, name_bt, 0, len);
+        String group_name = FtFormatTransfer.bytesToUTF8String(name_bt);
+        System.out.println("添加房间返回数据5: =" + group_name);
+
         //判断是否是所添加的组
-        if (mGroupName.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
-            if (mGroupID == 0 && mGroupName == null) {
+        if (group_name.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
+            System.out.println("添加房间返回数据2: =" + group_name);
+            if (group_id == 0 && group_name == null) {
                 return;
             }
-            DataSources.getInstance().AddGroupResult(mGroupID, Constants.GROUP_GLOBAL.ADD_GROUP_NAME);
+            DataSources.getInstance().AddGroupResult(group_id, Constants.GROUP_GLOBAL.ADD_GROUP_NAME);
         }
     }
 

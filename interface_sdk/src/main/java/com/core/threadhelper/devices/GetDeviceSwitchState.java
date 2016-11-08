@@ -29,8 +29,8 @@ public class GetDeviceSwitchState implements Runnable {
     private Context mContext;
 
     public GetDeviceSwitchState(Context context, AppDevice appDevice) {
-        this.appDevice = appDevice;
         this.mContext = context;
+        this.appDevice = appDevice;
     }
 
     @Override

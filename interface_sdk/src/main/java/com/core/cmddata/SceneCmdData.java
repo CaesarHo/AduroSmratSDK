@@ -76,19 +76,19 @@ public class SceneCmdData {
      * @return
      */
     public static byte[] sendAddSceneCmd(String scenename, int groupid){
-        int data_style_len = 22 + scenename.length();//数据体长度
         byte[] strTobt = null;
         try {
-            strTobt = scenename.getBytes("UTF-8");
+            strTobt = scenename.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int scene_name_len = scenename.length();//场景名称长度
+        int scene_name_len = strTobt.length;//场景名称长度
+        int data_style_len = 22 + scene_name_len;//数据体长度
         int data_len = 4 + scene_name_len;
 
         byte[] bt_send = new byte[35];
-        //415050c0a801040101c
+        //415050c0a8010701017c
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -100,31 +100,28 @@ public class SceneCmdData {
         bt_send[8] = 0x01;//消息段数
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send, 9));
             String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            Log.i("ss = ", ss);
             bt_send[9] = Utils.HexString2Bytes(ss)[0];
         } else {
-            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send, 9));
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
         }
-        //消息体   1010012001a
+        //消息体0100120023
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.ADD_SCENE_NAME.value();//数据类型
-        bt_send[13] = 0x00;
+        bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度
-        //数据体头   415f5a4947
+        //数据体头415f5a4947
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
         bt_send[17] = 0x5A;
         bt_send[18] = 0x49;
         bt_send[19] = 0x47;
-        //数据体序号   01ffff
+        //数据体序号01ffff
         bt_send[20] = 0x01;
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
-        //macaddr  01ffff00124b00076afe09
+        //macaddr00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
         bt_send[25] = 0x4b;
@@ -133,18 +130,18 @@ public class SceneCmdData {
         bt_send[28] = 0x6a;
         bt_send[29] = (byte) 0xfe;
         bt_send[30] = 0x09;
-        //数据长度   0008
+        //数据长度0011
         bt_send[31] = (byte) (data_len >> 8);
         bt_send[32] = (byte) data_len;
 
-        //场景名称长度  00046b616936000d4c
+        //场景名称长度000f
         bt_send[33] = (byte) (scene_name_len >> 8);
         bt_send[34] = (byte) scene_name_len;
 
-        //场景名称  74657374
+        //场景名称e68e8fe7a9bae4ba86e5bfabe4b990 0002 7e
         String scene_name = "";
         byte[] scene_data = null;
-        for (int i = 0; i < strTobt.length; i++) {
+        for (int i = 0; i < scene_name_len; i++) {
             scene_name += Integer.toHexString(strTobt[i] & 0xFF);
             scene_data = Utils.HexString2Bytes(scene_name);
         }
@@ -471,17 +468,17 @@ public class SceneCmdData {
             e.printStackTrace();
         }
 
-        int group_name_len = strTobt.length;
-        int data_style_len = 21 + group_name_len;
-        int data_len = 3 + group_name_len;
+        int scene_name_len = strTobt.length;
+        int data_style_len = 21 + scene_name_len;
+        int data_len = 3 + scene_name_len;
 
         //组名称 726f6f6d  31
-        String group_str = "";
-        byte[] group_data = null;
+        String scene_str = "";
+        byte[] scene_name_data = null;
         for (int i = 0; i < strTobt.length; i++) {
-            group_str += Integer.toHexString(strTobt[i] & 0xFF);
-            System.out.println("group_str = " + group_str);
-            group_data = Utils.HexString2Bytes(group_str);
+            scene_str += Integer.toHexString(strTobt[i] & 0xFF);
+            System.out.println("scene_str = " + scene_str);
+            scene_name_data = Utils.HexString2Bytes(scene_str);
         }
 
         byte[] bt_send = new byte[36];
@@ -509,7 +506,7 @@ public class SceneCmdData {
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CHANGE_SCENE_NAME.value();//数据类型
-        bt_send[13] = 0x00;
+        bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度  1b = 27
         //数据体头   415f5a4947   415f5a4947
         bt_send[15] = 0x41;
@@ -530,18 +527,18 @@ public class SceneCmdData {
         bt_send[28] = 0x6a;
         bt_send[29] = (byte) 0xfe;
         bt_send[30] = 0x09;
-        //数据长度   0009      0009
-        bt_send[31] = (byte) 0x00;
+        //数据长度   0009
+        bt_send[31] = (byte) (data_len >> 8);
         bt_send[32] = (byte) data_len;
-        // group_id  00a2   00a1
+        // group_id  00a2
         bt_send[33] = (byte) scene_id;
 
-        //组名称长度   0005      0005
-        bt_send[34] = 0x00;
-        bt_send[35] = (byte) group_name_len;
+        //组名称长度   0005
+        bt_send[34] = (byte) (scene_name_len >> 8);
+        bt_send[35] = (byte) scene_name_len;
 
         //固定数据与group数据相加
-        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_data);
+        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, scene_name_data);
 
         //将前面数据CRC8校验  7d
         byte bt_crc8 = (CRC8.calc(bt_send_data, bt_send_data.length));

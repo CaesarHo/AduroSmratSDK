@@ -60,8 +60,10 @@ public class AddDeviceToSence implements Runnable {
                 socket.send(datagramPacket);
                 System.out.println("添加设备到场景for数据 = " + Utils.binary(bt_send, 16));
 
-                Thread.sleep(500);
-                new Thread(new StoreScene(appDevice, (int) group_id, scene_id)).start();
+                //添加设备到场景后，间隔两百毫秒发送存储场景
+                Thread.sleep(200);
+                byte[] store_scene = SceneCmdData.StoreScene(appDevice,group_id,scene_id);
+                Constants.sendMessage(store_scene);
                 byte[] recbuf = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 socket.receive(packet);
@@ -70,10 +72,9 @@ public class AddDeviceToSence implements Runnable {
                 e.printStackTrace();
             } finally {
                 if (socket != null) {
-//                    socket.close();
+                    socket.close();
                 }
             }
         }
-
     }
 }

@@ -49,7 +49,6 @@ public class AddSence implements Runnable {
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
                 bt_send = SceneCmdData.sendAddSceneCmd(scene_Name, group_Id);
-                Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -68,21 +67,22 @@ public class AddSence implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("添加场景返回(byte) = " + Arrays.toString(recbuf));
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);
                     //解析数据
                     if ((int) MessageType.A.ADD_SCENE_NAME.value() == recbuf[11]) {
-                        ParseSceneData.ParseAddSceneBackInfo(recbuf, Constants.SCENE_GLOBAL.ADD_SCENE_NAME.length());
+                        System.out.println("添加场景返回(byte) = " + Arrays.toString(recbuf));
+                        byte[] scene_name_len = Constants.SCENE_GLOBAL.ADD_SCENE_NAME.getBytes("utf-8");
+                        ParseSceneData.ParseAddSceneBackInfo(recbuf, scene_name_len.length);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (socket != null) {
-                socket.close();
-                isRun = false;
-            }
+//            if (socket != null) {
+//                socket.close();
+//                isRun = false;
+//            }
         }
     }
 }

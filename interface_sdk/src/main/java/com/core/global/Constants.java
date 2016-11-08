@@ -1,5 +1,14 @@
 package com.core.global;
 
+import com.core.utils.Utils;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.util.Arrays;
+
 /**
  * Created by best on 2016/7/14.
  */
@@ -36,5 +45,23 @@ public class Constants {
     public static class SCENE_GLOBAL{
         public static String ADD_SCENE_NAME = "";
         public static short ADD_SCENE_GROUP_ID = -1;
+        public static String NEW_SCENE_NAME = "";
+    }
+
+    public static void sendMessage(byte[] bt_send) throws Exception {
+        DatagramSocket socket = null;
+        InetAddress address = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+        if (socket == null) {
+            socket = new DatagramSocket(null);
+            socket.setReuseAddress(true);
+            socket.bind(new InetSocketAddress(Constants.UDP_PORT));
+        }
+        DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address, Constants.UDP_PORT);
+        socket.send(dp);
+        System.out.println("SendMessage = " + Utils.binary(bt_send, 16));
+        byte[] bs = new byte[1024];
+        DatagramPacket packet = new DatagramPacket(bs, bs.length);
+        socket.receive(packet);
+        System.out.println("getMessage = " + Arrays.toString(bs));
     }
 }

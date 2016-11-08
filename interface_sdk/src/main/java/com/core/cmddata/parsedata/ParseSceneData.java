@@ -19,29 +19,30 @@ import java.util.Arrays;
 public class ParseSceneData {
 
     public static void ParseAddSceneBackInfo(byte[] data, int len) {
-        byte[] mGroupId_Bt = new byte[2];
-        byte[] mName_Bt = new byte[len];
+        byte[] scene_id_bt = new byte[2];
+        byte[] scene_name_bt = new byte[len];
 
-        byte mSceneId = data[32];
-        int i = mSceneId & 0xff;
-        short mSceneID = (short) i;
+        byte sceneId = data[32];
+        int id_i = sceneId & 0xff;
+        short scene_id = (short)id_i;
 
-        System.arraycopy(data, 35, mName_Bt, 0, len);
-        String mSceneName = FtFormatTransfer.bytesToString(mName_Bt);
+        System.arraycopy(data, 35, scene_name_bt, 0, len);
+        String scene_name = FtFormatTransfer.bytesToUTF8String(scene_name_bt);
 
-        System.arraycopy(data, 35 + len, mGroupId_Bt, 0, 2);
-        short mGroupId = FtFormatTransfer.hBytesToShort(mGroupId_Bt);
+        System.arraycopy(data, 35 + len, scene_id_bt, 0, 2);
+        short mGroupId = FtFormatTransfer.hBytesToShort(scene_id_bt);
 
-        System.out.println("mGroupId_Bt = " + Arrays.toString(mGroupId_Bt));
-        if (mSceneName.equals(Constants.SCENE_GLOBAL.ADD_SCENE_NAME)) {
-            if (mSceneID == 0) {
+        System.out.println("mGroupId_Bt = " + Arrays.toString(scene_id_bt));
+        if (scene_name.equals(Constants.SCENE_GLOBAL.ADD_SCENE_NAME)) {
+            if (scene_id == 0) {
                 return;
             }
-            DataSources.getInstance().AddScene(mSceneID,mSceneName, Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID);
+            DataSources.getInstance().AddScene(scene_id,scene_name, Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID);
         }
     }
 
-    public static void ParseGetScenesInfo(String sceneinfo) {
+    public static void ParseGetScenesInfo(byte[] bt) {
+        String sceneinfo = FtFormatTransfer.bytesToUTF8String(bt);
         Short Scene_Group_Id = 0;
         Short Scene_Id = 0;
         String Scene_Name = "";

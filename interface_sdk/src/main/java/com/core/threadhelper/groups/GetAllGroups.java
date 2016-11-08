@@ -70,11 +70,11 @@ public class GetAllGroups implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("GetAllGroups = " + Arrays.toString(recbuf));
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);
                     if ((int) MessageType.A.GET_ALL_GROUP.value() == recbuf[11]){
+                        System.out.println("GetAllGroups = " + Arrays.toString(recbuf));
                         //解析接受到的数据
-                        ParseGroupData.ParseGetGroupsInfo(str);
+                        ParseGroupData.ParseGetGroupsInfo(recbuf);
                     }
                 }
             }

@@ -83,16 +83,25 @@ public class GroupCmdData {
      * @return
      */
     public static byte[] sendAddGroupCmd(String groupname){
-        int data_style_len = 20 + groupname.length();
         byte[] strTobt = null;
         try {
-            strTobt = groupname.getBytes("UTF-8");
+            strTobt = groupname.getBytes("utf-8");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        int group_name_len = groupname.length();
-        int len = 2 + group_name_len;
+        int group_name_len = strTobt.length;
+        int data_style_len = 20 + group_name_len;
+        int data_len = 2 + group_name_len;
+
+        //组名称 726f6f6d  31
+        String group_str = "";
+        byte[] group_name_data = null;
+        for (int i = 0; i < strTobt.length; i++) {
+            group_str += Integer.toHexString(strTobt[i] & 0xFF);
+            System.out.println("group_str = " + group_str);
+            group_name_data = Utils.HexString2Bytes(group_str);
+        }
 
         byte[] bt_send = new byte[35];
         //415050c0a8016d0101 3e
@@ -108,7 +117,6 @@ public class GroupCmdData {
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
             String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            Log.i("ss = ", ss);
             bt_send[9] = Utils.HexString2Bytes(ss)[0];
         } else {
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
@@ -117,7 +125,7 @@ public class GroupCmdData {
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.ADD_GROUP_NAME.value();//数据类型
-        bt_send[13] = 0x00;
+        bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度
         //数据体头   415f5a4947
         bt_send[15] = 0x41;
@@ -139,22 +147,15 @@ public class GroupCmdData {
         bt_send[29] = (byte) 0xfe;
         bt_send[30] = 0x09;
         //数据长度   0006
-        bt_send[31] = (byte) 0x00;
-        bt_send[32] = (byte) len;
+        bt_send[31] = (byte) (data_len >> 8);
+        bt_send[32] = (byte) data_len;
 
         //组名称长度   0004
-        bt_send[33] = 0x00;
+        bt_send[33] = (byte) (group_name_len >> 8);
         bt_send[34] = (byte) group_name_len;
 
-        //组名称 59756b69
-        String group_str = "";
-        byte[] group_data = null;
-        for (int i = 0; i < strTobt.length; i++) {
-            group_str += Integer.toHexString(strTobt[i] & 0xFF);
-            group_data = Utils.HexString2Bytes(group_str);
-        }
         //固定数据与group数据相加
-        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_data);
+        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_name_data);
 
         //将前面数据CRC8校验
         byte bt_crc8 = (CRC8.calc(bt_send_data, bt_send_data.length));
@@ -545,15 +546,15 @@ public class GroupCmdData {
 
         //组名称 726f6f6d  31
         String group_str = "";
-        byte[] group_data = null;
+        byte[] group_name_data = null;
         for (int i = 0; i < strTobt.length; i++) {
             group_str += Integer.toHexString(strTobt[i] & 0xFF);
             System.out.println("group_str = " + group_str);
-            group_data = Utils.HexString2Bytes(group_str);
+            group_name_data = Utils.HexString2Bytes(group_str);
         }
 
         byte[] bt_send = new byte[37];
-        //4415050c0a801040101c1    415050c0a801040101c1
+        //415050c0a801020101bc
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -570,23 +571,23 @@ public class GroupCmdData {
         } else {
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
         }
-        //消息体   01001000    010010001b
+        //消息体010010001d
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CHANGE_GROUP_NAME.value();//数据类型 枚举A
-        bt_send[13] = 0x00;
+        bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度  1b = 27
-        //数据体头   415f5a4947   415f5a4947
+        //数据体头415f5a4947
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
         bt_send[17] = 0x5A;
         bt_send[18] = 0x49;
         bt_send[19] = 0x47;
-        //数据体序号   01ffff     01ffff
+        //数据体序号01ffff
         bt_send[20] = 0x01;
         bt_send[21] = (byte)(MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();        //(byte) 0xFF;
-        //macaddr  00124b00076afe09
+        //macaddr 00124b00076afe09
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
         bt_send[25] = 0x4b;
@@ -595,19 +596,19 @@ public class GroupCmdData {
         bt_send[28] = 0x6a;
         bt_send[29] = (byte) 0xfe;
         bt_send[30] = 0x09;
-        //数据长度   0009
-        bt_send[31] = (byte) 0x00;
+        //数据长度000b
+        bt_send[31] = (byte) (data_len >> 8);
         bt_send[32] = (byte) data_len;
-        // group_id  00a2
+        // group_id 0002
         bt_send[33] = (byte) (group_id >> 8);
         bt_send[34] = (byte) group_id;
 
-        //组名称长度   0005
-        bt_send[35] = 0x00;
+        //组名称长度 0007 6b69746368656e60
+        bt_send[35] = (byte) (group_name_len >> 8);
         bt_send[36] = (byte) group_name_len;
 
         //固定数据与group数据相加
-        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_data);
+        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_name_data);
 
         //将前面数据CRC8校验  7d
         byte bt_crc8 = (CRC8.calc(bt_send_data, bt_send_data.length));

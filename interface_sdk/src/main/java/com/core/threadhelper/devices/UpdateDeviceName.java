@@ -45,7 +45,6 @@ public class UpdateDeviceName implements Runnable {
                 byte[] bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-
                 //获取组列表命令
                 bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
                 Log.i("网关IP = ", Constants.GW_IP_ADDRESS);

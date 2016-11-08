@@ -1,6 +1,7 @@
 package com.core.threadhelper;
 
 import com.core.cmddata.DeviceCmdData;
+import com.core.cmddata.TaskCmdData;
 import com.core.global.Constants;
 import com.core.utils.Utils;
 
@@ -37,7 +38,7 @@ public class setGateWayTime implements Runnable {
                 socket.setReuseAddress(true);
                 socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            byte[] bt_send = DeviceCmdData.setGateWayTimeCmd(year, month, day, hour, minute, second);
+            byte[] bt_send = TaskCmdData.setGateWayTimeCmd(year, month, day, hour, minute, second);
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
             System.out.println("开关十六进制 = " + Utils.binary(bt_send, 16));

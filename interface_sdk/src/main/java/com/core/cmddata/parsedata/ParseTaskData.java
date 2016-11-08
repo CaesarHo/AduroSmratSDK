@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 public class ParseTaskData {
 
-
     //return data
     public static class ParseGetTaskInfo {
         public int task_no, task_is_enabled, task_type, task_cycle, task_hour, task_minute, task_cmd_size, sensor_state;
@@ -227,37 +226,6 @@ public class ParseTaskData {
                     DataSources.getInstance().getAllTasks(appTask);
                 }
             }
-//
-//            if (task_no >= 0 & task_name != null) {
-//                AppTask appTask = new AppTask();
-//                appTask.setTask_no(task_no);
-//                appTask.setTask_name(task_name);
-//                appTask.setIsEnabled(task_is_enabled);
-//                appTask.setTask_type(task_type);
-//                appTask.setTask_cycle(task_cycle);
-//                appTask.setTask_hour(task_hour);
-//                appTask.setTask_minute(task_minute);
-//                appTask.setTask_action(sensor_state);
-//                appTask.setSensor_mac(sensor_mac);
-//                appTask.setDevice_mac(device_mac);
-//                appTask.setCmd_size(task_cmd_size);
-//
-//                appTask.setIs_device_switch(device_switch);
-//                appTask.setIs_device_level(device_level);
-//                appTask.setIs_device_temp(device_temp);
-//                appTask.setIs_device_hue(device_hue);
-//                appTask.setIs_scene_type(scene_type);
-//
-//                appTask.setDevice_State(device_switch_state);
-//                appTask.setDevice_level(device_level_value);
-//                appTask.setDevice_temp(device_temp_value);
-//                appTask.setDevice_colorHue(device_hue_value);
-//                appTask.setDevice_colorSat(device_sat_value);
-//                appTask.setTask_scene_id(scene_id);
-//                appTask.setTask_group_id(group_id);
-//
-//                DataSources.getInstance().getAllTasks(appTask);
-//            }
         }
 
         public void SerialType(String type, String task_cmd_single) {

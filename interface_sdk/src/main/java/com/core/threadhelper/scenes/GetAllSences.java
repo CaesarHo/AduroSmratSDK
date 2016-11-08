@@ -66,7 +66,7 @@ public class GetAllSences implements Runnable {
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);
                     System.out.println("Scene_out2 = " + recbuf[11]);
                     if ((int) MessageType.A.GET_ALL_SCENE.value() == recbuf[11]) {
-                        ParseSceneData.ParseGetScenesInfo(str);
+                        ParseSceneData.ParseGetScenesInfo(recbuf);
                         System.out.println("Scene_out2 = " + recbuf[11]);
                     }
                 }

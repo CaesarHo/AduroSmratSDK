@@ -57,7 +57,7 @@ public class BindDevice implements Runnable {
 
             DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
             socket.send(datagramPacket);
-            System.out.println("读IEEE地址CMD = " + Utils.binary(bt_send, 16));
+            System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
             while (true) {
                 final byte[] recbuf = new byte[1024];
@@ -86,7 +86,7 @@ public class BindDevice implements Runnable {
         InetAddress address = InetAddress.getByName(Constants.GW_IP_ADDRESS);
         DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address,Constants.UDP_PORT);
         socket.send(dp);
-        System.out.println("绑定设置cmd = " + Utils.binary(bt_send, 16));
+        System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
         byte[] bs = new byte[1000];
         DatagramPacket packet = new DatagramPacket(bs, bs.length);
         socket.receive(packet);

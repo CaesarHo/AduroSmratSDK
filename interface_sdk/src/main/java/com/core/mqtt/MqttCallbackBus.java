@@ -7,7 +7,6 @@ import com.core.cmddata.parsedata.ParseDeviceData;
 import com.core.cmddata.parsedata.ParseGroupData;
 import com.core.cmddata.parsedata.ParseSceneData;
 import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 
@@ -35,29 +34,29 @@ public class MqttCallbackBus implements MqttCallback {
     }
 
     @Override
-    public void messageArrived(String topic,final MqttMessage message) {
+    public void messageArrived(String topic,final MqttMessage message) throws Exception{
         Log.e(TAG,topic + "=" + message.toString());
         System.out.println(TAG + "=" +message.getPayload());
 
         if ((int) MessageType.A.GET_ALL_GROUP.value() == message.getPayload()[11]){
             //解析接受到的数据
-            ParseGroupData.ParseGetGroupsInfo(message.toString());
+            ParseGroupData.ParseGetGroupsInfo(message.getPayload());
             return;
         }
 
         if((int) MessageType.A.UPLOAD_TXT.value() == message.getPayload()[11]){
             //新入网的设备
-            ParseDeviceData.ParseGetDeviceInfo(message.toString(),true);
+            ParseDeviceData.ParseGetDeviceInfo(message.getPayload(),true);
             return;
         }else if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == message.getPayload()[11]){
             //解析获取设备信息
-            ParseDeviceData.ParseGetDeviceInfo(message.toString(),false);
+            ParseDeviceData.ParseGetDeviceInfo(message.getPayload(),false);
             return;
         }
 
         if ((int) MessageType.A.GET_ALL_SCENE.value() == message.getPayload()[11]){
             //解析获取sceneinfo
-            ParseSceneData.ParseGetScenesInfo(message.toString());
+            ParseSceneData.ParseGetScenesInfo(message.getPayload());
             return;
         }
 
