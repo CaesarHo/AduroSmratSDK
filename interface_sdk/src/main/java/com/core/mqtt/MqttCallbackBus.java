@@ -3,9 +3,9 @@ package com.core.mqtt;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.parsedata.ParseDeviceData;
-import com.core.cmddata.parsedata.ParseGroupData;
-import com.core.cmddata.parsedata.ParseSceneData;
+import com.core.commanddata.gwdata.ParseDeviceData;
+import com.core.commanddata.gwdata.ParseGroupData;
+import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
@@ -13,6 +13,8 @@ import com.core.global.MessageType;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.Arrays;
 
 /**
  * Created by best on 2016/9/28.
@@ -36,7 +38,7 @@ public class MqttCallbackBus implements MqttCallback {
     @Override
     public void messageArrived(String topic,final MqttMessage message) throws Exception{
         Log.e(TAG,topic + "=" + message.toString());
-        System.out.println(TAG + "=" +message.getPayload());
+        System.out.println(TAG + "=" + Arrays.toString(message.getPayload()));
 
         if ((int) MessageType.A.GET_ALL_GROUP.value() == message.getPayload()[11]){
             //解析接受到的数据

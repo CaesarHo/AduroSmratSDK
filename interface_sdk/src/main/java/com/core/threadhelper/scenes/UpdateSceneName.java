@@ -3,8 +3,8 @@ package com.core.threadhelper.scenes;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.SceneCmdData;
-import com.core.cmddata.parsedata.ParseSceneData;
+import com.core.commanddata.appdata.SceneCmdData;
+import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
@@ -13,13 +13,10 @@ import com.core.utils.FtFormatTransfer;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 /**
@@ -47,10 +44,6 @@ public class UpdateSceneName implements Runnable {
                 byte[] bt_send = SceneCmdData.sendUpdateSceneCmd((int)scene_id, scene_name);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                //获取组列表命令
-                bt_send = SceneCmdData.sendUpdateSceneCmd(scene_id, scene_name);
-                Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
-
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -58,16 +51,18 @@ public class UpdateSceneName implements Runnable {
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
 
+                //获取组列表命令
+                bt_send = SceneCmdData.sendUpdateSceneCmd(scene_id, scene_name);
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("Update场景发送的十六进制数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
 
                 while (isRun) {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("UpdateScene_out2 = " + Arrays.toString(recbuf));
+                    System.out.println("当前接收的数据UpdateSceneName = " + Arrays.toString(recbuf));
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);
 
                     if (str.contains("GW") && !str.contains("K64")) {

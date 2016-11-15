@@ -3,11 +3,11 @@ package com.core.connectivity;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.DeviceCmdData;
-import com.core.cmddata.parsedata.ParseDeviceData;
-import com.core.cmddata.parsedata.ParseGroupData;
-import com.core.cmddata.parsedata.ParseSceneData;
-import com.core.cmddata.parsedata.ParseTaskData;
+import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.gwdata.ParseDeviceData;
+import com.core.commanddata.gwdata.ParseGroupData;
+import com.core.commanddata.gwdata.ParseSceneData;
+import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
@@ -71,7 +71,7 @@ public class UdpClient implements Runnable{
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("设备信息byte = " + Arrays.toString(recbuf));
+                    System.out.println("设备信息UdpClient = " + Arrays.toString(recbuf));
 
                     //旧设备
                     if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == recbuf[11]) {
@@ -87,31 +87,31 @@ public class UdpClient implements Runnable{
                     //接受传感器数据并解析
                     ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
                     sensorData.parseBytes(recbuf);
-                    if (sensorData.mZigbeeType.contains("8401")) {
-                        System.out.println("传感器返回数据stateSDK = " + sensorData.mDevMac);
+                    if (sensorData.message_type.contains("8401")) {
+                        System.out.println("传感器返回数据stateSDK = " + sensorData.sensor_mac);
                         String time = String.valueOf(System.currentTimeMillis());
-                        DataSources.getInstance().getReceiveSensor(sensorData.mDevMac, sensorData.state, Utils.getFormatTellDate(time));
+                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state, Utils.getFormatTellDate(time));
                     }
 
                     //解析设备属性数据
                     ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
                     attribute.parseBytes(recbuf);
-                    if (attribute.zigbee_type.contains("8100")) {
+                    if (attribute.message_type.contains("8100")) {
                         System.out.println("返回设备属性Value" + attribute.attribValue);
                         //如果设备属性簇ID等于5则发送保存zonetypecmd
                         if (attribute.clusterID == 5) {
-                            byte[] saveZoneType = DeviceCmdData.SaveZoneTypeCmd(attribute.zigbee_type,
+                            byte[] saveZoneType = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type,
                                     attribute.shortaddr, attribute.endpoint + "",
                                     (short) attribute.attribValue);
                             Constants.sendMessage(saveZoneType);
                         }
 
-                        if (attribute.zigbee_type.contains("8100") & attribute.clusterID == 6) {
-                            DataSources.getInstance().getDeviceState(attribute.dev_mac, attribute.attribValue);
+                        if (attribute.message_type.contains("8100") & attribute.clusterID == 6) {
+                            DataSources.getInstance().getDeviceState(attribute.message_type, attribute.attribValue);
                         }
 
-                        if (attribute.zigbee_type.contains("8100") & attribute.clusterID == 8) {
-                            DataSources.getInstance().getDeviceLevel(attribute.dev_mac, attribute.attribValue);
+                        if (attribute.message_type.contains("8100") & attribute.clusterID == 8) {
+                            DataSources.getInstance().getDeviceLevel(attribute.message_type, attribute.attribValue);
                         }
                     }
 
@@ -151,13 +151,13 @@ public class UdpClient implements Runnable{
                         for (int i = 1; i < group_data.length; i++) {
                             if (group_data.length <= 2) {
                                 return;
-                            }
+                        }
 
                             String[] Id_Source = group_data[0].split(":");
                             String[] Name_Source = group_data[1].split(":");
 
                             if (Id_Source.length > 1 && Name_Source.length > 1) {
-                                group_name = Utils.toStringHex2(Name_Source[1]);
+                                group_name = Utils.toStringHex(Name_Source[1]);
                             }
                         }
                         DataSources.getInstance().ChangeGroupName(group_id, group_name);

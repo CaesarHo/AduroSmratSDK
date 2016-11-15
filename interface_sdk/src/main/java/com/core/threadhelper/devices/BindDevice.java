@@ -1,22 +1,14 @@
 package com.core.threadhelper.devices;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.core.cmddata.DeviceCmdData;
-import com.core.cmddata.parsedata.ParseDeviceData;
-import com.core.db.GatewayInfo;
+import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.entity.AppDevice;
-import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.global.MessageType;
-import com.core.mqtt.MqttManager;
-import com.core.threadhelper.UDPHelper;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -63,8 +55,7 @@ public class BindDevice implements Runnable {
                 final byte[] recbuf = new byte[1024];
                 final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 socket.receive(packet);
-                System.out.println("新设备 = " + Arrays.toString(recbuf));
-                System.out.println("读IEEE地址返回数据 = " + Utils.binary(recbuf, 16));
+                System.out.println("当前接收的数据BindDevice = " + Arrays.toString(recbuf));
 
                 if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == recbuf[11]) {
                     ParseDeviceData.ParseIEEEData parseIEEEData = new ParseDeviceData.ParseIEEEData();
@@ -90,6 +81,6 @@ public class BindDevice implements Runnable {
         byte[] bs = new byte[1000];
         DatagramPacket packet = new DatagramPacket(bs, bs.length);
         socket.receive(packet);
-        System.out.println("getMessage = " + Arrays.toString(bs));
+        System.out.println("当前接收的数据BindDevicesendMessage = " + Arrays.toString(bs));
     }
 }

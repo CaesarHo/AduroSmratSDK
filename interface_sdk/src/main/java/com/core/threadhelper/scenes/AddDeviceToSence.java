@@ -3,7 +3,7 @@ package com.core.threadhelper.scenes;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.SceneCmdData;
+import com.core.commanddata.appdata.SceneCmdData;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.global.Constants;
@@ -11,13 +11,10 @@ import com.core.mqtt.MqttManager;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 /**
@@ -40,15 +37,13 @@ public class AddDeviceToSence implements Runnable {
 
     @Override
     public void run() {
-        if (!NetworkUtil.NetWorkType(mContext)) {
-            System.out.println("远程打开 = " + "addDeviceToSence");
-            byte[] bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
-            MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
-        } else {
-            try {
-                Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
+        try {
+            if (!NetworkUtil.NetWorkType(mContext)) {
+                System.out.println("远程打开 = " + "addDeviceToSence");
+                byte[] bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
+                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
+            } else {
                 bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, scene_id);
-
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -58,22 +53,22 @@ public class AddDeviceToSence implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("添加设备到场景for数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 //添加设备到场景后，间隔两百毫秒发送存储场景
                 Thread.sleep(200);
-                byte[] store_scene = SceneCmdData.StoreScene(appDevice,group_id,scene_id);
+                byte[] store_scene = SceneCmdData.StoreScene(appDevice, group_id, scene_id);
                 Constants.sendMessage(store_scene);
                 byte[] recbuf = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                 socket.receive(packet);
-                System.out.println("添加设备到场景返回数据 = " + Arrays.toString(recbuf));
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (socket != null) {
-                    socket.close();
-                }
+                System.out.println("当前接收到的数据AddDeviceToSence = " + Arrays.toString(recbuf));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (socket != null) {
+                socket.close();
             }
         }
     }

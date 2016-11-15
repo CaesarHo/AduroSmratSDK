@@ -3,19 +3,16 @@ package com.core.threadhelper.groups;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.GroupCmdData;
-import com.core.cmddata.parsedata.ParseGroupData;
+import com.core.commanddata.appdata.GroupCmdData;
+import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.threadhelper.UDPHelper;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
-import java.io.PipedReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -58,17 +55,17 @@ public class AddGroup implements Runnable {
                 InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 DatagramPacket packet_send = new DatagramPacket(bt_send, bt_send.length, serverAddr, Constants.UDP_PORT);
                 socket.send(packet_send);
-                System.out.println("添加组CMD = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 // 接收数据
                 while (true) {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    System.out.println("当前接收的数据AddGroup: =" + Arrays.toString(recbuf));
                     if ((int) MessageType.A.ADD_GROUP_NAME.value() == recbuf[11]) {
                         byte[] group_name_len = group_name.getBytes("utf-8");
                         ParseGroupData.ParseAddGroupBack(recbuf, group_name_len.length);
-                        System.out.println("添加房间返回数据: =" + Arrays.toString(recbuf));
                     }
                 }
             }

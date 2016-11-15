@@ -2,7 +2,6 @@ package com.core.global;
 
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -14,7 +13,7 @@ import java.util.Arrays;
  */
 public class Constants {
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "data.adurosmart.com";
+    public static String MQTT_SERVER = "data.adurosmart.com";//"120.24.242.83";
     public static String CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
@@ -63,5 +62,93 @@ public class Constants {
         DatagramPacket packet = new DatagramPacket(bs, bs.length);
         socket.receive(packet);
         System.out.println("getMessage = " + Arrays.toString(bs));
+    }
+
+
+    public static String DeviceName(String device_id,String zone_type){
+        String device_name = "";
+        switch (device_id) {
+            case "0105":
+                device_name = "DimSwitch";
+                break;
+            case "0102":
+                device_name = "ColorLamp";
+                break;
+            case "0110":
+                device_name = "ColorTemp";
+                break;
+            case "0210":
+                device_name = "HueColorLamp";
+                break;
+            case "0200":
+                device_name = "ColorLight";
+                break;
+            case "0220":
+                device_name = "ColorTempJZGD";
+                break;
+            case "0100":
+                device_name = "DimmableLight";
+                break;
+            case "0101":
+                device_name = "DimLamp";
+                break;
+            case "0402":
+                device_name = DeviceZoneType(zone_type);
+                break;
+            case "0202":
+                device_name = "WindowCurtain";
+                break;
+            case "0309":
+                device_name = "PM2dot5Sensor";
+                break;
+            case "0310":
+                device_name = "SmokingSensor";
+                break;
+            case "0820":
+                device_name = "LightingRemotes";
+                break;
+            case "ffff":
+                device_name = "unKnown";
+                break;
+        }
+        return device_name;
+    }
+
+    public static String DeviceZoneType(String zoneType){
+        String device_name = "";
+        switch (zoneType) {
+            case "0000":
+                device_name = "StandardCIE";
+                break;
+            case "000d":
+                device_name = "MotionSensor";
+                break;
+            case "0015":
+                device_name = "ContactSwitch";
+                break;
+            case "0028":
+                device_name = "FireSensor";
+                break;
+            case "002a":
+                device_name = "WaterSensor";
+                break;
+            case "002b":
+                device_name = "GasSensor";
+                break;
+            case "010f":
+                device_name = "RemoteControl";
+                break;
+            case "021d":
+                device_name = "Keypad";
+                break;
+            case "002d":
+                device_name = "VibrationMovementSensor";
+                break;
+            case "FFFF":
+                device_name = "Unidentified";
+                break;
+        }
+
+        return device_name;
     }
 }

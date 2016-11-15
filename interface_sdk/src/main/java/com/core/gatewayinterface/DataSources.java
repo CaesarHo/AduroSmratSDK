@@ -106,11 +106,14 @@ public class DataSources {
         sdkCallback.setColorTemperatureCallback(deviceid,value);
     }
 
-
-
     //接受传感器数据
     public void getReceiveSensor(String mDevMac,int state,String time){
         sdkCallback.getReceiveSensorDataCallback(mDevMac,state,time);
+    }
+
+    //传感器电量
+    public void responseBatteryValue(String device_mac,int value){
+        sdkCallback.vRetResponseBatteryValueCallback(device_mac,value);
     }
 
     //绑定设备

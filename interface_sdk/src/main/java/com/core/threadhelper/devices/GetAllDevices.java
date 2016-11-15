@@ -2,13 +2,15 @@ package com.core.threadhelper.devices;
 
 import android.content.Context;
 
-import com.core.cmddata.DeviceCmdData;
-import com.core.cmddata.parsedata.ParseDeviceData;
+import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
+import com.core.utils.AES;
+import com.core.utils.AESUtils;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
@@ -16,6 +18,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 /**
@@ -37,8 +40,10 @@ public class GetAllDevices implements Runnable {
         try {
             if (!isNewDevice) {
                 bt_send = DeviceCmdData.GetAllDeviceListCmd();
+//                bt_send = AESUtils.encode(bt);
             } else {
                 bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
+//                bt_send = AESUtils.encode(bt);
             }
 
             if (!NetworkUtil.NetWorkType(mContext)) {
@@ -54,6 +59,7 @@ public class GetAllDevices implements Runnable {
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
+                    socket.setBroadcast(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
@@ -61,21 +67,20 @@ public class GetAllDevices implements Runnable {
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 while (true) {
+                    ByteBuffer receiveBuffer = ByteBuffer.allocate(1024);
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("设备信息byte = " + Arrays.toString(recbuf));
+                    System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
 
-                    String str = new String(packet.getData()).trim();
                     /**
                      * 接受传感器数据并解析
                      */
                     ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
                     sensorData.parseBytes(recbuf);
-                    if (sensorData.mZigbeeType.contains("8401")) {
-                        System.out.println("传感器返回数据stateSDK = " + sensorData.mDevMac);
+                    if (sensorData.message_type.contains("8401")) {
                         String time = String.valueOf(System.currentTimeMillis());
-                        DataSources.getInstance().getReceiveSensor(sensorData.mDevMac, sensorData.state, Utils.getFormatTellDate(time));
+                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state, Utils.getFormatTellDate(time));
                     }
 
                     /**
@@ -83,21 +88,31 @@ public class GetAllDevices implements Runnable {
                      */
                     ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
                     attribute.parseBytes(recbuf);
-                    if (attribute.zigbee_type.contains("8100")) {
-                        System.out.println("返回设备属性Value" + attribute.attribValue);
+
+                    if (attribute.message_type.contains("8102")){
+                        DataSources.getInstance().responseBatteryValue(attribute.device_mac,attribute.attribValue);
+                    }
+
+                    if (attribute.message_type.contains("8100")) {
                         //如果设备属性簇ID等于5则发送保存zonetypecmd
                         if (attribute.clusterID == 5) {
-                            byte[] saveZoneType = DeviceCmdData.SaveZoneTypeCmd(attribute.zigbee_type,
-                                    attribute.shortaddr, attribute.endpoint + "",(short)attribute.attribValue);
-                            Constants.sendMessage(saveZoneType);
+                            byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(
+                                    attribute.message_type,
+                                    attribute.shortaddr,
+                                    attribute.endpoint + "",
+                                    (short)attribute.attribValue);
+                            Constants.sendMessage(zt_bt);
                         }
                     }
 
                     if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == recbuf[11]) {
+//                        byte[] bt = AESUtils.decode(recbuf);
                         ParseDeviceData.ParseGetDeviceInfo(recbuf, false);
                     } else if ((int) MessageType.A.UPLOAD_TXT.value() == recbuf[11]) {//新入网设备
+//                        byte[] bt = AESUtils.decode(recbuf);
                         ParseDeviceData.ParseGetDeviceInfo(recbuf, true);
                     }
+                    recbuf = null;
                 }
             }
         } catch (Exception e) {

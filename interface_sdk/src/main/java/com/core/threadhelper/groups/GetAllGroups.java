@@ -3,28 +3,21 @@ package com.core.threadhelper.groups;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.GroupCmdData;
-import com.core.cmddata.parsedata.ParseGroupData;
+import com.core.commanddata.appdata.GroupCmdData;
+import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.db.GatewayInfo;
-import com.core.entity.AppGroup;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.threadhelper.UDPHelper;
-import com.core.threadhelper.devices.GetAllDevices;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -53,8 +46,6 @@ public class GetAllGroups implements Runnable {
 
                 //获取组列表命令
                 bt_send = GroupCmdData.GetAllGroupListCmd();
-                Log.i("网关IP = ", Constants.GW_IP_ADDRESS);
-
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -64,15 +55,14 @@ public class GetAllGroups implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("GetAllGroupsCMD = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 while (true) {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    String str = FtFormatTransfer.bytesToUTF8String(recbuf);
+                    System.out.println("当前接收的数据GetAllGroups = " + Arrays.toString(recbuf));
                     if ((int) MessageType.A.GET_ALL_GROUP.value() == recbuf[11]){
-                        System.out.println("GetAllGroups = " + Arrays.toString(recbuf));
                         //解析接受到的数据
                         ParseGroupData.ParseGetGroupsInfo(recbuf);
                     }

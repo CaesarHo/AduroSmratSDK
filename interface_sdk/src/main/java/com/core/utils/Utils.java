@@ -11,7 +11,9 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.IllegalFormatCodePointException;
 
 /**
  * Created by best on 2016/7/14.
@@ -303,7 +305,8 @@ public class Utils {
     }
 
     // 转化十六进制编码为字符串
-    public static String toStringHex2(String s) {
+    public static String toStringHex(String s) {
+        System.out.println("device_name_s = " + s.length());
         byte[] baKeyword = new byte[s.length() / 2];
         for (int i = 0; i < baKeyword.length; i++) {
             try {
@@ -312,11 +315,13 @@ public class Utils {
                 e.printStackTrace();
             }
         }
+        System.out.println("device_name_s = " + baKeyword.length);
         try {
             s = new String(baKeyword, "utf-8");// UTF-16le:Not
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        return s;
+        System.out.println("device_name_hex = " + Arrays.toString(baKeyword));
+        return s.replaceAll("�","");
     }
 }

@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.core.cmddata.DeviceCmdData;
+import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.global.Constants;
 import com.core.utils.SearchUtils;
 import com.core.utils.Utils;

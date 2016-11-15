@@ -4,10 +4,10 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 
-import com.core.cmddata.DeviceCmdData;
-import com.core.cmddata.GroupCmdData;
-import com.core.cmddata.SceneCmdData;
-import com.core.cmddata.TaskCmdData;
+import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.appdata.GroupCmdData;
+import com.core.commanddata.appdata.SceneCmdData;
+import com.core.commanddata.appdata.TaskCmdData;
 import com.core.connectivity.UdpClient;
 import com.core.entity.AppDevice;
 import com.core.db.GatewayInfo;
@@ -28,7 +28,6 @@ import com.core.threadhelper.scenes.AddSence;
 import com.core.threadhelper.scenes.DeleteScence;
 import com.core.threadhelper.scenes.GetAllSences;
 import com.core.threadhelper.scenes.UpdateSceneName;
-import com.core.threadhelper.setGateWayTime;
 import com.core.threadhelper.tasks.GetAllTasks;
 import com.core.utils.NetworkUtil;
 
@@ -39,6 +38,7 @@ public class SerialHandler {
     private static SerialHandler manager = null;
     public Context context;
     private String aeskey;
+    private String topicName = null;
 
     private SerialHandler() {
 
@@ -61,12 +61,14 @@ public class SerialHandler {
         this.context = mContext;
         this.aeskey = aeskey;
         GatewayInfo.getInstance().setAesKey(context, aeskey);
+        topicName = GatewayInfo.getInstance().getGatewayNo(context);
 
         Constants.CLIENT_ID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         System.out.println("clientId: " + Constants.CLIENT_ID);
+        System.out.println("topicName = "+ topicName);
 
         //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context)) {
+        if (!NetworkUtil.NetWorkType(context) & topicName != "") {
             MqttManager.getInstance().init(context);
             //如果網絡是3G網，則連接mqtt及訂閱mqtt
             setMqttCommunication();
@@ -81,8 +83,8 @@ public class SerialHandler {
         boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
         System.out.println("isConnected: " + isConnect);
         if (isConnect) {
-            MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
-            System.out.println("网关编号 = " + GatewayInfo.getInstance().getGatewayNo(context));
+            MqttManager.getInstance().subscribe(topicName, 2);
+            System.out.println("网关编号 = " + topicName);
         }
     }
 
@@ -102,7 +104,8 @@ public class SerialHandler {
      * @param year @param month @param day @param hour @param minute @param second
      */
     public void setGateWayTime(int year, int month, int day, int hour, int minute, int second) {
-        new Thread(new setGateWayTime(year, month, day, hour, minute, second)).start();
+        byte[] bt_send = TaskCmdData.setGateWayTimeCmd(year, month, day, hour, minute, second);
+        new Thread(new UdpClient(context,bt_send)).start();
     }
 
     //===============================设备操作 start============================

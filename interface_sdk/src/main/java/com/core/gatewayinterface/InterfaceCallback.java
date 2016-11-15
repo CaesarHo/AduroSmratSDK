@@ -71,6 +71,8 @@ public interface InterfaceCallback {
     //改变色温值
     void setColorTemperatureCallback(String deviceid,byte value);
 
+    void vRetResponseBatteryValueCallback(String device_mac,int value);
+
     void getReceiveSensorDataCallback(String deviceid,int state,String time_str);
 
     void bingdevicecallback(short frequency,double voltage,double current,double power,double power_factor);

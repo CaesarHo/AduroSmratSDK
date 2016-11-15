@@ -30,6 +30,7 @@ public class AppDevice implements Serializable {
 
     public String type = "Unknown Device";
 
+    private int battery_value = -1;
     private int Sensordata = -1;// 用来存储传感器设备上传的数据
     private short clusterId;
     private short attribID;
@@ -150,6 +151,14 @@ public class AppDevice implements Serializable {
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
+    }
+
+    public void setBattery_value(int battery_value){
+        this.battery_value = battery_value;
+    }
+
+    public int getBattery_value(){
+        return battery_value;
     }
 
 

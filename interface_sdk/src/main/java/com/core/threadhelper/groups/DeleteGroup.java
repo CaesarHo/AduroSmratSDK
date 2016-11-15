@@ -3,17 +3,15 @@ package com.core.threadhelper.groups;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.GroupCmdData;
-import com.core.cmddata.parsedata.ParseGroupData;
+import com.core.commanddata.appdata.GroupCmdData;
+import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.mqtt.MqttManager;
-import com.core.threadhelper.UDPHelper;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -52,18 +50,17 @@ public class DeleteGroup implements Runnable {
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
                 InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
-
                 bt_send = GroupCmdData.sendDeleteGroupCmd(group_id);
-                System.out.println("十六进制HUE = " + Utils.binary(bt_send, 16));
-
                 DatagramPacket packet_send = new DatagramPacket(bt_send, bt_send.length, serverAddr, Constants.UDP_PORT);
                 socket.send(packet_send);
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 // 接收数据
                 while (true) {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    System.out.println("当前接收的数据DeleteGroup = " + Utils.binary(bt_send, 16));
                     String str = new String(recbuf);
                     if (str.contains("GW") && !str.contains("K64")) {
                         //解析数据

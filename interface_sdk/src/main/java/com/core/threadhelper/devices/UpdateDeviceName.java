@@ -3,7 +3,7 @@ package com.core.threadhelper.devices;
 import android.content.Context;
 import android.util.Log;
 
-import com.core.cmddata.DeviceCmdData;
+import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.global.Constants;
@@ -12,13 +12,10 @@ import com.core.utils.FtFormatTransfer;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 /**
@@ -58,7 +55,7 @@ public class UpdateDeviceName implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("修改设备名称发送的十六进制数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
 
                 while (true) {
@@ -66,7 +63,7 @@ public class UpdateDeviceName implements Runnable {
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
 
                     socket.receive(packet);
-                    System.out.println("UpdateGroup_out = " + Arrays.toString(recbuf));
+                    System.out.println("当前接收的数据UpdateDeviceName = " + Arrays.toString(recbuf));
 
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);// new String(recbuf);
 

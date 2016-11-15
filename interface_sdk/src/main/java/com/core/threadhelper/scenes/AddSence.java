@@ -1,12 +1,10 @@
 package com.core.threadhelper.scenes;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.core.cmddata.SceneCmdData;
-import com.core.cmddata.parsedata.ParseSceneData;
+import com.core.commanddata.appdata.SceneCmdData;
+import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
@@ -14,13 +12,10 @@ import com.core.utils.FtFormatTransfer;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 /**
@@ -56,21 +51,17 @@ public class AddSence implements Runnable {
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
 
-                if (bt_send == null) {
-                    return;
-                }
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("发送的十六进制数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 while (isRun) {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    String str = FtFormatTransfer.bytesToUTF8String(recbuf);
+                    System.out.println("当前接收的数据AddSence = " + Arrays.toString(recbuf));
                     //解析数据
                     if ((int) MessageType.A.ADD_SCENE_NAME.value() == recbuf[11]) {
-                        System.out.println("添加场景返回(byte) = " + Arrays.toString(recbuf));
                         byte[] scene_name_len = Constants.SCENE_GLOBAL.ADD_SCENE_NAME.getBytes("utf-8");
                         ParseSceneData.ParseAddSceneBackInfo(recbuf, scene_name_len.length);
                     }
