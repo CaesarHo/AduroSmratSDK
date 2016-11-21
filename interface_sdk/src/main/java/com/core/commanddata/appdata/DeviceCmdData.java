@@ -535,7 +535,12 @@ public class DeviceCmdData {
         bt_send[6] = (byte) Constants.IpAddress.int_4;
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
-        bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
         //消息体 010002001b
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
@@ -570,7 +575,7 @@ public class DeviceCmdData {
         bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
         bt_send[36] = 0x01;//源端点
         bt_send[37] = Utils.HexString2Bytes(appDevice.getEndpoint())[0];//目标端点
-        bt_send[38] = (byte) (value << 8);//不带有开关
+        bt_send[38] = (byte) (value >> 8);//不带有开关
         bt_send[39] = (byte) value;
         bt_send[40] = 0x00;
         bt_send[41] = 0x00;

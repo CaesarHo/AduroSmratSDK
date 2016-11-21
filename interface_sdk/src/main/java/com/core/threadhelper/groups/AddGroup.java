@@ -27,17 +27,21 @@ public class AddGroup implements Runnable {
     private String group_name = "";
     private DatagramSocket socket = null;
     private byte[] bt_send;
+    private int count = -1;
+    private String dev_mac;
 
-    public AddGroup(Context context, String group_name) {
+    public AddGroup(Context context, String group_name,int count,String dev_mac) {
         this.group_name = group_name;
         this.mContext = context;
+        this.count = count;
+        this.dev_mac = dev_mac;
     }
 
     @Override
     public void run() {
         try {
             Constants.GROUP_GLOBAL.ADD_GROUP_NAME = group_name;
-            bt_send = GroupCmdData.sendAddGroupCmd(group_name);
+            bt_send = GroupCmdData.sendAddGroupCmd(group_name,count,dev_mac);
             if (!NetworkUtil.NetWorkType(mContext)) {
                 System.out.println("远程打开 = " + "CreateGroup");
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
@@ -64,7 +68,7 @@ public class AddGroup implements Runnable {
                     socket.receive(packet);
                     System.out.println("当前接收的数据AddGroup: =" + Arrays.toString(recbuf));
                     if ((int) MessageType.A.ADD_GROUP_NAME.value() == recbuf[11]) {
-                        byte[] group_name_len = group_name.getBytes("utf-8");
+                        byte[] group_name_len = group_name.getBytes("gb2312");
                         ParseGroupData.ParseAddGroupBack(recbuf, group_name_len.length);
                     }
                 }

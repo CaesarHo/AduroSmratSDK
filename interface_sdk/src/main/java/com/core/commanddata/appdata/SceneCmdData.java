@@ -75,17 +75,22 @@ public class SceneCmdData {
      * @param scenename
      * @return
      */
-    public static byte[] sendAddSceneCmd(String scenename, int groupid) {
+    public static byte[] sendAddSceneCmd(String scenename, int group_id,int dev_count,String merge_mac) {
         byte[] strTobt = null;
         try {
-            strTobt = scenename.getBytes("utf-8");
+            strTobt = scenename.getBytes("gb2312");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        //设备个数及其mac地址数据
+        byte[] bt_dev_count = new byte[1];
+        bt_dev_count[0] = (byte) dev_count;
+        byte[] bt_dev = Utils.HexString2Bytes(merge_mac);
+
         int scene_name_len = strTobt.length;//场景名称长度
-        int data_style_len = 22 + scene_name_len;//数据体长度
-        int data_len = 4 + scene_name_len;
+        int data_style_len = 22 + scene_name_len + bt_dev_count.length + bt_dev.length;
+        int data_len = 4 + scene_name_len + bt_dev_count.length + bt_dev.length;
 
         byte[] bt_send = new byte[35];
         //415050c0a8010701017c
@@ -140,20 +145,24 @@ public class SceneCmdData {
 
         //场景名称e68e8fe7a9bae4ba86e5bfabe4b990 0002 7e
         String scene_name = "";
-        byte[] scene_data = null;
+        byte[] scene_name_data = null;
         for (int i = 0; i < scene_name_len; i++) {
             scene_name += Integer.toHexString(strTobt[i] & 0xFF);
-            scene_data = Utils.HexString2Bytes(scene_name);
+            scene_name_data = Utils.HexString2Bytes(scene_name);
         }
         //固定数据与Scene数据相加
-        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, scene_data);
+        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, scene_name_data);
+
+        //设备个数及其mac地址数据
+        byte[] count_mac = FtFormatTransfer.byteMerger(bt_dev_count,bt_dev);
+        byte[] bt_merge = FtFormatTransfer.byteMerger(bt_send_data,count_mac);
 
         //固定数据与Scene数据相加的结果在与组ID相加  0001
         byte[] group_id_bt = new byte[2];
-        group_id_bt[0] = (byte) (groupid >> 8);
-        group_id_bt[1] = (byte) groupid;
+        group_id_bt[0] = (byte) (group_id >> 8);
+        group_id_bt[1] = (byte)  group_id;
 
-        byte[] final_data = FtFormatTransfer.byteMerger(bt_send_data, group_id_bt);
+        byte[] final_data = FtFormatTransfer.byteMerger(bt_merge, group_id_bt);
 
         //将前面数据CRC8校验
         byte bt_crc8 = (CRC8.calc(final_data, final_data.length));
@@ -424,7 +433,7 @@ public class SceneCmdData {
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_REMOVE_SCENE.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_REMOVE_SCENE.value();      //(byte) 0xA2;
-        //mac地址    00124b0001dd7ac1   124b0001dd7ac1
+        //mac地址    00124b0001dd7ac1
         bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
         bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
         bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];

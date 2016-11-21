@@ -43,7 +43,9 @@ public class MessageType {
         CHECK_TASK((byte) 0x1A),
         GET_ALL_TASK((byte) 0x1B),
         GET_GATEWAY_IEEE((byte)0x1C),
-        BIND_DEVICE((byte)0x1D);
+        BIND_DEVICE((byte)0x1D),
+        ADD_DEVICE_FORM_FILE((byte)0x20),
+        DELETE_DEVICE_FORM_FILE((byte)0x21);
 
         private byte value = 0;
 

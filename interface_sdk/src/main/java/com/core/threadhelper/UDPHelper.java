@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Calendar;
 
 /**
  * Created by best on 2016/6/27.
@@ -90,12 +91,7 @@ public class UDPHelper implements Runnable {
                     lock.release();
                 }
             }
-
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

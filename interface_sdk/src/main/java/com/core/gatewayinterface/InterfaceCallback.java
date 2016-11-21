@@ -55,25 +55,25 @@ public interface InterfaceCallback {
     //设置设备开关
     void setDeviceStateCallback(int result);
     //获取设备状态开关
-    void getDeviceStateCallback(String deviceid,int state);
+    void getDeviceStateCallback(String device_id,int state);
     //获取设备在线状态
     void getDeviceOnLinStatus(String deviceName,String deviceId,byte status);
     //设置设备亮度回调
-    void setDeviceLevelCallback(String deviceid,byte value);
+    void setDeviceLevelCallback(String device_id,byte value);
     //获取设备亮度回调
-    void getDeviceLevelCallback(String deviceid,int value);
+    void getDeviceLevelCallback(String device_id,int value);
     //改变设备色调,饱和度
-    void setDeviceHueSatCallback(String deviceid,int result);
+    void setDeviceHueSatCallback(String device_id,int result);
     //获取设备色调
-    void getDeviceHueCallback(String deviceid,byte hue);
+    void getDeviceHueCallback(String device_id,byte hue);
     //获取设备饱和度
-    void getDeviceSatCallback(String deviceid,byte sat);
+    void getDeviceSatCallback(String device_id,byte sat);
     //改变色温值
-    void setColorTemperatureCallback(String deviceid,byte value);
+    void setColorTemperatureCallback(String device_id,byte value);
 
     void vRetResponseBatteryValueCallback(String device_mac,int value);
 
-    void getReceiveSensorDataCallback(String deviceid,int state,String time_str);
+    void getReceiveSensorDataCallback(String device_id,int state,String time_str);
 
     void bingdevicecallback(short frequency,double voltage,double current,double power,double power_factor);
 

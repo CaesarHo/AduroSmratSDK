@@ -846,8 +846,8 @@ public class TaskCmdData {
     }
 
     /*
-       *删除task
-       */
+     *删除task
+     */
     public static byte[] DeleteTaskCmd(int task_id) {
         byte[] bt_send = new byte[36];
         //415050c0a8016b010143
@@ -995,7 +995,6 @@ public class TaskCmdData {
                 level_cmd[(15 + cmdNo_2.length)] = 0x6e;
                 level_cmd[(16 + cmdNo_2.length)] = 0x64;
             }
-
         }
 
         int hue_cmd_len = 0;

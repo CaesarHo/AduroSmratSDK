@@ -3,6 +3,7 @@ package com.core.utils;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 
 import java.math.BigInteger;

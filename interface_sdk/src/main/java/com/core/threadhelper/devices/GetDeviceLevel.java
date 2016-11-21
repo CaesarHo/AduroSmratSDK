@@ -73,13 +73,14 @@ public class GetDeviceLevel implements Runnable {
                         parseAttributeData.parseBytes(recbuf);
 
                         if (parseAttributeData.message_type.contains("8100") & parseAttributeData.clusterID == 8) {
-                            DataSources.getInstance().getDeviceLevel(parseAttributeData.message_type, parseAttributeData.attribValue);
+                            DataSources.getInstance().getDeviceLevel(parseAttributeData.device_mac, parseAttributeData.attribValue);
+                            System.out.println("getDeviceLevel mDevMac = " + parseAttributeData.device_mac);
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            Log.e("deviceinfo IOException", "Client: Error!");
+
         }
     }
 }

@@ -74,6 +74,8 @@ public class GetDeviceSwitchState implements Runnable {
 
                         if (parseAttributeData.message_type.contains("8100") & parseAttributeData.clusterID == 6) {
                             DataSources.getInstance().getDeviceState(parseAttributeData.device_mac, parseAttributeData.attribValue);
+                            System.out.println("getDeviceState = " + parseAttributeData.device_mac);
+                            System.out.println("getDeviceState = " + parseAttributeData.attribValue);
                         }
                     }
                 }

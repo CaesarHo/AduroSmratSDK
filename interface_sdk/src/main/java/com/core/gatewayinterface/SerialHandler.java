@@ -218,8 +218,24 @@ public class SerialHandler {
      * 添加房间
      * @param group_name
      */
-    public void CreateGroup(String group_name){
-        new Thread(new AddGroup(context,group_name)).start();
+    public void CreateGroup(String group_name,int count,String dev_mac){
+        new Thread(new AddGroup(context,group_name,count,dev_mac)).start();
+    }
+
+    /**
+     * 添加设备到文件系统
+     * @param group_id
+     * @param count
+     * @param device_mac
+     */
+    public void AddDeviceFromFile(short group_id,int count,String device_mac){
+        byte[] bt = GroupCmdData.AddDeviceFromFileCmd(group_id,count,device_mac);
+        new Thread(new UdpClient(context,bt)).start();
+    }
+
+    public void DeleteDeviceFromFile(short group_id,int count,String device_mac){
+        byte[] bt = GroupCmdData.DeleteDeviceFormFileCmd(group_id,count,device_mac);
+        new Thread(new UdpClient(context,bt)).start();
     }
 
     /**
@@ -280,10 +296,10 @@ public class SerialHandler {
     }
 
     //添加场景
-    public void AddSence(String scene_name, short group_id){
+    public void AddSence(String scene_name, short group_id,int count,String dev_mac){
         Constants.SCENE_GLOBAL.ADD_SCENE_NAME = scene_name;
         Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = group_id;
-        new Thread(new AddSence(context,scene_name,group_id)).start();
+        new Thread(new AddSence(context,scene_name,group_id,count,dev_mac)).start();
     }
 
     //Recall场景

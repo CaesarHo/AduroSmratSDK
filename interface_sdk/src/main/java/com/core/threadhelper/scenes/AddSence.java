@@ -28,22 +28,25 @@ public class AddSence implements Runnable {
     private String scene_Name = "";
     private short group_Id = -1;
     private boolean isRun = true;
+    private int count = -1;
+    private String dev_mac;
 
-    public AddSence(Context context, String scene_Name, short group_Id) {
+    public AddSence(Context context, String scene_Name, short group_Id,int count,String dev_mac) {
         this.scene_Name = scene_Name;
         this.group_Id = group_Id;
         this.mContext = context;
+        this.count = count;
+        this.dev_mac = dev_mac;
     }
 
     @Override
     public void run() {
         try {
+            byte[] bt_send = SceneCmdData.sendAddSceneCmd(scene_Name, group_Id,count,dev_mac);
             if (!NetworkUtil.NetWorkType(mContext)) {
                 System.out.println("远程打开 = " + "AddSence");
-                byte[] bt_send = SceneCmdData.sendAddSceneCmd(scene_Name, group_Id);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                bt_send = SceneCmdData.sendAddSceneCmd(scene_Name, group_Id);
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);

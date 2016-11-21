@@ -15,44 +15,47 @@ import java.util.Arrays;
 
 public class ParseGroupData {
 
-    public static void ParseGetGroupsInfo(byte[] bt) throws Exception{
-        String groupsinfo = FtFormatTransfer.bytesToUTF8String(bt);
+    public static void ParseGetGroupsInfo(byte[] bt) throws Exception {
+        String groups_info = FtFormatTransfer.byteToASCIIString(bt);
+        System.out.println("GetAllGroupsMac = " + groups_info);
         Short group_id = 0;
         String group_name = "";
 
         ArrayList<String> device_list = new ArrayList<>();
-        int strToint = groupsinfo.indexOf(":");
+        int strToint = groups_info.indexOf(":");
         String isGroup = "";
         if (strToint >= 0) {
-            isGroup = groupsinfo.substring(strToint - 4, strToint);
+            isGroup = groups_info.substring(strToint - 4, strToint);
         }
         device_list.clear();
 
-        if (groupsinfo.contains("GW") && !groupsinfo.contains("K64") && isGroup.contains("upId")) {
-            String[] group_data = groupsinfo.split(",");
+        if (groups_info.contains("GW") && !groups_info.contains("K64") && isGroup.contains("upId")) {
+            String[] group_data = groups_info.split(",");
 
             for (int i = 2; i < group_data.length; i++) {
                 if (group_data.length < 2) {
                     continue;
                 }
-                String mac = group_data[i].substring(4,group_data[i].length());
-                if (!mac.equals("")){
-                    device_list.add(mac);
+                if (group_data[i].length() >= 6){
+                    String mac = group_data[i].substring(6, group_data[i].length());
+                    if (!mac.equals("")) {
+                        device_list.add(mac);
+                    }
                 }
 
-                String[] Id_Source = group_data[0].split(":");
-                String[] Name_Source = group_data[1].split(":");
+                String[] group_id_arr = group_data[0].split(":");
+                String[] group_name_arr = group_data[1].split(":");
 
-                if (Id_Source.length > 1 && Name_Source.length > 1) {
-                    if (Id_Source.length >= 3) {
-                        group_id = Short.valueOf(Id_Source[2]);
+                if (group_id_arr.length > 1 && group_name_arr.length > 1) {
+                    if (group_id_arr.length >= 3) {
+                        group_id = Short.valueOf(group_id_arr[2]);
                     } else {
-                        group_id = Short.valueOf(Id_Source[1]);
+                        group_id = Short.valueOf(group_id_arr[1]);
                     }
-                    group_name = Utils.toStringHex(Name_Source[1]);
+                    group_name = group_name_arr[1];
                 }
             }
-            for(int i = 0;i < device_list.size();i++){
+            for (int i = 0; i < device_list.size(); i++) {
                 System.out.println("GetAllGroupsMac = " + device_list.get(i));
             }
             AppGroup appGroup = new AppGroup();
@@ -71,15 +74,12 @@ public class ParseGroupData {
 
         System.arraycopy(data, 32, id_bt, 0, 2);
         short group_id = FtFormatTransfer.hBytesToShort(id_bt);
-        System.out.println("添加房间返回数据4: =" + group_id);
 
         System.arraycopy(data, 36, name_bt, 0, len);
-        String group_name = FtFormatTransfer.bytesToUTF8String(name_bt);
-        System.out.println("添加房间返回数据5: =" + group_name);
+        String group_name = FtFormatTransfer.byteToASCIIString(name_bt);
 
         //判断是否是所添加的组
         if (group_name.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
-            System.out.println("添加房间返回数据2: =" + group_name);
             if (group_id == 0 && group_name == null) {
                 return;
             }
