@@ -131,10 +131,10 @@ public class UdpClient implements Runnable{
                     //删除房间的返回值
                     ParseGroupData.ParseDeleteGroupResult parseData = new ParseGroupData.ParseDeleteGroupResult();
                     parseData.parseBytes(recbuf);
-                    if (parseData.mGroupID == 0) {
+                    if (parseData.group_id == 0) {
                         return;
                     }
-                    DataSources.getInstance().DeleteGroupResult(parseData.mGroupID);
+                    DataSources.getInstance().DeleteGroupResult(parseData.group_id);
 
                     //解析修改房间返回值
                     String str = FtFormatTransfer.bytesToUTF8String(recbuf);
@@ -176,8 +176,8 @@ public class UdpClient implements Runnable{
                     //解析修改场景返回数据
                     ParseSceneData.ParseModifySceneInfo modifySceneInfo = new ParseSceneData.ParseModifySceneInfo();
                     modifySceneInfo.parseBytes(recbuf, Constants.SCENE_GLOBAL.NEW_SCENE_NAME.length());
-                    if (modifySceneInfo.mSceneName.equalsIgnoreCase(Constants.SCENE_GLOBAL.NEW_SCENE_NAME)) {
-                        DataSources.getInstance().ChangeSencesName(modifySceneInfo.mSceneID, modifySceneInfo.mSceneName);
+                    if (modifySceneInfo.scene_name.equalsIgnoreCase(Constants.SCENE_GLOBAL.NEW_SCENE_NAME)) {
+                        DataSources.getInstance().ChangeSencesName(modifySceneInfo.scene_id, modifySceneInfo.scene_name);
                     }
                     //------------------------场景end--------------------------
                     //------------------------任务start------------------------

@@ -56,7 +56,7 @@ public class AddDeviceToSence implements Runnable {
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 //添加设备到场景后，间隔两百毫秒发送存储场景
-                Thread.sleep(200);
+                Thread.sleep(1000);
                 byte[] store_scene = SceneCmdData.StoreScene(appDevice, group_id, scene_id);
                 Constants.sendMessage(store_scene);
                 byte[] recbuf = new byte[1024];
@@ -68,7 +68,7 @@ public class AddDeviceToSence implements Runnable {
             e.printStackTrace();
         } finally {
             if (socket != null) {
-                socket.close();
+//                socket.close();
             }
         }
     }

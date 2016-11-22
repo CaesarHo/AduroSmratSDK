@@ -23,7 +23,6 @@ import java.util.Arrays;
  */
 public class AddSence implements Runnable {
     private Context mContext;
-    private byte[] bt_send;
     private DatagramSocket socket = null;
     private String scene_Name = "";
     private short group_Id = -1;
@@ -65,7 +64,7 @@ public class AddSence implements Runnable {
                     System.out.println("当前接收的数据AddSence = " + Arrays.toString(recbuf));
                     //解析数据
                     if ((int) MessageType.A.ADD_SCENE_NAME.value() == recbuf[11]) {
-                        byte[] scene_name_len = Constants.SCENE_GLOBAL.ADD_SCENE_NAME.getBytes("utf-8");
+                        byte[] scene_name_len = scene_Name.getBytes("utf-8");
                         ParseSceneData.ParseAddSceneBackInfo(recbuf, scene_name_len.length);
                     }
                 }

@@ -66,10 +66,10 @@ public class DeleteGroup implements Runnable {
                         //解析数据
                         ParseGroupData.ParseDeleteGroupResult parseData = new ParseGroupData.ParseDeleteGroupResult();
                         parseData.parseBytes(recbuf);
-                        if (parseData.mGroupID == 0) {
+                        if (parseData.group_id == 0) {
                             return;
                         }
-                        DataSources.getInstance().DeleteGroupResult(parseData.mGroupID);
+                        DataSources.getInstance().DeleteGroupResult(parseData.group_id);
                     }
                 }
             }

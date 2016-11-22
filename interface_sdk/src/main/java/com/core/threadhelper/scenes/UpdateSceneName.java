@@ -69,10 +69,10 @@ public class UpdateSceneName implements Runnable {
                         //解析数据
                         ParseSceneData.ParseModifySceneInfo parseData = new ParseSceneData.ParseModifySceneInfo();
                         parseData.parseBytes(recbuf, scene_name.length());
-                        if (parseData.mSceneID == 0 && parseData.mSceneName.contains(scene_name)) {
+                        if (parseData.scene_id == 0 && parseData.scene_name.contains(scene_name)) {
                             return;
                         }
-                        DataSources.getInstance().ChangeSencesName(parseData.mSceneID, parseData.mSceneName);
+                        DataSources.getInstance().ChangeSencesName(parseData.scene_id, parseData.scene_name);
                     }
                 }
             }

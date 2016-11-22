@@ -68,7 +68,7 @@ public class AddGroup implements Runnable {
                     socket.receive(packet);
                     System.out.println("当前接收的数据AddGroup: =" + Arrays.toString(recbuf));
                     if ((int) MessageType.A.ADD_GROUP_NAME.value() == recbuf[11]) {
-                        byte[] group_name_len = group_name.getBytes("gb2312");
+                        byte[] group_name_len = group_name.getBytes("utf-8");
                         ParseGroupData.ParseAddGroupBack(recbuf, group_name_len.length);
                     }
                 }

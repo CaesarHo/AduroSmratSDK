@@ -22,7 +22,6 @@ import java.util.Arrays;
  */
 public class DeleteScence implements Runnable {
     private Context mContext;
-    private byte[] bt_send;
     private DatagramSocket socket = null;
     private short scene_id;
     private boolean isRun = true;
@@ -35,9 +34,10 @@ public class DeleteScence implements Runnable {
     @Override
     public void run() {
         try {
+            byte[] bt_send = SceneCmdData.sendDeleteSceneCmd((int)scene_id);
             if (!NetworkUtil.NetWorkType(mContext)) {
                 System.out.println("远程打开 = " + "deleteScence");
-                byte[] bt_send = SceneCmdData.sendDeleteSceneCmd((int)scene_id);
+
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
@@ -47,8 +47,6 @@ public class DeleteScence implements Runnable {
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
 
-                //获取组列表命令
-                bt_send = SceneCmdData.sendDeleteSceneCmd((int) scene_id);
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));

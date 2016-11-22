@@ -228,12 +228,12 @@ public class SerialHandler {
      * @param count
      * @param device_mac
      */
-    public void AddDeviceFromFile(short group_id,int count,String device_mac){
+    public void AddDeviceFromGroupFile(short group_id,int count,String device_mac){
         byte[] bt = GroupCmdData.AddDeviceFromFileCmd(group_id,count,device_mac);
         new Thread(new UdpClient(context,bt)).start();
     }
 
-    public void DeleteDeviceFromFile(short group_id,int count,String device_mac){
+    public void DeleteDeviceFromGroupFile(short group_id,int count,String device_mac){
         byte[] bt = GroupCmdData.DeleteDeviceFormFileCmd(group_id,count,device_mac);
         new Thread(new UdpClient(context,bt)).start();
     }
@@ -296,10 +296,10 @@ public class SerialHandler {
     }
 
     //添加场景
-    public void AddSence(String scene_name, short group_id,int count,String dev_mac){
+    public void AddSence(String scene_name, short scene_id,int count,String dev_mac){
         Constants.SCENE_GLOBAL.ADD_SCENE_NAME = scene_name;
-        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = group_id;
-        new Thread(new AddSence(context,scene_name,group_id,count,dev_mac)).start();
+        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = scene_id;
+        new Thread(new AddSence(context,scene_name,scene_id,count,dev_mac)).start();
     }
 
     //Recall场景
@@ -330,8 +330,24 @@ public class SerialHandler {
         Constants.SCENE_GLOBAL.NEW_SCENE_NAME = scene_name;
         new Thread(new UpdateSceneName(context,scene_id,scene_name)).start();
     }
-    //场景操作 =========================end============================
 
+    /**
+     * 添加设备到文件系统
+     * @param scene_id
+     * @param count
+     * @param device_mac
+     */
+    public void AddDeviceFromSceneFile(short scene_id,int count,String device_mac){
+        byte[] bt = SceneCmdData.AddDeviceFromSceneFile(scene_id,count,device_mac);
+        new Thread(new UdpClient(context,bt)).start();
+    }
+
+    public void DeleteDeviceFromSceneFile(short scene_id,int count,String device_mac){
+        byte[] bt = SceneCmdData.DeleteDeviceFormSceneFile(scene_id,count,device_mac);
+        new Thread(new UdpClient(context,bt)).start();
+    }
+
+    //场景操作 =========================end============================
 
     //任务操作============================start==============================
 

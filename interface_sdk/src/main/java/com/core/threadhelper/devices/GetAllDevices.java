@@ -67,7 +67,6 @@ public class GetAllDevices implements Runnable {
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 while (true) {
-                    ByteBuffer receiveBuffer = ByteBuffer.allocate(1024);
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);

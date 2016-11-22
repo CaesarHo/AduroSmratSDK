@@ -81,7 +81,7 @@ public class GroupCmdData {
     public static byte[] sendAddGroupCmd(String groupname, int dev_count,String merge_mac) {
         byte[] strTobt = null;
         try {
-            strTobt = groupname.getBytes("gb2312");
+            strTobt = groupname.getBytes("utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -515,7 +515,7 @@ public class GroupCmdData {
     public static byte[] sendUpdateGroupCmd(int group_id, String groupname) {
         byte[] strTobt = null;
         try {
-            strTobt = groupname.getBytes("gb2312");
+            strTobt = groupname.getBytes("utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -633,7 +633,7 @@ public class GroupCmdData {
         //消息体010020001d
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = MessageType.A.ADD_DEVICE_FORM_FILE.value();//数据类型
+        bt_send[12] = MessageType.A.ADD_DEVICE_FORM_GROUP_FILE.value();//数据类型
         bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度
         //数据体头415f5a4947
@@ -707,7 +707,7 @@ public class GroupCmdData {
         //消息体   0100 0f 0018
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
-        bt_send[12] = MessageType.A.DELETE_DEVICE_FORM_FILE.value();//数据类型
+        bt_send[12] = MessageType.A.DELETE_DEVICE_FORM_GROUP_FILE.value();//数据类型
         bt_send[13] = (byte) (data_style_len >> 8);
         bt_send[14] = (byte) data_style_len;//数据体长度
         //数据体头   415f5a4947
