@@ -850,7 +850,7 @@ public class DeviceCmdData {
         bt_send[12] = MessageType.A.UPLOAD_DEVICE_INFO.value();//数据体类型
         bt_send[13] = 0x00;
         bt_send[14] = 0x20;//数据体长度
-        //数据体-----头415f5a494701010000158d0000ecc97c000e02751201ff0500000000000100014c
+        //数据体-----头
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
         bt_send[17] = 0x5A;
@@ -872,7 +872,6 @@ public class DeviceCmdData {
         bt_send[30] = Utils.HexString2Bytes(devicemac)[7];
         bt_send[31] = (byte) 0x00;//下面数据长度    000e
         bt_send[32] = (byte) 0x0E;//下面数据长度
-
         bt_send[33] = (byte) 0x02;//段地址模式   02d008
         bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
         bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];

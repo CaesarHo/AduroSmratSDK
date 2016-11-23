@@ -4,6 +4,7 @@ import com.core.entity.AppDevice;
 import com.core.entity.AppGroup;
 import com.core.entity.AppScene;
 import com.core.entity.AppTask;
+import com.core.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -107,8 +108,9 @@ public class DataSources {
     }
 
     //接受传感器数据
-    public void getReceiveSensor(String mDevMac,int state,String time){
-        sdkCallback.getReceiveSensorDataCallback(mDevMac,state,time);
+    public void getReceiveSensor(String mDevMac,int state){
+        String time = String.valueOf(System.currentTimeMillis());
+        sdkCallback.getReceiveSensorDataCallback(mDevMac,state, Utils.getFormatTellDate(time));
     }
 
     //传感器电量
@@ -116,11 +118,15 @@ public class DataSources {
         sdkCallback.vRetResponseBatteryValueCallback(device_mac,value);
     }
 
+    //解析zonetype
+    public void vDataZoneType(String device_mac,String zone_type){
+        sdkCallback.vRetDeviceZoneType(device_mac,zone_type);
+    }
+
     //绑定设备
     public void BindDevice(short frequency,double voltage,double current,double power,double power_factor){
         sdkCallback.bingdevicecallback(frequency,voltage,current,power,power_factor);
     }
-
 
     //---------------------------------场景相关----------------------------------
     //获取网关所有场景

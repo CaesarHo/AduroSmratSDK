@@ -78,8 +78,7 @@ public class GetAllDevices implements Runnable {
                     ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
                     sensorData.parseBytes(recbuf);
                     if (sensorData.message_type.contains("8401")) {
-                        String time = String.valueOf(System.currentTimeMillis());
-                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state, Utils.getFormatTellDate(time));
+                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     }
 
                     /**
@@ -88,6 +87,15 @@ public class GetAllDevices implements Runnable {
                     ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
                     attribute.parseBytes(recbuf);
 
+//                    ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
+//                    pDevStateOrLevel.parseBytes(recbuf);
+//                    if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6){
+//                        DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
+//                    }
+
+                    /**
+                     * 传感器电量返回值
+                     */
                     if (attribute.message_type.contains("8102")){
                         DataSources.getInstance().responseBatteryValue(attribute.device_mac,attribute.attribValue);
                     }
@@ -97,7 +105,7 @@ public class GetAllDevices implements Runnable {
                         if (attribute.clusterID == 5) {
                             byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(
                                     attribute.message_type,
-                                    attribute.shortaddr,
+                                    attribute.short_address,
                                     attribute.endpoint + "",
                                     (short)attribute.attribValue);
                             Constants.sendMessage(zt_bt);

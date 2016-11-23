@@ -89,8 +89,7 @@ public class UdpClient implements Runnable{
                     sensorData.parseBytes(recbuf);
                     if (sensorData.message_type.contains("8401")) {
                         System.out.println("传感器返回数据stateSDK = " + sensorData.sensor_mac);
-                        String time = String.valueOf(System.currentTimeMillis());
-                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state, Utils.getFormatTellDate(time));
+                        DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     }
 
                     //解析设备属性数据
@@ -101,7 +100,7 @@ public class UdpClient implements Runnable{
                         //如果设备属性簇ID等于5则发送保存zonetypecmd
                         if (attribute.clusterID == 5) {
                             byte[] saveZoneType = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type,
-                                    attribute.shortaddr, attribute.endpoint + "",
+                                    attribute.short_address, attribute.endpoint + "",
                                     (short) attribute.attribValue);
                             Constants.sendMessage(saveZoneType);
                         }

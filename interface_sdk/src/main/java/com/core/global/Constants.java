@@ -72,13 +72,13 @@ public class Constants {
                 device_name = "DimSwitch";
                 break;
             case "0102":
-                device_name = "ColorLamp";
+                device_name = "Color Lamp";
                 break;
             case "0110":
-                device_name = "ColorTemp";
+                device_name = "Color Temp";
                 break;
             case "0210":
-                device_name = "HueColorLamp";
+                device_name = "Color Lamp";
                 break;
             case "0200":
                 device_name = "ColorLight";
@@ -87,7 +87,7 @@ public class Constants {
                 device_name = "ColorTempJZGD";
                 break;
             case "0100":
-                device_name = "DimmableLight";
+                device_name = "Dimmable Lamp";
                 break;
             case "0101":
                 device_name = "DimLamp";
@@ -144,7 +144,7 @@ public class Constants {
             case "002d":
                 device_name = "VibrationMovementSensor";
                 break;
-            case "FFFF":
+            case "ffff":
                 device_name = "Unidentified";
                 break;
         }

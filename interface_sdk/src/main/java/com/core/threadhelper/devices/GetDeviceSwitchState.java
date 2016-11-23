@@ -36,9 +36,9 @@ public class GetDeviceSwitchState implements Runnable {
     @Override
     public void run() {
         try {
+            bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
             if (!NetworkUtil.NetWorkType(mContext)) {
                 System.out.println("当前为远程通讯 = " + "getDeviceSwitchState");
-                byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
                 if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null) {
@@ -53,7 +53,6 @@ public class GetDeviceSwitchState implements Runnable {
                     socket.setReuseAddress(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
-                bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
@@ -74,13 +73,12 @@ public class GetDeviceSwitchState implements Runnable {
 
                         if (parseAttributeData.message_type.contains("8100") & parseAttributeData.clusterID == 6) {
                             DataSources.getInstance().getDeviceState(parseAttributeData.device_mac, parseAttributeData.attribValue);
-                            System.out.println("getDeviceState = " + parseAttributeData.device_mac);
-                            System.out.println("getDeviceState = " + parseAttributeData.attribValue);
                         }
                     }
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             Log.e("deviceinfo IOException", "Client: Error!");
         }
     }

@@ -72,6 +72,7 @@ public interface InterfaceCallback {
     void setColorTemperatureCallback(String device_id,byte value);
 
     void vRetResponseBatteryValueCallback(String device_mac,int value);
+    void vRetDeviceZoneType(String device_mac,String zone_type);
 
     void getReceiveSensorDataCallback(String device_id,int state,String time_str);
 
