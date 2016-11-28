@@ -34,7 +34,7 @@ public class GetAllGroups implements Runnable {
     @Override
     public void run() {
         try {
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getGroups");
                 byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);

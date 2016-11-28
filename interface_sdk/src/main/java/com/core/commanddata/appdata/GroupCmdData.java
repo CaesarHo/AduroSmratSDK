@@ -305,7 +305,7 @@ public class GroupCmdData {
 
     public static byte[] setGroupLevel(int group_id, int value) {
         byte[] bt_send = new byte[41];
-        //415050C0A8016B 0101 43
+        //415050c0a8010801013b
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -321,7 +321,7 @@ public class GroupCmdData {
         } else {
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
         }
-        //消息体  01 0002 0018
+        //消息体0100020019415f5a494701008100124b00076afe09000701000201ff00fc91
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CONTROL_DEVICE.value();
@@ -336,8 +336,8 @@ public class GroupCmdData {
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value() >> 8);//(byte) 0x00;
-        bt_send[22] = (byte) MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value();       //(byte) 0x81;
-        //mac地址    00124b0001dd7ac1   124b0001dd7ac1
+        bt_send[22] = (byte)  MessageType.B.E_SL_MSG_MOVE_TO_LEVEL_ONOFF.value();       //(byte) 0x81;
+        //mac地址    00124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x12;
         bt_send[25] = 0x4b;
@@ -351,10 +351,10 @@ public class GroupCmdData {
         bt_send[32] = (byte) 0x07;
         bt_send[33] = (byte) 0x01;
         bt_send[34] = (byte) (group_id >> 8);
-        bt_send[35] = (byte) group_id;
+        bt_send[35] = (byte)  group_id;
         bt_send[36] = 0x01;//源端点
-        bt_send[37] = (byte) 0xff;//目标端点
-        bt_send[38] = 0x00;
+        bt_send[37] = (byte) 0xFF;//目标端点
+        bt_send[38] = 0x01;
         bt_send[39] = (byte) value;//状态值
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {

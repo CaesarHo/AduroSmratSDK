@@ -73,6 +73,13 @@ public class SerialHandler {
             //如果網絡是3G網，則連接mqtt及訂閱mqtt
             setMqttCommunication();
         }
+
+        //test MQTT
+        if (Constants.isRemote){
+            MqttManager.getInstance().init(context);
+            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+            setMqttCommunication();
+        }
     }
 
     /**

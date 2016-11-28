@@ -72,7 +72,7 @@ public class ParseDeviceData {
         }
 
         if (device_id.contains("0402") & device_zone_type.equalsIgnoreCase("ffff")) {
-            byte[] bt_send = DeviceCmdData.ReadZoneTypeCmd(device_mac, device_shortaddr, main_endpoint);
+            byte[] bt_send = DeviceCmdData.ReadZoneTypeCmd(device_mac, device_shortaddr);
             Constants.sendMessage(bt_send);
         }
 
@@ -216,10 +216,8 @@ public class ParseDeviceData {
         }
 
         public void parseBytes(byte[] data) {
-            byte[] message_type_bt = new byte[2];
-            byte[] device_mac_bt = new byte[8];
-
             //Zigbee串口类型
+            byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 20, message_type_bt, 0, 2);
             for (int i = 0; i < message_type_bt.length; i++) {
                 String str_zero = "";
@@ -233,6 +231,7 @@ public class ParseDeviceData {
             System.out.println("ParseAttributeData message_type = " + message_type);
 
             //设备MAC地址
+            byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 22, device_mac_bt, 0, 8);
             String str_zero = "";
             for (int i = 0; i < device_mac_bt.length; i++) {
@@ -347,6 +346,19 @@ public class ParseDeviceData {
                     }
                     DataSources.getInstance().vDataZoneType(device_mac,zone_type);
                     Log.i("attribValue 0x31= ", "" + attribValue);
+                    String main_endpoint = "";
+                    if (data[34] >= 0 && data[34] <= 16){
+                        main_endpoint = "" + Integer.toHexString(data[34]);
+                    }else{
+                        main_endpoint = Integer.toHexString(data[34] );
+                    }
+                    Log.i("attribValue main_point=", "" + main_endpoint);
+                    byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac,short_address,main_endpoint,(short) attribValue);
+                    try{
+                        Constants.sendMessage(bt);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
                 break;
                 case 0x42: {
@@ -371,10 +383,8 @@ public class ParseDeviceData {
 
     /**
      * 解析接收到的设备状态及其亮度
-     * 71, 87, -64, -88, 0, 85, 10, 1, 49, 1,
-     * 0, 31, 0, 26, 65, 95, 90, 73, 71, 1,
-     * -127, 1(枚举B),(第二十一)
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1, 1,(源端点)  0, 6(clusterID) , 0(命令ID), 0(状态吗), -27, -112(短地址), -115, -1, -1
+     * 71, 87, -64, -88, 0, 85, 10, 1, 49, 1, 0, 31, 0, 26, 65, 95, 90, 73, 71, 1, -127, 1(枚举B),(第二十一)
+     * 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1, 1,(源端点)  0, 6(clusterID) , 0(命令ID), 0(状态吗), -27, -112(短地址), -115, -1, -1
      */
     public static class ParseDeviceStateOrLevel{
         public String short_address = "";

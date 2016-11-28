@@ -44,7 +44,7 @@ public class UdpClient implements Runnable{
     @Override
     public void run() {
         try {
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");

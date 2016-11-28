@@ -46,7 +46,7 @@ public class GetAllDevices implements Runnable {
 //                bt_send = AESUtils.encode(bt);
             }
 
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
@@ -73,11 +73,23 @@ public class GetAllDevices implements Runnable {
                     System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
 
                     /**
+                     * 设备返回的状态
+                     */
+                    ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
+                    pDevStateOrLevel.parseBytes(recbuf);
+                    if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6){
+                        DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
+                    }
+
+                    /**
                      * 接受传感器数据并解析
                      */
                     ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
                     sensorData.parseBytes(recbuf);
                     if (sensorData.message_type.contains("8401")) {
+                        //当有传感器数据上传时读取ZONETYPE
+                        byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac,sensorData.shortaddr_str);
+                        Constants.sendMessage(bt);
                         DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     }
 
@@ -86,12 +98,6 @@ public class GetAllDevices implements Runnable {
                      */
                     ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
                     attribute.parseBytes(recbuf);
-
-//                    ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
-//                    pDevStateOrLevel.parseBytes(recbuf);
-//                    if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6){
-//                        DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
-//                    }
 
                     /**
                      * 传感器电量返回值

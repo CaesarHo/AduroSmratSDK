@@ -33,7 +33,7 @@ public class GetAllTasks implements Runnable {
     public void run() {
         try {
             byte[] bt_send = TaskCmdData.GetAllTasks();
-            if (!NetworkUtil.NetWorkType(context)) {
+            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");

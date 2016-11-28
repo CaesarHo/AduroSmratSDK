@@ -34,7 +34,7 @@ public class GetAllSences implements Runnable {
     @Override
     public void run() {
         try {
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getSences");
                 byte[] bt_send = SceneCmdData.GetAllScenesListCmd();
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);

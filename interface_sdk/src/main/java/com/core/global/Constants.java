@@ -12,8 +12,9 @@ import java.util.Arrays;
  * Created by best on 2016/7/14.
  */
 public class Constants {
+    public static boolean isRemote = false;
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "data.adurosmart.com";//"120.24.242.83";
+    public static String MQTT_SERVER = "192.168.0.80";//"data.adurosmart.com";
     public static String CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
@@ -72,40 +73,40 @@ public class Constants {
                 device_name = "DimSwitch";
                 break;
             case "0102":
-                device_name = "Color Lamp";
+                device_name = "Color lamp";
                 break;
             case "0110":
-                device_name = "Color Temp";
+                device_name = "Color temperature lamp";
                 break;
             case "0210":
-                device_name = "Color Lamp";
+                device_name = "Color lamp";
                 break;
             case "0200":
-                device_name = "ColorLight";
+                device_name = "Color lamp";
                 break;
             case "0220":
                 device_name = "ColorTempJZGD";
                 break;
             case "0100":
-                device_name = "Dimmable Lamp";
+                device_name = "Dim lamp";
                 break;
             case "0101":
-                device_name = "DimLamp";
+                device_name = "Dim lamp";
                 break;
             case "0402":
                 device_name = DeviceZoneType(zone_type);
                 break;
             case "0202":
-                device_name = "WindowCurtain";
+                device_name = "Window Curtain";
                 break;
             case "0309":
                 device_name = "PM2dot5Sensor";
                 break;
             case "0310":
-                device_name = "SmokingSensor";
+                device_name = "Smoking Sensor";
                 break;
             case "0820":
-                device_name = "LightingRemotes";
+                device_name = "Lighting Remotes";
                 break;
             case "ffff":
                 device_name = "unKnown";
@@ -121,10 +122,10 @@ public class Constants {
                 device_name = "StandardCIE";
                 break;
             case "000d":
-                device_name = "MotionSensor";
+                device_name = "Motion Sensor";
                 break;
             case "0015":
-                device_name = "ContactSwitch";
+                device_name = "Door Contact Sensor";
                 break;
             case "0028":
                 device_name = "FireSensor";

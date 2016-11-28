@@ -825,7 +825,7 @@ public class DeviceCmdData {
      * @param devicemac
      * @return
      */
-    public static byte[] ReadZoneTypeCmd(String devicemac, String shortaddr, String main_point) {
+    public static byte[] ReadZoneTypeCmd(String devicemac, String shortaddr) {
         //415050c0a801040101c1
         byte[] bt_send = new byte[48];
         bt_send[0] = 0x41;
@@ -959,10 +959,10 @@ public class DeviceCmdData {
         bt_send[33] = (byte) 0x02;//段地址模式   02d008
         bt_send[34] = Utils.HexString2Bytes(shortaddr)[0];
         bt_send[35] = Utils.HexString2Bytes(shortaddr)[1];
-        bt_send[36] = 0x01;//01ff
+        bt_send[36] = 0x01;   //01ff
         bt_send[37] = Utils.HexString2Bytes(main_point)[0];//目标端点
-        bt_send[38] = (byte) (zonetype << 8);//zonetype  0500
-        bt_send[39] = (byte) zonetype;//zonetype
+        bt_send[38] = (byte) (zonetype >> 8); //zonetype  0500
+        bt_send[39] = (byte) zonetype;        //zonetype
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
             String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
@@ -1239,7 +1239,7 @@ public class DeviceCmdData {
         bt_send[35] = (byte) 0xfc;
         bt_send[36] = 0x01;//源端点
         bt_send[37] = (byte) 0xff;//目标端点
-        bt_send[38] = 0x00;
+        bt_send[38] = 0x01;
         bt_send[39] = (byte) levelValue;
         bt_send[40] = 0x00;
         bt_send[41] = 0x00;

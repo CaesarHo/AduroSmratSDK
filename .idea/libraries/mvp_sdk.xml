@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="sdk">
+  <library name="mvp_sdk">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/src/main/libs/sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/src/main/libs/mvp_sdk.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
