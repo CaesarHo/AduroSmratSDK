@@ -20,10 +20,6 @@
         "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\filedialogitem.xml"
     },
     {
-        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_udp.xml",
-        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_udp.xml"
-    },
-    {
         "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_publish.xml",
         "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\activity_publish.xml"
     },
@@ -38,10 +34,6 @@
     {
         "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_view_text_view.xml",
         "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\list_view_text_view.xml"
-    },
-    {
-        "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_lan.xml",
-        "source": "G:\\AndroidAduroSmratSDK\\app\\src\\main\\res\\layout\\list_item_lan.xml"
     },
     {
         "merged": "G:\\AndroidAduroSmratSDK\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_activity.xml",

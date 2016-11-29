@@ -70,6 +70,10 @@ public class GetAllDevices implements Runnable {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    String isK64 = new String(recbuf).trim();;
+                    if (isK64.contains("K64")){
+                        return;
+                    }
                     System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
 
                     /**

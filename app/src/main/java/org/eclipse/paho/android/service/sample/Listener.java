@@ -21,8 +21,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import com.adurosmart.activitys.UpdActivity;
-
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.android.service.sample.ActionListener.Action;
 import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
@@ -113,9 +111,7 @@ public class Listener implements OnMenuItemClickListener {
                 disablePahoLogging();
                 break;
             case R.id.udp_action:
-                Intent intent = new Intent();
-                intent.setClass(context, UpdActivity.class);
-                context.startActivity(intent);
+
                 break;
         }
 

@@ -22,5 +22,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
     compile 'com.google.code.gson:gson:2.4'
-    compile files('src/main/libs/sdk.jar')
+    compile files('src/main/libs/mvp_sdk.jar')
 }

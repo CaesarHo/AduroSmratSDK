@@ -3,7 +3,6 @@ package com.adurosmart.thread;
 import android.content.Context;
 import android.util.Log;
 
-import com.adurosmart.global.FList;
 import com.adurosmart.utils.Utils;
 
 public class MainThread {
@@ -37,7 +36,7 @@ public class MainThread {
 //					checkUpdate();
 					Log.e("my", "updateOnlineState");
 					try {
-						FList.getInstance().searchLocalDevice();
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -117,7 +117,7 @@ public class ClientConnections extends ListActivity {
         }
 
         menu.findItem(R.id.newConnection).setOnMenuItemClickListener(menuItemClickListener);
-        menu.findItem(R.id.udp_action).setOnMenuItemClickListener(menuItemClickListener);
+//        menu.findItem(R.id.udp_action).setOnMenuItemClickListener(menuItemClickListener);
 
         return true;
     }
@@ -200,24 +200,20 @@ public class ClientConnections extends ListActivity {
 
     /**
      * Process data from the connect action
-     *
      * @param data the {@link Bundle} returned by the {@link NewConnection} Acitivty
      */
     private void connectAction(Bundle data) {
         MqttConnectOptions conOpt = new MqttConnectOptions();
     /*
      * Mutal Auth connections could do something like this
-     * 
-     * 
+     *
      * SSLContext context = SSLContext.getDefault();
      * context.init({new CustomX509KeyManager()},null,null); //where CustomX509KeyManager proxies calls to keychain api
      * SSLSocketFactory factory = context.getSSLSocketFactory();
      * 
      * MqttConnectOptions options = new MqttConnectOptions();
      * options.setSocketFactory(factory);
-     * 
      * client.connect(options);
-     * 
      */
 
         // The basic client information

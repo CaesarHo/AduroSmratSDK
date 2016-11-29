@@ -12,15 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="G:\AndroidAduroSmratSDK\app\src\main\libs\sdk.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="c46c58c2164783dd7e9f05ea57b4bc5427cd7cab">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\sdk_653e6c9b41d147544e2062d0192ccd5313744e6f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
         jumboMode="true"
         optimize="true"
@@ -34,8 +25,17 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="27d039b46b950a8bb192b285db9776365a8fa65b">
+        sha1="b91645e2093d5abc5624e83a53c733b4b946762f">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\AndroidAduroSmratSDK\app\src\main\libs\mvp_sdk.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="aa08375077798a446fb5a6a9a6a7c5a82edc2f67">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\mvp_sdk_6a67c4e968e56eba7bb51c3379866e2544e33ecf\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="0c3fd092e045aa2dc09841777f0a834e2d48bdac">
+        sha1="9f9a91951a7c8a77a6cbf362e0e0474ab84e2529">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
     </item>
     <item

@@ -495,7 +495,7 @@ public class DeviceCmdData {
         bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度   00 06  02   f767 01 0C 02 4c
         bt_send[31] = (byte) 0x00;
-        bt_send[32] = (byte) 0x10;
+        bt_send[32] = (byte) 0x0A;
         bt_send[33] = (byte) 0x02;
         bt_send[34] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
         bt_send[35] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];

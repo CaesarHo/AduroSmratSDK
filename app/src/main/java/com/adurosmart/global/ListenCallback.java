@@ -2,31 +2,30 @@ package com.adurosmart.global;
 
 import android.content.Intent;
 
-import com.interfacecallback.InterfaceCallback;
+import com.core.entity.AppDevice;
+import com.core.entity.AppGroup;
+import com.core.entity.AppScene;
+import com.core.entity.AppTask;
+import com.core.gatewayinterface.InterfaceCallback;
 
 import org.eclipse.paho.android.service.sample.MyApp;
 
 /**
  * Created by best on 2016/7/11.
  */
-public class ListenCallback implements InterfaceCallback{
+public class ListenCallback implements InterfaceCallback {
     @Override
-    public void AddGroupCallback(int i) {
+    public void DeleteGroupCallback(short i) {
 
     }
 
     @Override
-    public void DeleteGroupCallback(int i) {
+    public void ChangeGroupNameCallback(short i, String s) {
 
     }
 
     @Override
-    public void ModifyGroupCallback(int i) {
-
-    }
-
-    @Override
-    public void getAllGroupsCallback(Short aShort, String s, String s1) {
+    public void getAllGroupsCallback(AppGroup appGroup) {
 
     }
 
@@ -71,33 +70,22 @@ public class ListenCallback implements InterfaceCallback{
     }
 
     @Override
-    public void setDeviceStateCallback(int i) {
-
-    }
-
-
-    @Override
-    public void getSenceDetailsCallback(short i, String s, int i1, Short aShort) {
+    public void SendExceptionCallack(int i) {
 
     }
 
     @Override
-    public void addDeviceToSenceCallback(String s, int i, short i1, int i2) {
+    public void AgreeDeviceInNetCallback(int i) {
 
     }
 
     @Override
-    public void deleteSenceMemberCallback(int i) {
+    public void ScanDeviceCallback(AppDevice appDevice) {
 
     }
 
     @Override
-    public void deleteSence(int i) {
-
-    }
-
-    @Override
-    public void ChangeSceneName(short i, String s, int i1) {
+    public void AddDeviceCallback(AppDevice appDevice) {
 
     }
 
@@ -112,35 +100,12 @@ public class ListenCallback implements InterfaceCallback{
     }
 
     @Override
-    public void GatewatInfoCallback(String gatewayName,String gatewayNo,String gatewaySoftwareVersion, String gatewayHardwareVersion,String gatewayIPv4Address,String gatewayDatetime) {
-        Intent intent = new Intent();
-        intent.setAction("GatewatInfoCallback");
-        intent.putExtra("gatewayName",gatewayName);
-        intent.putExtra("gatewayNo",gatewayNo);
-        intent.putExtra("gatewaySoftwareVersion",gatewaySoftwareVersion);
-        intent.putExtra("gatewayHardwareVersion",gatewayHardwareVersion);
-        intent.putExtra("gatewayIPv4Address",gatewayIPv4Address);
-        intent.putExtra("gatewayDatetime",gatewayDatetime);
-        MyApp.app.sendBroadcast(intent);
-    }
-
-    @Override
-    public void AgreeDeviceInNetCallback(int i) {
+    public void setDeviceStateCallback(int i) {
 
     }
 
     @Override
-    public void ScanDeviceCallback(String s, byte b, byte b1, byte b2, byte b3, byte b4, byte b5, String s1, int i, String s2, int i1, Short aShort, Short aShort1, Short aShort2) {
-
-    }
-
-    @Override
-    public void AddDeviceCallback(String s, byte b, byte b1, byte b2, byte b3, byte b4, byte b5, String s1, int i, String s2, int i1, Short aShort, Short aShort1, Short aShort2) {
-
-    }
-
-    @Override
-    public void getDeviceStateCallback(String s, byte b) {
+    public void getDeviceStateCallback(String s, int i) {
 
     }
 
@@ -155,7 +120,7 @@ public class ListenCallback implements InterfaceCallback{
     }
 
     @Override
-    public void getDeviceLevelCallback(String s, byte b) {
+    public void getDeviceLevelCallback(String s, int i) {
 
     }
 
@@ -180,12 +145,81 @@ public class ListenCallback implements InterfaceCallback{
     }
 
     @Override
-    public void getSencesCallback(int i, String s, String s1) {
+    public void vRetResponseBatteryValueCallback(String s, int i) {
 
     }
 
     @Override
-    public void addSencesCallback(int i, String s, String s1) {
+    public void vRetDeviceZoneType(String s, String s1) {
 
     }
+
+    @Override
+    public void getReceiveSensorDataCallback(String s, int i, String s1) {
+
+    }
+
+    @Override
+    public void bingdevicecallback(short i, double v, double v1, double v2, double v3) {
+
+    }
+
+    @Override
+    public void getScenesCallback(AppScene appScene) {
+
+    }
+
+    @Override
+    public void addSceneCallback(short i, String s, short i1) {
+
+    }
+
+    @Override
+    public void getSceneDetailsCallback(short i, String s, int i1, Short aShort) {
+
+    }
+
+    @Override
+    public void addDeviceToSenceCallback(String s, int i, short i1, int i2) {
+
+    }
+
+    @Override
+    public void deleteSenceMemberCallback(int i) {
+
+    }
+
+    @Override
+    public void deleteSence(int i) {
+
+    }
+
+    @Override
+    public void ChangeSceneName(short i, String s) {
+
+    }
+
+    @Override
+    public void getAllTasksCallback(AppTask appTask) {
+
+    }
+
+    @Override
+    public void AddGroupCallback(Short aShort, String s) {
+
+    }
+
+    @Override
+    public void GatewatInfoCallback(String gatewayName,String gatewayNo,String gatewaySoftwareVersion, String gatewayHardwareVersion,String gatewayIPv4Address,String gatewayDatetime) {
+        Intent intent = new Intent();
+        intent.setAction("GatewatInfoCallback");
+        intent.putExtra("gatewayName",gatewayName);
+        intent.putExtra("gatewayNo",gatewayNo);
+        intent.putExtra("gatewaySoftwareVersion",gatewaySoftwareVersion);
+        intent.putExtra("gatewayHardwareVersion",gatewayHardwareVersion);
+        intent.putExtra("gatewayIPv4Address",gatewayIPv4Address);
+        intent.putExtra("gatewayDatetime",gatewayDatetime);
+        MyApp.app.sendBroadcast(intent);
+    }
+
 }

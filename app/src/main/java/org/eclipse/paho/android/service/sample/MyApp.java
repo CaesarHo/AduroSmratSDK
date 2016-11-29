@@ -7,9 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
-
-import com.adurosmart.utils.UDPHelper2;
-
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -22,10 +19,6 @@ public class MyApp extends Application {
 	public static int port = 1883;
 	public static String mAndroidId;
 	public String clientHandle = null;
-	Thread thread;
-
-	Thread tReceived;
-	UDPHelper2 udpHelper2;
 	WifiManager wifiManager;
 
 	@Override
@@ -37,15 +30,8 @@ public class MyApp extends Application {
 		connectAction();
 		new Thread(new MyThread()).start();//创建线程判断如果MQTT掉线能重连
 
-		thread = new Thread();
-		thread.start();
-
 		//获取wifi服务
 		wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-		//监听2
-		udpHelper2 = new UDPHelper2(app,wifiManager);
-		tReceived = new Thread(udpHelper2);
-		tReceived.start();
 	}
 
 	public void connectAction(){

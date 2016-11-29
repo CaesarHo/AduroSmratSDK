@@ -55,13 +55,9 @@
             android:name="org.eclipse.paho.android.service.sample.ConnectionDetails"
             android:label="@string/title_activity_connection_details"></activity>
 
-        <activity
-            android:name="com.adurosmart.activitys.UpdActivity"
-            android:label="@string/title_activity_connection_details">
-        </activity>
         <service android:name="com.adurosmart.global.MainService">
             <intent-filter>
-                <action android:name="com.adurosmart.service.MAINSERVICE"/>
+                <action android:name="com.adurosmart.service.MAINSERVICE" />
             </intent-filter>
         </service>
 
