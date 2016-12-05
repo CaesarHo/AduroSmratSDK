@@ -5,8 +5,11 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
+import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.utils.Utils;
 
@@ -17,24 +20,24 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Calendar;
+
+import static com.core.global.Constants.isScanGwNodeVer;
 
 /**
  * Created by best on 2016/6/27.
  */
 public class UDPHelper implements Runnable {
     private Context context;
-    //指示监听线程是否终止
-    private Boolean IsThreadDisable = false;
     private WifiManager.MulticastLock lock;
-    // UDP服务器监听的端口
     private DatagramSocket socket = null;
 
-    public UDPHelper(Context context, WifiManager manager) {
+    public UDPHelper(Context context, WifiManager wifiManager) {
         this.context = context;
-        this.lock = manager.createMulticastLock("localWifi");
+        this.lock = wifiManager.createMulticastLock("localWifi");
         //获取本地IP地址
-        WifiInfo wifiInfo = manager.getConnectionInfo();
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
         Constants.APP_IP_ADDRESS = Utils.intToIp(ipAddress);
         Utils.SplitToIp(Constants.APP_IP_ADDRESS);
@@ -42,7 +45,7 @@ public class UDPHelper implements Runnable {
 
     @Override
     public void run() {
-        if (Constants.APP_IP_ADDRESS == null) {
+        if (Constants.APP_IP_ADDRESS.equals("")) {
             DataSources.getInstance().SendExceptionResult(0);
             return;
         }
@@ -62,29 +65,33 @@ public class UDPHelper implements Runnable {
             }
             DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
 
-            while (!IsThreadDisable && num < 10) {
+            while (num < 10) {
                 num++;
                 // 准备接收数据
                 lock.acquire();
                 socket.receive(datagramPacket);
                 String strMsg = new String(datagramPacket.getData()).trim();
-                String ipstr = datagramPacket.getAddress().getHostAddress().toString();
+                String ip_str = datagramPacket.getAddress().getHostAddress().toString();
                 int port_int = datagramPacket.getPort();
-                long time = System.currentTimeMillis();
+                System.out.println("接收的网关信息 = " + Arrays.toString(message));
 
-                Constants.GW_IP_ADDRESS = ipstr;
+                Constants.GW_IP_ADDRESS = ip_str;
 
                 if (strMsg.contains("K64_SEARCH_GW")) {
-                    DataSources.getInstance().GatewayInfo("GatewatName", strMsg,
-                            "SoftwareVersion", "HarddwareVersion", ipstr, Utils.ConvertTimeByLong(time));
-
                     String[] gw_no_arr = strMsg.split(":");
                     String gw_no = gw_no_arr[1];
                     System.out.println("gw_no = " + gw_no);
                     System.out.println("strMsg = " + strMsg);
-                    GatewayInfo.getInstance().setInetAddress(context, ipstr);
+                    GatewayInfo.getInstance().setInetAddress(context, ip_str);
                     GatewayInfo.getInstance().setPort(context, port_int);
                     GatewayInfo.getInstance().setGatewayNo(context, gw_no);
+
+                    if (!isScanGwNodeVer){
+                        Thread.sleep(2000);
+                        SerialHandler.getInstance().GetGwInfo();
+                        Thread.sleep(2000);
+                        SerialHandler.getInstance().GetNodeVer();
+                    }
                 }
 
                 if (lock.isHeld()) {

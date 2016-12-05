@@ -17,28 +17,6 @@ import java.util.Arrays;
 
 public class ParseSceneData {
 
-    public static void ParseAddSceneBackInfo(byte[] data, int len) {
-        byte[] scene_id_bt = new byte[2];
-        byte[] scene_name_bt = new byte[len];
-
-        byte sceneId = data[32];
-        int id_i = sceneId & 0xff;
-        short scene_id = (short) id_i;
-
-        System.arraycopy(data, 35, scene_name_bt, 0, len);
-        String scene_name = new String(scene_name_bt);
-
-        System.arraycopy(data, 35 + len, scene_id_bt, 0, 2);
-        short mGroupId = FtFormatTransfer.hBytesToShort(scene_id_bt);
-
-        if (scene_name.equals(Constants.SCENE_GLOBAL.ADD_SCENE_NAME)) {
-            if (scene_id == 0) {
-                return;
-            }
-            DataSources.getInstance().AddScene(scene_id, scene_name, Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID);
-        }
-    }
-
     public static void ParseGetScenesInfo(byte[] bt) throws Exception {
         String sceneinfo = new String(bt);
         System.out.println("场景设备列表 = " + sceneinfo);
@@ -85,6 +63,38 @@ public class ParseSceneData {
         DataSources.getInstance().getAllScenes(appScene);
     }
 
+    public static class ParseAddSceneInfo {
+        public String scene_name;
+        public short scene_id;
+        public short group_id;
+        public ParseAddSceneInfo(){
+            this.scene_name = "";
+            this.scene_id = -1;
+            this.group_id = -1;
+        }
+        public void parseBytes(byte[] data, int len){
+            byte[] scene_id_bt = new byte[2];
+            byte[] scene_name_bt = new byte[len];
+
+            byte sceneId = data[32];
+            int id_i = sceneId & 0xff;
+            scene_id = (short) id_i;
+
+            System.arraycopy(data, 35, scene_name_bt, 0, len);
+            scene_name = new String(scene_name_bt);
+
+            System.arraycopy(data, 35 + len, scene_id_bt, 0, 2);
+            group_id = FtFormatTransfer.hBytesToShort(scene_id_bt);
+
+            if (scene_name.equals(Constants.SCENE_GLOBAL.ADD_SCENE_NAME)) {
+                if (scene_id <= 0) {
+                    return;
+                }
+                DataSources.getInstance().AddScene(scene_id, scene_name, Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID);
+            }
+        }
+    }
+
     /**
      * 解析修改场景名称
      */
@@ -98,11 +108,11 @@ public class ParseSceneData {
         }
 
         public void parseBytes(byte[] data, int len) {
-            byte[] bt_name = new byte[len];
-
             byte bt_scene = data[32];
             int i = bt_scene & 0xff;
             scene_id = (short) i;
+
+            byte[] bt_name = new byte[len];
             System.arraycopy(data, 35, bt_name, 0, len);
             scene_name = FtFormatTransfer.bytesToString(bt_name);
         }

@@ -1,6 +1,7 @@
 package com.core.gatewayinterface;
 
 import com.core.entity.AppDevice;
+import com.core.entity.AppGateway;
 import com.core.entity.AppGroup;
 import com.core.entity.AppScene;
 import com.core.entity.AppTask;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public interface InterfaceCallback {
     //-------------------------------网关相关------------------------------
     //网关信息回调
-    void GatewatInfoCallback(String gwName,String gwNo,String gwSoftwareVersion,String gwHardwareVersion,String gwIPv4Address,String gwDatetime);
+    void GatewatInfoCallback(AppGateway appGateway);
     //===============================房间相关==============================
     //添加房间
     void AddGroupCallback(Short group_id,String group_name);

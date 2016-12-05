@@ -13,6 +13,7 @@ public class GatewayInfo {
     public static final String AESKEY = "aeskey";
     public static final String PORT = "port";
     public static final String GATEWAY_NO = "gateway_no";
+    public static final String GATEWAY_MAC = "gateway_mac";
 
     private static GatewayInfo manager = null;
 
@@ -32,16 +33,16 @@ public class GatewayInfo {
     }
 
     //网关版本固件获取
-    public String getFirmwareVersion(Context context) {
+    public int getFirmwareVersion(Context context) {
         SharedPreferences sf = context.getSharedPreferences(FIRMWARE_VERSION, context.MODE_PRIVATE);
-        return sf.getString("ADURO" + FIRMWARE_VERSION, "");
+        return sf.getInt("ADURO" + FIRMWARE_VERSION, 0);
     }
 
     //网关版本固件保存
-    public void setFirmwareVersion(Context context,String value) {
+    public void setFirmwareVersion(Context context,int value) {
         SharedPreferences sf = context.getSharedPreferences(FIRMWARE_VERSION, context.MODE_PRIVATE);
         Editor editor = sf.edit();
-        editor.putString("ADURO" + FIRMWARE_VERSION, value);
+        editor.putInt("ADURO" + FIRMWARE_VERSION, value);
         editor.commit();
     }
 
@@ -56,6 +57,20 @@ public class GatewayInfo {
         SharedPreferences sf = context.getSharedPreferences(GATEWAY_NO,context.MODE_PRIVATE);
         Editor editor = sf.edit();
         editor.putString("ADURO" + GATEWAY_NO,value);
+        editor.commit();
+    }
+
+    //获取网关编号
+    public String getGatewayMac(Context context){
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_MAC,context.MODE_PRIVATE);
+        return sf.getString("ADURO" + GATEWAY_MAC ,"");
+    }
+
+    //保存网关编号
+    public void setGatewayMac(Context context,String value){
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_MAC,context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putString("ADURO" + GATEWAY_MAC,value);
         editor.commit();
     }
 

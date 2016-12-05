@@ -22,76 +22,196 @@
 -keep class org.eclipse.paho.client.mqttv3.logging.JSR47Logger {
     *;
 }
--optimizationpasses5
+
+#-injars  G:\AndroidAduroSmratSDK\interface_sdk\build\libs\sdk.jar
+#-outjars  G:\sdk2.jar
+#-libraryjars D:\Android\android-sdk-windows\platforms\android-23\android.jar'
+#
+#-optimizationpasses 5
+#-dontusemixedcaseclassnames
+#-dontskipnonpubliclibraryclasses
+#-dontpreverify
+#-verbose
+#-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+#-keep public class * extends android.app.Application
+#-keep public class * extends android.app.Service
+#-keep public class * extends android.content.BroadcastReceiver
+#-keep public class * extends android.content.ContentProvider
+#-keep public class * extends android.app.backup.BackupAgentHelper
+#-keep public class * extends android.preference.Preference
+#-keep public class com.android.vending.licensing.ILicensingService
+#-keep public abstract interface com.asqw.android.Listener{
+#public protected <methods>;
+#}
+#-keep public class com.asqw.android{
+#public void Start(Java.lang.String);
+#}
+#-keepclasseswithmembernames class * {
+#native <methods>;
+#}
+#-keepclasseswithmembers class * {
+#public <init>(android.content.Context, android.util.AttributeSet);
+#}
+#-keepclasseswithmembers class * {
+#public <init>(android.content.Context, android.util.AttributeSet, int);
+#}
+#-keepclassmembers enum * {
+#public static **[] values();
+#public static ** valueOf(java.lang.String);
+#}
+#-keep class * implements android.os.Parcelable {
+#public static final android.os.Parcelable$Creator *;
+#}
+#
+#-keepclassmembers class * implements java.io.Serializable {
+#    static final long serialVersionUID;
+#    private static final java.io.ObjectStreamField[] serialPersistentFields;
+#    private void writeObject(java.io.ObjectOutputStream);
+#    private void readObject(java.io.ObjectInputStream);
+#    java.lang.Object writeReplace();
+#    java.lang.Object readResolve();
+#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------------------定制化区域----------------------------------------------
+#---------------------------------1.实体类---------------------------------
+
+-keep class com.core.entity.** { *; }
+
+
+#-------------------------------------------------------------------------
+
+#---------------------------------2.第三方包-------------------------------
+
+#eventBus
+#-keepattributes *Annotation*
+#-keepclassmembers class ** {    @org.greenrobot.eventbus.Subscribe <methods>;
+#}
+#-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+#-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+#    <init>(java.lang.Throwable);
+#}
+
+#glide
+#-keep public class * implements com.bumptech.glide.module.GlideModule-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+#  **[] $VALUES;  public *;
+#}
+
+#log4j
+#-libraryjars log4j-1.2.17.jar
+-dontwarn org.apache.log4j.**
+-keep class  org.apache.log4j.** { *;}
+
+#-------------------------------------------------------------------------
+
+#---------------------------------3.与js互相调用的类------------------------
+
+#-keepclasseswithmembers class com.demo.login.bean.ui.MainActivity$JSInterface {
+#      <methods>;
+#}
+
+#-------------------------------------------------------------------------
+
+#---------------------------------4.反射相关的类和方法-----------------------
+
+#TODO 我的工程里没有。。。
+
+#----------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------
+
+#-------------------------------------------基本不用动区域--------------------------------------------
+#---------------------------------基本指令区----------------------------------
+-optimizationpasses 5
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
 -dontpreverify
 -verbose
--optimizations
-  !code/simplification/arithmetic,!field/*,!class/merging/*
+-printmapping proguardMapping.txt
+-optimizations !code/simplification/cast,!field/*,!class/merging/*
+-keepattributes *Annotation*,InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+#----------------------------------------------------------------------------
 
-//...begin
-#混淆后的导出jar包的位置和jar包名
--outjars'E:\aduro_sdk.jar'
+#---------------------------------默认保留区---------------------------------
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Appliction
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.view.View
+-keep public class com.android.vending.licensing.ILicensingService
+-keep class android.support.** {*;}
 
-#原始jar包的位置和jar包名
--injars'E:\G:\AndroidAduroSmratSDK\interface_sdk\build\libs\sdk.jar'
-
-#jar包依赖的其他库的位置和名称
--libraryjars'com.android.support:appcompat-v7:23.4.0'
--libraryjars'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
--libraryjars'D:\Android\android-sdk-windows\platforms\android-23\android.jar'
-
-#下面的Test类将不会被混淆，这样的类是需要被jar包使用者直接调用的
--keeppublic class  SerialHandler
- {
-    public <fields>;
-    public <methods>;
- }
-//...end
-
--keeppublic class *extends android.app.Activity
--keeppublic class *extends android.app.Application
--keeppublic class *extends android.app.Service
--keeppublic class *extends android.content.BroadcastReceiver
--keeppublic class *extends android.content.ContentProvider
--keeppublic class *extends android.app.backup.BackupAgentHelper
--keeppublic class *extends android.preference.Preference
--keeppublic class com.android.vending.licensing.ILicensingService
-
--keepclasseswithmembernamesclass *
- {
+-keepclasseswithmembernames class * {
     native <methods>;
- }
-
--keepclasseswithmembersclass *
- {
-    public <init>(android.content.Context,
- android.util.AttributeSet);
 }
-
--keepclasseswithmembersclass *
- {
-    public <init>(android.content.Context,
- android.util.AttributeSet, int);
+-keepclassmembers class * extends android.app.Activity{
+    public void *(android.view.View);
 }
-
--keepclassmembersclass *extends android.app.Activity
- {
-   public void *(android.view.View);
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
 }
-
--keepclassmembersenum *
- {
-    public static **[]
- values();
-    public static **
- valueOf(java.lang.String);
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
 }
-
--keepclass *implements android.os.Serializable
- {
-  public static final android.os.Parcelable$Creator
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+-keep class **.R$* {
  *;
 }
+-keepclassmembers class * {
+    void *(**On*Event);
+}
+#----------------------------------------------------------------------------
 
+#---------------------------------webview------------------------------------
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.webViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.webViewClient {
+    public void *(android.webkit.webView, jav.lang.String);
+}
+#----------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------

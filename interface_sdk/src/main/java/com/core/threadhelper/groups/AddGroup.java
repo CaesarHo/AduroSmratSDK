@@ -19,6 +19,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/7/11.
  */
@@ -42,21 +45,16 @@ public class AddGroup implements Runnable {
         try {
             Constants.GROUP_GLOBAL.ADD_GROUP_NAME = group_name;
             bt_send = GroupCmdData.sendAddGroupCmd(group_name,count,dev_mac);
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "CreateGroup");
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null) {
-                    DataSources.getInstance().SendExceptionResult(0);
-                    return;
-                }
-
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
-                InetAddress serverAddr = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+                InetAddress serverAddr = InetAddress.getByName(GW_IP_ADDRESS);
                 DatagramPacket packet_send = new DatagramPacket(bt_send, bt_send.length, serverAddr, Constants.UDP_PORT);
                 socket.send(packet_send);
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
@@ -68,8 +66,9 @@ public class AddGroup implements Runnable {
                     socket.receive(packet);
                     System.out.println("当前接收的数据AddGroup: =" + Arrays.toString(recbuf));
                     if ((int) MessageType.A.ADD_GROUP_NAME.value() == recbuf[11]) {
-                        byte[] group_name_len = group_name.getBytes("utf-8");
-                        ParseGroupData.ParseAddGroupBack(recbuf, group_name_len.length);
+                        byte[] group_name_bt = group_name.getBytes("utf-8");
+                        ParseGroupData.ParseAddGroupInfo groupInfo = new ParseGroupData.ParseAddGroupInfo();
+                        groupInfo.parseBytes(recbuf,group_name_bt.length);
                     }
                 }
             }

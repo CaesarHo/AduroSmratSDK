@@ -1,16 +1,14 @@
 package com.core.threadhelper.devices;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
+import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -18,6 +16,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
+
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/13.
@@ -36,24 +37,18 @@ public class GetDeviceLevel implements Runnable {
     @Override
     public void run() {
         try {
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("当前为远程通讯 = " + "getDeviceLevel");
-                byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null) {
-                    DataSources.getInstance().SendExceptionResult(0);
-                    return;
-                }
-
-                InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
-
+                InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
-                bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
+
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
@@ -64,23 +59,17 @@ public class GetDeviceLevel implements Runnable {
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
                     System.out.println("当前接收的数据GetDeviceLevel = " + Arrays.toString(recbuf));
-                    String str = new String(packet.getData()).trim();
-                    if (str.contains("GW") && !str.contains("K64")) {
-                        /**
-                         * 解析设备属性数据
-                         */
+                    if (recbuf[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()) {
                         ParseDeviceData.ParseAttributeData parseAttributeData = new ParseDeviceData.ParseAttributeData();
                         parseAttributeData.parseBytes(recbuf);
-
                         if (parseAttributeData.message_type.contains("8100") & parseAttributeData.clusterID == 8) {
                             DataSources.getInstance().getDeviceLevel(parseAttributeData.device_mac, parseAttributeData.attribValue);
-                            System.out.println("getDeviceLevel mDevMac = " + parseAttributeData.device_mac);
                         }
                     }
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

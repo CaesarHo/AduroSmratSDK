@@ -2,58 +2,40 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="D:\Android\android-sdk-windows\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="b91645e2093d5abc5624e83a53c733b4b946762f">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="G:\AndroidAduroSmratSDK\app\src\main\libs\mvp_sdk.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="21.1.2"
         sha1="aa08375077798a446fb5a6a9a6a7c5a82edc2f67">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\mvp_sdk_6a67c4e968e56eba7bb51c3379866e2544e33ecf\classes.dex" />
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\pre-dexed\debug\mvp_sdk_6a67c4e968e56eba7bb51c3379866e2544e33ecf.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="D:\Android\android-sdk-windows\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="21.1.2"
-        sha1="9f9a91951a7c8a77a6cbf362e0e0474ab84e2529">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0_1bc213fadddb3549cfd5db94bf08f4c8b1a98000.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="21.1.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\pre-dexed\debug\gson-2.4_f8b7c9df1ed19efb8c450c398b114202ded0229f.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\best\.gradle\caches\modules-2\files-2.1\org.eclipse.paho\org.eclipse.paho.client.mqttv3\1.0.2\11752d3f24d1a9deda4533a7ca18d8496417ceeb\org.eclipse.paho.client.mqttv3-1.0.2.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="21.1.2"
         sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed\classes.dex" />
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\pre-dexed\debug\org.eclipse.paho.client.mqttv3-1.0.2_17cc2055dab9eaad567182f53080ee5966311aed.jar" />
     </item>
 
 </items>

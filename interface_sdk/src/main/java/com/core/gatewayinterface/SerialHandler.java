@@ -13,6 +13,7 @@ import com.core.entity.AppDevice;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
+import com.core.threadhelper.ScanGwInfoHelper;
 import com.core.threadhelper.devices.BindDevice;
 import com.core.threadhelper.UDPHelper;
 import com.core.threadhelper.devices.GetAllDevices;
@@ -30,6 +31,11 @@ import com.core.threadhelper.scenes.GetAllSences;
 import com.core.threadhelper.scenes.UpdateSceneName;
 import com.core.threadhelper.tasks.GetAllTasks;
 import com.core.utils.NetworkUtil;
+
+import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
+import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
+import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
+import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
 
 /**
  * Created by best on 2016/7/11.
@@ -68,18 +74,19 @@ public class SerialHandler {
         System.out.println("topicName = "+ topicName);
 
         //初始化mqtt
-        if (!NetworkUtil.NetWorkType(context) & topicName != "") {
+        if (topicName != "") {//!NetworkUtil.NetWorkType(context) &
             MqttManager.getInstance().init(context);
             //如果網絡是3G網，則連接mqtt及訂閱mqtt
             setMqttCommunication();
+            System.out.println("初始化MQTT = "+ Constants.CLIENT_ID);
         }
 
         //test MQTT
-        if (Constants.isRemote){
-            MqttManager.getInstance().init(context);
-            //如果網絡是3G網，則連接mqtt及訂閱mqtt
-            setMqttCommunication();
-        }
+//        if (Constants.isRemote){
+//            MqttManager.getInstance().init(context);
+//            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+//            setMqttCommunication();
+//        }
     }
 
     /**
@@ -103,6 +110,22 @@ public class SerialHandler {
      */
     public void ScanGatewayInfo(Context context, WifiManager wifiManager) {
         new Thread(new UDPHelper(context, wifiManager)).start();
+    }
+
+    /**
+     * 获取网关协调器的软件版本
+     */
+    public void GetNodeVer(){
+        byte[] bt_send = DeviceCmdData.GetNodeVerCmd();
+        new Thread(new ScanGwInfoHelper(context,bt_send)).start();
+    }
+
+    /**
+     * 获取网关MAC地址和固件版本信息
+     */
+    public void GetGwInfo(){
+        byte[] bt_send = DeviceCmdData.GetGwInfoCmd();
+        new Thread(new ScanGwInfoHelper(context,bt_send)).start();
     }
 
     /**
@@ -200,18 +223,19 @@ public class SerialHandler {
 
     //获取网关IEEE地址并绑定设备
     public void BindDevice(AppDevice appDevice){
+        sdkappDevice = appDevice;
         new Thread(new BindDevice(context,appDevice)).start();
     }
 
     //所有设备的开关
     public void SwitchAllDevices(int state){
-        byte[] bt_send = DeviceCmdData.AllDeviceSwitchCmd(state);
+        byte[] bt_send = GroupCmdData.AllDeviceSwitchCmd(state);
         new Thread(new UdpClient(context,bt_send)).start();
     }
 
     //调整所有设备的亮度
     public void DimmingAllDevices(int levelValue){
-        byte[] bt_send = DeviceCmdData.AllDeviceLevelCmd(levelValue);
+        byte[] bt_send = GroupCmdData.AllDeviceLevelCmd(levelValue);
         new Thread(new UdpClient(context,bt_send)).start();
     }
 
@@ -261,6 +285,7 @@ public class SerialHandler {
      * @param group_name
      */
     public void ChangeGroupName(short group_id, String group_name){
+        NEW_GROUP_NAME = group_name;
         new Thread(new UpdateGroupName(context,group_id,group_name)).start();
     }
 
@@ -304,8 +329,8 @@ public class SerialHandler {
 
     //添加场景
     public void AddSence(String scene_name, short scene_id,int count,String dev_mac){
-        Constants.SCENE_GLOBAL.ADD_SCENE_NAME = scene_name;
-        Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID = scene_id;
+        ADD_SCENE_NAME = scene_name;
+        ADD_SCENE_GROUP_ID = scene_id;
         new Thread(new AddSence(context,scene_name,scene_id,count,dev_mac)).start();
     }
 

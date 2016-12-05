@@ -17,6 +17,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/7/13.
  */
@@ -38,12 +41,15 @@ public class AddDeviceToSence implements Runnable {
     @Override
     public void run() {
         try {
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "addDeviceToSence");
-                byte[] bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
+                //添加设备到场景后，间隔两百毫秒发送存储场景
+                Thread.sleep(500);
+                byte[] store_scene = SceneCmdData.StoreScene(appDevice, group_id, scene_id);
+                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, store_scene);
             } else {
-                bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, scene_id);
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -56,7 +62,7 @@ public class AddDeviceToSence implements Runnable {
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 //添加设备到场景后，间隔两百毫秒发送存储场景
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 byte[] store_scene = SceneCmdData.StoreScene(appDevice, group_id, scene_id);
                 Constants.sendMessage(store_scene);
                 byte[] recbuf = new byte[1024];

@@ -1,6 +1,7 @@
 package com.core.gatewayinterface;
 
 import com.core.entity.AppDevice;
+import com.core.entity.AppGateway;
 import com.core.entity.AppGroup;
 import com.core.entity.AppScene;
 import com.core.entity.AppTask;
@@ -37,10 +38,8 @@ public class DataSources {
     }
 
     //网关信息
-    public void GatewayInfo(String gatewayName,String gatewayNo,String gatewaySoftwareVersion,
-                            String gatewayHardwareVersion,String gatewayIPv4Address,String gatewayDatetime){
-        sdkCallback.GatewatInfoCallback(gatewayName,gatewayNo, gatewaySoftwareVersion,
-        gatewayHardwareVersion,gatewayIPv4Address,gatewayDatetime);
+    public void GatewayInfo(AppGateway appGateway){
+        sdkCallback.GatewatInfoCallback(appGateway);
     }
 
     public void ScanDeviceResult(AppDevice appDevice){

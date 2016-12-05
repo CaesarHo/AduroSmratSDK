@@ -19,6 +19,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/7/13.
  */
@@ -34,9 +37,10 @@ public class GetAllSences implements Runnable {
     @Override
     public void run() {
         try {
-            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
+            //获取组列表命令
+            bt_send = SceneCmdData.GetAllScenesListCmd();
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getSences");
-                byte[] bt_send = SceneCmdData.GetAllScenesListCmd();
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
@@ -45,8 +49,7 @@ public class GetAllSences implements Runnable {
                     socket.setReuseAddress(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
-                //获取组列表命令
-                bt_send = SceneCmdData.GetAllScenesListCmd();
+
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));

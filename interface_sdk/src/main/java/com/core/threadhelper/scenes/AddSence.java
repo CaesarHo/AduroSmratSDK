@@ -18,6 +18,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/7/14.
  */
@@ -42,7 +45,7 @@ public class AddSence implements Runnable {
     public void run() {
         try {
             byte[] bt_send = SceneCmdData.sendAddSceneCmd(scene_Name, group_Id,count,dev_mac);
-            if (!NetworkUtil.NetWorkType(mContext)) {
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "AddSence");
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
@@ -64,18 +67,19 @@ public class AddSence implements Runnable {
                     System.out.println("当前接收的数据AddSence = " + Arrays.toString(recbuf));
                     //解析数据
                     if ((int) MessageType.A.ADD_SCENE_NAME.value() == recbuf[11]) {
-                        byte[] scene_name_len = scene_Name.getBytes("utf-8");
-                        ParseSceneData.ParseAddSceneBackInfo(recbuf, scene_name_len.length);
+                        byte[] scene_name = scene_Name.getBytes("utf-8");
+                        ParseSceneData.ParseAddSceneInfo parseAddSceneInfo = new ParseSceneData.ParseAddSceneInfo();
+                        parseAddSceneInfo.parseBytes(recbuf,scene_name.length);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-//            if (socket != null) {
+            if (socket != null) {
 //                socket.close();
 //                isRun = false;
-//            }
+            }
         }
     }
 }

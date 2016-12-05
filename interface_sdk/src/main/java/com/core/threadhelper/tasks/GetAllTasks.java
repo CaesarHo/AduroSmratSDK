@@ -18,6 +18,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/9/12.
  */
@@ -33,12 +36,14 @@ public class GetAllTasks implements Runnable {
     public void run() {
         try {
             byte[] bt_send = TaskCmdData.GetAllTasks();
-            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
+            if (isRemote) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
-                //获取组列表命令
+                if (GW_IP_ADDRESS.equals("")){
+                    return;
+                }
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);

@@ -47,7 +47,9 @@ public class MessageType {
         ADD_DEVICE_FORM_GROUP_FILE((byte)0x20),
         DELETE_DEVICE_FORM_GROUP_FILE((byte)0x21),
         ADD_DEVICE_FORM_SCENE_FILE((byte)0x22),
-        DELETE_DEVICE_FORM_SCENE_FILE((byte)0x23);
+        DELETE_DEVICE_FORM_SCENE_FILE((byte)0x23),
+        GET_NODE_VER((byte)0x40),
+        GET_GW_INFO((byte)0x80);
 
         private byte value = 0;
 
@@ -103,7 +105,7 @@ public class MessageType {
         E_SL_MSG_BIND_GROUP_RESPONSE((short) 0x8032),
         E_SL_MSG_UNBIND_GROUP((short) 0x0033),
         E_SL_MSG_UNBIND_GROUP_RESPONSE((short) 0x8033),
-
+        E_SL_MSG_GET_NODE_VER((short) 0x8010),
 
         E_SL_MSG_NETWORK_ADDRESS_REQUEST((short) 0x0040),
         E_SL_MSG_NETWORK_ADDRESS_RESPONSE((short) 0x8040),

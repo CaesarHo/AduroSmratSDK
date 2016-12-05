@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class ParseGroupData {
 
     public static void ParseGetGroupsInfo(byte[] bt) throws Exception {
-        String groups_info = new String(bt);//FtFormatTransfer.byteToASCIIString(bt);
+        String groups_info = new String(bt);
         System.out.println("GetAllGroupsMac = " + groups_info);
         Short group_id = 0;
         String group_name = "";
@@ -57,36 +57,71 @@ public class ParseGroupData {
     }
 
     //return data
-    public static void ParseAddGroupBack(byte[] data, int len) {
-        byte[] bt_id = new byte[2];
-        byte[] bt_name = new byte[len];
+    public static class ParseAddGroupInfo{
+        public short group_id;
+        public String group_name;
+        public ParseAddGroupInfo(){
+            this.group_id = -1;
+            this.group_name = "";
+        }
+        public void parseBytes(byte[] data, int len){
+            byte[] bt_id = new byte[2];
+            byte[] bt_name = new byte[len];
 
-        System.arraycopy(data, 32, bt_id, 0, 2);
-        short group_id = FtFormatTransfer.hBytesToShort(bt_id);
+            System.arraycopy(data, 32, bt_id, 0, 2);
+            group_id = FtFormatTransfer.hBytesToShort(bt_id);
 
-        System.arraycopy(data, 36, bt_name, 0, len);
-        String group_name = new String(bt_name);
+            System.arraycopy(data, 36, bt_name, 0, len);
+            group_name = new String(bt_name);
 
-        //判断是否是所添加的组
-        if (group_name.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
-            if (group_id == 0 && group_name == null) {
-                return;
+            //判断是否是所添加的组
+            if (group_name.equals(Constants.GROUP_GLOBAL.ADD_GROUP_NAME)) {
+                if (group_id == 0 && group_name == null) {
+                    return;
+                }
+                DataSources.getInstance().AddGroupResult(group_id, Constants.GROUP_GLOBAL.ADD_GROUP_NAME);
             }
-            DataSources.getInstance().AddGroupResult(group_id, Constants.GROUP_GLOBAL.ADD_GROUP_NAME);
         }
     }
 
-    //解析delete group 返回的数据
+    /**
+     * 解析delete group 返回的数据
+     * 71, 87, -64, -88, 3, 12, -88, 1, 39, 1, 0, 16, 0, 20, 65, 95, 90, 73, 71, 1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 10, -64, -88
+     */
     public static class ParseDeleteGroupResult {
         public short group_id;
         public ParseDeleteGroupResult() {
             group_id = 0;
         }
         public void parseBytes(byte[] data) {
-            System.out.println("解析byte数组 = " + Arrays.toString(data));
-            byte[] mId_Bt = new byte[2];
-            System.arraycopy(data, 32, mId_Bt, 0, 2);
-            group_id = FtFormatTransfer.hBytesToShort(mId_Bt);
+            byte[] group_id_bt = new byte[2];
+            System.arraycopy(data, 32, group_id_bt, 0, 2);
+            group_id = FtFormatTransfer.hBytesToShort(group_id_bt);
+        }
+    }
+
+    /**
+     * 解析修改场景名称
+     * 71, 87, -64, -88, 3, 12, -39, 1, -112, 1, 0, 16, 0, 29, 65, 95, 90, 73, 71, 1, -1, -1, 0, 0, 0,
+     * 0, 0, 0, 0, 0, 0, 11, 0, 2, 0, 7, 107, 105, 116, 99, 104, 101, 110, 33, -64, -88
+     */
+    public static class ParseModifyGroupInfo{
+        public short group_id;
+        public String group_name;
+
+        public ParseModifyGroupInfo(){
+            group_id = -1;
+            group_name = "";
+        }
+
+        public void parseBytes(byte[] data, int len) {
+            byte[] bt_group = new byte[2];
+            System.arraycopy(data,32,bt_group,0,2);
+            group_id = FtFormatTransfer.hBytesToShort(bt_group);
+
+            byte[] bt_name = new byte[len];
+            System.arraycopy(data, 36, bt_name, 0, len);
+            group_name = FtFormatTransfer.bytesToString(bt_name);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.core.global;
 
+import com.core.entity.AppDevice;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -13,8 +14,9 @@ import java.util.Arrays;
  */
 public class Constants {
     public static boolean isRemote = false;
+    public static boolean isScanGwNodeVer = false;
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "192.168.0.80";//"data.adurosmart.com";
+    public static String MQTT_SERVER = "120.24.242.83";//"192.168.0.80";//"data.adurosmart.com";
     public static String CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
@@ -38,8 +40,13 @@ public class Constants {
         public static  String GatewayNo = "";
     }
 
+    public static class DEVICE_GLOBAL{
+        public static AppDevice sdkappDevice;
+    }
+
     public static class GROUP_GLOBAL{
         public static String ADD_GROUP_NAME = "";
+        public static String NEW_GROUP_NAME = "";
     }
 
     public static class SCENE_GLOBAL{
@@ -108,6 +115,9 @@ public class Constants {
             case "0820":
                 device_name = "Lighting Remotes";
                 break;
+            case "0051":
+                device_name = "Smart Socket";
+                break;
             case "ffff":
                 device_name = "unKnown";
                 break;
@@ -137,7 +147,7 @@ public class Constants {
                 device_name = "GasSensor";
                 break;
             case "010f":
-                device_name = "RemoteControl";
+                device_name = "Remote Control";
                 break;
             case "021d":
                 device_name = "Keypad";

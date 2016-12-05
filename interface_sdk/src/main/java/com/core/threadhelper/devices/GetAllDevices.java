@@ -21,6 +21,9 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isRemote;
+
 /**
  * Created by best on 2016/7/14.
  */
@@ -46,16 +49,12 @@ public class GetAllDevices implements Runnable {
 //                bt_send = AESUtils.encode(bt);
             }
 
-            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
-                if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null) {
-                    DataSources.getInstance().SendExceptionResult(0);
-                    return;
-                }
-                InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+                InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
@@ -70,18 +69,28 @@ public class GetAllDevices implements Runnable {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    String isK64 = new String(recbuf).trim();;
-                    if (isK64.contains("K64")){
+
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
                         return;
                     }
+                    
                     System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
+                    /**
+                     * 解析网关信息
+                     */
+                    if ((int) MessageType.A.GET_GW_INFO.value() == recbuf[11]) {
+                        System.out.println("当前接收的数据GetAllDevices = " + recbuf[11]);
+                        ParseDeviceData.ParseGWInfoData gwInfoData = new ParseDeviceData.ParseGWInfoData();
+                        gwInfoData.parseBytes(recbuf);
+                    }
 
                     /**
                      * 设备返回的状态
                      */
                     ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
                     pDevStateOrLevel.parseBytes(recbuf);
-                    if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6){
+                    if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6) {
                         DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
                     }
 
@@ -92,7 +101,7 @@ public class GetAllDevices implements Runnable {
                     sensorData.parseBytes(recbuf);
                     if (sensorData.message_type.contains("8401")) {
                         //当有传感器数据上传时读取ZONETYPE
-                        byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac,sensorData.shortaddr_str);
+                        byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
                         Constants.sendMessage(bt);
                         DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     }
@@ -106,8 +115,8 @@ public class GetAllDevices implements Runnable {
                     /**
                      * 传感器电量返回值
                      */
-                    if (attribute.message_type.contains("8102")){
-                        DataSources.getInstance().responseBatteryValue(attribute.device_mac,attribute.attribValue);
+                    if (attribute.message_type.contains("8102")) {
+                        DataSources.getInstance().responseBatteryValue(attribute.device_mac, attribute.attribValue);
                     }
 
                     if (attribute.message_type.contains("8100")) {
@@ -117,7 +126,7 @@ public class GetAllDevices implements Runnable {
                                     attribute.message_type,
                                     attribute.short_address,
                                     attribute.endpoint + "",
-                                    (short)attribute.attribValue);
+                                    (short) attribute.attribValue);
                             Constants.sendMessage(zt_bt);
                         }
                     }

@@ -483,7 +483,6 @@ public class SceneCmdData {
         byte[] scene_name_data = null;
         for (int i = 0; i < strTobt.length; i++) {
             scene_str += Integer.toHexString(strTobt[i] & 0xFF);
-            System.out.println("scene_str = " + scene_str);
             scene_name_data = Utils.HexString2Bytes(scene_str);
         }
 
@@ -500,12 +499,9 @@ public class SceneCmdData {
         bt_send[8] = 0x01;//消息段数
 
         if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            System.out.println("打印crc8结果false = " + Utils.CrcToString(bt_send, 9));
             String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            Log.i("ss = ", ss);
             bt_send[9] = Utils.HexString2Bytes(ss)[0];
         } else {
-            System.out.println("打印crc8结果true = " + Utils.CrcToString(bt_send, 9));
             bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
         }
         //消息体   01001000    010010001b
@@ -549,7 +545,6 @@ public class SceneCmdData {
         //将前面数据CRC8校验  7d
         byte bt_crc8 = (CRC8.calc(bt_send_data, bt_send_data.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        Log.i("bt_crc8ToHex = ", hex);
         byte[] bt_crcdata = Utils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加

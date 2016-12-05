@@ -171,6 +171,28 @@ public class Utils {
         return byteArray;
     }
 
+    /**
+     * Convert byte[] to hex string.这里我们可以将byte转换成int，然后利用Integer.toHexString(int)来转换成16进制字符串。
+     * @param src byte[] data
+     * @return hex string
+     */
+    public static String bytesToHexString(byte[] src){
+        StringBuilder stringBuilder = new StringBuilder("");
+        if (src == null || src.length <= 0) {
+            return null;
+        }
+        for (int i = 0; i < src.length; i++) {
+            int v = src[i] & 0xFF;
+            String hv = Integer.toHexString(v);
+            if (hv.length() < 2) {
+                stringBuilder.append(0);
+            }
+            stringBuilder.append(hv);
+        }
+        return stringBuilder.toString();
+    }
+
+
     //截取分段IP地址
     public static void SplitToIp(String ipaddress) {
         System.out.println(ipaddress);
@@ -247,6 +269,21 @@ public class Utils {
         byte _b1 = Byte.decode("0x" + new String(new byte[]{src1})).byteValue();
         byte ret = (byte) (_b0 ^ _b1);
         return ret;
+    }
+
+    /**
+     * 将字节数组转换为String
+     *
+     * @param b byte[]
+     * @return String
+     */
+    public static String bytesToString(byte[] b) {
+        StringBuffer result = new StringBuffer("");
+        int length = b.length;
+        for (int i = 0; i < length; i++) {
+            result.append((char) (b[i] & 0xff));
+        }
+        return result.toString();
     }
 
     public static String CrcToString(byte[] bt_send, int len) {

@@ -20,6 +20,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.GW_IP_ADDRESS;
+
 /**
  * Created by best on 2016/7/13.
  */
@@ -34,19 +36,14 @@ public class GetAllGroups implements Runnable {
     @Override
     public void run() {
         try {
-            if (Constants.isRemote) {//!NetworkUtil.NetWorkType(mContext)
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getGroups");
                 byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                if (Constants.APP_IP_ADDRESS == null && Constants.GW_IP_ADDRESS == null) {
-                    DataSources.getInstance().SendExceptionResult(0);
-                    return;
-                }
-
                 //获取组列表命令
                 bt_send = GroupCmdData.GetAllGroupListCmd();
-                InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+                InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
