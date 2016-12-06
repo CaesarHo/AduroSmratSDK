@@ -62,8 +62,10 @@ public class GetDeviceLevel implements Runnable {
                     if (recbuf[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()) {
                         ParseDeviceData.ParseAttributeData parseAttributeData = new ParseDeviceData.ParseAttributeData();
                         parseAttributeData.parseBytes(recbuf);
-                        if (parseAttributeData.message_type.contains("8100") & parseAttributeData.clusterID == 8) {
-                            DataSources.getInstance().getDeviceLevel(parseAttributeData.device_mac, parseAttributeData.attribValue);
+                        if (parseAttributeData.message_type.equals("8100")) {
+                            if (parseAttributeData.clusterID == 8){
+                                DataSources.getInstance().getDeviceLevel(parseAttributeData.device_mac, parseAttributeData.attribValue);
+                            }
                         }
                     }
                 }

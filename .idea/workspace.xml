@@ -11,144 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1790d2f-a1c6-48cd-b348-d60fcca1ce39" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppGateway.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/ScanGwInfoHelper.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/androidTest/debug/org/eclipse/paho/android/service/sample/test/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/activitys/MainActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/activitys/MainActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/activitys/MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/activitys/TraceableActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/adapters/SimpleAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/data/SharedPreferencesManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/AutoStartReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/AutoStartReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$ActivityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$ActivityStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$CHANGE_FOCUS_ZOOM.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$DefenceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$DeviceFlag.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$DeviceState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$FOCUS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$Languege.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$LoginType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$MessageType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$ModifyAccountType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$RegisterType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$ReplaceStyle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$SettingConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants$Update.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/ListenCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/MainService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/MainService$MQTTReconnectThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/MainService$MyBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/global/MainService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/thread/MainThread$Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/thread/MainThread$SearchUpdate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/thread/MainThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/udpshake/ShakeData$Cmd.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/udpshake/ShakeData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/udpshake/ShakeManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/udpshake/ShakeThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/udpshake/ShakeThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/AESUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/Bytes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/FtFormatTransfer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/StandardCharsets.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/T.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/Utils$FileComparatorDown.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/Utils$FileComparatorUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/Utils$FileInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/adurosmart/utils/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/AlarmPingSender$AlarmReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/AlarmPingSender.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/DatabaseMessageStore$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/DatabaseMessageStore$DbStoredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/DatabaseMessageStore$MQTTDatabaseHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/DatabaseMessageStore$MqttMessageHack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/DatabaseMessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MessageStore$StoredMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MessageStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttAndroidClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttAndroidClient$Ack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttAndroidClient$MyServiceConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttAndroidClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttConnection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttConnection$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttConnection$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttConnection$MqttConnectionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttDeliveryTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttService$BackgroundDataPreferenceReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttService$NetworkConnectionIntentReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttServiceBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttServiceConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttTokenAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/MqttTraceHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/ParcelableMqttMessage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/ParcelableMqttMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ActionListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ActionListener$Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ActionListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ActivityConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Advanced$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Advanced$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Advanced$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Advanced$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Advanced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/CallbackBundle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections$LongClickItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ClientConnections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Connection$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Connection$ConnectionStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Connection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$ChangeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ConnectionDetails$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/ConnectionDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Connections.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/HistoryFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/LastWill$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/LastWill.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/MqttCallbackHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/MqttTraceCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/MyApp$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/MyApp$MyThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/MyApp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/NewConnection$Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/NewConnection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Notify.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/OpenFileDialog$FileSelectView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/OpenFileDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/Persistence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/PersistenceException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/PublishFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/eclipse/paho/android/service/sample/SubscribeFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-safeguard/androidTest/debug/tag.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-safeguard/debug/tag.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTask2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -162,50 +25,24 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/build.gradle" afterPath="$PROJECT_DIR$/interface_sdk/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" afterPath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" afterPath="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/proguard.cfg" afterPath="$PROJECT_DIR$/interface_sdk/proguard.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGroupData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGroupData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseSceneData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseSceneData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/BindDevice.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/BindDevice.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/UpdateDeviceName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/UpdateDeviceName.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/AddGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/AddGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/DeleteGroup.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/DeleteGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/UpdateGroupName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/UpdateGroupName.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddSence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddSence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/DeleteScence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/DeleteScence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/UpdateSceneName.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/UpdateSceneName.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml" />
     </list>
     <ignored path="AndroidAduroSmratSDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -267,7 +104,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <task path="$PROJECT_DIR$/interface_sdk">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state />
+        </projects_view>
       </state>
     </system>
   </component>
@@ -279,11 +121,21 @@
       <file leaf-file-name="MqttCallbackBus.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+            <state relative-caret-position="264">
+              <caret line="230" column="61" selection-start-line="230" selection-start-column="61" selection-end-line="230" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetAllTasks.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
               <folding>
-                <element signature="e#1179#1180#0" expanded="true" />
-                <element signature="e#1213#1214#0" expanded="true" />
+                <element signature="e#971#972#0" expanded="true" />
+                <element signature="e#1009#1010#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -292,11 +144,51 @@
       <file leaf-file-name="UdpClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="130" column="43" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
+            <state relative-caret-position="225">
+              <caret line="257" column="21" selection-start-line="257" selection-start-column="21" selection-end-line="257" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseTaskData.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="334" column="0" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataSources.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="229" column="47" selection-start-line="229" selection-start-column="47" selection-end-line="229" selection-end-column="47" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#DataSources#0" expanded="false" />
+                <element signature="method#getDeviceStatus#0;class#DataSources#0" expanded="false" />
+                <element signature="method#AddGroupResult#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupsState#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupLevel#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupHue#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupSat#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupHueSat#0;class#DataSources#0" expanded="false" />
+                <element signature="method#setGroupColorTemperature#0;class#DataSources#0" expanded="false" />
+                <element signature="method#deleteDeviceFromGroup#0;class#DataSources#0" expanded="false" />
+                <element signature="e#6821#6822#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InterfaceCallback.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -304,31 +196,31 @@
       <file leaf-file-name="SerialHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+            <state relative-caret-position="308">
+              <caret line="395" column="5" selection-start-line="395" selection-start-column="5" selection-end-line="395" selection-end-column="5" />
               <folding>
-                <element signature="e#9160#9161#0" expanded="true" />
-                <element signature="e#9221#9222#0" expanded="true" />
+                <element signature="e#12547#12548#0" expanded="true" />
+                <element signature="e#12607#12608#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="version.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml">
+      <file leaf-file-name="TaskCmdData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+            <state relative-caret-position="325">
+              <caret line="1235" column="9" selection-start-line="1235" selection-start-column="9" selection-end-line="1235" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GatewayInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
+      <file leaf-file-name="proguard-rules.pro" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+            <state relative-caret-position="531">
+              <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -724,10 +616,6 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="compileReleaseUnitTestSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="transformClassesAndResourcesWithProguardForDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Installs the android (on device) tests for the Debug build." />
@@ -2054,10 +1942,6 @@
                 <option name="name" value="compileReleaseUnitTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
-                <option name="name" value="transformClassesAndResourcesWithProguardForDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Installs the android (on device) tests for the Debug build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
                 <option name="name" value="installDebugAndroidTest" />
@@ -2390,7 +2274,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="G:\AndroidAduroSmratSDK" value="5920420523366" />
+        <entry key="G:\AndroidAduroSmratSDK" value="5920786933248" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2803,11 +2687,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/activitys/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/adapters/TestUPDAdapters.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/global/ListenCallback.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/global/MainService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/eclipse/paho/android/service/sample/Listener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/eclipse/paho/android/service/sample/MyApp.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/adurosmart/thread/MainThread.java" />
@@ -2818,24 +2697,15 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/GatewayInfo.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppGateway.java" />
         <option value="$PROJECT_DIR$/interface_sdk/proguard.cfg" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
-        <option value="$PROJECT_DIR$/interface_sdk/build.gradle" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/ScanGwInfoNodeVerHelper.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGroupData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseSceneData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/ScanGwInfoHelper.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddSence.java" />
@@ -2847,13 +2717,27 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/UpdateGroupName.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/BindDevice.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/UpdateDeviceName.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml" />
+        <option value="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/build.gradle" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTaskInfo.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTask2.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" />
       </list>
     </option>
   </component>
@@ -2888,7 +2772,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -2992,12 +2875,187 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interface_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interface_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="threadhelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interface_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="threadhelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interface_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mqtt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidAduroSmratSDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interface_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commanddata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane />
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3017,7 +3075,25 @@
       <recent name="G:\AndroidAduroSmratSDK\interface_sdk\src\main\java\com\core\threadhelper\groups" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Gradle.AndroidAduroSmratSDK:interface_sdk [makeJar]">
+    <configuration default="false" name="AndroidAduroSmratSDK:interface_sdk [makeJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="makeJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -3292,9 +3368,15 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android App.app" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.AndroidAduroSmratSDK:interface_sdk [makeJar]" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Gradle.AndroidAduroSmratSDK:interface_sdk [makeJar]" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -3311,6 +3393,10 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1481009268801" text="ParseAttributeData" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
+    <searchConfiguration name="user defined" created="1481008437657" text="getDeviceLevel" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -3326,31 +3412,32 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35746104" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31403118" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32516703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35746104" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31403118" sideWeight="0.5063966" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.71603566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62138087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21269488" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28507796" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36971048" sideWeight="0.4936034" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21641791" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56681514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3359,7 +3446,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0545657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3380,54 +3466,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppGateway.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/interface_sdk.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-858">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/adurosmart/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="450" column="12" selection-start-line="450" selection-start-column="12" selection-end-line="450" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="e#877#895#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/androidTest/java/com/interfacecallback/ApplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -3439,37 +3477,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-659">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3485,30 +3492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1437">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="166" column="33" selection-start-line="166" selection-start-column="33" selection-end-line="166" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4460">
-          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="390" column="16" selection-start-line="390" selection-start-column="16" selection-end-line="390" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3531,27 +3514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="579" column="27" selection-start-line="579" selection-start-column="27" selection-end-line="579" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/ddbdeb2951e6dd60443763e6555f3bd2903943fc/org.eclipse.paho.client.mqttv3-1.0.2-sources.jar!/org/eclipse/paho/client/mqttv3/MqttCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3559,22 +3525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-192">
           <caret line="1222" column="27" selection-start-line="1222" selection-start-column="27" selection-end-line="1222" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="205" column="43" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -3661,104 +3611,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/BindDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="44" column="71" selection-start-line="44" selection-start-column="71" selection-end-line="44" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/UpdateDeviceName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Android/android-sdk-windows/sources/android-23/android/net/wifi/WifiManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="772">
           <caret line="1189" column="6" selection-start-line="1189" selection-start-column="6" selection-end-line="1189" selection-end-column="6" />
           <folding>
-            <element signature="e#36329#36330#0" expanded="true" />
-            <element signature="e#36393#36394#0" expanded="true" />
-            <element signature="e#36522#36523#0" expanded="true" />
-            <element signature="e#36587#36588#0" expanded="true" />
-            <element signature="e#36717#36718#0" expanded="true" />
-            <element signature="e#36776#36777#0" expanded="true" />
-            <element signature="e#37162#37163#0" expanded="true" />
-            <element signature="e#37225#37226#0" expanded="true" />
-            <element signature="e#37371#37372#0" expanded="true" />
-            <element signature="e#37430#37431#0" expanded="true" />
+            <element signature="e#36329#36330#0" expanded="false" />
+            <element signature="e#36393#36394#0" expanded="false" />
+            <element signature="e#36522#36523#0" expanded="false" />
+            <element signature="e#36587#36588#0" expanded="false" />
+            <element signature="e#36717#36718#0" expanded="false" />
+            <element signature="e#36776#36777#0" expanded="false" />
+            <element signature="e#37162#37163#0" expanded="false" />
+            <element signature="e#37225#37226#0" expanded="false" />
+            <element signature="e#37371#37372#0" expanded="false" />
+            <element signature="e#37430#37431#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#DataSources#0" expanded="false" />
-            <element signature="method#getDeviceStatus#0;class#DataSources#0" expanded="false" />
-            <element signature="method#AddGroupResult#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupsState#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupLevel#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupHue#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupSat#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupHueSat#0;class#DataSources#0" expanded="false" />
-            <element signature="method#setGroupColorTemperature#0;class#DataSources#0" expanded="false" />
-            <element signature="method#deleteDeviceFromGroup#0;class#DataSources#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-          <folding>
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1213#1214#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
-          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="350" column="36" selection-start-line="350" selection-start-column="36" selection-end-line="350" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3767,32 +3635,6 @@
         <state relative-caret-position="88">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="73" column="48" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="130" column="43" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3807,21 +3649,278 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
-          <folding>
-            <element signature="e#9160#9161#0" expanded="true" />
-            <element signature="e#9221#9222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/AES.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/adurosmart/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="451" column="6" selection-start-line="451" selection-start-column="6" selection-end-line="451" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="170" column="25" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="234" column="34" selection-start-line="234" selection-start-column="34" selection-end-line="234" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/UpdateDeviceName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/BindDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-286">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="263" column="22" selection-start-line="263" selection-start-column="22" selection-end-line="263" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="420" column="34" selection-start-line="420" selection-start-column="34" selection-end-line="420" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1243">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/NetworkUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+          <folding>
+            <element signature="e#2783#2784#0" expanded="true" />
+            <element signature="e#2826#2827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTask2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding>
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
+            <element signature="e#1660#1661#0" expanded="true" />
+            <element signature="e#1711#1712#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#1831#1832#0" expanded="true" />
+            <element signature="e#1887#1888#0" expanded="true" />
+            <element signature="e#1935#1936#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="66" column="30" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+          <folding>
+            <element signature="e#971#972#0" expanded="true" />
+            <element signature="e#1009#1010#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="229" column="47" selection-start-line="229" selection-start-column="47" selection-end-line="229" selection-end-column="47" />
+          <folding>
+            <element signature="docComment;class#DataSources#0" expanded="false" />
+            <element signature="method#getDeviceStatus#0;class#DataSources#0" expanded="false" />
+            <element signature="method#AddGroupResult#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupsState#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupLevel#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupHue#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupSat#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupHueSat#0;class#DataSources#0" expanded="false" />
+            <element signature="method#setGroupColorTemperature#0;class#DataSources#0" expanded="false" />
+            <element signature="method#deleteDeviceFromGroup#0;class#DataSources#0" expanded="false" />
+            <element signature="e#6821#6822#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="257" column="21" selection-start-line="257" selection-start-column="21" selection-end-line="257" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="230" column="61" selection-start-line="230" selection-start-column="61" selection-end-line="230" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="1235" column="9" selection-start-line="1235" selection-start-column="9" selection-end-line="1235" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="395" column="5" selection-start-line="395" selection-start-column="5" selection-end-line="395" selection-end-column="5" />
+          <folding>
+            <element signature="e#12547#12548#0" expanded="true" />
+            <element signature="e#12607#12608#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="334" column="0" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -5,6 +5,7 @@ import com.core.entity.AppGateway;
 import com.core.entity.AppGroup;
 import com.core.entity.AppScene;
 import com.core.entity.AppTask;
+import com.core.entity.AppTask2;
 import com.core.utils.Utils;
 
 import java.util.ArrayList;
@@ -226,7 +227,7 @@ public class DataSources {
 
     //=================================任务相关==================================
     //获取网关所有任务
-    public void getAllTasks(AppTask appTask){
-        sdkCallback.getAllTasksCallback(appTask);
+    public void getAllTasks(AppTask2 appTask2){
+        sdkCallback.getAllTasksCallback(appTask2);
     }
 }

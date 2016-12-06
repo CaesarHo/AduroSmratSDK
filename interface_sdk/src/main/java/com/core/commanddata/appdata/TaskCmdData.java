@@ -1130,4 +1130,205 @@ public class TaskCmdData {
         return cmddata;
     }
 
+    //--------------------------------第二版------------------------------------
+
+    /**
+     * IFTTTId:1,SceneId:1,GroupId:1,Enable:0,IFTTTName:open,Type:0,Short:0xaa55,MAC:0x0011001100110011,Status:0,
+     * @return
+     */
+    public static byte[] CreateEditLinkTask(AppDevice appDevice,int no,short scene_id,short group_id,int enable,String task_name,int type,int status){
+        byte[] strTobt = null;
+        try {
+            strTobt = task_name.getBytes("utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int task_name_len = strTobt.length;
+        int dataByte_Len = task_name_len + 37;
+        int data_Len = task_name_len + 19;
+        byte[] bt_send = new byte[53 + task_name_len];
+        //415050c0a80034010136
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体010018002b
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
+        bt_send[13] = (byte) (dataByte_Len >> 8);
+        bt_send[14] = (byte) dataByte_Len;//数据体长度
+
+        //数据体头415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号01ffff
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
+        //macaddr00158d0000ecc670
+        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
+        //数据长度0019 0000 01 0002 01 06
+        bt_send[31] = (byte) (data_Len >> 8);
+        bt_send[32] = (byte)  data_Len;
+        bt_send[33] = (byte)(no >> 8);//任务ID1个字节
+        bt_send[34] = (byte) no;//任务ID1个字节
+        bt_send[35] = (byte)scene_id;//场景ID1个字节
+        bt_send[36] = (byte)(group_id >> 8);//组ID2个字节
+        bt_send[37] = (byte) group_id;
+        bt_send[38] = (byte) enable;//Enable
+        bt_send[39] = (byte) task_name_len;//名称长度1个字节
+
+        //任务名称756775667566
+        String taskname = "";
+        byte[] task_name_data = null;
+        for (int i = 0; i < task_name_len; i++){
+            taskname += Integer.toHexString(strTobt[i] & 0xFF);
+            task_name_data = Utils.HexString2Bytes(taskname);
+        }
+
+        for (int i = 0; i < task_name_data.length;i++){
+            bt_send[40+i] = task_name_data[i];
+        }
+
+        //00 04f0 00158d0000ecc670 01 d6
+        bt_send[40 + task_name_len] = (byte)type;
+        bt_send[41 + task_name_len] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[42 + task_name_len] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
+        bt_send[43 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[44 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[45 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[46 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[47 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[48 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[49 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[50 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
+        bt_send[51 + task_name_len] = (byte)status;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[52 + task_name_len] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[52 + task_name_len] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+
+        return bt_send;
+    }
+
+    public static byte[] CreateEditTimeTask(int no,int task_cycle,int task_hour,int task_minute,short scene_id,short group_id,int enable,String task_name,int type){
+        byte[] strTobt = null;
+        try {
+            strTobt = task_name.getBytes("utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int task_name_len = strTobt.length;
+        int dataByte_Len = task_name_len + 29;
+        int data_Len = task_name_len + 11;
+        byte[] bt_send = new byte[45 + task_name_len];
+        //415050c0a80034010136
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体0100180024
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
+        bt_send[13] = (byte) (dataByte_Len >> 8);
+        bt_send[14] = (byte) dataByte_Len;//数据体长度
+
+        //数据体头415f5a4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号01ffff
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
+        //macaddr0000000000000000
+        bt_send[23] = 0x00;
+        bt_send[24] = 0x00;
+        bt_send[25] = 0x00;
+        bt_send[26] = 0x00;
+        bt_send[27] = 0x00;
+        bt_send[28] = 0x00;
+        bt_send[29] = 0x00;
+        bt_send[30] = 0x00;
+        //数据长度0012 0000 01 0002 01 06
+        bt_send[31] = (byte) (data_Len >> 8);
+        bt_send[32] = (byte)  data_Len;
+        bt_send[33] = (byte)(no >> 8);//任务ID1个字节
+        bt_send[34] = (byte) no;//任务ID1个字节
+        bt_send[35] = (byte)scene_id;//场景ID1个字节
+        bt_send[36] = (byte)(group_id >> 8);//组ID2个字节
+        bt_send[37] = (byte) group_id;
+        bt_send[38] = (byte) enable;//Enable
+        bt_send[39] = (byte) task_name_len;//名称长度1个字节
+
+        //任务名称686368667972
+        String taskname = "";
+        byte[] task_name_data = null;
+        for (int i = 0; i < task_name_len; i++){
+            taskname += Integer.toHexString(strTobt[i] & 0xFF);
+            task_name_data = Utils.HexString2Bytes(taskname);
+        }
+
+        for (int i = 0; i < task_name_data.length;i++){
+            bt_send[40+i] = task_name_data[i];
+        }
+
+        //01 02 11 19 01 fd
+        bt_send[40 + task_name_len] = (byte)type;
+        bt_send[41 + task_name_len] = (byte)task_cycle;
+        bt_send[42 + task_name_len] = (byte)task_hour;
+        bt_send[43 + task_name_len] = (byte)task_minute;
+
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[44 + task_name_len] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[44 + task_name_len] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+
+        return bt_send;
+    }
 }

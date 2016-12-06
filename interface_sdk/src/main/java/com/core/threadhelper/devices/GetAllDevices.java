@@ -58,7 +58,6 @@ public class GetAllDevices implements Runnable {
                 if (socket == null) {
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
-                    socket.setBroadcast(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);

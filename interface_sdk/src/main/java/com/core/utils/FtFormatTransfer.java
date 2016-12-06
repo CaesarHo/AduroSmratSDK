@@ -22,6 +22,16 @@ public class FtFormatTransfer {
         return res;
     }
 
+    public static int string2Int(String string){
+        int a = -1;
+        try {
+            a = Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
     public static long intArray2Long(int[] a) {
         long res = 0L;
         int[] t = new int[8];

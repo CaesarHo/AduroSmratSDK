@@ -179,37 +179,46 @@ public class ParseDeviceData {
             attribValue = -1;
         }
 
+//        71, 87, -64, -88, 0, 53, 65, 1, 56, 1, 0, 8, 0, 47, 65, 95, 90, 73, 71, 1,
+//        0, 0, 16, 1, 0, 0, 24, 74, 1, 0, 0, 0, 16, 1, 117, 115, 32, 56, 53, 1, 2, 4, 0,
         public void parseBytes(byte[] data) {
-            //Zigbee串口类型
+            //Zigbee串口类型 -127, 0,
             byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 20, message_type_bt, 0, 2);
             message_type = Utils.bytesToHexString(message_type_bt);
+            System.out.println("ParseAttributeData message_type =" + message_type);
 
-            //设备MAC地址
+            //设备MAC地址 0, 21, -115, 0, 1, 48, -5, 108,
             byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 22, device_mac_bt, 0, 8);
             device_mac = Utils.bytesToHexString(device_mac_bt);
+            System.out.println("ParseAttributeData device_mac =" + device_mac);
 
-            //数据长度
+            //数据长度0, 29,
             byte[] data_len = new byte[2];
             System.arraycopy(data, 30, data_len, 0, 2);
             data_len_s = FtFormatTransfer.hBytesToShort(data_len);
+            System.out.println("ParseAttributeData data_len_s =" + data_len_s);
 
-            //短地址
+            //短地址107, -82,
             byte[] short_address_bt = new byte[2];
             System.arraycopy(data, 32, short_address_bt, 0, 2);
             short_address = Utils.bytesToHexString(short_address_bt);
+            System.out.println("ParseAttributeData short_address =" + short_address);
 
-            //源端点
+            //源端点1,
             endpoint = data[34] & 0xFF;
+            System.out.println("ParseAttributeData endpoint =" + endpoint);
 
-            //簇ID
+            //簇ID  0, 6,
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data, 35, clusterid_bt, 0, 2);
             clusterID = FtFormatTransfer.hBytesToShort(clusterid_bt);
+            System.out.println("ParseAttributeData clusterID =" + clusterID);
 
             //设备状态
             state = data[37] & 0xFF;
+            System.out.println("ParseAttributeData state =" + state);
 
             //属性ID
             byte[] attributeid_bt = new byte[2];
@@ -225,24 +234,24 @@ public class ParseDeviceData {
 
                 case 0x10: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("attribValue 0x10= " + attribValue);
+                    System.out.println("ParseAttributeData attribValue 0x10= " + attribValue);
                 }
                 break;
                 case 0x18: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("attribValue 0x18= " + attribValue);
+                    System.out.println("ParseAttributeData attribValue 0x18= " + attribValue);
                 }
                 break;
                 case 0x20: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("attribValue 0x20= " + attribValue);
+                    System.out.println("ParseAttributeData attribValue 0x20= " + attribValue);
                 }
                 break;
                 case 0x21: {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
-                    Log.i("attribValue 0x21= ", "" + clusterID);
+                    System.out.println("ParseAttributeData attribValue 0x21= " + clusterID);
                 }
                 break;
                 case 0x23: {
@@ -250,6 +259,7 @@ public class ParseDeviceData {
                     System.arraycopy(data, 40, attribValue_bt, 0, 4);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x23= ", "" + attribValue);
+                    System.out.println("ParseAttributeData attribValue 0x23= " + attribValue);
                 }
                 break;
                 case 0x29: {

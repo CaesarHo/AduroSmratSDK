@@ -252,9 +252,9 @@ public class UdpClient implements Runnable{
                     /**
                      * MQTT获取tasks
                      */
-                    if ((int) MessageType.A.GET_ALL_TASK.value() == recbytes[11]) {
-                        ParseTaskData.ParseGetTaskInfo parseGetTaskInfo = new ParseTaskData.ParseGetTaskInfo();
-                        parseGetTaskInfo.parseBytes(recbytes);
+                    if (recbytes[11] == MessageType.A.GET_ALL_TASK.value()) {
+                        ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
+                        parseGetTaskInfo2.parseBytes(recbytes);
                     }
 
                     //------------------------------------task end------------------------------------------

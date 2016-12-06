@@ -390,6 +390,18 @@ public class SerialHandler {
         new Thread(new GetAllTasks(context)).start();
     }
 
+    public void CreateEditLinkTask(AppDevice appDevice,int no,short scene_id,short group_id,int enable,String task_name,int type,int status){
+        byte[] bytes = TaskCmdData.CreateEditLinkTask(appDevice,no,scene_id,group_id,enable,task_name,type,status);
+        new Thread(new UdpClient(context,bytes)).start();
+    }
+
+    public void CreateEditTimeTask(int no,int task_cycle,int task_hour,int task_minute,short scene_id,short group_id,int enable,String task_name,int type){
+        byte[] bytes = TaskCmdData.CreateEditTimeTask(no,task_cycle,task_hour,task_minute,scene_id,group_id,enable,task_name,type);
+        new Thread(new UdpClient(context,bytes)).start();
+    }
+
+
+
     /**
      * 创建定时设备任务
      */

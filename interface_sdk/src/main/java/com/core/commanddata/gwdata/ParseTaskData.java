@@ -1,6 +1,7 @@
 package com.core.commanddata.gwdata;
 
 import com.core.entity.AppTask;
+import com.core.entity.AppTask2;
 import com.core.gatewayinterface.DataSources;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.Utils;
@@ -29,8 +30,7 @@ public class ParseTaskData {
         public int scene_id = -1;//场景id
         public int group_id = -1;//场景里面组ID
 
-        public void parseBytes(byte[] data) throws Exception{
-
+        public void parseBytes(byte[] data) throws Exception {
             String taskinfo = FtFormatTransfer.bytesToString(data);
             int strToint = taskinfo.indexOf(":");
             String isTask = "";
@@ -223,7 +223,7 @@ public class ParseTaskData {
                     appTask.setTask_scene_id(scene_id);
                     appTask.setTask_group_id(group_id);
 
-                    DataSources.getInstance().getAllTasks(appTask);
+//                    DataSources.getInstance().getAllTasks(appTask);
                 }
             }
         }
@@ -277,6 +277,102 @@ public class ParseTaskData {
                     scene_id = device_state_scene_bt_5 & 0xFF;
                     System.out.println("group_id = " + group_id);
                     break;
+            }
+        }
+    }
+
+    public static class ParseGetTaskInfo2 {
+        public int task_no, task_is_enabled, task_type, task_cycle, task_hour, task_minute, sensor_state;
+        public int scene_id = -1;//场景id
+        public int group_id = -1;//场景里面组ID
+        public String task_name, sensor_mac, short_address;
+
+        public void parseBytes(byte[] data){
+            String task_info = new String(data);
+            int strToint = task_info.indexOf(":");
+            String isTask = "";
+            if (strToint >= 0) {
+                isTask = task_info.substring(strToint - 4, strToint);
+            }
+
+            if (isTask.equalsIgnoreCase("TCnt")){
+                return;
+            }
+
+            String[] task_info_array = task_info.split(",");
+            for (int i = 0; i < task_info_array.length; i++) {
+                System.out.println("task_info_array = " + task_info_array[i] + "," + i);
+                switch (i){
+                    case 0:
+                        task_no = FtFormatTransfer.string2Int(task_info_array[0].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[0]);
+                        break;
+                    case 1:
+                        scene_id = FtFormatTransfer.string2Int(task_info_array[1].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+                    case 2:
+                        group_id = FtFormatTransfer.string2Int(task_info_array[2].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+                    case 3:
+                        task_is_enabled = FtFormatTransfer.string2Int(task_info_array[3].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+
+                    case 4:
+                        task_name = task_info_array[4].split(":")[1];
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+
+                    case 5:
+                        task_type = FtFormatTransfer.string2Int(task_info_array[5].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+                    case 6:
+                        short_address = task_info_array[6].split(":")[1];
+                        String task_cycle_str = task_info_array[6].split(":")[1].substring(2);
+
+                        task_cycle = FtFormatTransfer.string2Int(task_cycle_str);
+                        System.out.println("task_info_array = " + task_cycle_str);
+                        break;
+                    case 7:
+                        sensor_mac = task_info_array[7].split(":")[1];
+                        task_hour = FtFormatTransfer.string2Int(task_info_array[7].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+                    case 8:
+                        sensor_state = FtFormatTransfer.string2Int(task_info_array[8].split(":")[1]);
+                        task_minute = FtFormatTransfer.string2Int(task_info_array[8].split(":")[1]);
+                        System.out.println("task_info_array = " + task_info_array[i]);
+                        break;
+                }
+            }
+
+            if (task_type == 0) {
+                AppTask2 appTask = new AppTask2();
+                appTask.setTask_no(task_no);
+                appTask.setTask_scene_id(scene_id);
+                appTask.setTask_group_id(group_id);
+                appTask.setIsEnabled(task_is_enabled);
+                appTask.setTask_name(task_name);
+                appTask.setTask_type(task_type);
+                appTask.setSensor_short(short_address.substring(2));
+                appTask.setSensor_mac(sensor_mac.substring(2));
+                appTask.setTask_status(sensor_state);
+                DataSources.getInstance().getAllTasks(appTask);
+            }else if (task_type == 1){
+                AppTask2 appTask = new AppTask2();
+                appTask.setTask_no(task_no);
+                appTask.setTask_scene_id(scene_id);
+                appTask.setTask_group_id(group_id);
+                appTask.setIsEnabled(task_is_enabled);
+                appTask.setTask_name(task_name);
+                appTask.setTask_type(task_type);
+                appTask.setTask_cycle(task_cycle);
+                appTask.setTask_hour(task_hour);
+                appTask.setTask_minute(task_minute);
+                DataSources.getInstance().getAllTasks(appTask);
             }
         }
     }

@@ -227,8 +227,8 @@ public class MqttCallbackBus implements MqttCallback {
          * MQTT获取tasks
          */
         if ((int) MessageType.A.GET_ALL_TASK.value() == message.getPayload()[11]) {
-            ParseTaskData.ParseGetTaskInfo parseGetTaskInfo = new ParseTaskData.ParseGetTaskInfo();
-            parseGetTaskInfo.parseBytes(message.getPayload());
+            ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
+            parseGetTaskInfo2.parseBytes(message.getPayload());
         }
 
         //------------------------------------task end------------------------------------------

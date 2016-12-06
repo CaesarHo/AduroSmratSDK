@@ -25,7 +25,7 @@ android {
         }
 
         debug {
-            minifyEnabled true
+            minifyEnabled false
         }
     }
     compileOptions.encoding = 'UTF-8'
@@ -42,11 +42,11 @@ task makeJar(type: Copy) {
     include('classes.jar')
     rename ('classes.jar', 'sdk.jar')
 }
-    // 未混淆的jar
+// 未混淆的jar
 //    injars 'build/intermediates/bundles/release/classes.jar'
 //    // 混淆后的jar路径
 //    outjars 'build/libs/sdk.jar'
-    // 具体需要keep住的类
+// 具体需要keep住的类
 //    configuration 'proguard-rules.pro'
 
 makeJar.dependsOn(build)

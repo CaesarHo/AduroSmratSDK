@@ -2,10 +2,13 @@ package com.core.threadhelper.tasks;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.core.commanddata.appdata.TaskCmdData;
+import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.db.GatewayInfo;
+import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
@@ -36,14 +39,11 @@ public class GetAllTasks implements Runnable {
     public void run() {
         try {
             byte[] bt_send = TaskCmdData.GetAllTasks();
-            if (isRemote) {//!NetworkUtil.NetWorkType(mContext)
+            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
-                if (GW_IP_ADDRESS.equals("")){
-                    return;
-                }
                 InetAddress inetAddress = InetAddress.getByName(Constants.GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -53,17 +53,22 @@ public class GetAllTasks implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("读属性或ZONETYPECMD = " + Utils.binary(bt_send, 16));
 
                 while (true) {
-                    final byte[] recbuf = new byte[1024];
-                    final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
+                    byte[] recbuf = new byte[1024];
+                    DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
+                        return;
+                    }
                     System.out.println("当前接收的数据GetAllTasks = " + Arrays.toString(recbuf));
-                    if ((int) MessageType.A.GET_ALL_TASK.value() == recbuf[11]){
-                        //解析获取到的任务信息
-                        ParseTaskData.ParseGetTaskInfo parseGetTaskInfo = new ParseTaskData.ParseGetTaskInfo();
-                        parseGetTaskInfo.parseBytes(recbuf);
+                    System.out.println("当前接收的数据GetAllTasks = " + isK64);
+
+                    if (recbuf[11] == MessageType.A.GET_ALL_TASK.value()) {
+                        ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
+                        parseGetTaskInfo2.parseBytes(recbuf);
                     }
                 }
             }

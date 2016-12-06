@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.IllegalFormatCodePointException;
+import java.util.regex.Pattern;
 
 /**
  * Created by best on 2016/7/14.
@@ -25,6 +26,11 @@ public class Utils {
     public static byte ip_2[] = new byte[1];
     public static byte ip_3[] = new byte[1];
     public static byte ip_4[] = new byte[1];
+
+    public static boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(str).matches();
+    }
 
     public static String ConvertTimeByLong(long time) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");

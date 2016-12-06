@@ -5,6 +5,7 @@ import com.core.entity.AppGateway;
 import com.core.entity.AppGroup;
 import com.core.entity.AppScene;
 import com.core.entity.AppTask;
+import com.core.entity.AppTask2;
 
 import java.util.ArrayList;
 
@@ -96,5 +97,5 @@ public interface InterfaceCallback {
     void ChangeSceneName(short sceneId, String newSceneName);
 
     //===============================================任务相关=======================================
-    void getAllTasksCallback(AppTask appTask);
+    void getAllTasksCallback(AppTask2 appTask2);
 }
