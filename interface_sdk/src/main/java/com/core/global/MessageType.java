@@ -49,7 +49,8 @@ public class MessageType {
         ADD_DEVICE_FORM_SCENE_FILE((byte)0x22),
         DELETE_DEVICE_FORM_SCENE_FILE((byte)0x23),
         GET_NODE_VER((byte)0x40),
-        GET_GW_INFO((byte)0x80);
+        GET_GW_INFO((byte)0x80),
+        FACTORY_RESET((byte)0x82);
 
         private byte value = 0;
 

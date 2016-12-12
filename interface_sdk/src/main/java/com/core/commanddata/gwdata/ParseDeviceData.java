@@ -55,16 +55,6 @@ public class ParseDeviceData {
             device_name = Utils.toStringHex(device_name_hex);
         } else {
             device_name = Constants.DeviceName(device_id, device_zone_type);
-//            for (int i = 0; i < a.length(); i++) {
-//                //与'0'和'9'比较，不是0,9.
-//                if (a.charAt(i) >= '0' && a.charAt(i) <= '9' || a.charAt(i) >= 'a' && a.charAt(i) <= 'f' || a.charAt(i) >= 'A' && a.charAt(i) <= 'F') {
-//                    continue;
-//                } else {
-//                    System.out.println("MAC地址必须为不带任何标点符号的十六进制数");
-//                    return;
-//                }
-//            }
-//            System.out.println(a + " 是一个mac地址！");
         }
 
         if (device_id.equalsIgnoreCase("ffff")) {
@@ -440,6 +430,7 @@ public class ParseDeviceData {
     public static class ParseGWInfoData{
         public String gw_mac = "";
         public int gw_version = -1;
+        public int gw_bootrodr = -1;
 
         public ParseGWInfoData() {
             gw_mac = "";
@@ -449,6 +440,7 @@ public class ParseDeviceData {
         public void parseBytes(byte[] data) {
             byte[] gw_mac_bt = new byte[6];
             byte[] gw_version_bt = new byte[4];
+            byte[] gw_bootrodr_bt = new byte[4];
 
             //Zigbee串口类型
             System.arraycopy(data, 32, gw_mac_bt, 0, 6);
@@ -469,6 +461,10 @@ public class ParseDeviceData {
 
             System.arraycopy(data, 38, gw_version_bt, 0, 4);
             gw_version = FtFormatTransfer.hBytesToInt(gw_version_bt) + 10000;
+
+            System.arraycopy(data,42,gw_bootrodr_bt,0,4);
+            gw_bootrodr = FtFormatTransfer.hBytesToInt(gw_bootrodr_bt);
+            System.out.println("bootrodr = " + gw_bootrodr);
         }
     }
 
@@ -499,7 +495,7 @@ public class ParseDeviceData {
     /**
      * 推送数据解析
      */
-    public static  class ParsePushData{
+    public static class ParsePushData{
         public String message_type;
         public String sensor_mac;
         public int sensor_state;

@@ -15,7 +15,7 @@ android {
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
             //混淆
-            minifyEnabled false
+            minifyEnabled true
             //Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件
@@ -33,80 +33,29 @@ android {
         abortOnError false
     }
 }
-
-
-task makeJar(type: Copy) {
-    delete 'build/libs/sdk.jar'
-    from('build/intermediates/bundles/release/')
-    into('build/libs/')
-    include('classes.jar')
-    rename ('classes.jar', 'sdk.jar')
-}
-// 未混淆的jar
-//    injars 'build/intermediates/bundles/release/classes.jar'
-//    // 混淆后的jar路径
-//    outjars 'build/libs/sdk.jar'
-// 具体需要keep住的类
-//    configuration 'proguard-rules.pro'
-
-makeJar.dependsOn(build)
-
-//task makeJar(type: Jar, dependsOn:['build', 'targetJar']) {
-//    from file('build/intermediates/classes/release')
-//    //目标文件名称
-//    archiveName = 'un_proguard.jar'
-//    destinationDir = file('build/libs')
-//    exclude "lbs/tmplibary/BuildConfig.class"
-//    exclude "lbs/tmplibary/BuildConfig\$*.class"
-//    exclude "**/R.class"
-//    exclude "**/R\$*.class"
-//    //只导入资源路径集下的部分资源
-//    include "lbs/**/*.class"
-//}
-
-//task makeJar(type: Jar, dependsOn:['build', 'targetJar']) {
-//    from file('build/intermediates/classes/release')
-//    from fileTree(dir: 'src/main', includes: ['assets/**'])
-//    //目标文件名称
-//    archiveName = 'un_proguard.jar'
-//    destinationDir = file('build/libs')
-//    exclude "lbs/tmplibary/BuildConfig.class"
-//    exclude "lbs/tmplibary/BuildConfig\$*.class"
-//    exclude "**/R.class"
-//    exclude "**/R\$*.class"
-//    //只导入资源路径集下的部分资源
-//    include "lbs/**/*.class"
-//    include "assets/**"
-//}
-
-//def zipFile = "src/main/assets.zip"
-//task makeJar(type: Jar, dependsOn:['build', 'targetJar']) {
-//    from zipTree(zipFile)
-//    from file('build/intermediates/classes/release')
-//    //目标文件名称
-//    archiveName = 'un_proguard.jar'
-//    destinationDir = file('build/libs')
-//    exclude "lbs/tmplibary/BuildConfig.class"
-//    exclude "lbs/tmplibary/BuildConfig\$*.class"
-//    exclude "**/R.class"
-//    exclude "**/R\$*.class"
-//    //只导入资源路径集下的部分资源
-//    include "lbs/**/*.class"
-//
-//}
-
-task proguard(type: proguard.gradle.ProGuardTask, dependsOn: makeJar) {
-//  输入路径
-    injars "build/libs/sdk.jar"
-//  输出路径
-    outjars 'build/libs/sdk_proguard.jar'
-//  添加配置信息
-    configuration 'proguard-rules.pro'
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
 }
+
+def SDK_BASENAME = "sdk";
+def SDK_VERSION = "_V0.1.8";
+def sdkDestinationPath = "build";
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
+
+task deleteBuild(type: Delete) {
+//    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
+    delete sdkDestinationPath + SDK_BASENAME + ".jar"
+}
+
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+    from fileTree(dir: 'src/main',includes: ['assets/**'])
+//    baseName = SDK_BASENAME + SDK_VERSION
+    baseName = SDK_BASENAME
+    destinationDir = file(sdkDestinationPath)
+}
+
+makeJar.dependsOn(deleteBuild, build)

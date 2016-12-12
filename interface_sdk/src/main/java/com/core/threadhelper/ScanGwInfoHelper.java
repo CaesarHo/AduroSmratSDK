@@ -21,7 +21,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 import static com.core.global.Constants.isScanGwNodeVer;
 
 /**
@@ -65,11 +64,12 @@ public class ScanGwInfoHelper implements Runnable {
                     int gw_info = (int) MessageType.A.GET_GW_INFO.value();
                     int node_ver = (int) MessageType.A.GET_NODE_VER.value();
 
-                    if (gw_info == recbuf[11]) {// | node_ver == recbuf[11]
+                    if (gw_info == recbuf[11]) {
                         ParseDeviceData.ParseGWInfoData gwInfoData = new ParseDeviceData.ParseGWInfoData();
                         gwInfoData.parseBytes(recbuf);
                         GatewayInfo.getInstance().setFirmwareVersion(context,gwInfoData.gw_version);
                         GatewayInfo.getInstance().setGatewayMac(context,gwInfoData.gw_mac);
+                        GatewayInfo.getInstance().setBootrodr(context,gwInfoData.gw_bootrodr);
                     }
                     if (node_ver == recbuf[11]){
                         ParseDeviceData.ParseNodeVer parseNodeVer = new ParseDeviceData.ParseNodeVer();
@@ -79,10 +79,12 @@ public class ScanGwInfoHelper implements Runnable {
                         String gateway_no = GatewayInfo.getInstance().getGatewayNo(context);
                         String gateway_mac = GatewayInfo.getInstance().getGatewayMac(context);
                         int gateway_version = GatewayInfo.getInstance().getFirmwareVersion(context);
+                        int gateway_bootrodr = GatewayInfo.getInstance().getBootrodr(context);
 
                         AppGateway appGateway = new AppGateway();
                         appGateway.setGateway_no(gateway_no);
                         appGateway.setGateway_mac(gateway_mac);
+                        appGateway.setBootrodr(gateway_bootrodr);
                         appGateway.setIp_address(ip_address);
                         appGateway.setGateway_version(gateway_version);
                         appGateway.setNode_main_version(parseNodeVer.major_ver);

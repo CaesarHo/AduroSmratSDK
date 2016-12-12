@@ -1,8 +1,7 @@
 package com.core.threadhelper.groups;
 
 import android.content.Context;
-import android.util.Log;
-
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.GroupCmdData;
 import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.db.GatewayInfo;
@@ -10,8 +9,6 @@ import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.FtFormatTransfer;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -21,7 +18,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/11.
@@ -61,7 +57,13 @@ public class UpdateGroupName implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
+                        return;
+                    }
                     System.out.println("当前接收的数据UpdateGroupName = " + Arrays.toString(recbuf));
+                    DataPacket.getInstance().BytesDataPacket(mContext,recbuf);
 
                     if (recbuf[11] == MessageType.A.CHANGE_GROUP_NAME.value()) {
                         byte[] group_name_bt = group_name.getBytes("utf-8");

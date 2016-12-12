@@ -13,6 +13,7 @@ public class AppGateway implements Serializable {
     private int gateway_version = -1;//网关软件版本号 比如:10004
     private int node_main_version = -1;//网关协调器的软件版本(主版本号)比如:1005
     private int node_installed_version = -1;//网关协调器的软件版本(安装版本号)比如:1364
+    private int bootrodr = -1;
 
     public void setGateway_no(String gateway_no) {
         this.gateway_no = gateway_no;
@@ -36,6 +37,14 @@ public class AppGateway implements Serializable {
 
     public void setNode_installed_version(int node_installed_version) {
         this.node_installed_version = node_installed_version;
+    }
+
+    public int getBootrodr() {
+        return bootrodr;
+    }
+
+    public void setBootrodr(int bootrodr) {
+        this.bootrodr = bootrodr;
     }
 
     public String getGateway_no() {

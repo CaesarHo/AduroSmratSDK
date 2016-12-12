@@ -32,6 +32,9 @@ public class DataSources {
     public void SendExceptionResult(int result){
         sdkCallback.SendExceptionCallack(result);
     }
+    public void ResetGatewayResult(int result){
+        sdkCallback.vRetResetGatewayCallback(result);
+    }
     //------------------------------------设备相关--------------------------------
     //允许设备入网
     public void AgreeDeviceInNet(int result){

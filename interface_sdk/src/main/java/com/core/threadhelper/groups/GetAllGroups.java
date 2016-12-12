@@ -3,6 +3,7 @@ package com.core.threadhelper.groups;
 import android.content.Context;
 import android.util.Log;
 
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.GroupCmdData;
 import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.db.GatewayInfo;
@@ -27,7 +28,6 @@ import static com.core.global.Constants.GW_IP_ADDRESS;
  */
 public class GetAllGroups implements Runnable {
     private Context mContext;
-    private byte[] bt_send;
     public DatagramSocket socket = null;
     public GetAllGroups(Context context){
         this.mContext = context;
@@ -36,13 +36,11 @@ public class GetAllGroups implements Runnable {
     @Override
     public void run() {
         try {
+            byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getGroups");
-                byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
-                //获取组列表命令
-                bt_send = GroupCmdData.GetAllGroupListCmd();
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -58,9 +56,16 @@ public class GetAllGroups implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
+                        return;
+                    }
                     System.out.println("当前接收的数据GetAllGroups = " + Arrays.toString(recbuf));
+                    DataPacket.getInstance().BytesDataPacket(mContext,recbuf);
+                    /**
+                     * 枚举A判断是否是房间
+                     */
                     if ((int) MessageType.A.GET_ALL_GROUP.value() == recbuf[11]){
-                        //解析接受到的数据
                         ParseGroupData.ParseGetGroupsInfo(recbuf);
                     }
                 }

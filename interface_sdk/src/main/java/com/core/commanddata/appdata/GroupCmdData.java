@@ -91,8 +91,15 @@ public class GroupCmdData {
         byte[] bt_dev = Utils.HexString2Bytes(merge_mac);
 
         int group_name_len = strTobt.length;
-        int data_style_len = 20 + group_name_len + bt_dev_count.length + bt_dev.length;
-        int data_len = 2 + group_name_len + bt_dev_count.length + bt_dev.length;
+        int data_style_len;
+        int data_len;
+        if (dev_count == 0){
+            data_style_len = 20 + groupname.length();
+            data_len = 2 + group_name_len;
+        }else{
+            data_style_len = 20 + group_name_len + bt_dev_count.length + bt_dev.length;
+            data_len = 2 + group_name_len + bt_dev_count.length + bt_dev.length;
+        }
 
         //组名称 726f6f6d  31
         String group_str = "";
@@ -152,23 +159,30 @@ public class GroupCmdData {
         //组名称长度   0004
         bt_send[33] = (byte) (group_name_len >> 8);
         bt_send[34] = (byte) group_name_len;
-
-        //固定数据与group数据相加
-        byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_name_data);
-
-        //设备个数及其mac地址数据
-        byte[] count_mac = FtFormatTransfer.byteMerger(bt_dev_count,bt_dev);
-        byte[] bt_merge = FtFormatTransfer.byteMerger(bt_send_data,count_mac);
-
-        //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(bt_merge, bt_merge.length));
-        String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
-
-        //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(bt_merge, bt_crcdata);
-
-        return bt_send_cmd;
+        if (dev_count == 0){
+            //固定数据与group数据相加
+            byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_name_data);
+            //将前面数据CRC8校验
+            byte bt_crc8 = (CRC8.calc(bt_send_data, bt_send_data.length));
+            String hex = Integer.toHexString(bt_crc8 & 0xFF);
+            byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+            //Cmd 数据与CRC8相加
+            byte[] bt_send_cmd = FtFormatTransfer.byteMerger(bt_send_data, bt_crcdata);
+            return bt_send_cmd;
+        }else{
+            //固定数据与group数据相加
+            byte[] bt_send_data = FtFormatTransfer.byteMerger(bt_send, group_name_data);
+            //设备个数及其mac地址数据
+            byte[] count_mac = FtFormatTransfer.byteMerger(bt_dev_count,bt_dev);
+            byte[] bt_merge = FtFormatTransfer.byteMerger(bt_send_data,count_mac);
+            //将前面数据CRC8校验
+            byte bt_crc8 = (CRC8.calc(bt_merge, bt_merge.length));
+            String hex = Integer.toHexString(bt_crc8 & 0xFF);
+            byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+            //Cmd 数据与CRC8相加
+            byte[] bt_send_cmd = FtFormatTransfer.byteMerger(bt_merge, bt_crcdata);
+            return bt_send_cmd;
+        }
     }
 
     /**

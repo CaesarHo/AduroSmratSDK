@@ -2,6 +2,7 @@ package com.core.threadhelper.devices;
 
 import android.content.Context;
 
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.db.GatewayInfo;
@@ -58,15 +59,20 @@ public class BindDevice implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+                    DataPacket.getInstance().BytesDataPacket(context,recbuf);
                     System.out.println("当前接收的数据BindDevice = " + Arrays.toString(recbuf));
-
+                    /**
+                     * 获取网关IEEE地址然后绑定设备
+                     */
                     if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == recbuf[11]) {
                         ParseDeviceData.ParseIEEEData parseIEEEData = new ParseDeviceData.ParseIEEEData();
                         parseIEEEData.parseBytes(recbuf);
                         byte[] bt = DeviceCmdData.BindDeviceCmd(appDevice, parseIEEEData.gateway_mac);
                         sendMessage(bt, socket);
                     }
-
+                    /**
+                     * 绑定设备
+                     */
                     if ((int) MessageType.A.BIND_DEVICE.value() == recbuf[11]) {
                         ParseDeviceData.ParseBindVCPFPData parseBindVCPFPData = new ParseDeviceData.ParseBindVCPFPData();
                         parseBindVCPFPData.parseBytes(recbuf);

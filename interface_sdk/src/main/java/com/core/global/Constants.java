@@ -13,7 +13,6 @@ import java.util.Arrays;
  * Created by best on 2016/7/14.
  */
 public class Constants {
-    public static boolean isRemote = false;
     public static boolean isScanGwNodeVer = false;
     public static int UDP_PORT = 8888;
     public static String MQTT_SERVER = "120.24.242.83";//"192.168.0.80";//"data.adurosmart.com";
@@ -57,13 +56,13 @@ public class Constants {
 
     public static void sendMessage(byte[] bt_send) throws Exception {
         DatagramSocket socket = null;
-        InetAddress address = InetAddress.getByName(Constants.GW_IP_ADDRESS);
+        InetAddress address = InetAddress.getByName(GW_IP_ADDRESS);
         if (socket == null) {
             socket = new DatagramSocket(null);
             socket.setReuseAddress(true);
-            socket.bind(new InetSocketAddress(Constants.UDP_PORT));
+            socket.bind(new InetSocketAddress(UDP_PORT));
         }
-        DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address, Constants.UDP_PORT);
+        DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address,UDP_PORT);
         socket.send(dp);
         System.out.println("SendMessage = " + Utils.binary(bt_send, 16));
         byte[] bs = new byte[1024];

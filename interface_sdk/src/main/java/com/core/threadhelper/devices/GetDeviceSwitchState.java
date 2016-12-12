@@ -21,7 +21,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/12.

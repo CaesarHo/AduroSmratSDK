@@ -332,9 +332,9 @@ public class ParseTaskData {
                     case 6:
                         short_address = task_info_array[6].split(":")[1];
                         String task_cycle_str = task_info_array[6].split(":")[1].substring(2);
-
-                        task_cycle = FtFormatTransfer.string2Int(task_cycle_str);
-                        System.out.println("task_info_array = " + task_cycle_str);
+                        byte[] bt = Utils.HexString2Bytes(task_cycle_str);
+                        task_cycle = bt[0] & 0xFF;
+                        System.out.println("task_info_array = " + task_cycle);
                         break;
                     case 7:
                         sensor_mac = task_info_array[7].split(":")[1];

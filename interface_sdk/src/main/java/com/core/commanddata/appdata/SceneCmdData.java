@@ -592,7 +592,6 @@ public class SceneCmdData {
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_RECALL_SCENE.value() >> 8);//(byte) 0x00;
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_RECALL_SCENE.value();      //(byte) 0xA5;
-        //
         bt_send[23] = (byte) 0x00;
         bt_send[24] = (byte) 0x12;
         bt_send[25] = (byte) 0x4b;

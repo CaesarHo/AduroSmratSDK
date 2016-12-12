@@ -74,7 +74,7 @@
 # For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
 # 不混淆Enum类型的指定方法
 -keepclassmembers enum * {
-    public static **[] values();
+    public static **[] value();
     public static ** valueOf(java.lang.String);
 }
 
@@ -83,9 +83,15 @@
   public static final android.os.Parcelable$Creator CREATOR;
 }
 
+#保持 Serializable 不被混淆
+-keepnames class * implements java.io.Serializable
+  #保持 Serializable 不被混淆并且enum 类也不被混淆
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
     private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    !private <fields>;
+    !private <methods>;
     private void writeObject(java.io.ObjectOutputStream);
     private void readObject(java.io.ObjectInputStream);
     java.lang.Object writeReplace();
@@ -140,6 +146,29 @@
 #保护泛型
 -keepattributes Signature
 
+# 移除Log类打印各个等级日志的代码，打正式包的时候可以做为禁log使用，这里可以作为禁止log打印的功能使用
+# 记得proguard-android.txt中一定不要加-dontoptimize才起作用
+# 另外的一种实现方案是通过BuildConfig.DEBUG的变量来控制
+-assumenosideeffects class android.util.Log {
+    public static int v(...);
+    public static int i(...);
+    public static int w(...);
+    public static int d(...);
+    public static int e(...);
+}
+
+-assumenosideeffects public class java.lang.System {
+    public static long currentTimeMillis();
+    static java.lang.Class getCallerClass();
+    public static int identityHashCode(java.lang.Object);
+    public static java.lang.SecurityManager getSecurityManager();
+    public static java.util.Properties getProperties();
+    public static java.lang.String getProperty(java.lang.String);
+    public static java.lang.String getenv(java.lang.String);
+    public static java.lang.String mapLibraryName(java.lang.String);
+    public static java.lang.String getProperty(java.lang.String,java.lang.String);
+}
+
 -keep class com.core.gatewayinterface.DataSources{
     public *;
 }
@@ -149,7 +178,19 @@
 -keep class com.core.gatewayinterface.SerialHandler{
     public *;
 }
--keep class com.core.utils{
+-keep class com.core.global.Constants{
+    public *;
+}
+-keep class com.core.db.GatewayInfo{
+    public *;
+}
+
+#-keep class com.core.commanddata.gwdata.ParseDeviceData$ParsePushData { *; }混淆的内部类
+
+-keep class com.core.utils.FtFormatTransfer{
+    public *;
+}
+-keep class com.core.utils.Utils{
     public *;
 }
 -keep class com.core.commanddata.appdata{

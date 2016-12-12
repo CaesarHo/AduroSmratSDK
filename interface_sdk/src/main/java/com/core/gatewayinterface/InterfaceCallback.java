@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public interface InterfaceCallback {
     //-------------------------------网关相关------------------------------
+    void SendExceptionCallack(int result);
+    void vRetResetGatewayCallback(int result);
     //网关信息回调
     void GatewatInfoCallback(AppGateway appGateway);
     //===============================房间相关==============================
@@ -43,7 +45,6 @@ public interface InterfaceCallback {
     void deleteDeviceFromGroupCallback(int result);
 
     //=========================设备操作===========================
-    void SendExceptionCallack(int result);
     //允许设备入网
     void AgreeDeviceInNetCallback(int result);
     //扫描设备回调

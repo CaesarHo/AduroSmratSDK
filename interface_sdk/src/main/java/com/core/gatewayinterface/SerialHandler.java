@@ -5,6 +5,7 @@ import android.net.wifi.WifiManager;
 import android.provider.Settings;
 
 import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.commanddata.appdata.GroupCmdData;
 import com.core.commanddata.appdata.SceneCmdData;
 import com.core.commanddata.appdata.TaskCmdData;
@@ -17,25 +18,17 @@ import com.core.threadhelper.ScanGwInfoHelper;
 import com.core.threadhelper.devices.BindDevice;
 import com.core.threadhelper.UDPHelper;
 import com.core.threadhelper.devices.GetAllDevices;
-import com.core.threadhelper.devices.GetDeviceLevel;
-import com.core.threadhelper.devices.GetDeviceSwitchState;
-import com.core.threadhelper.devices.UpdateDeviceName;
-import com.core.threadhelper.groups.AddGroup;
-import com.core.threadhelper.groups.DeleteGroup;
 import com.core.threadhelper.groups.GetAllGroups;
-import com.core.threadhelper.groups.UpdateGroupName;
 import com.core.threadhelper.scenes.AddDeviceToSence;
-import com.core.threadhelper.scenes.AddSence;
-import com.core.threadhelper.scenes.DeleteScence;
 import com.core.threadhelper.scenes.GetAllSences;
-import com.core.threadhelper.scenes.UpdateSceneName;
 import com.core.threadhelper.tasks.GetAllTasks;
-import com.core.utils.NetworkUtil;
 
 import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
+import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
+import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
 
 /**
  * Created by best on 2016/7/11.
@@ -116,7 +109,7 @@ public class SerialHandler {
      * 获取网关协调器的软件版本
      */
     public void GetNodeVer(){
-        byte[] bt_send = DeviceCmdData.GetNodeVerCmd();
+        byte[] bt_send = GatewayCmdData.GetNodeVerCmd();
         new Thread(new ScanGwInfoHelper(context,bt_send)).start();
     }
 
@@ -124,7 +117,7 @@ public class SerialHandler {
      * 获取网关MAC地址和固件版本信息
      */
     public void GetGwInfo(){
-        byte[] bt_send = DeviceCmdData.GetGwInfoCmd();
+        byte[] bt_send = GatewayCmdData.GetGwInfoCmd();
         new Thread(new ScanGwInfoHelper(context,bt_send)).start();
     }
 
@@ -136,6 +129,11 @@ public class SerialHandler {
     public void setGateWayTime(int year, int month, int day, int hour, int minute, int second) {
         byte[] bt_send = TaskCmdData.setGateWayTimeCmd(year, month, day, hour, minute, second);
         new Thread(new UdpClient(context,bt_send)).start();
+    }
+
+    public void vRecoveryFactory(String pwd){
+        byte[] bt = GatewayCmdData.FactoryResetCmd(pwd);
+        new Thread(new UdpClient(context,bt)).start();
     }
 
     //===============================设备操作 start============================
@@ -207,18 +205,25 @@ public class SerialHandler {
      * 获得设备状态
      */
     public void getDeviceSwitchState(AppDevice appDevice) {
-        new Thread(new GetDeviceSwitchState(context,appDevice)).start();
+        byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0006");
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new GetDeviceSwitchState(context,appDevice)).start();
     }
 
-
-    //获取设备亮度回调
+    /**
+     * 获取设备亮度回调
+     * @param appDevice
+     */
     public void getDeviceLevel(AppDevice appDevice) {
-        new Thread(new GetDeviceLevel(context,appDevice)).start();
+        byte[] bt_send = DeviceCmdData.ReadAttrbuteCmd(appDevice, "0100", "0008");
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new GetDeviceLevel(context,appDevice)).start();
     }
 
     //修改设备名称
     public void UpdateDeviceName(AppDevice appDevice, String device_name){
-        new Thread(new UpdateDeviceName(context,appDevice, device_name)).start();
+        byte[] bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
+        new Thread(new UdpClient(context,bt_send)).start();
     }
 
     //获取网关IEEE地址并绑定设备
@@ -250,7 +255,9 @@ public class SerialHandler {
      * @param group_name
      */
     public void CreateGroup(String group_name,int count,String dev_mac){
-        new Thread(new AddGroup(context,group_name,count,dev_mac)).start();
+        ADD_GROUP_NAME = group_name;
+        byte[] bt_send = GroupCmdData.sendAddGroupCmd(group_name,count,dev_mac);
+        new Thread(new UdpClient(context,bt_send)).start();
     }
 
     /**
@@ -275,7 +282,9 @@ public class SerialHandler {
      * @param group_id
      */
     public void DeleteGroup(short group_id) {
-        new Thread(new DeleteGroup(context,group_id)).start();
+        byte[] bt_send = GroupCmdData.sendDeleteGroupCmd(group_id);
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new DeleteGroup(context,group_id)).start();
     }
 
     /**
@@ -286,7 +295,9 @@ public class SerialHandler {
      */
     public void ChangeGroupName(short group_id, String group_name){
         NEW_GROUP_NAME = group_name;
-        new Thread(new UpdateGroupName(context,group_id,group_name)).start();
+        byte[] bt_send = GroupCmdData.sendUpdateGroupCmd((int) group_id, group_name);
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new UpdateGroupName(context,group_id,group_name)).start();
     }
 
     //获取网关所有房间
@@ -328,10 +339,12 @@ public class SerialHandler {
     }
 
     //添加场景
-    public void AddSence(String scene_name, short scene_id,int count,String dev_mac){
+    public void AddSence(String scene_name, short group_Id,int count,String dev_mac){
         ADD_SCENE_NAME = scene_name;
-        ADD_SCENE_GROUP_ID = scene_id;
-        new Thread(new AddSence(context,scene_name,scene_id,count,dev_mac)).start();
+        ADD_SCENE_GROUP_ID = group_Id;
+        byte[] bt_send = SceneCmdData.sendAddSceneCmd(scene_name, group_Id,count,dev_mac);
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new AddSence(context,scene_name,group_Id,count,dev_mac)).start();
     }
 
     //Recall场景
@@ -354,13 +367,17 @@ public class SerialHandler {
 
     //删除指定场景
     public void deleteScence(short scene_id) {
-        new Thread(new DeleteScence(context,scene_id)).start();
+        byte[] bt_send = SceneCmdData.sendDeleteSceneCmd((int)scene_id);
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new DeleteScence(context,scene_id)).start();
     }
 
     //修改指定场景
     public void ChangeSceneName(short scene_id, String scene_name){
-        Constants.SCENE_GLOBAL.NEW_SCENE_NAME = scene_name;
-        new Thread(new UpdateSceneName(context,scene_id,scene_name)).start();
+        NEW_SCENE_NAME = scene_name;
+        byte[] bt_send = SceneCmdData.sendUpdateSceneCmd(scene_id, scene_name);
+        new Thread(new UdpClient(context,bt_send)).start();
+//        new Thread(new UpdateSceneName(context,scene_id,scene_name)).start();
     }
 
     /**
@@ -390,6 +407,7 @@ public class SerialHandler {
         new Thread(new GetAllTasks(context)).start();
     }
 
+    //----------------------------------------任务第二版-------------------------------
     public void CreateEditLinkTask(AppDevice appDevice,int no,short scene_id,short group_id,int enable,String task_name,int type,int status){
         byte[] bytes = TaskCmdData.CreateEditLinkTask(appDevice,no,scene_id,group_id,enable,task_name,type,status);
         new Thread(new UdpClient(context,bytes)).start();
@@ -400,8 +418,16 @@ public class SerialHandler {
         new Thread(new UdpClient(context,bytes)).start();
     }
 
+    /**
+     * 删除任务
+     */
+    public void DeleteTask(int task_id) {
+        byte[] bt_send = TaskCmdData.DeleteTaskCmd(task_id);
+        new Thread(new UdpClient(context,bt_send)).start();
+    }
 
 
+    //----------------------------------------任务第一版-------------------------------
     /**
      * 创建定时设备任务
      */
@@ -449,15 +475,6 @@ public class SerialHandler {
     }
 
     /**
-     * 删除任务
-     */
-    public void DeleteTask(int task_id) {
-        byte[] bt_send = TaskCmdData.DeleteTaskCmd(task_id);
-        new Thread(new UdpClient(context,bt_send)).start();
-    }
-
-
-    /**
      * 編輯任务
      */
     public void EditTask(String task_name, byte is_run, byte task_type, byte task_cycle, int task_hour, int task_minute,
@@ -469,4 +486,5 @@ public class SerialHandler {
                 dev_hue,dev_temp,recall_scene,group_id,scene_id);
         new Thread(new UdpClient(context,bt_send)).start();
     }
+    //------------------------------------任务end-------------------------------------
 }

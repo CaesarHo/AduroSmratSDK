@@ -14,6 +14,7 @@ public class GatewayInfo {
     public static final String PORT = "port";
     public static final String GATEWAY_NO = "gateway_no";
     public static final String GATEWAY_MAC = "gateway_mac";
+    public static final String BOOTRODR = "gateway_bootrodr";
 
     private static GatewayInfo manager = null;
 
@@ -115,4 +116,20 @@ public class GatewayInfo {
         editor.putInt("ADURO"+PORT, value);
         editor.commit();
     }
+
+//    bootrodr
+    //获取网关端口
+    public int getBootrodr(Context context) {
+        SharedPreferences sf = context.getSharedPreferences(BOOTRODR, context.MODE_PRIVATE);
+        return sf.getInt("ADURO"+BOOTRODR,0);
+    }
+
+    //保存网关端口
+    public void setBootrodr(Context context,int value) {
+        SharedPreferences sf = context.getSharedPreferences(BOOTRODR, context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putInt("ADURO"+BOOTRODR, value);
+        editor.commit();
+    }
+
 }

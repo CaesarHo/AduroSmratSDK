@@ -5,6 +5,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
@@ -77,6 +78,7 @@ public class UDPHelper implements Runnable {
 
                 Constants.GW_IP_ADDRESS = ip_str;
 
+                DataPacket.getInstance().BytesDataPacket(context,message);
                 if (strMsg.contains("K64_SEARCH_GW")) {
                     String[] gw_no_arr = strMsg.split(":");
                     String gw_no = gw_no_arr[1];

@@ -1,8 +1,7 @@
 package com.core.threadhelper.scenes;
 
 import android.content.Context;
-import android.util.Log;
-
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.SceneCmdData;
 import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.db.GatewayInfo;
@@ -10,8 +9,6 @@ import com.core.global.Constants;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.FtFormatTransfer;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -21,7 +18,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/13.
@@ -63,8 +59,14 @@ public class UpdateSceneName implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("当前接收的数据UpdateSceneName = " + Arrays.toString(recbuf));
 
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
+                        return;
+                    }
+
+                    System.out.println("当前接收的数据UpdateSceneName = " + Arrays.toString(recbuf));
+                    DataPacket.getInstance().BytesDataPacket(mContext,recbuf);
                     if (recbuf[11] == MessageType.A.CHANGE_SCENE_NAME.value()) {
                         //解析数据
                         ParseSceneData.ParseModifySceneInfo parseData = new ParseSceneData.ParseModifySceneInfo();

@@ -1,14 +1,11 @@
 package com.core.threadhelper.scenes;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.core.commanddata.appdata.SceneCmdData;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -18,7 +15,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/13.

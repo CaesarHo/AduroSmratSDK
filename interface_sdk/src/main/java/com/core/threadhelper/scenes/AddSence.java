@@ -2,16 +2,14 @@ package com.core.threadhelper.scenes;
 
 import android.content.Context;
 
+import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.SceneCmdData;
 import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.FtFormatTransfer;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
-
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -19,7 +17,6 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.isRemote;
 
 /**
  * Created by best on 2016/7/14.
@@ -64,8 +61,14 @@ public class AddSence implements Runnable {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
+
+                    String isK64 = new String(recbuf).trim();
+                    if (isK64.contains("K64")) {
+                        return;
+                    }
+
                     System.out.println("当前接收的数据AddSence = " + Arrays.toString(recbuf));
-                    //解析数据
+                    DataPacket.getInstance().BytesDataPacket(mContext,recbuf);
                     if ((int) MessageType.A.ADD_SCENE_NAME.value() == recbuf[11]) {
                         byte[] scene_name = scene_Name.getBytes("utf-8");
                         ParseSceneData.ParseAddSceneInfo parseAddSceneInfo = new ParseSceneData.ParseAddSceneInfo();
