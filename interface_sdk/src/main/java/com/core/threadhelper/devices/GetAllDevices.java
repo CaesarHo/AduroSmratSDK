@@ -4,6 +4,7 @@ import android.content.Context;
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
+import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
@@ -16,6 +17,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
 import static com.core.global.Constants.GW_IP_ADDRESS;
 
 /**
@@ -44,8 +46,8 @@ public class GetAllDevices implements Runnable {
             }
 
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
-                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
+                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
@@ -75,15 +77,28 @@ public class GetAllDevices implements Runnable {
                      */
                     if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == recbuf[11]) {
 //                        byte[] bt = AESUtils.decode(recbuf);
-                        ParseDeviceData.ParseGetDeviceInfo(recbuf, false);
+                        ParseDeviceData.ParseGetDeviceInfo(mContext,recbuf, false);
                     } else if ((int) MessageType.A.UPLOAD_TXT.value() == recbuf[11]) {//新入网设备
 //                        byte[] bt = AESUtils.decode(recbuf);
-                        ParseDeviceData.ParseGetDeviceInfo(recbuf, true);
+                        ParseDeviceData.ParseGetDeviceInfo(mContext,recbuf, true);
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            for (int i = 0;i<appDeviceList.size();i++){
+                if (appDeviceList.get(i).getDeviceid().contains("0051")){
+                    String IEEE =  GatewayInfo.getInstance().getGwIEEEAddress(mContext);
+                    byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i),IEEE);
+                    new Thread(new UdpClient(mContext,bt_bind)).start();
+                    try{
+                        Thread.sleep(1000);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 }

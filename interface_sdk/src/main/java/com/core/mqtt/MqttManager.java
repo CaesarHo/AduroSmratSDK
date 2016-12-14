@@ -68,8 +68,7 @@ public class MqttManager {
         String tmpDir = System.getProperty("java.io.tmpdir");
         MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence(tmpDir);
         try {
-            // Construct the connection options object that contains connection parameters
-            // such as cleanSession and LWT
+            // Construct the connection options object that contains connection parameters such as cleanSession and LWT
             conOpt = new MqttConnectOptions();
             conOpt.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
             conOpt.setCleanSession(clean);
@@ -83,7 +82,10 @@ public class MqttManager {
             client = new MqttClient(brokerUrl, clientId, dataStore);
             // Set this wrapper as the callback handler
             client.setCallback(mCallback);
-            flag = doConnect();
+            if (!client.isConnected()){
+                System.out.println("正在连接 = " + client.getClientId());
+                flag = doConnect();
+            }
         } catch (MqttException e) {
             Log.e(TAG, e.getMessage());
         }
@@ -132,6 +134,9 @@ public class MqttManager {
                 System.out.println("发布状态 = " + flag);
             } catch (MqttException e) {
             }
+        }else{
+            System.out.println("正在连接 = " + client.getClientId());
+            flag = doConnect();
         }
         return flag;
     }
@@ -161,6 +166,9 @@ public class MqttManager {
                 System.out.println("订阅状态 = " + flag);
             } catch (MqttException e) {
             }
+        }else{
+            System.out.println("正在连接 = " + client.getClientId());
+            flag = doConnect();
         }
         return flag;
     }

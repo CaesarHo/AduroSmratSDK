@@ -15,6 +15,7 @@ public class GatewayInfo {
     public static final String GATEWAY_NO = "gateway_no";
     public static final String GATEWAY_MAC = "gateway_mac";
     public static final String BOOTRODR = "gateway_bootrodr";
+    public static final String GW_IEEE_ADDRESS = "gateway_ieee_address";
 
     private static GatewayInfo manager = null;
 
@@ -132,4 +133,17 @@ public class GatewayInfo {
         editor.commit();
     }
 
+    //获取网关IEEE地址
+    public String getGwIEEEAddress(Context context){
+        SharedPreferences sf = context.getSharedPreferences(GW_IEEE_ADDRESS,context.MODE_PRIVATE);
+        return sf.getString("ADURO" + GW_IEEE_ADDRESS,"");
+    }
+
+    //保存网关IEEE地址
+    public void setGwIEEEAddress(Context context,String value){
+        SharedPreferences sf = context.getSharedPreferences(GW_IEEE_ADDRESS,context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putString("ADURO" + GW_IEEE_ADDRESS,value);
+        editor.commit();
+    }
 }

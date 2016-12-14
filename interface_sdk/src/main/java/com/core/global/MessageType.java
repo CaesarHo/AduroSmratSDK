@@ -44,6 +44,7 @@ public class MessageType {
         GET_ALL_TASK((byte) 0x1B),
         GET_GATEWAY_IEEE((byte)0x1C),
         BIND_DEVICE((byte)0x1D),
+        SMART_SOKET_DATA((byte)0x1E),
         ADD_DEVICE_FORM_GROUP_FILE((byte)0x20),
         DELETE_DEVICE_FORM_GROUP_FILE((byte)0x21),
         ADD_DEVICE_FORM_SCENE_FILE((byte)0x22),

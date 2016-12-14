@@ -39,6 +39,7 @@ public class GetAllGroups implements Runnable {
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getGroups");
+                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);

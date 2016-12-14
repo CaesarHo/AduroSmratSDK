@@ -1,13 +1,17 @@
 package com.core.global;
 
+import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
+import com.core.mqtt.MqttManager;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by best on 2016/7/14.
@@ -15,7 +19,7 @@ import java.util.Arrays;
 public class Constants {
     public static boolean isScanGwNodeVer = false;
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "120.24.242.83";//"192.168.0.80";//"data.adurosmart.com";
+    public static String MQTT_SERVER = "data.adurosmart.com";//"120.24.242.83";//"192.168.0.80";//;
     public static String CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
@@ -41,6 +45,7 @@ public class Constants {
 
     public static class DEVICE_GLOBAL{
         public static AppDevice sdkappDevice;
+        public static List<AppDevice> appDeviceList = new ArrayList<>();
     }
 
     public static class GROUP_GLOBAL{

@@ -20,6 +20,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
 import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
 import static com.core.global.Constants.GW_IP_ADDRESS;
@@ -48,8 +49,8 @@ public class UdpClient implements Runnable{
     public void run() {
         try {
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
-                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
+                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
@@ -79,6 +80,19 @@ public class UdpClient implements Runnable{
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            for (int i = 0;i<appDeviceList.size();i++){
+                if (appDeviceList.get(i).getDeviceid().contains("0051")){
+                    String IEEE =  GatewayInfo.getInstance().getGwIEEEAddress(mContext);
+                    byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i),IEEE);
+                    new Thread(new UdpClient(mContext,bt_bind)).start();
+                    try{
+                        Thread.sleep(1000);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 }

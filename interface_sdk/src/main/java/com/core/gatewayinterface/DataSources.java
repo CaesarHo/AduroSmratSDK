@@ -127,8 +127,8 @@ public class DataSources {
     }
 
     //绑定设备
-    public void BindDevice(short frequency,double voltage,double current,double power,double power_factor){
-        sdkCallback.bingdevicecallback(frequency,voltage,current,power,power_factor);
+    public void BindDevice(String device_short_addr,short frequency,double voltage,double current,double power,double power_factor){
+        sdkCallback.bingdevicecallback(device_short_addr,frequency,voltage,current,power,power_factor);
     }
 
     //---------------------------------场景相关----------------------------------

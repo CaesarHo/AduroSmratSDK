@@ -2,10 +2,8 @@ package com.core.threadhelper;
 
 import android.content.Context;
 
-import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.db.GatewayInfo;
-import com.core.entity.AppDevice;
 import com.core.entity.AppGateway;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;

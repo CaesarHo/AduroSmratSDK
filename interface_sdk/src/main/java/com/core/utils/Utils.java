@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
+import com.core.global.MessageType;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;

@@ -4,13 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.core.commanddata.DataPacket;
-import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 
@@ -19,11 +17,6 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.Arrays;
-
-import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
-import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
-import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
-import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
 
 /**
  * Created by best on 2016/9/28.
@@ -59,20 +52,19 @@ public class MqttCallbackBus implements MqttCallback {
          */
         if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == message.getPayload()[11]) {
 //                        byte[] bt = AESUtils.decode(recbuf);
-            ParseDeviceData.ParseGetDeviceInfo(message.getPayload(), false);
+            ParseDeviceData.ParseGetDeviceInfo(mContext,message.getPayload(), false);
         } else if ((int) MessageType.A.UPLOAD_TXT.value() == message.getPayload()[11]) {//新入网设备
 //                        byte[] bt = AESUtils.decode(recbuf);
-            ParseDeviceData.ParseGetDeviceInfo(message.getPayload(), true);
+            ParseDeviceData.ParseGetDeviceInfo(mContext,message.getPayload(), true);
         }
         /**
-         * 枚举A判断是否是房间
+         * 枚举A判断是否是房间列表
          */
         if ((int) MessageType.A.GET_ALL_GROUP.value() == message.getPayload()[11]) {
-            //解析接受到的数据
             ParseGroupData.ParseGetGroupsInfo(message.getPayload());
         }
         /**
-         * 枚举A判断是否是场景
+         * 枚举A判断是否是场景列表
          */
         if ((int) MessageType.A.GET_ALL_SCENE.value() == message.getPayload()[11]) {
             ParseSceneData.ParseGetScenesInfo(message.getPayload());

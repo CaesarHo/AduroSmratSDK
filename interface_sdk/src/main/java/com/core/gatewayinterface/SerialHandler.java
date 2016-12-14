@@ -15,7 +15,6 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
 import com.core.threadhelper.ScanGwInfoHelper;
-import com.core.threadhelper.devices.BindDevice;
 import com.core.threadhelper.UDPHelper;
 import com.core.threadhelper.devices.GetAllDevices;
 import com.core.threadhelper.groups.GetAllGroups;
@@ -23,7 +22,6 @@ import com.core.threadhelper.scenes.AddDeviceToSence;
 import com.core.threadhelper.scenes.GetAllSences;
 import com.core.threadhelper.tasks.GetAllTasks;
 
-import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
@@ -224,12 +222,6 @@ public class SerialHandler {
     public void UpdateDeviceName(AppDevice appDevice, String device_name){
         byte[] bt_send = DeviceCmdData.sendUpdateDeviceCmd(appDevice, device_name);
         new Thread(new UdpClient(context,bt_send)).start();
-    }
-
-    //获取网关IEEE地址并绑定设备
-    public void BindDevice(AppDevice appDevice){
-        sdkappDevice = appDevice;
-        new Thread(new BindDevice(context,appDevice)).start();
     }
 
     //所有设备的开关
@@ -487,4 +479,6 @@ public class SerialHandler {
         new Thread(new UdpClient(context,bt_send)).start();
     }
     //------------------------------------任务end-------------------------------------
+
+
 }

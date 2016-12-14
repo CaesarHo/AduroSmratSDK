@@ -8,6 +8,7 @@ import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.connectivity.UdpClient;
+import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
@@ -34,7 +35,6 @@ import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
 
 public class DataPacket {
     public static DataPacket dataPacket = null;
-    private Context context;
 
     private DataPacket() {
 
@@ -50,12 +50,33 @@ public class DataPacket {
     }
 
     public void BytesDataPacket(Context context, byte[] bytes) {
-        this.context = context;
         try {
             //-----------------------------网关相关--------------------------------32
             if ((int)MessageType.A.FACTORY_RESET.value() == bytes[11]){
                 DataSources.getInstance().ResetGatewayResult(bytes[32]);
             }
+
+            /**
+             * 获取网关IEEE地址然后绑定设备
+             */
+            if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == bytes[11]) {
+                ParseDeviceData.ParseIEEEData parseIEEEData = new ParseDeviceData.ParseIEEEData();
+                parseIEEEData.parseBytes(bytes);
+                GatewayInfo.getInstance().setGwIEEEAddress(context,parseIEEEData.gateway_mac);
+            }
+
+            /**
+             * 绑定设备
+             */
+//            if ((int) MessageType.A.BIND_DEVICE.value() == bytes[11]) {
+//                ParseDeviceData.ParseBindVCPFPData parseBindVCPFPData = new ParseDeviceData.ParseBindVCPFPData();
+//                parseBindVCPFPData.parseBytes(bytes);
+//            }
+            if ((int)MessageType.A.SMART_SOKET_DATA.value() == bytes[11]){
+                ParseDeviceData.ParseBindVCPFPData parsePData = new ParseDeviceData.ParseBindVCPFPData();
+                parsePData.parseBytes(bytes);
+            }
+
             //-----------------------------设备start-------------------------------
             /**
              * 解析网关信息
@@ -82,7 +103,8 @@ public class DataPacket {
             if (sensorData.message_type.contains("8401")) {
                 //当有传感器数据上传时读取ZONETYPE
                 byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
-                Constants.sendMessage(bt);
+                new Thread(new UdpClient(context,bt)).start();
+//                Constants.sendMessage(bt);
                 DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                 DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
             }
@@ -91,7 +113,7 @@ public class DataPacket {
              * 解析设备属性数据
              */
             ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
-            attribute.parseBytes(bytes);
+            attribute.parseBytes(context,bytes);
 
             /**
              * 传感器电量返回值
@@ -105,7 +127,8 @@ public class DataPacket {
                 if (attribute.clusterID == 5) {
                     byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
                                    attribute.endpoint + "", (short) attribute.attribValue);
-                    Constants.sendMessage(zt_bt);
+                    new Thread(new UdpClient(context,zt_bt)).start();
+//                    Constants.sendMessage(zt_bt);
                 }
             }
             if (bytes[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()){
