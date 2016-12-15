@@ -45,13 +45,15 @@ public class MessageType {
         GET_GATEWAY_IEEE((byte)0x1C),
         BIND_DEVICE((byte)0x1D),
         SMART_SOKET_DATA((byte)0x1E),
+        RETURN_DEVICE_STATS((byte)0x1F),
         ADD_DEVICE_FORM_GROUP_FILE((byte)0x20),
         DELETE_DEVICE_FORM_GROUP_FILE((byte)0x21),
         ADD_DEVICE_FORM_SCENE_FILE((byte)0x22),
         DELETE_DEVICE_FORM_SCENE_FILE((byte)0x23),
         GET_NODE_VER((byte)0x40),
         GET_GW_INFO((byte)0x80),
-        FACTORY_RESET((byte)0x82);
+        FACTORY_RESET((byte)0x82),
+        GET_SET_SERVER_ADDRESS((byte)0x83);
 
         private byte value = 0;
 

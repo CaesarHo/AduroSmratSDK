@@ -1,6 +1,7 @@
 package com.core.threadhelper;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.db.GatewayInfo;
@@ -98,6 +99,8 @@ public class ScanGwInfoHelper implements Runnable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            Log.e("my = " , "ScanGwInfoHelper");
         }
     }
 }

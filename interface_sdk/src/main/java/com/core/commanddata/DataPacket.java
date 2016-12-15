@@ -52,32 +52,10 @@ public class DataPacket {
     public void BytesDataPacket(Context context, byte[] bytes) {
         try {
             //-----------------------------网关相关--------------------------------32
-            if ((int)MessageType.A.FACTORY_RESET.value() == bytes[11]){
+            if ((int) MessageType.A.FACTORY_RESET.value() == bytes[11]) {
                 DataSources.getInstance().ResetGatewayResult(bytes[32]);
             }
 
-            /**
-             * 获取网关IEEE地址然后绑定设备
-             */
-            if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == bytes[11]) {
-                ParseDeviceData.ParseIEEEData parseIEEEData = new ParseDeviceData.ParseIEEEData();
-                parseIEEEData.parseBytes(bytes);
-                GatewayInfo.getInstance().setGwIEEEAddress(context,parseIEEEData.gateway_mac);
-            }
-
-            /**
-             * 绑定设备
-             */
-//            if ((int) MessageType.A.BIND_DEVICE.value() == bytes[11]) {
-//                ParseDeviceData.ParseBindVCPFPData parseBindVCPFPData = new ParseDeviceData.ParseBindVCPFPData();
-//                parseBindVCPFPData.parseBytes(bytes);
-//            }
-            if ((int)MessageType.A.SMART_SOKET_DATA.value() == bytes[11]){
-                ParseDeviceData.ParseBindVCPFPData parsePData = new ParseDeviceData.ParseBindVCPFPData();
-                parsePData.parseBytes(bytes);
-            }
-
-            //-----------------------------设备start-------------------------------
             /**
              * 解析网关信息
              */
@@ -87,12 +65,57 @@ public class DataPacket {
             }
 
             /**
+             * 解析服务器地址
+             */
+            if ((int) MessageType.A.GET_SET_SERVER_ADDRESS.value() == bytes[11]) {
+                ParseDeviceData.ParseServerAddress parseServerAddress = new ParseDeviceData.ParseServerAddress();
+                parseServerAddress.parseBytes(bytes);
+            }
+
+            /**
+             * 获取网关IEEE地址然后绑定设备
+             */
+            if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == bytes[11]) {
+                ParseDeviceData.ParseIEEEData parseIEEEData = new ParseDeviceData.ParseIEEEData();
+                parseIEEEData.parseBytes(bytes);
+                GatewayInfo.getInstance().setGwIEEEAddress(context, parseIEEEData.gateway_mac);
+            }
+
+            /**
+             * 绑定设备
+             */
+//            if ((int) MessageType.A.BIND_DEVICE.value() == bytes[11]) {
+//                ParseDeviceData.ParseBindVCPFPData parseBindVCPFPData = new ParseDeviceData.ParseBindVCPFPData();
+//                parseBindVCPFPData.parseBytes(bytes);
+//            }
+            if ((int) MessageType.A.SMART_SOKET_DATA.value() == bytes[11]) {
+                ParseDeviceData.ParseBindVCPFPData parsePData = new ParseDeviceData.ParseBindVCPFPData();
+                parsePData.parseBytes(bytes);
+                System.out.println("SMART_SOKET_DATA = " + Arrays.toString(bytes));
+            }
+
+            //-----------------------------设备start-------------------------------
+
+            /**
+             * 获取网关所有设备及其新入网设备
+             */
+            if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == bytes[11]) {
+//                        byte[] bt = AESUtils.decode(recbuf);
+                ParseDeviceData.ParseGetDeviceInfo(context, bytes, false);
+            } else if ((int) MessageType.A.UPLOAD_TXT.value() == bytes[11]) {//新入网设备
+//                        byte[] bt = AESUtils.decode(recbuf);
+                ParseDeviceData.ParseGetDeviceInfo(context, bytes, true);
+            }
+
+            /**
              * 设备返回的状态
              */
-            ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
-            pDevStateOrLevel.parseBytes(bytes);
-            if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6) {
-                DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
+            if ((int) MessageType.A.RETURN_DEVICE_STATS.value() == bytes[11]) {
+                ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
+                pDevStateOrLevel.parseBytes(bytes);
+                if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6) {
+                    DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
+                }
             }
 
             /**
@@ -103,7 +126,7 @@ public class DataPacket {
             if (sensorData.message_type.contains("8401")) {
                 //当有传感器数据上传时读取ZONETYPE
                 byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
-                new Thread(new UdpClient(context,bt)).start();
+                new Thread(new UdpClient(context, bt)).start();
 //                Constants.sendMessage(bt);
                 DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                 DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
@@ -113,7 +136,7 @@ public class DataPacket {
              * 解析设备属性数据
              */
             ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
-            attribute.parseBytes(context,bytes);
+            attribute.parseBytes(context, bytes);
 
             /**
              * 传感器电量返回值
@@ -126,12 +149,12 @@ public class DataPacket {
                 //如果设备属性簇ID等于5则发送保存zonetypecmd
                 if (attribute.clusterID == 5) {
                     byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
-                                   attribute.endpoint + "", (short) attribute.attribValue);
-                    new Thread(new UdpClient(context,zt_bt)).start();
+                            attribute.endpoint + "", (short) attribute.attribValue);
+                    new Thread(new UdpClient(context, zt_bt)).start();
 //                    Constants.sendMessage(zt_bt);
                 }
             }
-            if (bytes[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()){
+            if (bytes[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()) {
                 /**
                  * 读取设备亮度值
                  */
@@ -154,7 +177,7 @@ public class DataPacket {
             if ((int) MessageType.A.ADD_SCENE_NAME.value() == bytes[11]) {
                 byte[] scene_name = ADD_SCENE_NAME.getBytes("utf-8");
                 ParseSceneData.ParseAddSceneInfo parseAddSceneInfo = new ParseSceneData.ParseAddSceneInfo();
-                parseAddSceneInfo.parseBytes(bytes,scene_name.length);
+                parseAddSceneInfo.parseBytes(bytes, scene_name.length);
             }
             /**
              * 修改场景名称
@@ -181,7 +204,7 @@ public class DataPacket {
             if ((int) MessageType.A.ADD_GROUP_NAME.value() == bytes[11]) {
                 byte[] group_name_bt = ADD_GROUP_NAME.getBytes("utf-8");
                 ParseGroupData.ParseAddGroupInfo groupInfo = new ParseGroupData.ParseAddGroupInfo();
-                groupInfo.parseBytes(bytes,group_name_bt.length);
+                groupInfo.parseBytes(bytes, group_name_bt.length);
             }
             /**
              * 修改房间名称
@@ -189,7 +212,7 @@ public class DataPacket {
             if (bytes[11] == MessageType.A.CHANGE_GROUP_NAME.value()) {
                 byte[] group_name_bt = NEW_GROUP_NAME.getBytes("utf-8");
                 ParseGroupData.ParseModifyGroupInfo groupInfo = new ParseGroupData.ParseModifyGroupInfo();
-                groupInfo.parseBytes(bytes,group_name_bt.length);
+                groupInfo.parseBytes(bytes, group_name_bt.length);
                 DataSources.getInstance().ChangeGroupName(groupInfo.group_id, groupInfo.group_name);
             }
             /**

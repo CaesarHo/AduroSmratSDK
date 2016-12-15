@@ -3,8 +3,11 @@ package com.core.threadhelper;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
+
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
@@ -87,7 +90,7 @@ public class UDPHelper implements Runnable {
                     }
 
                     Thread.sleep(1000);
-                    byte[] bt_send = DeviceCmdData.Get_IEEEAddr_CMD();
+                    byte[] bt_send = GatewayCmdData.Get_IEEEAddr_CMD();
                     new Thread(new UdpClient(context,bt_send)).start();
                 }
 
@@ -97,6 +100,8 @@ public class UDPHelper implements Runnable {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            Log.e("Handler6 = " , "Exception");
         }
     }
 }

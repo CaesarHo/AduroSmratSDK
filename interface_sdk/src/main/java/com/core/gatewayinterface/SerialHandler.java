@@ -134,6 +134,11 @@ public class SerialHandler {
         new Thread(new UdpClient(context,bt)).start();
     }
 
+    public void GetSetGwServerAddress(String server_address){
+        byte[] bt = GatewayCmdData.GetSetGWServerAddress(server_address);
+        new Thread(new UdpClient(context,bt)).start();
+    }
+
     //===============================设备操作 start============================
 
     /**

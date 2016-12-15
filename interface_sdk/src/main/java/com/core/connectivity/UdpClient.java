@@ -1,6 +1,7 @@
 package com.core.connectivity;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
@@ -58,7 +59,6 @@ public class UdpClient implements Runnable{
                     socket = new DatagramSocket(null);
                     socket.setReuseAddress(true);
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
-                    socket.setSoTimeout(DEFAULT_TIMEOUT_DURATION);
                 }
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
@@ -83,6 +83,7 @@ public class UdpClient implements Runnable{
         }finally {
             for (int i = 0;i<appDeviceList.size();i++){
                 if (appDeviceList.get(i).getDeviceid().contains("0051")){
+                    Log.e("Handler3 = " , "Exception");
                     String IEEE =  GatewayInfo.getInstance().getGwIEEEAddress(mContext);
                     byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i),IEEE);
                     new Thread(new UdpClient(mContext,bt_bind)).start();

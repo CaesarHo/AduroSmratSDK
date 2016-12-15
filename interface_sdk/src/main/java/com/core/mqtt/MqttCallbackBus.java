@@ -9,6 +9,7 @@ import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.db.GatewayInfo;
+import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 
@@ -33,6 +34,7 @@ public class MqttCallbackBus implements MqttCallback {
     @Override
     public void connectionLost(Throwable cause) {
         Log.e(TAG + "Lost = ", cause.getMessage());
+//        SerialHandler.getInstance().setMqttCommunication();
         MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
         MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
     }
