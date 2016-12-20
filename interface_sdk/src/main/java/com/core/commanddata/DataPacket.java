@@ -82,16 +82,21 @@ public class DataPacket {
             }
 
             /**
-             * 绑定设备
+             * 绑定设备返回数据
              */
 //            if ((int) MessageType.A.BIND_DEVICE.value() == bytes[11]) {
 //                ParseDeviceData.ParseBindVCPFPData parseBindVCPFPData = new ParseDeviceData.ParseBindVCPFPData();
 //                parseBindVCPFPData.parseBytes(bytes);
 //            }
+            /**
+             * 智能插座数据
+             */
             if ((int) MessageType.A.SMART_SOKET_DATA.value() == bytes[11]) {
+                if (bytes.length < 60) {
+                    return;
+                }
                 ParseDeviceData.ParseBindVCPFPData parsePData = new ParseDeviceData.ParseBindVCPFPData();
                 parsePData.parseBytes(bytes);
-                System.out.println("SMART_SOKET_DATA = " + Arrays.toString(bytes));
             }
 
             //-----------------------------设备start-------------------------------
@@ -111,50 +116,55 @@ public class DataPacket {
              * 设备返回的状态
              */
             if ((int) MessageType.A.RETURN_DEVICE_STATS.value() == bytes[11]) {
-                ParseDeviceData.ParseDeviceStateOrLevel pDevStateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
-                pDevStateOrLevel.parseBytes(bytes);
-                if (pDevStateOrLevel.message_type.contains("8101") & pDevStateOrLevel.clusterID == 6) {
-                    DataSources.getInstance().getDeviceState(pDevStateOrLevel.short_address, pDevStateOrLevel.state);
+                ParseDeviceData.ParseDeviceStateOrLevel stateOrLevel = new ParseDeviceData.ParseDeviceStateOrLevel();
+                stateOrLevel.parseBytes(bytes);
+                if (stateOrLevel.clusterID == 6) {
+                    DataSources.getInstance().getDeviceState(stateOrLevel.short_address, stateOrLevel.state);
+                } else if (stateOrLevel.clusterID == 8) {
+//                    DataSources.getInstance().getDeviceLevel(stateOrLevel.short_address, stateOrLevel.level);
                 }
             }
 
             /**
-             * 接受传感器数据并解析
+             * 设备上传的数据
              */
-            ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
-            sensorData.parseBytes(bytes);
-            if (sensorData.message_type.contains("8401")) {
-                //当有传感器数据上传时读取ZONETYPE
-                byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
-                new Thread(new UdpClient(context, bt)).start();
-//                Constants.sendMessage(bt);
-                DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
-                DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
-            }
-
-            /**
-             * 解析设备属性数据
-             */
-            ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
-            attribute.parseBytes(context, bytes);
-
-            /**
-             * 传感器电量返回值
-             */
-            if (attribute.message_type.contains("8102")) {
-                DataSources.getInstance().responseBatteryValue(attribute.device_mac, attribute.attribValue);
-            }
-
-            if (attribute.message_type.contains("8100")) {
-                //如果设备属性簇ID等于5则发送保存zonetypecmd
-                if (attribute.clusterID == 5) {
-                    byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
-                            attribute.endpoint + "", (short) attribute.attribValue);
-                    new Thread(new UdpClient(context, zt_bt)).start();
-//                    Constants.sendMessage(zt_bt);
-                }
-            }
             if (bytes[11] == MessageType.A.UPLOAD_DEVICE_INFO.value()) {
+                /**
+                 * 接受传感器数据并解析
+                 */
+                ParseDeviceData.ParseSensorData sensorData = new ParseDeviceData.ParseSensorData();
+                sensorData.parseBytes(bytes);
+                if (sensorData.message_type.contains("8401")) {
+                    //当有传感器数据上传时读取ZONETYPE
+                    byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
+                    new Thread(new UdpClient(context, bt)).start();
+//                Constants.sendMessage(bt);
+                    DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
+                    DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
+                }
+
+                /**
+                 * 解析设备属性数据
+                 */
+                ParseDeviceData.ParseAttributeData attribute = new ParseDeviceData.ParseAttributeData();
+                attribute.parseBytes(context, bytes);
+
+                /**
+                 * 传感器电量返回值
+                 */
+                if (attribute.message_type.contains("8102")) {
+                    DataSources.getInstance().responseBatteryValue(attribute.device_mac, attribute.attribValue);
+                }
+
+                if (attribute.message_type.contains("8100")) {
+                    //如果设备属性簇ID等于5则发送保存zonetypecmd
+                    if (attribute.clusterID == 5) {
+                        byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
+                                attribute.endpoint + "", (short) attribute.attribValue);
+                        new Thread(new UdpClient(context, zt_bt)).start();
+//                    Constants.sendMessage(zt_bt);
+                    }
+                }
                 /**
                  * 读取设备亮度值
                  */

@@ -47,7 +47,7 @@ public class GatewayCmdData {
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0x00;
-        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0x70;
+        bt_send[22] = (byte)  MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0x70;
         //mac地址    00124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x00;

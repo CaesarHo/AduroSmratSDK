@@ -1,9 +1,15 @@
 package com.core.threadhelper;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
@@ -13,6 +19,7 @@ import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
+import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -20,12 +27,15 @@ import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static android.content.Context.CONNECTIVITY_SERVICE;
+import static com.core.global.Constants.isConn;
 import static com.core.global.Constants.isScanGwNodeVer;
 
 /**
  * Created by best on 2016/6/27.
  */
 public class UDPHelper implements Runnable {
+    private static final String TAG = "UDPHelper";
     private Context context;
     private WifiManager.MulticastLock lock;
     private DatagramSocket socket = null;
@@ -42,10 +52,10 @@ public class UDPHelper implements Runnable {
 
     @Override
     public void run() {
-        if (Constants.APP_IP_ADDRESS.equals("")) {
-            DataSources.getInstance().SendExceptionResult(0);
-            return;
-        }
+//        if (Constants.APP_IP_ADDRESS.equals("")) {
+//            DataSources.getInstance().SendExceptionResult(0);
+//            return;
+//        }
         StartListen();
     }
 
@@ -65,43 +75,63 @@ public class UDPHelper implements Runnable {
             while (num < 10) {
                 num++;
                 // 准备接收数据
-                lock.acquire();
+//                lock.acquire();
                 socket.receive(datagramPacket);
                 String str_message = new String(datagramPacket.getData()).trim();
                 String ip_address = datagramPacket.getAddress().getHostAddress().toString();
                 int port_int = datagramPacket.getPort();
-                System.out.println("接收的网关信息 = " + Arrays.toString(message));
 
                 Constants.GW_IP_ADDRESS = ip_address;
 
-                DataPacket.getInstance().BytesDataPacket(context,message);
-                if (str_message.contains("K64_SEARCH_GW")) {
+//                DataPacket.getInstance().BytesDataPacket(context,message);
+                if (str_message.contains("K64_SEARCH_GW") & num < 4) {
+
                     String[] gw_no_arr = str_message.split(":");
                     String gw_no = gw_no_arr[1];
                     GatewayInfo.getInstance().setInetAddress(context, ip_address);
                     GatewayInfo.getInstance().setPort(context, port_int);
                     GatewayInfo.getInstance().setGatewayNo(context, gw_no);
 
-                    if (!isScanGwNodeVer){
-                        Thread.sleep(2000);
+                    /**
+                     * 休眠500毫秒后初始化MQTT连接
+                     */
+                    Thread.sleep(500);
+                    if (NetworkUtil.isNetworkAvailable(context)) {
+                        SerialHandler.getInstance().setMqttCommunication();
+                        System.out.println(TAG + " = " + NetworkUtil.isNetworkAvailable(context));
+                    }
+
+                    if (!isScanGwNodeVer) {
+                        Thread.sleep(1500);
                         SerialHandler.getInstance().GetGwInfo();
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                         SerialHandler.getInstance().GetNodeVer();
                     }
 
                     Thread.sleep(1000);
                     byte[] bt_send = GatewayCmdData.Get_IEEEAddr_CMD();
-                    new Thread(new UdpClient(context,bt_send)).start();
+                    new Thread(new UdpClient(context, bt_send)).start();
+                    System.out.println("K64_SEARCH_GW = " + num);
                 }
-
-                if (lock.isHeld()) {
-                    lock.release();
-                }
+//                if (lock.isHeld()) {
+//                    lock.release();
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            Log.e("Handler6 = " , "Exception");
+        } finally {
+            Log.e(TAG, "Exception");
+            killThread();
+        }
+    }
+
+    public void killThread() {
+        try {
+            if (socket.isConnected() & socket != null) {
+                socket.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

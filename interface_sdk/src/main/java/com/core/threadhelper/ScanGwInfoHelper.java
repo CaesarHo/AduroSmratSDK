@@ -41,6 +41,7 @@ public class ScanGwInfoHelper implements Runnable {
     public void run() {
         try {
             if (GW_IP_ADDRESS.equals("")){
+                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
             }else{
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
@@ -56,7 +57,6 @@ public class ScanGwInfoHelper implements Runnable {
                 while (!isScanGwNodeVer) {
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
-                    System.out.println("ScanGwInfoHelper = " + Arrays.toString(recbuf));
                     /**
                      * 解析网关信息
                      */
@@ -64,6 +64,7 @@ public class ScanGwInfoHelper implements Runnable {
                     int node_ver = (int) MessageType.A.GET_NODE_VER.value();
 
                     if (gw_info == recbuf[11]) {
+                        System.out.println("ScanGwInfoHelper = " + Arrays.toString(recbuf));
                         ParseDeviceData.ParseGWInfoData gwInfoData = new ParseDeviceData.ParseGWInfoData();
                         gwInfoData.parseBytes(recbuf);
                         GatewayInfo.getInstance().setFirmwareVersion(context,gwInfoData.gw_version);
@@ -71,6 +72,7 @@ public class ScanGwInfoHelper implements Runnable {
                         GatewayInfo.getInstance().setBootrodr(context,gwInfoData.gw_bootrodr);
                     }
                     if (node_ver == recbuf[11]){
+                        System.out.println("ScanGwInfoHelper = " + Arrays.toString(recbuf));
                         ParseDeviceData.ParseNodeVer parseNodeVer = new ParseDeviceData.ParseNodeVer();
                         parseNodeVer.parseBytes(recbuf);
 

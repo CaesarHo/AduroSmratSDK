@@ -17,7 +17,9 @@ public class NetworkUtil {
 
     public static enum NETWORK_TYPE {
         NETWORK_2GOR3G, NETWORK_WIFI,
-    };
+    }
+
+    ;
 
     private static Boolean mIsNetWorkAvailable = false;
     public static NETWORK_TYPE mNetWorkType = NETWORK_TYPE.NETWORK_WIFI;
@@ -26,6 +28,7 @@ public class NetworkUtil {
 
     /**
      * 判断是否有网络连接
+     *
      * @return
      */
 
@@ -41,6 +44,7 @@ public class NetworkUtil {
 
     /**
      * 判断WIFI网络是否可用
+     *
      * @return
      */
 
@@ -57,6 +61,7 @@ public class NetworkUtil {
 
     /**
      * 判断MOBILE网络是否可用
+     *
      * @return
      */
 
@@ -74,6 +79,7 @@ public class NetworkUtil {
     /**
      * 获取当前网络连接的类型信息 one of TYPE_MOBILE,TYPE_WIFI,TYPE_WIMAX,TYPE_ETHERNET
      * TYPE_BLUETOOTH,or other types defined by ConnectivityManager
+     *
      * @return
      */
     public static int getConnectedType(Context context) {
@@ -85,8 +91,6 @@ public class NetworkUtil {
         }
         return -1;// -1表示无网络
     }
-
-
 
 
     public static void setNetWorkState(boolean state) {
@@ -124,7 +128,7 @@ public class NetworkUtil {
         return isNetworkActive;
     }
 
-    public static boolean NetWorkType(Context context){
+    public static boolean NetWorkType(Context context) {
         boolean isWiFi = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
@@ -139,5 +143,25 @@ public class NetworkUtil {
         }
         System.out.println("isWiFi = " + isWiFi);
         return isWiFi;
+    }
+
+    /**
+     * 获取当前网络状态(是否可用)
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connManager != null) {
+            /**
+             * 获取网络信息实体
+             * 由于从系统服务中获取数据属于进程间通信，基本类型外的数据必须实现Parcelable接口，
+             * NetworkInfo实现了Parcelable，获取到的activeNetInfo相当于服务中网络信息实体对象的一个副本（拷贝），
+             * 所以，不管系统网络服务中的实体对象是否置为了null，此处获得的activeNetInfo均不会发生变化
+             */
+            NetworkInfo activeNetInfo = connManager.getActiveNetworkInfo();
+            if (activeNetInfo != null) {
+                return activeNetInfo.isAvailable();
+            }
+        }
+        return false;
     }
 }

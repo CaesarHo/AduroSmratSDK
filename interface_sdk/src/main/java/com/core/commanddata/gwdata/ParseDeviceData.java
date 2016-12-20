@@ -283,24 +283,22 @@ public class ParseDeviceData {
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x31= ", "" + attribValue);
-                    String zone_type = "";
-                    for (int i = 0; i < attribValue_bt.length; i++) {
-                        String zero = "";
-                        if (attribValue_bt[i] >= 0 && attribValue_bt[i] <= 16) {
-                            zero = "0" + (attribValue_bt[i] & 0xFF);
-                            zone_type = zone_type + zero;
-                        } else {
-                            zone_type = zone_type + Integer.toHexString(attribValue_bt[i] & 0xFF);
-                        }
-                    }
+                    String zone_type = Utils.bytesToHexString(attribValue_bt);
+//                    for (int i = 0; i < attribValue_bt.length; i++) {
+//                        String zero = "";
+//                        if (attribValue_bt[i] >= 0 && attribValue_bt[i] <= 16) {
+//                            zero = "0" + (attribValue_bt[i] & 0xFF);
+//                            zone_type = zone_type + zero;
+//                        } else {
+//                            zone_type = zone_type + Integer.toHexString(attribValue_bt[i] & 0xFF);
+//                        }
+//                    }
+                    Log.i("attribValue 0x31= ", "" + attribValue);
                     DataSources.getInstance().vDataZoneType(device_mac, zone_type);
                     Log.i("attribValue 0x31= ", "" + attribValue);
-                    String main_endpoint = "";
-                    if (data[34] >= 0 && data[34] <= 16) {
-                        main_endpoint = "" + Integer.toHexString(data[34]);
-                    } else {
-                        main_endpoint = Integer.toHexString(data[34]);
-                    }
+                    byte[] endpoint_bt = {data[34]};
+                    String main_endpoint = Utils.bytesToHexString(endpoint_bt);
+
                     Log.i("attribValue main_point=", "" + main_endpoint);
                     byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, main_endpoint, (short) attribValue);
                     try {
@@ -364,8 +362,8 @@ public class ParseDeviceData {
             state = data[36] & 0xFF;
             Log.i("StateLevelstate", state + "");
             //设备亮度
-            level = data[36] & 0xFF;
-            Log.i("StateOrLevellevel", level + "");
+            level = data[40] & 0xFF;
+            Log.i("StateLevellevel", level + "");
         }
     }
 
@@ -390,6 +388,7 @@ public class ParseDeviceData {
 
     public static class ParseBindVCPFPData {
         public String device_short_addr;
+        public String clusterID;
         public short frequency = -1;
         public double voltage = -1;
         public double current = -1;
@@ -402,6 +401,7 @@ public class ParseDeviceData {
 
         public void parseBytes(byte[] data) {
             byte[] type_bt = new byte[2];
+            byte[] clusterid_bt = new byte[2];
             byte[] short_address = new byte[2];
             byte[] frequency_bt = new byte[2];
             byte[] voltage_bt = new byte[2];
@@ -411,11 +411,14 @@ public class ParseDeviceData {
 
             //Zigbee串口类型
             System.arraycopy(data, 20, type_bt, 0, 2);
-            String type = "";
-            for (int i = 0; i < type_bt.length; i++) {
-                type += Integer.toHexString(type_bt[i] & 0xFF);
-            }
-            if (!type.contains("802")) {
+            String type = Utils.bytesToHexString(type_bt);
+
+            //簇ID
+            System.arraycopy(data, 35, clusterid_bt, 0, 2);
+            clusterID = Utils.bytesToHexString(clusterid_bt);
+            Log.i("绑定clusterID", clusterID + type);
+
+            if (!type.contains("8002") & !clusterID.contains("0b04")) {
                 return;
             }
 

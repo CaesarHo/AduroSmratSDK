@@ -13,6 +13,7 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
+import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
 import java.io.IOException;
@@ -33,8 +34,6 @@ public class GetAllDevices implements Runnable {
     private DatagramSocket socket = null;
     private static Context mContext;
     private boolean isNewDevice = false;
-//    private boolean isRun;
-    private int SEND_TIMES = 20;
 
     public GetAllDevices(Context context, boolean isNewDevice) {
         this.mContext = context;
@@ -43,8 +42,6 @@ public class GetAllDevices implements Runnable {
 
     @Override
     public void run() {
-//        isRun = true;
-        appDeviceList.clear();
         try {
             if (!isNewDevice) {
                 bt_send = DeviceCmdData.GetAllDeviceListCmd();
@@ -53,12 +50,12 @@ public class GetAllDevices implements Runnable {
                 bt_send = DeviceCmdData.Allow_DevicesAccesstoBytes();
 //                bt_send = AESUtils.encode(bt);
             }
-            if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
+
+            if (Constants.GW_IP_ADDRESS.equals("")) {//NetworkUtil.isNetworkAvailable(mContext)  !NetworkUtil.NetWorkType(mContext)
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
-//                int times = 0;
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
                     socket = new DatagramSocket(null);
@@ -68,15 +65,9 @@ public class GetAllDevices implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-
                 System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
 
                 while (true) {
-//                    if (!isRun) {
-//                        return;
-//                    }
-//                    times++;
-                    Log.e("my", "shake thread send broadcast.");//第三
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
                     socket.receive(packet);
@@ -103,18 +94,8 @@ public class GetAllDevices implements Runnable {
             Log.e("my", "shake thread broadcast end.");
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                mHandler.sendEmptyMessageDelayed(1, 4500);
-//                            socket.close();
-                Log.e("my", "shake thread finally1.");//第四
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-//                        killThread();
-            Log.e("my", "shake thread finally2.");//第五
+            System.out.println("GetAllDevices" + " =  " +e.getMessage());
         }
-        Log.e("my", "shake thread end.");//第一
 //        try {
 //            if (!isNewDevice) {
 //                bt_send = DeviceCmdData.GetAllDeviceListCmd();
@@ -166,46 +147,6 @@ public class GetAllDevices implements Runnable {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            Log.e("Handler2 = ", "Exception");
-//        } finally {
-//            for (int i = 0; i < appDeviceList.size(); i++) {
-//                if (appDeviceList.get(i).getDeviceid().contains("0051")) {
-//                    Log.e("Handler3 = ", "Exception");
-//                    String IEEE = GatewayInfo.getInstance().getGwIEEEAddress(mContext);
-//                    byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i), IEEE);
-//                    new Thread(new UdpClient(mContext, bt_bind)).start();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
-    }
-
-    public static Handler mHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1: {
-                    for (int i = 0; i < appDeviceList.size(); i++) {
-                        if (appDeviceList.get(i).getDeviceid().contains("0051")) {
-                            Log.e("Handler = ", appDeviceList.get(i).getDeviceMac());
-                            String IEEE = GatewayInfo.getInstance().getGwIEEEAddress(mContext);
-                            byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i), IEEE);
-                            new Thread(new UdpClient(mContext, bt_bind)).start();
-                        }
-                    }
-                }
-                break;
-            }
-            return false;
-        }
-    });
-
-    public void killThread() {
-//        if (isRun) {
-//            isRun = false;
 //        }
     }
 }

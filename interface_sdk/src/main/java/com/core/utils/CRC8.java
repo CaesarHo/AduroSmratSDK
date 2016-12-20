@@ -2,7 +2,7 @@ package com.core.utils;
 
 public class CRC8 {
     // CRC-8, poly = x^8 + x^2 + x^1 + x^0, init = 0
-    private static final byte[] CRC8_TABLE = new byte[] { (byte) 0x00, (byte) 0x07, (byte) 0x0E, (byte) 0x09,
+    private static final byte[] CRC8_TABLE = new byte[]{(byte) 0x00, (byte) 0x07, (byte) 0x0E, (byte) 0x09,
             (byte) 0x1C, (byte) 0x1B, (byte) 0x12, (byte) 0x15, (byte) 0x38, (byte) 0x3F, (byte) 0x36, (byte) 0x31,
             (byte) 0x24, (byte) 0x23, (byte) 0x2A, (byte) 0x2D, (byte) 0x70, (byte) 0x77, (byte) 0x7E, (byte) 0x79,
             (byte) 0x6C, (byte) 0x6B, (byte) 0x62, (byte) 0x65, (byte) 0x48, (byte) 0x4F, (byte) 0x46, (byte) 0x41,
@@ -34,15 +34,13 @@ public class CRC8 {
             (byte) 0xB2, (byte) 0xB5, (byte) 0xBC, (byte) 0xBB, (byte) 0x96, (byte) 0x91, (byte) 0x98, (byte) 0x9F,
             (byte) 0x8A, (byte) 0x8D, (byte) 0x84, (byte) 0x83, (byte) 0xDE, (byte) 0xD9, (byte) 0xD0, (byte) 0xD7,
             (byte) 0xC2, (byte) 0xC5, (byte) 0xCC, (byte) 0xCB, (byte) 0xE6, (byte) 0xE1, (byte) 0xE8, (byte) 0xEF,
-            (byte) 0xFA, (byte) 0xFD, (byte) 0xF4, (byte) 0xF3 };
+            (byte) 0xFA, (byte) 0xFD, (byte) 0xF4, (byte) 0xF3};
 
     /**
      * Update the CRC value with a byte data.
      *
-     * @param data
-     *            The byte data
-     * @param crc
-     *            The starting CRC value
+     * @param data The byte data
+     * @param crc  The starting CRC value
      * @return The updated CRC value
      */
     public static byte update(byte data, byte crc) {
@@ -52,16 +50,13 @@ public class CRC8 {
     /**
      * Update the CRC value with data from a byte array.
      *
-     * @param data
-     *            The byte array
-     * @param len
-     *            The byte array length
-     * @param crc
-     *            The starting CRC value
+     * @param data The byte array
+     * @param len  The byte array length
+     * @param crc  The starting CRC value
      * @return The updated CRC value
      */
     public static byte updateBlock(byte[] data, int len, byte crc) {
-        for (int i = 0; i < len; i++){
+        for (int i = 0; i < len; i++) {
             crc = CRC8_TABLE[crc ^ data[i]];
         }
         return crc;
@@ -70,10 +65,8 @@ public class CRC8 {
     /**
      * Calculate the CRC value with data from a byte array.
      *
-     * @param data
-     *            The byte array
-     * @param len
-     *            The byte array length
+     * @param data The byte array
+     * @param len  The byte array length
      * @return The calculated CRC value
      */
     public static byte calc(byte[] data, int len) {

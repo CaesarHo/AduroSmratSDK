@@ -18,42 +18,44 @@ import java.util.List;
  */
 public class Constants {
     public static boolean isScanGwNodeVer = false;
+    public static boolean isConn = false;
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "data.adurosmart.com";//"120.24.242.83";//"192.168.0.80";//;
-    public static String CLIENT_ID;
+    public static String MQTT_SERVER = "120.24.242.83";//"data.adurosmart.com";//"120.24.242.83";//"192.168.0.80";//;
+    public static String MQTT_CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
 
     public static String GW_IP_ADDRESS = "";
     public static String APP_IP_ADDRESS = "";
-    public static class IpAddress{
+
+    public static class IpAddress {
         public static int int_1 = -1;
         public static int int_2 = -1;
         public static int int_3 = -1;
         public static int int_4 = -1;
     }
 
-    public static class MessageType{
+    public static class MessageType {
         public static final long MAX_VALUE_U_INT_32 = (long) Math.pow(2, 32) - 1;
         public static final int MAX_VALUE_U_INT_16 = (int) (Math.pow(2, 16) - 1);
         public static final int MAX_VALUE_U_INT_8 = (int) (Math.pow(2, 8) - 1);
     }
 
-    public static class GatewayInfo{
-        public static  String GatewayNo = "";
+    public static class GatewayInfo {
+        public static String GatewayNo = "";
     }
 
-    public static class DEVICE_GLOBAL{
+    public static class DEVICE_GLOBAL {
         public static AppDevice sdkappDevice;
         public static List<AppDevice> appDeviceList = new ArrayList<>();
     }
 
-    public static class GROUP_GLOBAL{
+    public static class GROUP_GLOBAL {
         public static String ADD_GROUP_NAME = "";
         public static String NEW_GROUP_NAME = "";
     }
 
-    public static class SCENE_GLOBAL{
+    public static class SCENE_GLOBAL {
         public static String ADD_SCENE_NAME = "";
         public static short ADD_SCENE_GROUP_ID = -1;
         public static String NEW_SCENE_NAME = "";
@@ -67,17 +69,15 @@ public class Constants {
             socket.setReuseAddress(true);
             socket.bind(new InetSocketAddress(UDP_PORT));
         }
-        DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address,UDP_PORT);
+        DatagramPacket dp = new DatagramPacket(bt_send, bt_send.length, address, UDP_PORT);
         socket.send(dp);
-        System.out.println("SendMessage = " + Utils.binary(bt_send, 16));
         byte[] bs = new byte[1024];
         DatagramPacket packet = new DatagramPacket(bs, bs.length);
         socket.receive(packet);
-        System.out.println("getMessage = " + Arrays.toString(bs));
     }
 
 
-    public static String DeviceName(String device_id,String zone_type){
+    public static String DeviceName(String device_id, String zone_type) {
         String device_name = "";
         switch (device_id) {
             case "0105":
@@ -120,7 +120,7 @@ public class Constants {
                 device_name = "Lighting Remotes";
                 break;
             case "0051":
-                device_name = "Smart Socket";
+                device_name = "Smart Controller";
                 break;
             case "ffff":
                 device_name = "unKnown";
@@ -129,7 +129,7 @@ public class Constants {
         return device_name;
     }
 
-    public static String DeviceZoneType(String zoneType){
+    public static String DeviceZoneType(String zoneType) {
         String device_name = "";
         switch (zoneType) {
             case "0000":

@@ -13,7 +13,7 @@ public class SearchUtils {
             searchMac(source,target);
             return RESULT;
         }else {
-            System.out.println(target + "not found");
+//            System.out.println(target + "not found");
             return RESULT;
         }
 
@@ -30,9 +30,9 @@ public class SearchUtils {
         for(int i=0;i<sLength;i++){
             int result = match(subSource,target);
             if(result == tLength){
-                System.out.print("find "+target+" range ");
-                System.out.print(cursor+" to ");
-                System.out.println(cursor+result);
+//                System.out.print("find "+target+" range ");
+//                System.out.print(cursor+" to ");
+//                System.out.println(cursor+result);
                 RESULT = cursor+result;
                 break;
             }else{
@@ -40,7 +40,7 @@ public class SearchUtils {
                 subSource = source.substring(cursor, cursor+tLength);
             }
             if(cursor>=sLength){
-                System.out.println("done . not found!");
+//                System.out.println("done . not found!");
             }
         }
 

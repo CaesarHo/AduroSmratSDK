@@ -1,7 +1,13 @@
 package com.core.connectivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
@@ -11,6 +17,7 @@ import com.core.commanddata.gwdata.ParseSceneData;
 import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.DataSources;
+import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
@@ -21,6 +28,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
+import static android.content.Context.CONNECTIVITY_SERVICE;
 import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
 import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
@@ -33,7 +41,7 @@ import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
  */
 
 public class UdpClient implements Runnable{
-
+    public static final String TAG = "UdpClient";
     private byte[] bt_send = null;
     private DatagramSocket socket = null;
     private Context mContext;
@@ -81,19 +89,7 @@ public class UdpClient implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            for (int i = 0;i<appDeviceList.size();i++){
-                if (appDeviceList.get(i).getDeviceid().contains("0051")){
-                    Log.e("Handler3 = " , "Exception");
-                    String IEEE =  GatewayInfo.getInstance().getGwIEEEAddress(mContext);
-                    byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDeviceList.get(i),IEEE);
-                    new Thread(new UdpClient(mContext,bt_bind)).start();
-                    try{
-                        Thread.sleep(1000);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
+            System.out.println(TAG + " = " + "finally");
         }
     }
 }

@@ -12,12 +12,15 @@ import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.global.MessageType;
+import com.core.utils.Utils;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.Arrays;
+
+import static com.core.global.Constants.isConn;
 
 /**
  * Created by best on 2016/9/28.
@@ -34,14 +37,17 @@ public class MqttCallbackBus implements MqttCallback {
     @Override
     public void connectionLost(Throwable cause) {
         Log.e(TAG + "Lost = ", cause.getMessage());
-//        SerialHandler.getInstance().setMqttCommunication();
-        MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
-        MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
+        if (!isConn){
+            SerialHandler.getInstance().setMqttCommunication();
+        }
+//        MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
+//        MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
     }
 
     @Override
     public void messageArrived(String topic, final MqttMessage message) throws Exception {
         Log.e(TAG, topic + "=" + message.toString());
+        Log.e(TAG, " = " + Utils.bytesToHexString(message.getPayload()));
         System.out.println(TAG + "=" + Arrays.toString(message.getPayload()));
 
         if (message.toString().contains("K64") | message.toString().contains("APP")) {
@@ -74,7 +80,7 @@ public class MqttCallbackBus implements MqttCallback {
         /**
          * 枚举A判断是否是任务列表
          */
-        if (message.getPayload()[11] == MessageType.A.GET_ALL_TASK.value()) {
+        if (MessageType.A.GET_ALL_TASK.value() == message.getPayload()[11]) {
             ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
             parseGetTaskInfo2.parseBytes(message.getPayload());
         }
