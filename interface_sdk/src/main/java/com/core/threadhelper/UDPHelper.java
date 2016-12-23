@@ -52,10 +52,6 @@ public class UDPHelper implements Runnable {
 
     @Override
     public void run() {
-//        if (Constants.APP_IP_ADDRESS.equals("")) {
-//            DataSources.getInstance().SendExceptionResult(0);
-//            return;
-//        }
         StartListen();
     }
 
@@ -70,12 +66,12 @@ public class UDPHelper implements Runnable {
                 socket.setReuseAddress(true);
                 socket.bind(new InetSocketAddress(Constants.UDP_PORT));
             }
-            DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
 
             while (num < 10) {
                 num++;
                 // 准备接收数据
-//                lock.acquire();
+                lock.acquire();
+                DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
                 socket.receive(datagramPacket);
                 String str_message = new String(datagramPacket.getData()).trim();
                 String ip_address = datagramPacket.getAddress().getHostAddress().toString();
@@ -85,27 +81,23 @@ public class UDPHelper implements Runnable {
 
 //                DataPacket.getInstance().BytesDataPacket(context,message);
                 if (str_message.contains("K64_SEARCH_GW") & num < 4) {
-
                     String[] gw_no_arr = str_message.split(":");
                     String gw_no = gw_no_arr[1];
                     GatewayInfo.getInstance().setInetAddress(context, ip_address);
                     GatewayInfo.getInstance().setPort(context, port_int);
                     GatewayInfo.getInstance().setGatewayNo(context, gw_no);
-
-                    /**
-                     * 休眠500毫秒后初始化MQTT连接
-                     */
-                    Thread.sleep(500);
-                    if (NetworkUtil.isNetworkAvailable(context)) {
-                        SerialHandler.getInstance().setMqttCommunication();
-                        System.out.println(TAG + " = " + NetworkUtil.isNetworkAvailable(context));
-                    }
+//                    /**
+//                     * 休眠500毫秒后初始化MQTT连接
+//                     */
+//                    Thread.sleep(500);
+//                    if (NetworkUtil.isNetworkAvailable(context)) {
+//                        SerialHandler.getInstance().setMqttCommunication();
+//                        System.out.println(TAG + " = " + NetworkUtil.isNetworkAvailable(context));
+//                    }
 
                     if (!isScanGwNodeVer) {
-                        Thread.sleep(1500);
-                        SerialHandler.getInstance().GetGwInfo();
-                        Thread.sleep(1500);
-                        SerialHandler.getInstance().GetNodeVer();
+                        Thread.sleep(1000);
+                        SerialHandler.getInstance().GetGatewayVersionInfo();
                     }
 
                     Thread.sleep(1000);
@@ -113,14 +105,12 @@ public class UDPHelper implements Runnable {
                     new Thread(new UdpClient(context, bt_send)).start();
                     System.out.println("K64_SEARCH_GW = " + num);
                 }
-//                if (lock.isHeld()) {
-//                    lock.release();
-//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Log.e(TAG, "Exception");
+            lock.release();
             killThread();
         }
     }

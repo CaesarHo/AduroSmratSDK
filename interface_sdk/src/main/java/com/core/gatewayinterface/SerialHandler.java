@@ -15,14 +15,13 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
 import com.core.shake.ShakeManager;
-import com.core.threadhelper.ScanGwInfoHelper;
 import com.core.threadhelper.UDPHelper;
 import com.core.threadhelper.devices.GetAllDevices;
 import com.core.threadhelper.groups.GetAllGroups;
 import com.core.threadhelper.scenes.AddDeviceToSence;
 import com.core.threadhelper.scenes.GetAllSences;
 import com.core.threadhelper.tasks.GetAllTasks;
-import com.core.utils.NetworkUtil;
+import com.core.utils.FTPUtils;
 import com.core.utils.Utils;
 
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
@@ -62,29 +61,17 @@ public class SerialHandler {
         this.context = mContext;
         this.aeskey = aeskey;
         GatewayInfo.getInstance().setAesKey(context, aeskey);
-        topicName = GatewayInfo.getInstance().getGatewayNo(context);
-        if (!topicName.equals("") & NetworkUtil.isNetworkAvailable(mContext)){
-            setMqttCommunication();
-        }
 //        topicName = GatewayInfo.getInstance().getGatewayNo(context);
-//
-//        Constants.CLIENT_ID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-//        System.out.println("clientId: " + Constants.CLIENT_ID);
-//        System.out.println("topicName = " + topicName);
-
-        //初始化mqtt
-//        if (topicName != "") {//!NetworkUtil.NetWorkType(context) &
-//            MqttManager.getInstance().init(context);
-//            //如果網絡是3G網，則連接mqtt及訂閱mqtt
+//        if (!topicName.equals("") & NetworkUtil.isNetworkAvailable(mContext)){
 //            setMqttCommunication();
-//            System.out.println("初始化MQTT = " + Constants.CLIENT_ID);
 //        }
     }
 
     /**
      * 初始化MQTT连接订阅
      */
-    public void setMqttCommunication() {
+    public void setMqttCommunication(Context context,String topicName) {
+        System.out.println("网关编号 = " + topicName);
         MqttManager.getInstance().init(context);
         //連接MQTT服務器
         String android_id = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -93,9 +80,8 @@ public class SerialHandler {
         System.out.println("isConnected: " + isConnect + ", client = " + Constants.MQTT_CLIENT_ID);
         if (isConnect) {
             isConn = true;
-            topicName = GatewayInfo.getInstance().getGatewayNo(context);
+            GatewayInfo.getInstance().setGatewayNo(context,topicName);
             MqttManager.getInstance().subscribe(topicName, 2);
-            System.out.println("网关编号 = " + topicName);
         }
     }
 
@@ -112,17 +98,17 @@ public class SerialHandler {
     /**
      * 获取网关协调器的软件版本
      */
-    public void GetNodeVer() {
-        byte[] bt_send = GatewayCmdData.GetNodeVerCmd();
-        new Thread(new ScanGwInfoHelper(context, bt_send)).start();
+    public void GetCoordinatorVersion() {
+        byte[] bt_send = GatewayCmdData.GetCoordinatorVersionCmd();
+        new Thread(new UdpClient(context, bt_send)).start();
     }
 
     /**
      * 获取网关MAC地址和固件版本信息
      */
-    public void GetGwInfo() {
-        byte[] bt_send = GatewayCmdData.GetGwInfoCmd();
-        new Thread(new ScanGwInfoHelper(context, bt_send)).start();
+    public void GetGatewayVersionInfo() {
+        byte[] bt_send = GatewayCmdData.GetGatewayInfoCmd();
+        new Thread(new UdpClient(context, bt_send)).start();
     }
 
     /**
@@ -143,6 +129,19 @@ public class SerialHandler {
     public void GetSetGwServerAddress(String server_address) {
         byte[] bt = GatewayCmdData.GetSetGWServerAddress(server_address);
         new Thread(new UdpClient(context, bt)).start();
+    }
+
+    public void StartUpdateGateway(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new FTPUtils(context).openConnect();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     //===============================设备操作 start============================

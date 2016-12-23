@@ -144,7 +144,7 @@ public class MqttManager {
             }
         } else {
             System.out.println("正在连接 publish = " + client.getClientId());
-            SerialHandler.getInstance().setMqttCommunication();
+            SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
         }
         return flag;
     }
@@ -177,7 +177,7 @@ public class MqttManager {
             }
         } else {
             System.out.println("正在连接 subscribe = " + client.getClientId());
-            SerialHandler.getInstance().setMqttCommunication();
+            SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
         }
         return flag;
     }

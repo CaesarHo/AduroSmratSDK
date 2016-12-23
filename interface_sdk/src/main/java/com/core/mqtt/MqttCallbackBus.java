@@ -38,7 +38,8 @@ public class MqttCallbackBus implements MqttCallback {
     public void connectionLost(Throwable cause) {
         Log.e(TAG + "Lost = ", cause.getMessage());
         if (!isConn){
-            SerialHandler.getInstance().setMqttCommunication();
+            String topicName = GatewayInfo.getInstance().getGatewayNo(mContext);
+            SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
         }
 //        MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.CLIENT_ID);
 //        MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);

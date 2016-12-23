@@ -190,6 +190,7 @@
 -keep class com.core.utils.FtFormatTransfer{
     public *;
 }
+
 -keep class com.core.utils.Utils{
     public *;
 }

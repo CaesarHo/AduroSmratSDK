@@ -1,8 +1,6 @@
 package com.core.commanddata.gwdata;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 import com.core.commanddata.appdata.DeviceCmdData;
@@ -10,16 +8,10 @@ import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.gatewayinterface.DataSources;
-import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
-import com.core.threadhelper.ScanGwInfoHelper;
 import com.core.utils.FtFormatTransfer;
 import com.core.utils.SearchUtils;
 import com.core.utils.Utils;
-
-import java.util.Arrays;
-
-import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
 
 /**
  * Created by best on 2016/10/10.
@@ -284,21 +276,10 @@ public class ParseDeviceData {
                     attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x31= ", "" + attribValue);
                     String zone_type = Utils.bytesToHexString(attribValue_bt);
-//                    for (int i = 0; i < attribValue_bt.length; i++) {
-//                        String zero = "";
-//                        if (attribValue_bt[i] >= 0 && attribValue_bt[i] <= 16) {
-//                            zero = "0" + (attribValue_bt[i] & 0xFF);
-//                            zone_type = zone_type + zero;
-//                        } else {
-//                            zone_type = zone_type + Integer.toHexString(attribValue_bt[i] & 0xFF);
-//                        }
-//                    }
-                    Log.i("attribValue 0x31= ", "" + attribValue);
+                    Log.i("attribValue 0x31= ", "" + zone_type);
                     DataSources.getInstance().vDataZoneType(device_mac, zone_type);
-                    Log.i("attribValue 0x31= ", "" + attribValue);
                     byte[] endpoint_bt = {data[34]};
                     String main_endpoint = Utils.bytesToHexString(endpoint_bt);
-
                     Log.i("attribValue main_point=", "" + main_endpoint);
                     byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, main_endpoint, (short) attribValue);
                     try {
@@ -367,26 +348,7 @@ public class ParseDeviceData {
         }
     }
 
-    /**
-     * 解析IEEE地址
-     */
-    public static class ParseIEEEData {
-        public String gateway_mac = "";
-
-        public ParseIEEEData() {
-            gateway_mac = "";
-        }
-
-        public void parseBytes(byte[] data) {
-            byte[] gateway_bt = new byte[8];
-            if (data[31] == 8) {
-                System.arraycopy(data, 32, gateway_bt, 0, 8);
-                gateway_mac = Utils.bytesToHexString(gateway_bt);
-            }
-        }
-    }
-
-    public static class ParseBindVCPFPData {
+    public static class ParseBindData {
         public String device_short_addr;
         public String clusterID;
         public short frequency = -1;
@@ -395,7 +357,7 @@ public class ParseDeviceData {
         public double power = -1;
         public double power_factor = -1;
 
-        public ParseBindVCPFPData() {
+        public ParseBindData() {
             frequency = -1;
         }
 
@@ -453,74 +415,6 @@ public class ParseDeviceData {
     }
 
     /**
-     * 解析网关信息
-     */
-    public static class ParseGWInfoData {
-        public String gw_mac = "";
-        public int gw_version = -1;
-        public int gw_bootrodr = -1;
-
-        public ParseGWInfoData() {
-            gw_mac = "";
-            gw_version = -1;
-        }
-
-        public void parseBytes(byte[] data) {
-            byte[] gw_mac_bt = new byte[6];
-            byte[] gw_version_bt = new byte[4];
-            byte[] gw_bootrodr_bt = new byte[4];
-
-            //Zigbee串口类型
-            System.arraycopy(data, 32, gw_mac_bt, 0, 6);
-            String str_zero = "";
-            for (int i = 0; i < gw_mac_bt.length; i++) {
-                if (gw_mac_bt[i] >= 0 && gw_mac_bt[i] <= 16) {
-                    String hexTostr = Integer.toHexString(gw_mac_bt[i]);
-                    str_zero = "0" + hexTostr;
-                    gw_mac = gw_mac + str_zero + "-";
-                } else {
-                    if (i + 1 == gw_mac_bt.length) {
-                        gw_mac = gw_mac + Integer.toHexString(gw_mac_bt[i] & 0xFF);
-                    } else {
-                        gw_mac = gw_mac + Integer.toHexString(gw_mac_bt[i] & 0xFF) + "-";
-                    }
-                }
-            }
-
-            System.arraycopy(data, 38, gw_version_bt, 0, 4);
-            gw_version = FtFormatTransfer.hBytesToInt(gw_version_bt) + 10000;
-
-            System.arraycopy(data, 42, gw_bootrodr_bt, 0, 4);
-            gw_bootrodr = FtFormatTransfer.hBytesToInt(gw_bootrodr_bt);
-            System.out.println("bootrodr = " + gw_bootrodr);
-        }
-    }
-
-    /**
-     * 解析协调器主版本号安装版本号
-     */
-    public static class ParseNodeVer {
-        public int major_ver = -1;
-        public int Install_ver = -1;
-
-        public ParseNodeVer() {
-            major_ver = -1;
-            Install_ver = -1;
-        }
-
-        public void parseBytes(byte[] data) {
-            byte[] gw_mac_bt = new byte[2];
-            byte[] gw_version_bt = new byte[2];
-
-            System.arraycopy(data, 32, gw_mac_bt, 0, 2);
-            major_ver = FtFormatTransfer.hBytesToShort(gw_mac_bt);
-
-            System.arraycopy(data, 34, gw_version_bt, 0, 2);
-            Install_ver = FtFormatTransfer.hBytesToShort(gw_version_bt);
-        }
-    }
-
-    /**
      * 推送数据解析
      */
     public static class ParsePushData {
@@ -552,25 +446,6 @@ public class ParseDeviceData {
             System.arraycopy(data, 24, sensor_state_bt, 0, 2);
             short state = FtFormatTransfer.hBytesToShort(sensor_state_bt);
             sensor_state = (int) state & 0x1;
-        }
-    }
-
-    /**
-     * 解析网关服务器地址
-     */
-    public static class ParseServerAddress {
-        public String server_address;
-
-        public ParseServerAddress() {
-            this.server_address = "";
-        }
-
-        public void parseBytes(byte[] data) {
-            byte[] server_address_bt = new byte[data[31]];
-            System.arraycopy(data, 32, server_address_bt, 0, data[31]);
-            server_address = Utils.bytesToString(server_address_bt);//Utils.bytesToHexString(server_address_bt);
-//            Constants.MQTT_SERVER = server_address;
-            System.out.println("server_address = " + server_address);
         }
     }
 }

@@ -1,29 +1,23 @@
 package com.core.threadhelper.devices;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
-import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 
-import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
 import static com.core.global.Constants.GW_IP_ADDRESS;
 
 /**
@@ -94,7 +88,7 @@ public class GetAllDevices implements Runnable {
             Log.e("my", "shake thread broadcast end.");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("GetAllDevices" + " =  " +e.getMessage());
+            System.out.println("GetAllDevices" + " =  " + e.getMessage());
         }
 //        try {
 //            if (!isNewDevice) {

@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
 
 public class GatewayCmdData {
     //获取网关MAC地址和固件版本信息
-    public static byte[] GetGwInfoCmd() {
+    public static byte[] GetGatewayInfoCmd() {
         byte[] bt_send = new byte[34];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -47,7 +47,7 @@ public class GatewayCmdData {
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0x00;
-        bt_send[22] = (byte)  MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0x70;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0x70;
         //mac地址    00124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x00;
@@ -105,7 +105,7 @@ public class GatewayCmdData {
         //数据体序号   01 00 92
         bt_send[20] = 0x01;
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_IEEE_ADDRESS_REQUEST.value() >> 8);//(byte) 0x00;
-        bt_send[22] = (byte)  MessageType.B.E_SL_MSG_IEEE_ADDRESS_REQUEST.value();      //(byte) 0x70;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_IEEE_ADDRESS_REQUEST.value();      //(byte) 0x70;
         //mac地址    00124b0001dd7ac1
         bt_send[23] = 0x00;
         bt_send[24] = 0x00;
@@ -145,7 +145,7 @@ public class GatewayCmdData {
      *
      * @return
      */
-    public static byte[] GetNodeVerCmd() {
+    public static byte[] GetCoordinatorVersionCmd() {
         byte[] bt_send = new byte[45];
         //415050C0A8016B 0101 43
         bt_send[0] = 0x41;
@@ -363,5 +363,77 @@ public class GatewayCmdData {
             byte[] bt_data = FtFormatTransfer.byteMerger(bt_send_data, bt_crcdata);
             return bt_data;
         }
+    }
+
+    /**
+     * 获取网关协调器的软件版本
+     *
+     * @return
+     */
+    public static byte[] StartUpdateVerCmd(int ver_, int file_size) {
+        byte[] bt_send = new byte[43];
+        //415050C0A8016B 0101 43
+        bt_send[0] = 0x41;
+        bt_send[1] = 0x50;
+        bt_send[2] = 0x50;
+        bt_send[3] = (byte) Constants.IpAddress.int_1;
+        bt_send[4] = (byte) Constants.IpAddress.int_2;
+        bt_send[5] = (byte) Constants.IpAddress.int_3;
+        bt_send[6] = (byte) Constants.IpAddress.int_4;
+        bt_send[7] = 0x01;//序号
+        bt_send[8] = 0x01;//消息段数
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
+            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+        }
+        //消息体 01 0002 0018
+        bt_send[10] = 0x01;
+        bt_send[11] = 0x00;
+        bt_send[12] = MessageType.A.START_UPDATE_GW_VER.value();
+        bt_send[13] = 0x00;
+        bt_send[14] = 0x1B;
+        //数据体头  415F5A4947
+        bt_send[15] = 0x41;
+        bt_send[16] = 0x5F;
+        bt_send[17] = 0x5A;
+        bt_send[18] = 0x49;
+        bt_send[19] = 0x47;
+        //数据体序号   01 00 92
+        bt_send[20] = 0x01;
+        bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0x00;
+        bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0x70;
+        //mac地址    00124b0001dd7ac1
+        bt_send[23] = 0x00;
+        bt_send[24] = 0x00;
+        bt_send[25] = 0x00;
+        bt_send[26] = 0x00;
+        bt_send[27] = 0x00;
+        bt_send[28] = 0x00;
+        bt_send[29] = 0x00;
+        bt_send[30] = 0x00;
+        //数据长度   00 06  02   f767 01 0C 02 4c
+        bt_send[31] = (byte) 0x00;
+        bt_send[32] = (byte) 0x09;
+        bt_send[33] = (byte) 0x00;
+
+//        byte[] ver_bt = ver_.getBytes();
+        bt_send[34] = (byte) (ver_ >> 24);
+        bt_send[35] = (byte) (ver_ >> 16);
+        bt_send[36] = (byte) (ver_ >> 8);
+        bt_send[37] = (byte) ver_;
+        bt_send[38] = (byte) (file_size >> 24);
+        bt_send[39] = (byte) (file_size >> 16);
+        bt_send[40] = (byte) (file_size >> 8);
+        bt_send[41] = (byte) file_size;
+        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[42] = Utils.HexString2Bytes(ss)[0];
+        } else {
+            bt_send[42] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+        }
+
+        return bt_send;
     }
 }

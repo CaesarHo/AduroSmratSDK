@@ -53,7 +53,8 @@ public class MessageType {
         GET_NODE_VER((byte)0x40),
         GET_GW_INFO((byte)0x80),
         FACTORY_RESET((byte)0x82),
-        GET_SET_SERVER_ADDRESS((byte)0x83);
+        GET_SET_SERVER_ADDRESS((byte)0x83),
+        START_UPDATE_GW_VER((byte)0x50);
 
         private byte value = 0;
 
