@@ -1,15 +1,11 @@
 package com.core.commanddata.gwdata;
 
-import android.util.Log;
-
 import com.core.entity.AppScene;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
-import com.core.utils.FtFormatTransfer;
-import com.core.utils.Utils;
+import com.core.utils.TransformUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by best on 2016/10/10.
@@ -84,7 +80,7 @@ public class ParseSceneData {
             scene_name = new String(scene_name_bt);
 
             System.arraycopy(data, 35 + len, scene_id_bt, 0, 2);
-            group_id = FtFormatTransfer.hBytesToShort(scene_id_bt);
+            group_id = TransformUtils.hBytesToShort(scene_id_bt);
 
             if (scene_name.equals(Constants.SCENE_GLOBAL.ADD_SCENE_NAME)) {
                 if (scene_id <= 0) {
@@ -114,7 +110,7 @@ public class ParseSceneData {
 
             byte[] bt_name = new byte[len];
             System.arraycopy(data, 35, bt_name, 0, len);
-            scene_name = FtFormatTransfer.bytesToString(bt_name);
+            scene_name = TransformUtils.bytesToString(bt_name);
         }
     }
 }

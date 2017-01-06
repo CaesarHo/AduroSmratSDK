@@ -1,34 +1,21 @@
 package com.core.threadhelper;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.core.commanddata.DataPacket;
-import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
-import com.core.utils.NetworkUtil;
-import com.core.utils.Utils;
+import com.core.utils.TransformUtils;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
-import java.util.Arrays;
-
-import static android.content.Context.CONNECTIVITY_SERVICE;
-import static com.core.global.Constants.isConn;
 import static com.core.global.Constants.isScanGwNodeVer;
 
 /**
@@ -46,8 +33,9 @@ public class UDPHelper implements Runnable {
         //获取本地IP地址
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
-        Constants.APP_IP_ADDRESS = Utils.intToIp(ipAddress);
-        Utils.SplitToIp(Constants.APP_IP_ADDRESS);
+        Constants.APP_IP_ADDRESS = TransformUtils.intToIp(ipAddress);
+        TransformUtils.SplitToIp(Constants.APP_IP_ADDRESS);
+        isScanGwNodeVer = false;
     }
 
     @Override
@@ -69,6 +57,7 @@ public class UDPHelper implements Runnable {
 
             while (num < 10) {
                 num++;
+                Thread.sleep(1000);
                 // 准备接收数据
                 lock.acquire();
                 DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
@@ -79,7 +68,7 @@ public class UDPHelper implements Runnable {
 
                 Constants.GW_IP_ADDRESS = ip_address;
 
-//                DataPacket.getInstance().BytesDataPacket(context,message);
+                DataPacket.getInstance().BytesDataPacket(context,message);
                 if (str_message.contains("K64_SEARCH_GW") & num < 4) {
                     String[] gw_no_arr = str_message.split(":");
                     String gw_no = gw_no_arr[1];
@@ -96,11 +85,11 @@ public class UDPHelper implements Runnable {
 //                    }
 
                     if (!isScanGwNodeVer) {
-                        Thread.sleep(1000);
+                        Thread.sleep(1500);
                         SerialHandler.getInstance().GetGatewayVersionInfo();
                     }
 
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
                     byte[] bt_send = GatewayCmdData.Get_IEEEAddr_CMD();
                     new Thread(new UdpClient(context, bt_send)).start();
                     System.out.println("K64_SEARCH_GW = " + num);

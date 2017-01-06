@@ -3,7 +3,7 @@ package com.core.commanddata.gwdata;
 import com.core.entity.AppTask;
 import com.core.entity.AppTask2;
 import com.core.gatewayinterface.DataSources;
-import com.core.utils.FtFormatTransfer;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class ParseTaskData {
         public int group_id = -1;//场景里面组ID
 
         public void parseBytes(byte[] data) throws Exception {
-            String taskinfo = FtFormatTransfer.bytesToString(data);
+            String taskinfo = TransformUtils.bytesToString(data);
             int strToint = taskinfo.indexOf(":");
             String isTask = "";
             if (strToint >= 0) {
@@ -48,7 +48,7 @@ public class ParseTaskData {
                 for (int i = 62; i < data.length; i++) {
                     task_btToStr += Integer.toHexString(data[i] & 0xFF);
                 }
-                task_str = Utils.toStringHex(task_btToStr);
+                task_str = TransformUtils.toStringHex(task_btToStr);
 
                 String task_btToStr2 = "";
                 String is = task_str.substring(0, 1);
@@ -57,7 +57,7 @@ public class ParseTaskData {
                     for (int i = 63; i < data.length; i++) {
                         task_btToStr2 += Integer.toHexString(data[i] & 0xFF);
                     }
-                    task_str = Utils.toStringHex(task_btToStr2);
+                    task_str = TransformUtils.toStringHex(task_btToStr2);
                 }
 
                 System.out.println("task_btToStr = " + task_str);
@@ -69,35 +69,35 @@ public class ParseTaskData {
 
                 //任务是否启用(0x00启用，0x01禁用)
                 String task_is_enabled_hex = task_str.substring(4, 6);
-                byte task_is_enabled_bt = Utils.HexString2Bytes(task_is_enabled_hex)[0];
+                byte task_is_enabled_bt = TransformUtils.HexString2Bytes(task_is_enabled_hex)[0];
                 task_is_enabled = task_is_enabled_bt & 0xFF;
                 System.out.println("task_is_enabled = " + task_is_enabled);
 
 
                 //任务类型-（0x01定时设备、0x02定时场景、0x03触发设备、0x04触发场景）
                 String task_type_hex = task_str.substring(6, 8);
-                byte task_type_bt = Utils.HexString2Bytes(task_type_hex)[0];
+                byte task_type_bt = TransformUtils.HexString2Bytes(task_type_hex)[0];
                 task_type = task_type_bt & 0xFF;
                 System.out.println("task_type = " + task_type);
 
 
                 //任务周期 //0x01 周一 0x02 周二 0x04 周三 0x08 周四 0x10 周五 0x20 周六 0x40 周日(可任意组合)
                 String task_cycle_hex = task_str.substring(8, 10);
-                byte task_cycle_bt = Utils.HexString2Bytes(task_cycle_hex)[0];
+                byte task_cycle_bt = TransformUtils.HexString2Bytes(task_cycle_hex)[0];
                 task_cycle = task_cycle_bt & 0xFF;
                 System.out.println("task_cycle = " + task_cycle);
 
 
                 //任务小时-15点
                 String task_hour_hex = task_str.substring(10, 12);
-                byte task_hour_bt = Utils.HexString2Bytes(task_hour_hex)[0];
+                byte task_hour_bt = TransformUtils.HexString2Bytes(task_hour_hex)[0];
                 task_hour = task_hour_bt & 0xFF;
                 System.out.println("task_hour = " + task_hour);
 
 
                 //任务分钟-58分
                 String task_minute_str = task_str.substring(12, 14);
-                byte task_minute_bt = Utils.HexString2Bytes(task_minute_str)[0];
+                byte task_minute_bt = TransformUtils.HexString2Bytes(task_minute_str)[0];
                 task_minute = task_minute_bt & 0xFF;
                 System.out.println("task_minute = " + task_minute);
 
@@ -110,9 +110,9 @@ public class ParseTaskData {
                 //设备动作
                 String task_action_hex = task_str.substring(18, 22);
                 byte[] action_bt = new byte[2];
-                action_bt[0] = Utils.HexString2Bytes(task_action_hex)[0];
-                action_bt[1] = Utils.HexString2Bytes(task_action_hex)[1];
-                sensor_state = FtFormatTransfer.hBytesToShort(action_bt);
+                action_bt[0] = TransformUtils.HexString2Bytes(task_action_hex)[0];
+                action_bt[1] = TransformUtils.HexString2Bytes(task_action_hex)[1];
+                sensor_state = TransformUtils.hBytesToShort(action_bt);
                 System.out.println("sensor_state = " + sensor_state);
 
 
@@ -130,7 +130,7 @@ public class ParseTaskData {
 
                 //任务名称
                 String task_name_hex = task_str.substring(42, 42 + task_name_len_int * 2);
-                task_name = Utils.toStringHex(task_name_hex);
+                task_name = TransformUtils.toStringHex(task_name_hex);
                 System.out.println("task_name = " + task_name);
 
 
@@ -143,7 +143,7 @@ public class ParseTaskData {
 
                 //命令数量
                 String cmd_size_hex = task_data_sub.substring(0, 2);
-                byte bytes = Utils.HexString2Bytes(cmd_size_hex)[0];
+                byte bytes = TransformUtils.HexString2Bytes(cmd_size_hex)[0];
                 task_cmd_size = bytes & 0xFF;
 
                 //命令里面的device_mac
@@ -234,7 +234,7 @@ public class ParseTaskData {
                 case "0092"://设备开关  41  43
                     device_switch = type;
                     String device_state_str_1 = task_cmd_single.substring(82, 84);
-                    byte device_state_str_bt_1 = Utils.HexString2Bytes(device_state_str_1)[0];
+                    byte device_state_str_bt_1 = TransformUtils.HexString2Bytes(device_state_str_1)[0];
                     device_switch_state = device_state_str_bt_1 & 0xFF;
                     System.out.println("device_switch_state = " + device_switch_state);
                     break;
@@ -242,7 +242,7 @@ public class ParseTaskData {
                 case "0081"://设备亮度
                     device_level = type;
                     String device_state_str_2 = task_cmd_single.substring(84, 86);
-                    byte device_state_str_bt_2 = Utils.HexString2Bytes(device_state_str_2)[0];
+                    byte device_state_str_bt_2 = TransformUtils.HexString2Bytes(device_state_str_2)[0];
                     device_level_value = device_state_str_bt_2 & 0xFF;
                     System.out.println("device_level_value = " + device_level_value);
                     break;
@@ -251,8 +251,8 @@ public class ParseTaskData {
                     device_hue = type;
                     String device_state_hue_3 = task_cmd_single.substring(82, 84);
                     String device_state_sat_3 = task_cmd_single.substring(84, 86);
-                    byte device_state_hue_bt_3 = Utils.HexString2Bytes(device_state_hue_3)[0];
-                    byte device_state_sat_bt_3 = Utils.HexString2Bytes(device_state_sat_3)[0];
+                    byte device_state_hue_bt_3 = TransformUtils.HexString2Bytes(device_state_hue_3)[0];
+                    byte device_state_sat_bt_3 = TransformUtils.HexString2Bytes(device_state_sat_3)[0];
                     device_hue_value = device_state_hue_bt_3 & 0xFF;
                     device_sat_value = device_state_sat_bt_3 & 0xFF;
                     System.out.println("device_hue_value = " + device_hue_value + "," + "device_sat_value = " + device_sat_value);
@@ -261,8 +261,8 @@ public class ParseTaskData {
                 case "00C0"://色温
                     device_temp = type;
                     String device_state_str_4 = task_cmd_single.substring(82, 86);
-                    byte[] device_state_str_bt_4 = Utils.HexString2Bytes(device_state_str_4);
-                    device_temp_value = FtFormatTransfer.hBytesToInt(device_state_str_bt_4);
+                    byte[] device_state_str_bt_4 = TransformUtils.HexString2Bytes(device_state_str_4);
+                    device_temp_value = TransformUtils.hBytesToInt(device_state_str_bt_4);
                     System.out.println("device_temp_value = " + device_temp_value);
                     break;
 
@@ -270,10 +270,10 @@ public class ParseTaskData {
                     scene_type = type;
                     String device_state_group_id_5 = task_cmd_single.substring(82, 86);
                     String device_state_scene_id_5 = task_cmd_single.substring(86, 88);
-                    byte[] device_state_group_bt_5 = Utils.HexString2Bytes(device_state_group_id_5);
-                    byte device_state_scene_bt_5 = Utils.HexString2Bytes(device_state_scene_id_5)[0];
+                    byte[] device_state_group_bt_5 = TransformUtils.HexString2Bytes(device_state_group_id_5);
+                    byte device_state_scene_bt_5 = TransformUtils.HexString2Bytes(device_state_scene_id_5)[0];
                     System.out.println("device_state_group_bt_5 = " + Arrays.toString(device_state_group_bt_5));
-                    group_id = FtFormatTransfer.hBytesToShort(device_state_group_bt_5);
+                    group_id = TransformUtils.hBytesToShort(device_state_group_bt_5);
                     scene_id = device_state_scene_bt_5 & 0xFF;
                     System.out.println("group_id = " + group_id);
                     break;
@@ -304,19 +304,19 @@ public class ParseTaskData {
                 System.out.println("task_info_array = " + task_info_array[i] + "," + i);
                 switch (i){
                     case 0:
-                        task_no = FtFormatTransfer.string2Int(task_info_array[0].split(":")[1]);
+                        task_no = TransformUtils.string2Int(task_info_array[0].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[0]);
                         break;
                     case 1:
-                        scene_id = FtFormatTransfer.string2Int(task_info_array[1].split(":")[1]);
+                        scene_id = TransformUtils.string2Int(task_info_array[1].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
                     case 2:
-                        group_id = FtFormatTransfer.string2Int(task_info_array[2].split(":")[1]);
+                        group_id = TransformUtils.string2Int(task_info_array[2].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
                     case 3:
-                        task_is_enabled = FtFormatTransfer.string2Int(task_info_array[3].split(":")[1]);
+                        task_is_enabled = TransformUtils.string2Int(task_info_array[3].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
 
@@ -326,24 +326,24 @@ public class ParseTaskData {
                         break;
 
                     case 5:
-                        task_type = FtFormatTransfer.string2Int(task_info_array[5].split(":")[1]);
+                        task_type = TransformUtils.string2Int(task_info_array[5].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
                     case 6:
                         short_address = task_info_array[6].split(":")[1];
                         String task_cycle_str = task_info_array[6].split(":")[1].substring(2);
-                        byte[] bt = Utils.HexString2Bytes(task_cycle_str);
+                        byte[] bt = TransformUtils.HexString2Bytes(task_cycle_str);
                         task_cycle = bt[0] & 0xFF;
                         System.out.println("task_info_array = " + task_cycle);
                         break;
                     case 7:
                         sensor_mac = task_info_array[7].split(":")[1];
-                        task_hour = FtFormatTransfer.string2Int(task_info_array[7].split(":")[1]);
+                        task_hour = TransformUtils.string2Int(task_info_array[7].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
                     case 8:
-                        sensor_state = FtFormatTransfer.string2Int(task_info_array[8].split(":")[1]);
-                        task_minute = FtFormatTransfer.string2Int(task_info_array[8].split(":")[1]);
+                        sensor_state = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
+                        task_minute = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
                         System.out.println("task_info_array = " + task_info_array[i]);
                         break;
                 }

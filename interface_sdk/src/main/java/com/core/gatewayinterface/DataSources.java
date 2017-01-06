@@ -233,4 +233,9 @@ public class DataSources {
     public void getAllTasks(AppTask2 appTask2){
         sdkCallback.getAllTasksCallback(appTask2);
     }
+
+    //网关相关
+    public void GatewayUpdateVersion(int version){
+        sdkCallback.vRetGatewayUpdateVersion(version);
+    }
 }

@@ -3,10 +3,9 @@ package com.core.commanddata.appdata;
 import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
-import com.core.utils.CRC8;
-import com.core.utils.FtFormatTransfer;
+import com.core.utils.CRC8Utils;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
-
 
 /**
  * Created by best on 2016/9/23.
@@ -29,11 +28,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100 0f 0018  0100100016
         bt_send[10] = 0x01;
@@ -72,11 +71,11 @@ public class TaskCmdData {
         bt_send[38] = (byte) minute;
         bt_send[39] = (byte) second;
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[40] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[40] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[40] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[40] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
         return bt_send;
     }
@@ -132,18 +131,18 @@ public class TaskCmdData {
             commandDataByte[9] = (byte) (device_action << 8);//设备动作
             commandDataByte[10] = (byte) device_action;//设备动作
             //产生动作的设备mac开始   00158d0001310e1b
-            commandDataByte[11] = Utils.HexString2Bytes(action_mac)[0];
-            commandDataByte[12] = Utils.HexString2Bytes(action_mac)[1];
-            commandDataByte[13] = Utils.HexString2Bytes(action_mac)[2];
-            commandDataByte[14] = Utils.HexString2Bytes(action_mac)[3];
-            commandDataByte[15] = Utils.HexString2Bytes(action_mac)[4];
-            commandDataByte[16] = Utils.HexString2Bytes(action_mac)[5];
-            commandDataByte[17] = Utils.HexString2Bytes(action_mac)[6];
-            commandDataByte[18] = Utils.HexString2Bytes(action_mac)[7];
+            commandDataByte[11] = TransformUtils.HexString2Bytes(action_mac)[0];
+            commandDataByte[12] = TransformUtils.HexString2Bytes(action_mac)[1];
+            commandDataByte[13] = TransformUtils.HexString2Bytes(action_mac)[2];
+            commandDataByte[14] = TransformUtils.HexString2Bytes(action_mac)[3];
+            commandDataByte[15] = TransformUtils.HexString2Bytes(action_mac)[4];
+            commandDataByte[16] = TransformUtils.HexString2Bytes(action_mac)[5];
+            commandDataByte[17] = TransformUtils.HexString2Bytes(action_mac)[6];
+            commandDataByte[18] = TransformUtils.HexString2Bytes(action_mac)[7];
         }
 
         //产生动作的设备mac结束   0004
-        commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
+        commandDataByte[19] = (byte) (task_name_len >> 8);//任务名称长度
         commandDataByte[20] = (byte) task_name_len;//任务名称长度
 
         //任务名称   65643963
@@ -151,7 +150,7 @@ public class TaskCmdData {
         byte[] task_data = null;//任务byte数组
         for (int i = 0; i < strTobt.length; i++) {
             task_str += Integer.toHexString(strTobt[i] & 0xFF);
-            task_data = Utils.HexString2Bytes(task_str);
+            task_data = TransformUtils.HexString2Bytes(task_str);
         }
 
         for (int i = 0; i < task_name_len; i++) {
@@ -180,17 +179,17 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
-        bt_send[13] = (byte) (dataByte_Len << 8);
+        bt_send[13] = (byte) (dataByte_Len >> 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         //数据体头   415f5a4947
         bt_send[15] = 0x41;
@@ -204,37 +203,37 @@ public class TaskCmdData {
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
         if (task_type == 1 | task_type == 2) {
-            bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
-            bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
-            bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
-            bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
-            bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
-            bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
-            bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
-            bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
+            bt_send[23] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[0];
+            bt_send[24] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[1];
+            bt_send[25] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[2];
+            bt_send[26] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[3];
+            bt_send[27] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[4];
+            bt_send[28] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[5];
+            bt_send[29] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[6];
+            bt_send[30] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[7];
         } else {
-            bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
-            bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
-            bt_send[25] = Utils.HexString2Bytes(action_mac)[2];
-            bt_send[26] = Utils.HexString2Bytes(action_mac)[3];
-            bt_send[27] = Utils.HexString2Bytes(action_mac)[4];
-            bt_send[28] = Utils.HexString2Bytes(action_mac)[5];
-            bt_send[29] = Utils.HexString2Bytes(action_mac)[6];
-            bt_send[30] = Utils.HexString2Bytes(action_mac)[7];
+            bt_send[23] = TransformUtils.HexString2Bytes(action_mac)[0];
+            bt_send[24] = TransformUtils.HexString2Bytes(action_mac)[1];
+            bt_send[25] = TransformUtils.HexString2Bytes(action_mac)[2];
+            bt_send[26] = TransformUtils.HexString2Bytes(action_mac)[3];
+            bt_send[27] = TransformUtils.HexString2Bytes(action_mac)[4];
+            bt_send[28] = TransformUtils.HexString2Bytes(action_mac)[5];
+            bt_send[29] = TransformUtils.HexString2Bytes(action_mac)[6];
+            bt_send[30] = TransformUtils.HexString2Bytes(action_mac)[7];
         }
         //数据长度   0053
-        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[31] = (byte) (dataByte_Len2 >> 8);
         bt_send[32] = (byte) dataByte_Len2;
 
-        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+        byte[] task_cmd = TransformUtils.byteMerger(bt_send, commandDataByte);
 
         //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        byte bt_crc8 = (CRC8Utils.calc(task_cmd, task_cmd.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+        byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+        byte[] bt_send_cmd = TransformUtils.byteMerger(task_cmd, bt_crcdata);
 
         return bt_send_cmd;
     }
@@ -290,7 +289,7 @@ public class TaskCmdData {
         commandDataByte[18] = (byte) 0x88;
 
         //产生动作的设备mac结束   0004
-        commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
+        commandDataByte[19] = (byte) (task_name_len >> 8);//任务名称长度
         commandDataByte[20] = (byte) task_name_len;//任务名称长度
 
         //任务名称   65643963
@@ -298,10 +297,9 @@ public class TaskCmdData {
         byte[] task_data = null;//任务byte数组
         for (int i = 0; i < strTobt.length; i++) {
             task_str += Integer.toHexString(strTobt[i] & 0xFF);
-            task_data = Utils.HexString2Bytes(task_str);
+            task_data = TransformUtils.HexString2Bytes(task_str);
         }
 
-        System.out.println("task_name_len = " + task_name_len);
         for (int i = 0; i < task_name_len; i++) {
             commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
         }
@@ -328,17 +326,17 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
-        bt_send[13] = (byte) (dataByte_Len << 8);
+        bt_send[13] = (byte) (dataByte_Len >> 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
         //数据体头   415f5a4947
@@ -352,28 +350,28 @@ public class TaskCmdData {
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
-        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
-        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
-        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
-        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
-        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
-        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
-        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
-        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
+        bt_send[23] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[7];
 
         //数据长度   0053
-        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[31] = (byte) (dataByte_Len2 >> 8);
         bt_send[32] = (byte) dataByte_Len2;
 
-        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+        byte[] task_cmd = TransformUtils.byteMerger(bt_send, commandDataByte);
 
         //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        byte bt_crc8 = (CRC8Utils.calc(task_cmd, task_cmd.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+        byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+        byte[] bt_send_cmd = TransformUtils.byteMerger(task_cmd, bt_crcdata);
 
         return bt_send_cmd;
     }
@@ -425,7 +423,7 @@ public class TaskCmdData {
         commandDataByte[18] = (byte) 0x88;
 
         //产生动作的设备mac结束   0004
-        commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
+        commandDataByte[19] = (byte) (task_name_len >> 8);//任务名称长度
         commandDataByte[20] = (byte) task_name_len;//任务名称长度
 
         //任务名称   65643963
@@ -433,10 +431,9 @@ public class TaskCmdData {
         byte[] task_data = null;//任务byte数组
         for (int i = 0; i < strTobt.length; i++) {
             task_str += Integer.toHexString(strTobt[i] & 0xFF);
-            task_data = Utils.HexString2Bytes(task_str);
+            task_data = TransformUtils.HexString2Bytes(task_str);
         }
 
-        System.out.println("task_name_len = " + task_name_len);
         for (int i = 0; i < task_name_len; i++) {
             commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
         }
@@ -463,19 +460,18 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
-        bt_send[13] = (byte) (dataByte_Len << 8);
+        bt_send[13] = (byte) (dataByte_Len >> 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
-        System.out.println("commandDataByte.length = " + dataByte_Len);
         //数据体头   415f5a4947
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
@@ -497,18 +493,18 @@ public class TaskCmdData {
         bt_send[30] = 0x09;
 
         //数据长度   0053
-        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[31] = (byte) (dataByte_Len2 >> 8);
         bt_send[32] = (byte) dataByte_Len2;
 
-        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+        byte[] task_cmd = TransformUtils.byteMerger(bt_send, commandDataByte);
 
         //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        byte bt_crc8 = (CRC8Utils.calc(task_cmd, task_cmd.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+        byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+        byte[] bt_send_cmd = TransformUtils.byteMerger(task_cmd, bt_crcdata);
 
         return bt_send_cmd;
     }
@@ -551,17 +547,17 @@ public class TaskCmdData {
         commandDataByte[7] = (byte) 0x84;//串口数据类型
         commandDataByte[8] = 0x01;//串口数据类型
         //0001
-        commandDataByte[9] = (byte) (device_action << 8);//设备动作
+        commandDataByte[9] = (byte) (device_action >> 8);//设备动作
         commandDataByte[10] = (byte) device_action;//设备动作
         //产生动作的设备mac开始   00158d0001310e1b
-        commandDataByte[11] = Utils.HexString2Bytes(action_mac)[0];
-        commandDataByte[12] = Utils.HexString2Bytes(action_mac)[1];
-        commandDataByte[13] = Utils.HexString2Bytes(action_mac)[2];
-        commandDataByte[14] = Utils.HexString2Bytes(action_mac)[3];
-        commandDataByte[15] = Utils.HexString2Bytes(action_mac)[4];
-        commandDataByte[16] = Utils.HexString2Bytes(action_mac)[5];
-        commandDataByte[17] = Utils.HexString2Bytes(action_mac)[6];
-        commandDataByte[18] = Utils.HexString2Bytes(action_mac)[7];
+        commandDataByte[11] = TransformUtils.HexString2Bytes(action_mac)[0];
+        commandDataByte[12] = TransformUtils.HexString2Bytes(action_mac)[1];
+        commandDataByte[13] = TransformUtils.HexString2Bytes(action_mac)[2];
+        commandDataByte[14] = TransformUtils.HexString2Bytes(action_mac)[3];
+        commandDataByte[15] = TransformUtils.HexString2Bytes(action_mac)[4];
+        commandDataByte[16] = TransformUtils.HexString2Bytes(action_mac)[5];
+        commandDataByte[17] = TransformUtils.HexString2Bytes(action_mac)[6];
+        commandDataByte[18] = TransformUtils.HexString2Bytes(action_mac)[7];
 
         //产生动作的设备mac结束   0004
         commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
@@ -572,10 +568,9 @@ public class TaskCmdData {
         byte[] task_data = null;//任务byte数组
         for (int i = 0; i < strTobt.length; i++) {
             task_str += Integer.toHexString(strTobt[i] & 0xFF);
-            task_data = Utils.HexString2Bytes(task_str);
+            task_data = TransformUtils.HexString2Bytes(task_str);
         }
 
-        System.out.println("task_name_len = " + task_name_len);
         for (int i = 0; i < task_name_len; i++) {
             commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
         }
@@ -602,11 +597,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100180065
         bt_send[10] = 0x01;
@@ -626,28 +621,28 @@ public class TaskCmdData {
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
-        bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(action_mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(action_mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(action_mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(action_mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(action_mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(action_mac)[7];
+        bt_send[23] = TransformUtils.HexString2Bytes(action_mac)[0];
+        bt_send[24] = TransformUtils.HexString2Bytes(action_mac)[1];
+        bt_send[25] = TransformUtils.HexString2Bytes(action_mac)[2];
+        bt_send[26] = TransformUtils.HexString2Bytes(action_mac)[3];
+        bt_send[27] = TransformUtils.HexString2Bytes(action_mac)[4];
+        bt_send[28] = TransformUtils.HexString2Bytes(action_mac)[5];
+        bt_send[29] = TransformUtils.HexString2Bytes(action_mac)[6];
+        bt_send[30] = TransformUtils.HexString2Bytes(action_mac)[7];
 
         //数据长度   0053
-        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[31] = (byte) (dataByte_Len2 >> 8);
         bt_send[32] = (byte) dataByte_Len2;
 
-        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+        byte[] task_cmd = TransformUtils.byteMerger(bt_send, commandDataByte);
 
         //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        byte bt_crc8 = (CRC8Utils.calc(task_cmd, task_cmd.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+        byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+        byte[] bt_send_cmd = TransformUtils.byteMerger(task_cmd, bt_crcdata);
 
         return bt_send_cmd;
     }
@@ -685,17 +680,17 @@ public class TaskCmdData {
         commandDataByte[7] = (byte) 0x84;//串口数据类型
         commandDataByte[8] = 0x01;//串口数据类型
         //0001
-        commandDataByte[9] = (byte) (device_action << 8);//设备动作
+        commandDataByte[9] = (byte) (device_action >> 8);//设备动作
         commandDataByte[10] = (byte) device_action;//设备动作
         //产生动作的设备mac开始   00158d0001310e1b
-        commandDataByte[11] = Utils.HexString2Bytes(action_mac)[0];
-        commandDataByte[12] = Utils.HexString2Bytes(action_mac)[1];
-        commandDataByte[13] = Utils.HexString2Bytes(action_mac)[2];
-        commandDataByte[14] = Utils.HexString2Bytes(action_mac)[3];
-        commandDataByte[15] = Utils.HexString2Bytes(action_mac)[4];
-        commandDataByte[16] = Utils.HexString2Bytes(action_mac)[5];
-        commandDataByte[17] = Utils.HexString2Bytes(action_mac)[6];
-        commandDataByte[18] = Utils.HexString2Bytes(action_mac)[7];
+        commandDataByte[11] = TransformUtils.HexString2Bytes(action_mac)[0];
+        commandDataByte[12] = TransformUtils.HexString2Bytes(action_mac)[1];
+        commandDataByte[13] = TransformUtils.HexString2Bytes(action_mac)[2];
+        commandDataByte[14] = TransformUtils.HexString2Bytes(action_mac)[3];
+        commandDataByte[15] = TransformUtils.HexString2Bytes(action_mac)[4];
+        commandDataByte[16] = TransformUtils.HexString2Bytes(action_mac)[5];
+        commandDataByte[17] = TransformUtils.HexString2Bytes(action_mac)[6];
+        commandDataByte[18] = TransformUtils.HexString2Bytes(action_mac)[7];
 
         //产生动作的设备mac结束   0004
         commandDataByte[19] = (byte) (task_name_len << 8);//任务名称长度
@@ -706,10 +701,9 @@ public class TaskCmdData {
         byte[] task_data = null;//任务byte数组
         for (int i = 0; i < strTobt.length; i++) {
             task_str += Integer.toHexString(strTobt[i] & 0xFF);
-            task_data = Utils.HexString2Bytes(task_str);
+            task_data = TransformUtils.HexString2Bytes(task_str);
         }
 
-        System.out.println("task_name_len = " + task_name_len);
         for (int i = 0; i < task_name_len; i++) {
             commandDataByte[21 + i] = task_data[i];//任务名称-字节数根据任务名称长度来定
         }
@@ -736,17 +730,17 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100180065
         bt_send[10] = 0x01;
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.CREATE_AND_EDITTASK.value();//0x18;//数据类型 枚举A
-        bt_send[13] = (byte) (dataByte_Len << 8);
+        bt_send[13] = (byte) (dataByte_Len >> 8);
         bt_send[14] = (byte) dataByte_Len;//数据体长度
         System.out.println("commandDataByte.length = " + dataByte_Len);
         //数据体头   415f5a4947
@@ -760,27 +754,27 @@ public class TaskCmdData {
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr  00124b00076afe09
-        bt_send[23] = Utils.HexString2Bytes(action_mac)[0];
-        bt_send[24] = Utils.HexString2Bytes(action_mac)[1];
-        bt_send[25] = Utils.HexString2Bytes(action_mac)[2];
-        bt_send[26] = Utils.HexString2Bytes(action_mac)[3];
-        bt_send[27] = Utils.HexString2Bytes(action_mac)[4];
-        bt_send[28] = Utils.HexString2Bytes(action_mac)[5];
-        bt_send[29] = Utils.HexString2Bytes(action_mac)[6];
-        bt_send[30] = Utils.HexString2Bytes(action_mac)[7];
+        bt_send[23] = TransformUtils.HexString2Bytes(action_mac)[0];
+        bt_send[24] = TransformUtils.HexString2Bytes(action_mac)[1];
+        bt_send[25] = TransformUtils.HexString2Bytes(action_mac)[2];
+        bt_send[26] = TransformUtils.HexString2Bytes(action_mac)[3];
+        bt_send[27] = TransformUtils.HexString2Bytes(action_mac)[4];
+        bt_send[28] = TransformUtils.HexString2Bytes(action_mac)[5];
+        bt_send[29] = TransformUtils.HexString2Bytes(action_mac)[6];
+        bt_send[30] = TransformUtils.HexString2Bytes(action_mac)[7];
         //数据长度   0053
-        bt_send[31] = (byte) (dataByte_Len2 << 8);
+        bt_send[31] = (byte) (dataByte_Len2 >> 8);
         bt_send[32] = (byte) dataByte_Len2;
 
-        byte[] task_cmd = FtFormatTransfer.byteMerger(bt_send, commandDataByte);
+        byte[] task_cmd = TransformUtils.byteMerger(bt_send, commandDataByte);
 
         //将前面数据CRC8校验
-        byte bt_crc8 = (CRC8.calc(task_cmd, task_cmd.length));
+        byte bt_crc8 = (CRC8Utils.calc(task_cmd, task_cmd.length));
         String hex = Integer.toHexString(bt_crc8 & 0xFF);
-        byte[] bt_crcdata = Utils.HexString2Bytes(hex);
+        byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         //Cmd 数据与CRC8相加
-        byte[] bt_send_cmd = FtFormatTransfer.byteMerger(task_cmd, bt_crcdata);
+        byte[] bt_send_cmd = TransformUtils.byteMerger(task_cmd, bt_crcdata);
 
         return bt_send_cmd;
     }
@@ -803,11 +797,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;
         bt_send[8] = 0x01;
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体
         bt_send[10] = 0x01;
@@ -835,11 +829,11 @@ public class TaskCmdData {
         bt_send[30] = (byte) 0x09;
         bt_send[31] = (byte) 0x00;
         bt_send[32] = (byte) 0x00;
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[33] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[33] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[33] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[33] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
 
         return bt_send;
@@ -861,11 +855,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体   0100 0f 0018  0100100016
         bt_send[10] = 0x01;
@@ -899,11 +893,11 @@ public class TaskCmdData {
         bt_send[33] = (byte) (task_id >> 8);
         bt_send[34] = (byte) task_id;
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[35] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[35] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[35] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[35] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
         return bt_send;
     }
@@ -938,7 +932,7 @@ public class TaskCmdData {
             switch_cmd[7] = 0x00;
             byte[] cmdNo_1 = DeviceCmdData.DevSwitchCmd(appDevice, appDevice.getDeviceState());
             int cmd_switch_len = cmdNo_1.length;
-            switch_cmd[8] = ((byte) (cmd_switch_len << 8));
+            switch_cmd[8] = ((byte) (cmd_switch_len >> 8));
             switch_cmd[9] = ((byte) cmd_switch_len);
 
             for (int i = 0; i < cmd_switch_len; i++) {
@@ -980,7 +974,7 @@ public class TaskCmdData {
 
             int cmd_level_len = cmdNo_2.length;
             System.out.println("cmd_level_len2 = " + cmd_level_len);
-            level_cmd[8] = ((byte) (cmd_level_len << 8));
+            level_cmd[8] = ((byte) (cmd_level_len >> 8));
             level_cmd[9] = ((byte) cmd_level_len);
             for (int i = 0; i < cmd_level_len; i++) {
                 level_cmd[(10 + i)] = cmdNo_2[i];
@@ -1021,7 +1015,7 @@ public class TaskCmdData {
 
             int cmd_hue_sat_len = cmdNo_3.length;
             System.out.println("cmd_hue_sat_len3 = " + cmd_hue_sat_len);
-            hue_cmd[8] = ((byte) (cmd_hue_sat_len << 8));
+            hue_cmd[8] = ((byte) (cmd_hue_sat_len >> 8));
             hue_cmd[9] = ((byte) cmd_hue_sat_len);
             for (int i = 0; i < cmd_hue_sat_len; i++) {
                 hue_cmd[(10 + i)] = cmdNo_3[i];
@@ -1062,7 +1056,7 @@ public class TaskCmdData {
 
             int cmd_colors_temp_len = cmdNo_4.length;
             System.out.println("cmdNo_len = " + cmd_colors_temp_len);
-            temp_cmd[8] = ((byte) (cmd_colors_temp_len << 8));
+            temp_cmd[8] = ((byte) (cmd_colors_temp_len >> 8));
             temp_cmd[9] = ((byte) cmd_colors_temp_len);
             for (int i = 0; i < cmd_colors_temp_len; i++) {
                 temp_cmd[(10 + i)] = cmdNo_4[i];
@@ -1102,7 +1096,7 @@ public class TaskCmdData {
             byte[] cmdNo_5 = SceneCmdData.RecallScene(group_id, scene_id);
 
             int cmd_recall_scene_len = cmdNo_5.length;
-            recall_cmd[8] = ((byte) (cmd_recall_scene_len << 8));
+            recall_cmd[8] = ((byte) (cmd_recall_scene_len >> 8));
             recall_cmd[9] = ((byte) cmd_recall_scene_len);
             for (int i = 0; i < cmd_recall_scene_len; i++) {
                 recall_cmd[(10 + i)] = cmdNo_5[i];
@@ -1116,11 +1110,11 @@ public class TaskCmdData {
             recall_cmd[(15 + cmdNo_5.length)] = 0x6e;
             recall_cmd[(16 + cmdNo_5.length)] = 0x64;
         }
-        byte[] bt_1 = FtFormatTransfer.byteMerger(switch_cmd, level_cmd);
-        byte[] bt_2 = FtFormatTransfer.byteMerger(hue_cmd, temp_cmd);
-        byte[] bt_3 = FtFormatTransfer.byteMerger(bt_1, bt_2);
+        byte[] bt_1 = TransformUtils.byteMerger(switch_cmd, level_cmd);
+        byte[] bt_2 = TransformUtils.byteMerger(hue_cmd, temp_cmd);
+        byte[] bt_3 = TransformUtils.byteMerger(bt_1, bt_2);
 
-        byte[] cmddata = FtFormatTransfer.byteMerger(bt_3, recall_cmd);
+        byte[] cmddata = TransformUtils.byteMerger(bt_3, recall_cmd);
         System.out.println("cmddata = " + cmddata.length);
         String task_str = "";
         for (int i = 0; i < cmddata.length; i++) {
@@ -1134,9 +1128,10 @@ public class TaskCmdData {
 
     /**
      * IFTTTId:1,SceneId:1,GroupId:1,Enable:0,IFTTTName:open,Type:0,Short:0xaa55,MAC:0x0011001100110011,Status:0,
+     *
      * @return
      */
-    public static byte[] CreateEditLinkTask(AppDevice appDevice,int no,short scene_id,short group_id,int enable,String task_name,int type,int status){
+    public static byte[] CreateEditLinkTask(AppDevice appDevice, int no, short scene_id, short group_id, int enable, String task_name, int type, int status) {
         byte[] strTobt = null;
         try {
             strTobt = task_name.getBytes("utf-8");
@@ -1159,11 +1154,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体010018002b
         bt_send[10] = 0x01;
@@ -1183,21 +1178,21 @@ public class TaskCmdData {
         bt_send[21] = (byte) (MessageType.B.E_SL_MSG_DEFAULT.value() >> 8);//(byte) 0xFF;//枚举B
         bt_send[22] = (byte) MessageType.B.E_SL_MSG_DEFAULT.value();      //(byte) 0xFF;
         //macaddr00158d0000ecc670
-        bt_send[23] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
-        bt_send[24] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
-        bt_send[25] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
-        bt_send[26] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
-        bt_send[27] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
-        bt_send[28] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
-        bt_send[29] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
-        bt_send[30] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
+        bt_send[23] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[24] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[25] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[26] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[27] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[28] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[29] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[30] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[7];
         //数据长度0019 0000 01 0002 01 06
         bt_send[31] = (byte) (data_Len >> 8);
-        bt_send[32] = (byte)  data_Len;
-        bt_send[33] = (byte)(no >> 8);//任务ID1个字节
+        bt_send[32] = (byte) data_Len;
+        bt_send[33] = (byte) (no >> 8);//任务ID1个字节
         bt_send[34] = (byte) no;//任务ID1个字节
-        bt_send[35] = (byte)scene_id;//场景ID1个字节
-        bt_send[36] = (byte)(group_id >> 8);//组ID2个字节
+        bt_send[35] = (byte) scene_id;//场景ID1个字节
+        bt_send[36] = (byte) (group_id >> 8);//组ID2个字节
         bt_send[37] = (byte) group_id;
         bt_send[38] = (byte) enable;//Enable
         bt_send[39] = (byte) task_name_len;//名称长度1个字节
@@ -1205,40 +1200,40 @@ public class TaskCmdData {
         //任务名称756775667566
         String taskname = "";
         byte[] task_name_data = null;
-        for (int i = 0; i < task_name_len; i++){
+        for (int i = 0; i < task_name_len; i++) {
             taskname += Integer.toHexString(strTobt[i] & 0xFF);
-            task_name_data = Utils.HexString2Bytes(taskname);
+            task_name_data = TransformUtils.HexString2Bytes(taskname);
         }
 
-        for (int i = 0; i < task_name_data.length;i++){
-            bt_send[40+i] = task_name_data[i];
+        for (int i = 0; i < task_name_data.length; i++) {
+            bt_send[40 + i] = task_name_data[i];
         }
 
         //00 04f0 00158d0000ecc670 01 d6
-        bt_send[40 + task_name_len] = (byte)type;
-        bt_send[41 + task_name_len] = Utils.HexString2Bytes(appDevice.getShortaddr())[0];
-        bt_send[42 + task_name_len] = Utils.HexString2Bytes(appDevice.getShortaddr())[1];
-        bt_send[43 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[0];
-        bt_send[44 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[1];
-        bt_send[45 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[2];
-        bt_send[46 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[3];
-        bt_send[47 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[4];
-        bt_send[48 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[5];
-        bt_send[49 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[6];
-        bt_send[50 + task_name_len] = Utils.HexString2Bytes(appDevice.getDeviceMac())[7];
-        bt_send[51 + task_name_len] = (byte)status;
+        bt_send[40 + task_name_len] = (byte) type;
+        bt_send[41 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getShortaddr())[0];
+        bt_send[42 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getShortaddr())[1];
+        bt_send[43 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[0];
+        bt_send[44 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[1];
+        bt_send[45 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[2];
+        bt_send[46 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[3];
+        bt_send[47 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[4];
+        bt_send[48 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[5];
+        bt_send[49 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[6];
+        bt_send[50 + task_name_len] = TransformUtils.HexString2Bytes(appDevice.getDeviceMac())[7];
+        bt_send[51 + task_name_len] = (byte) status;
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[52 + task_name_len] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[52 + task_name_len] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[52 + task_name_len] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[52 + task_name_len] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
 
         return bt_send;
     }
 
-    public static byte[] CreateEditTimeTask(int no,int task_cycle,int task_hour,int task_minute,short scene_id,short group_id,int enable,String task_name,int type){
+    public static byte[] CreateEditTimeTask(int no, int task_cycle, int task_hour, int task_minute, short scene_id, short group_id, int enable, String task_name, int type) {
         byte[] strTobt = null;
         try {
             strTobt = task_name.getBytes("utf-8");
@@ -1261,11 +1256,11 @@ public class TaskCmdData {
         bt_send[7] = 0x01;//序号
         bt_send[8] = 0x01;//消息段数
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, 9))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, 9));
-            bt_send[9] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, 9))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, 9));
+            bt_send[9] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[9] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, 9))[0];
+            bt_send[9] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, 9))[0];
         }
         //消息体0100180024
         bt_send[10] = 0x01;
@@ -1295,11 +1290,11 @@ public class TaskCmdData {
         bt_send[30] = 0x00;
         //数据长度0012 0000 01 0002 01 06
         bt_send[31] = (byte) (data_Len >> 8);
-        bt_send[32] = (byte)  data_Len;
-        bt_send[33] = (byte)(no >> 8);//任务ID1个字节
+        bt_send[32] = (byte) data_Len;
+        bt_send[33] = (byte) (no >> 8);//任务ID1个字节
         bt_send[34] = (byte) no;//任务ID1个字节
-        bt_send[35] = (byte)scene_id;//场景ID1个字节
-        bt_send[36] = (byte)(group_id >> 8);//组ID2个字节
+        bt_send[35] = (byte) scene_id;//场景ID1个字节
+        bt_send[36] = (byte) (group_id >> 8);//组ID2个字节
         bt_send[37] = (byte) group_id;
         bt_send[38] = (byte) enable;//Enable
         bt_send[39] = (byte) task_name_len;//名称长度1个字节
@@ -1307,26 +1302,26 @@ public class TaskCmdData {
         //任务名称686368667972
         String taskname = "";
         byte[] task_name_data = null;
-        for (int i = 0; i < task_name_len; i++){
+        for (int i = 0; i < task_name_len; i++) {
             taskname += Integer.toHexString(strTobt[i] & 0xFF);
-            task_name_data = Utils.HexString2Bytes(taskname);
+            task_name_data = TransformUtils.HexString2Bytes(taskname);
         }
 
-        for (int i = 0; i < task_name_data.length;i++){
-            bt_send[40+i] = task_name_data[i];
+        for (int i = 0; i < task_name_data.length; i++) {
+            bt_send[40 + i] = task_name_data[i];
         }
 
         //01 02 11 19 01 fd
-        bt_send[40 + task_name_len] = (byte)type;
-        bt_send[41 + task_name_len] = (byte)task_cycle;
-        bt_send[42 + task_name_len] = (byte)task_hour;
-        bt_send[43 + task_name_len] = (byte)task_minute;
+        bt_send[40 + task_name_len] = (byte) type;
+        bt_send[41 + task_name_len] = (byte) task_cycle;
+        bt_send[42 + task_name_len] = (byte) task_hour;
+        bt_send[43 + task_name_len] = (byte) task_minute;
 
-        if (!Utils.isCRC8Value(Utils.CrcToString(bt_send, bt_send.length - 1))) {
-            String ss = Utils.StringToHexString(Utils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[44 + task_name_len] = Utils.HexString2Bytes(ss)[0];
+        if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
+            String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
+            bt_send[44 + task_name_len] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[44 + task_name_len] = Utils.HexString2Bytes(Utils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[44 + task_name_len] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
 
         return bt_send;

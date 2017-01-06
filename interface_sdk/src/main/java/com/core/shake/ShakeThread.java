@@ -8,6 +8,7 @@ import android.util.Log;
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.global.Constants;
 import com.core.utils.SearchUtils;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
 import java.io.IOException;
@@ -79,8 +80,8 @@ public class ShakeThread extends Thread {
 
                         DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, port);
                         socket.send(datagramPacket);
-                        System.out.println("send " + Utils.hexStringToByteArray(Utils.binary(bt_send, 16)));
-                        System.out.println("十六进制 = " + Utils.binary(bt_send, 16));
+                        System.out.println("send " + TransformUtils.hexStringToByteArray(TransformUtils.binary(bt_send, 16)));
+                        System.out.println("十六进制 = " + TransformUtils.binary(bt_send, 16));
 //
 //                            Thread.sleep(1000);
 //                        }

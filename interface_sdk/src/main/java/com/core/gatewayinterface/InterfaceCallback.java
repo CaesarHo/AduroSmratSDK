@@ -18,6 +18,7 @@ public interface InterfaceCallback {
     void vRetResetGatewayCallback(int result);
     //网关信息回调
     void GatewatInfoCallback(AppGateway appGateway);
+    void vRetGatewayUpdateVersion(int version);
     //===============================房间相关==============================
     //添加房间
     void AddGroupCallback(Short group_id,String group_name);

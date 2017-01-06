@@ -9,7 +9,7 @@ import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
-import com.core.utils.FtFormatTransfer;
+import com.core.utils.TransformUtils;
 import com.core.utils.SearchUtils;
 import com.core.utils.Utils;
 
@@ -26,7 +26,7 @@ public class ParseDeviceData {
      * @param isNew_Device
      */
     public static void ParseGetDeviceInfo(Context context, byte[] bt, boolean isNew_Device) throws Exception {
-        String deviceinfo = FtFormatTransfer.bytesToUTF8String(bt);
+        String deviceinfo = TransformUtils.bytesToUTF8String(bt);
         String device_mac, device_shortaddr, main_endpoint, profile_id, device_id, device_name, device_zone_type;
         String in_cluster_count, out_cluster_count;
         int profile_id_int = SearchUtils.searchString(deviceinfo, "PROFILE_ID:");
@@ -53,7 +53,7 @@ public class ParseDeviceData {
         if (!dev_name.equalsIgnoreCase("Device")) {
             int device_name_end = deviceinfo.indexOf(":", device_name_int) - 9;
             String device_name_hex = deviceinfo.substring(device_name_int, device_name_end);
-            device_name = Utils.toStringHex(device_name_hex);
+            device_name = TransformUtils.toStringHex(device_name_hex);
         } else {
             device_name = Constants.DeviceName(device_id, device_zone_type);
         }
@@ -120,7 +120,7 @@ public class ParseDeviceData {
             //zigbee消息类型
             byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 20, message_type_bt, 0, 2);
-            message_type = Utils.bytesToHexString(message_type_bt);
+            message_type = TransformUtils.bytesToHexString(message_type_bt);
 
             if (!message_type.contains("8401")) {
                 return;
@@ -129,12 +129,12 @@ public class ParseDeviceData {
             //传感器mac地址
             byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 22, device_mac_bt, 0, 8);
-            sensor_mac = Utils.bytesToHexString(device_mac_bt);
+            sensor_mac = TransformUtils.bytesToHexString(device_mac_bt);
 
             //数据长度000c
             byte[] data_len = new byte[2];
             System.arraycopy(data, 30, data_len, 0, 2);
-            data_len_s = FtFormatTransfer.hBytesToShort(data_len);
+            data_len_s = TransformUtils.hBytesToShort(data_len);
 
             //源端点 01
             srcEndpoint = Integer.toHexString(data[32] & 0xFF);//data[32] & 0xFF;
@@ -142,7 +142,7 @@ public class ParseDeviceData {
             //簇ID 0500
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data, 33, clusterid_bt, 0, 2);
-            clusterID = FtFormatTransfer.lBytesToShort(clusterid_bt);
+            clusterID = TransformUtils.lBytesToShort(clusterid_bt);
 
             //短地址模式 02
             endpoint_mode = data[35] & 0xFF;
@@ -150,12 +150,12 @@ public class ParseDeviceData {
             //短地址 3e81
             byte[] short_address_bt = new byte[2];
             System.arraycopy(data, 36, short_address_bt, 0, 2);
-            short_address = Utils.bytesToHexString(short_address_bt);
+            short_address = TransformUtils.bytesToHexString(short_address_bt);
 
             //传感器状态00
             byte[] sensor_state_bt = new byte[2];
             System.arraycopy(data, 38, sensor_state_bt, 0, 2);
-            sensor_state = FtFormatTransfer.hBytesToShort(sensor_state_bt);
+            sensor_state = TransformUtils.hBytesToShort(sensor_state_bt);
             state = (int) sensor_state & 0x1;
         }
     }
@@ -183,25 +183,25 @@ public class ParseDeviceData {
             //Zigbee串口类型 -127, 0,
             byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 20, message_type_bt, 0, 2);
-            message_type = Utils.bytesToHexString(message_type_bt);
+            message_type = TransformUtils.bytesToHexString(message_type_bt);
             System.out.println("ParseAttributeData message_type =" + message_type);
 
             //设备MAC地址 0, 21, -115, 0, 1, 48, -5, 108,
             byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 22, device_mac_bt, 0, 8);
-            device_mac = Utils.bytesToHexString(device_mac_bt);
+            device_mac = TransformUtils.bytesToHexString(device_mac_bt);
             System.out.println("ParseAttributeData device_mac =" + device_mac);
 
             //数据长度0, 29,
             byte[] data_len = new byte[2];
             System.arraycopy(data, 30, data_len, 0, 2);
-            data_len_s = FtFormatTransfer.hBytesToShort(data_len);
+            data_len_s = TransformUtils.hBytesToShort(data_len);
             System.out.println("ParseAttributeData data_len_s =" + data_len_s);
 
             //短地址107, -82,
             byte[] short_address_bt = new byte[2];
             System.arraycopy(data, 32, short_address_bt, 0, 2);
-            short_address = Utils.bytesToHexString(short_address_bt);
+            short_address = TransformUtils.bytesToHexString(short_address_bt);
             System.out.println("ParseAttributeData short_address =" + short_address);
 
             //源端点1,
@@ -211,7 +211,7 @@ public class ParseDeviceData {
             //簇ID  0, 6,
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data, 35, clusterid_bt, 0, 2);
-            clusterID = FtFormatTransfer.hBytesToShort(clusterid_bt);
+            clusterID = TransformUtils.hBytesToShort(clusterid_bt);
             System.out.println("ParseAttributeData clusterID =" + clusterID);
 
 //            //设备状态
@@ -221,7 +221,7 @@ public class ParseDeviceData {
             //属性ID
             byte[] attributeid_bt = new byte[2];
             System.arraycopy(data, 37, attributeid_bt, 0, 2);
-            attributeID = FtFormatTransfer.hBytesToShort(attributeid_bt);
+            attributeID = TransformUtils.hBytesToShort(attributeid_bt);
             System.out.println("ParseAttributeData attribID =" + attributeID);
 
             //属性状态
@@ -248,14 +248,14 @@ public class ParseDeviceData {
                 case 0x21: {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
-                    attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    attribValue = TransformUtils.hBytesToShort(attribValue_bt);
                     System.out.println("ParseAttributeData attribValue 0x21= " + clusterID);
                 }
                 break;
                 case 0x23: {
                     byte[] attribValue_bt = new byte[4];
                     System.arraycopy(data, 40, attribValue_bt, 0, 4);
-                    attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    attribValue = TransformUtils.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x23= ", "" + attribValue);
                     System.out.println("ParseAttributeData attribValue 0x23= " + attribValue);
                 }
@@ -266,20 +266,20 @@ public class ParseDeviceData {
                 case 0x30: {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
-                    attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    attribValue = TransformUtils.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x30= ", "" + attribValue);
                 }
                 break;
                 case 0x31: {//zonetype
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
-                    attribValue = FtFormatTransfer.hBytesToShort(attribValue_bt);
+                    attribValue = TransformUtils.hBytesToShort(attribValue_bt);
                     Log.i("attribValue 0x31= ", "" + attribValue);
-                    String zone_type = Utils.bytesToHexString(attribValue_bt);
+                    String zone_type = TransformUtils.bytesToHexString(attribValue_bt);
                     Log.i("attribValue 0x31= ", "" + zone_type);
                     DataSources.getInstance().vDataZoneType(device_mac, zone_type);
                     byte[] endpoint_bt = {data[34]};
-                    String main_endpoint = Utils.bytesToHexString(endpoint_bt);
+                    String main_endpoint = TransformUtils.bytesToHexString(endpoint_bt);
                     Log.i("attribValue main_point=", "" + main_endpoint);
                     byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, main_endpoint, (short) attribValue);
                     try {
@@ -328,16 +328,16 @@ public class ParseDeviceData {
 
             //枚举消息类型
             System.arraycopy(data, 20, message_type_bt, 0, 2);
-            message_type = Utils.bytesToHexString(message_type_bt);
+            message_type = TransformUtils.bytesToHexString(message_type_bt);
             Log.i("StateLevelMessage_type", message_type);
             //簇ID
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data, 34, clusterid_bt, 0, 2);
-            clusterID = FtFormatTransfer.hBytesToShort(clusterid_bt);
+            clusterID = TransformUtils.hBytesToShort(clusterid_bt);
             Log.i("StateLevelclusterID", clusterID + "");
             //短地址
             System.arraycopy(data, 38, short_address_bt, 0, 2);
-            short_address = Utils.bytesToHexString(short_address_bt);
+            short_address = TransformUtils.bytesToHexString(short_address_bt);
             Log.i("StateLevelshort_address", short_address + "");
             //设备状态
             state = data[36] & 0xFF;
@@ -373,11 +373,11 @@ public class ParseDeviceData {
 
             //Zigbee串口类型
             System.arraycopy(data, 20, type_bt, 0, 2);
-            String type = Utils.bytesToHexString(type_bt);
+            String type = TransformUtils.bytesToHexString(type_bt);
 
             //簇ID
             System.arraycopy(data, 35, clusterid_bt, 0, 2);
-            clusterID = Utils.bytesToHexString(clusterid_bt);
+            clusterID = TransformUtils.bytesToHexString(clusterid_bt);
             Log.i("绑定clusterID", clusterID + type);
 
             if (!type.contains("8002") & !clusterID.contains("0b04")) {
@@ -385,28 +385,28 @@ public class ParseDeviceData {
             }
 
             System.arraycopy(data, 40, short_address, 0, 2);
-            device_short_addr = Utils.bytesToHexString(short_address);
+            device_short_addr = TransformUtils.bytesToHexString(short_address);
 
             System.arraycopy(data, 58, frequency_bt, 0, 2);//frequency_bt
-            frequency = FtFormatTransfer.lBytesToShort(frequency_bt);
+            frequency = TransformUtils.lBytesToShort(frequency_bt);
 
             System.arraycopy(data, 63, voltage_bt, 0, 2);//voltage_bt
-            short voltage_s = FtFormatTransfer.lBytesToShort(voltage_bt);
+            short voltage_s = TransformUtils.lBytesToShort(voltage_bt);
             voltage = voltage_s / 100.00;
             Log.e("SmartSoket voltage = ",voltage + "");
 
             System.arraycopy(data, 68, current_bt, 0, 2);//current_bt
-            short current_s = FtFormatTransfer.lBytesToShort(current_bt);
+            short current_s = TransformUtils.lBytesToShort(current_bt);
             current = current_s / 1000.0000;
             Log.e("SmartSoket current = ",current + "");
 
             System.arraycopy(data, 73, power_bt, 0, 2);//power_bt
-            short power_s = FtFormatTransfer.lBytesToShort(power_bt);
+            short power_s = TransformUtils.lBytesToShort(power_bt);
             power = power_s / 1000.0000;
             Log.e("SmartSoket power = " , power + "");
 
             System.arraycopy(data, 78, power_factor_bt, 0, 2);//power_factor_bt
-            short power_factor_s = FtFormatTransfer.lBytesToShort(power_factor_bt);
+            short power_factor_s = TransformUtils.lBytesToShort(power_factor_bt);
             power_factor = power_factor_s / 100.00;
             Log.e("SmartSoket power_f = " , power_factor + "");
 
@@ -429,22 +429,22 @@ public class ParseDeviceData {
         }
 
         public void parseBytes(String strData) {
-            byte[] data = Utils.HexString2Bytes(strData);
+            byte[] data = TransformUtils.HexString2Bytes(strData);
 
             byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 6, message_type_bt, 0, 2);
-            message_type = Utils.bytesToHexString(message_type_bt);
+            message_type = TransformUtils.bytesToHexString(message_type_bt);
             if (!message_type.contains("8401")) {
                 return;
             }
             byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 8, device_mac_bt, 0, 8);
-            sensor_mac = Utils.bytesToHexString(device_mac_bt);
+            sensor_mac = TransformUtils.bytesToHexString(device_mac_bt);
 
             //传感器状态00
             byte[] sensor_state_bt = new byte[2];
             System.arraycopy(data, 24, sensor_state_bt, 0, 2);
-            short state = FtFormatTransfer.hBytesToShort(sensor_state_bt);
+            short state = TransformUtils.hBytesToShort(sensor_state_bt);
             sensor_state = (int) state & 0x1;
         }
     }

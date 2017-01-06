@@ -2,7 +2,9 @@ package com.core.gatewayinterface;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.appdata.GatewayCmdData;
@@ -16,13 +18,19 @@ import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
 import com.core.shake.ShakeManager;
 import com.core.threadhelper.UDPHelper;
+import com.core.threadhelper.UpdateHelper;
 import com.core.threadhelper.devices.GetAllDevices;
 import com.core.threadhelper.groups.GetAllGroups;
 import com.core.threadhelper.scenes.AddDeviceToSence;
 import com.core.threadhelper.scenes.GetAllSences;
 import com.core.threadhelper.tasks.GetAllTasks;
 import com.core.utils.FTPUtils;
+import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Arrays;
 
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
@@ -63,14 +71,14 @@ public class SerialHandler {
         GatewayInfo.getInstance().setAesKey(context, aeskey);
 //        topicName = GatewayInfo.getInstance().getGatewayNo(context);
 //        if (!topicName.equals("") & NetworkUtil.isNetworkAvailable(mContext)){
-//            setMqttCommunication();
+//            setMqttCommunication(context,topicName);
 //        }
     }
 
     /**
      * 初始化MQTT连接订阅
      */
-    public void setMqttCommunication(Context context,String topicName) {
+    public void setMqttCommunication(Context context, String topicName) {
         System.out.println("网关编号 = " + topicName);
         MqttManager.getInstance().init(context);
         //連接MQTT服務器
@@ -80,7 +88,7 @@ public class SerialHandler {
         System.out.println("isConnected: " + isConnect + ", client = " + Constants.MQTT_CLIENT_ID);
         if (isConnect) {
             isConn = true;
-            GatewayInfo.getInstance().setGatewayNo(context,topicName);
+            GatewayInfo.getInstance().setGatewayNo(context, topicName);
             MqttManager.getInstance().subscribe(topicName, 2);
         }
     }
@@ -88,10 +96,9 @@ public class SerialHandler {
     /**
      * 扫描网关信息
      *
-     * @param context
      * @param wifiManager
      */
-    public void ScanGatewayInfo(Context context, WifiManager wifiManager) {
+    public void ScanGatewayInfo(WifiManager wifiManager) {
         new Thread(new UDPHelper(context, wifiManager)).start();
     }
 
@@ -131,17 +138,25 @@ public class SerialHandler {
         new Thread(new UdpClient(context, bt)).start();
     }
 
-    public void StartUpdateGateway(){
+    public void CheckUpdateGatewayInfo() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    new FTPUtils(context).openConnect();
+                    if (NetworkUtil.isNetworkAvailable(context)){
+                        new FTPUtils(context).openConnect(true);
+                    }else{
+                        System.out.println("网络不可用");
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    public void doUpdateGateway(){
+        new Thread(new UpdateHelper(context)).start();
     }
 
     //===============================设备操作 start============================

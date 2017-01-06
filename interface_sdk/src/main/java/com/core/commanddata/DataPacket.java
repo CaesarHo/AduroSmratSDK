@@ -3,31 +3,29 @@ package com.core.commanddata;
 import android.content.Context;
 
 import com.core.commanddata.appdata.DeviceCmdData;
+import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.commanddata.gwdata.ParseGatewayData;
 import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.commanddata.gwdata.ParseSceneData;
-import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppGateway;
 import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
-import com.core.global.Constants;
 import com.core.global.MessageType;
-import com.core.utils.Utils;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
-import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
+import static com.core.global.Constants.GatewayInfo.COUNT;
+import static com.core.global.Constants.GatewayInfo.GATEWAY_UPDATE_FILE_NEXT;
+import static com.core.global.Constants.GatewayInfo.PACKETS;
+import static com.core.global.Constants.GatewayInfo.SEND_SIZE;
+import static com.core.global.Constants.GatewayInfo.UPDATE_FILE_BT;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
 import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
 import static com.core.global.Constants.isScanGwNodeVer;
@@ -37,7 +35,9 @@ import static com.core.global.Constants.isScanGwNodeVer;
  */
 
 public class DataPacket {
+    public Context context;
     public static DataPacket dataPacket = null;
+    public ParseGatewayData.ParseUpdateCountData startUpdateData;
 
     private DataPacket() {
 
@@ -52,7 +52,8 @@ public class DataPacket {
         return dataPacket;
     }
 
-    public void BytesDataPacket(Context context, byte[] bytes) {
+    public void BytesDataPacket(final Context context, byte[] bytes) {
+        this.context = context;
         try {
             //-----------------------------网关相关--------------------------------32
             if ((int) MessageType.A.FACTORY_RESET.value() == bytes[11]) {
@@ -88,13 +89,15 @@ public class DataPacket {
                 System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
                 ParseGatewayData.ParseGWInfoData gwInfoData = new ParseGatewayData.ParseGWInfoData();
                 gwInfoData.parseBytes(bytes);
-                GatewayInfo.getInstance().setFirmwareVersion(context,gwInfoData.gw_version);
-                GatewayInfo.getInstance().setGatewayMac(context,gwInfoData.gw_mac);
-                GatewayInfo.getInstance().setBootrodr(context,gwInfoData.gw_bootrodr);
-                Thread.sleep(1000);
+
+                GatewayInfo.getInstance().setFirmwareVersion(context, gwInfoData.gw_version);
+                GatewayInfo.getInstance().setGatewayMac(context, gwInfoData.gw_mac);
+                GatewayInfo.getInstance().setBootrodr(context, gwInfoData.gw_bootrodr);
+
+                Thread.sleep(1500);
                 SerialHandler.getInstance().GetCoordinatorVersion();
             }
-            if ((int) MessageType.A.GET_NODE_VER.value() == bytes[11]){
+            if ((int) MessageType.A.GET_NODE_VER.value() == bytes[11]) {
                 System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
                 ParseGatewayData.ParseNodeVer parseNodeVer = new ParseGatewayData.ParseNodeVer();
                 parseNodeVer.parseBytes(bytes);
@@ -120,9 +123,26 @@ public class DataPacket {
             /**
              * 启动下载返回数据包的大小
              */
-            if ((int) MessageType.A.START_UPDATE_GW_VER.value() == bytes[11]){
+            if ((int) MessageType.A.START_UPDATE_GW_VER.value() == bytes[11]) {
                 ParseGatewayData.ParseStartUpdateData startUpdateData = new ParseGatewayData.ParseStartUpdateData();
                 startUpdateData.parseBytes(bytes);
+                GatewayInfo.getInstance().setPacketSize(context, startUpdateData.update_size);
+            }
+
+            /**
+             * 发送文件返回数据
+             */
+            if ((int) MessageType.A.SEND_UPDATE_FILE_TO_GATEWAY.value() == bytes[11]) {
+                startUpdateData = new ParseGatewayData.ParseUpdateCountData();
+                startUpdateData.parseBytes(bytes);
+                GATEWAY_UPDATE_FILE_NEXT = startUpdateData.packet_count;
+                System.out.println("GATEWAY_UPDATE_FILE_NEXT = " + GATEWAY_UPDATE_FILE_NEXT);
+                if (PACKETS == GATEWAY_UPDATE_FILE_NEXT) {
+                    String crc32 = GatewayInfo.getInstance().getGatewayUpdateCRC32(context);
+                    byte[] bt = GatewayCmdData.FinallyUpdateCmd(crc32);
+                    new Thread(new UdpClient(context, bt)).start();
+                    System.out.println("最后一包确定更新");
+                }
             }
 
             //-----------------------------设备start-------------------------------

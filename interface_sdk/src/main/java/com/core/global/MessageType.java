@@ -54,7 +54,9 @@ public class MessageType {
         GET_GW_INFO((byte)0x80),
         FACTORY_RESET((byte)0x82),
         GET_SET_SERVER_ADDRESS((byte)0x83),
-        START_UPDATE_GW_VER((byte)0x50);
+        START_UPDATE_GW_VER((byte)0x50),
+        SEND_UPDATE_FILE_TO_GATEWAY((byte)0x51),
+        SEND_UPDATE_FINALLY((byte)0x52);
 
         private byte value = 0;
 

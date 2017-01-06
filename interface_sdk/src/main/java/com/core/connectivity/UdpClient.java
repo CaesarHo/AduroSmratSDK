@@ -1,57 +1,45 @@
 package com.core.connectivity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.core.commanddata.DataPacket;
-import com.core.commanddata.appdata.DeviceCmdData;
-import com.core.commanddata.gwdata.ParseDeviceData;
-import com.core.commanddata.gwdata.ParseGroupData;
-import com.core.commanddata.gwdata.ParseSceneData;
-import com.core.commanddata.gwdata.ParseTaskData;
+import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.db.GatewayInfo;
-import com.core.gatewayinterface.DataSources;
-import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
-import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
-import com.core.utils.Utils;
+import com.core.utils.TransformUtils;
+
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.Arrays;
 
-import static android.content.Context.CONNECTIVITY_SERVICE;
-import static com.core.global.Constants.DEVICE_GLOBAL.appDeviceList;
-import static com.core.global.Constants.DEVICE_GLOBAL.sdkappDevice;
-import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
 import static com.core.global.Constants.GW_IP_ADDRESS;
-import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
-import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
+import static com.core.global.Constants.GatewayInfo.GATEWAY_UPDATE_FILE_NEXT;
+import static com.core.global.Constants.GatewayInfo.PACKETS;
+import static com.core.global.Constants.GatewayInfo.SEND_SIZE;
+import static com.core.global.Constants.GatewayInfo.UPDATE_FILE_BT;
 
 /**
  * Created by best on 2016/11/3.
  */
-
-public class UdpClient implements Runnable{
+public class UdpClient implements Runnable {
     public static final String TAG = "UdpClient";
     private byte[] bt_send = null;
     private DatagramSocket socket = null;
     private Context mContext;
-    public static final int DEFAULT_TIMEOUT_DURATION = 6000;
+    public static final int DEFAULT_TIMEOUT_DURATION = 3000;
     public static int MAX_BUSY_COUNT = 20;
 
-    public UdpClient(Context context, byte[] bt_send){
+    public UdpClient(Context context, byte[] bt_send) {
         this.mContext = context;
         this.bt_send = bt_send;
         this.MAX_BUSY_COUNT = 20;
+        Constants.context = mContext;
     }
 
     @Override
@@ -69,26 +57,27 @@ public class UdpClient implements Runnable{
                     socket.bind(new InetSocketAddress(Constants.UDP_PORT));
                 }
 
-                DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
-                socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
+                DatagramPacket send_packet = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
+                socket.send(send_packet);
+                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
 
                 while (MAX_BUSY_COUNT <= 20) {
                     MAX_BUSY_COUNT--;
                     final byte[] recbytes = new byte[1024];
-                    final DatagramPacket packet = new DatagramPacket(recbytes, recbytes.length);
-                    socket.receive(packet);
+                    final DatagramPacket receive_packet = new DatagramPacket(recbytes, recbytes.length);
+
+                    socket.receive(receive_packet);
                     String isK64 = new String(recbytes).trim();
                     if (isK64.contains("K64")) {
                         return;
                     }
                     System.out.println("设备信息UdpClient = " + Arrays.toString(recbytes));
-                    DataPacket.getInstance().BytesDataPacket(mContext,recbytes);
+                    DataPacket.getInstance().BytesDataPacket(mContext, recbytes);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             System.out.println(TAG + " = " + "finally");
         }
     }

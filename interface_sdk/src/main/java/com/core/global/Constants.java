@@ -1,5 +1,7 @@
 package com.core.global;
 
+import android.content.Context;
+
 import com.core.db.GatewayInfo;
 import com.core.entity.AppDevice;
 import com.core.mqtt.MqttManager;
@@ -24,6 +26,7 @@ public class Constants {
     public static String MQTT_CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;
+    public static Context context = null;
 
     public static String GW_IP_ADDRESS = "";
     public static String APP_IP_ADDRESS = "";
@@ -60,6 +63,12 @@ public class Constants {
     }
 
     public static class GatewayInfo {
+        public static byte[] UPDATE_FILE_BT = null;
+        public static int SEND_SIZE = 0;
+        public static int PACKETS = 0;
+
+        public static int GATEWAY_UPDATE_FILE_NEXT = 0;
+        public static int COUNT = 1;
         public static String GatewayNo = "";
     }
 

@@ -16,6 +16,10 @@ public class GatewayInfo {
     public static final String GATEWAY_MAC = "gateway_mac";
     public static final String BOOTRODR = "gateway_bootrodr";
     public static final String GW_IEEE_ADDRESS = "gateway_ieee_address";
+    public static final String GW_UPDATE_FILE_ADDRESS = "GW_UPDATE_FILE_ADDRESS";
+    public static final String PACKET_SIZE = "UPDATE_PACKET_SIZE";
+    public static final String GATEWAY_UPDATE_CRC32 = "gateway_update_crc32";
+    public static final String GATEWAY_UPDATE_VERSION = "GATEWAY_UPDATE_VERSION";
 
     private static GatewayInfo manager = null;
 
@@ -144,6 +148,64 @@ public class GatewayInfo {
         SharedPreferences sf = context.getSharedPreferences(GW_IEEE_ADDRESS,context.MODE_PRIVATE);
         Editor editor = sf.edit();
         editor.putString("ADURO" + GW_IEEE_ADDRESS,value);
+        editor.commit();
+    }
+
+
+    //获取网关更新文件
+    public String getGatewayUpdateFileName(Context context){
+        SharedPreferences sf = context.getSharedPreferences(GW_UPDATE_FILE_ADDRESS,context.MODE_PRIVATE);
+        return sf.getString("ADURO" + GW_UPDATE_FILE_ADDRESS,"");
+    }
+
+    //保存网关更新文件
+    public void setGatewayUpdateFileName(Context context,String value){
+        SharedPreferences sf = context.getSharedPreferences(GW_UPDATE_FILE_ADDRESS,context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putString("ADURO" + GW_UPDATE_FILE_ADDRESS,value);
+        editor.commit();
+    }
+
+    //获取网关更新每包发送大小
+    public int getPacketSize(Context context) {
+        SharedPreferences sf = context.getSharedPreferences(PACKET_SIZE, context.MODE_PRIVATE);
+        return sf.getInt("ADURO"+PACKET_SIZE,-1);
+    }
+
+    //保存网关更新每包发送大小
+    public void setPacketSize(Context context,int value) {
+        SharedPreferences sf = context.getSharedPreferences(PACKET_SIZE, context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putInt("ADURO"+PACKET_SIZE, value);
+        editor.commit();
+    }
+
+
+    //获取网关更新文件
+    public String getGatewayUpdateCRC32(Context context){
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_UPDATE_CRC32,context.MODE_PRIVATE);
+        return sf.getString("ADURO" + GATEWAY_UPDATE_CRC32,"");
+    }
+
+    //保存网关更新文件
+    public void setGatewayUpdateCRC32(Context context,String value){
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_UPDATE_CRC32,context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putString("ADURO" + GATEWAY_UPDATE_CRC32,value);
+        editor.commit();
+    }
+
+    //获取网关更新版本号
+    public int getGateWayUpdateVserion(Context context) {
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_UPDATE_VERSION, context.MODE_PRIVATE);
+        return sf.getInt("ADURO"+GATEWAY_UPDATE_VERSION,0);
+    }
+
+    //保存网关更新版本号
+    public void setGateWayUpdateVserion(Context context,int value) {
+        SharedPreferences sf = context.getSharedPreferences(GATEWAY_UPDATE_VERSION, context.MODE_PRIVATE);
+        Editor editor = sf.edit();
+        editor.putInt("ADURO"+GATEWAY_UPDATE_VERSION, value);
         editor.commit();
     }
 }

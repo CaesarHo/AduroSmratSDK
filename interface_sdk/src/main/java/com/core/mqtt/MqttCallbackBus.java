@@ -12,6 +12,7 @@ import com.core.db.GatewayInfo;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.global.MessageType;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -48,7 +49,7 @@ public class MqttCallbackBus implements MqttCallback {
     @Override
     public void messageArrived(String topic, final MqttMessage message) throws Exception {
         Log.e(TAG, topic + "=" + message.toString());
-        Log.e(TAG, " = " + Utils.bytesToHexString(message.getPayload()));
+        Log.e(TAG, " = " + TransformUtils.bytesToHexString(message.getPayload()));
         System.out.println(TAG + "=" + Arrays.toString(message.getPayload()));
 
         if (message.toString().contains("K64") | message.toString().contains("APP")) {

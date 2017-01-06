@@ -187,7 +187,7 @@
 
 #-keep class com.core.commanddata.gwdata.ParseDeviceData$ParsePushData { *; }混淆的内部类
 
--keep class com.core.utils.FtFormatTransfer{
+-keep class com.core.utils.TransformUtils{
     public *;
 }
 

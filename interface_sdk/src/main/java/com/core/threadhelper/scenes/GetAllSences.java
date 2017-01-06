@@ -9,6 +9,7 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
 import java.net.DatagramPacket;
@@ -50,7 +51,7 @@ public class GetAllSences implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + Utils.binary(bt_send, 16));
+                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
 
                 while (true) {
                     final byte[] recbuf = new byte[1024];

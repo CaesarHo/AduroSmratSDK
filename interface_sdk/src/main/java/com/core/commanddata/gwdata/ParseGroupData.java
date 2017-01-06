@@ -3,11 +3,9 @@ package com.core.commanddata.gwdata;
 import com.core.entity.AppGroup;
 import com.core.gatewayinterface.DataSources;
 import com.core.global.Constants;
-import com.core.utils.FtFormatTransfer;
-import com.core.utils.Utils;
+import com.core.utils.TransformUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by best on 2016/10/10.
@@ -69,7 +67,7 @@ public class ParseGroupData {
             byte[] bt_name = new byte[len];
 
             System.arraycopy(data, 32, bt_id, 0, 2);
-            group_id = FtFormatTransfer.hBytesToShort(bt_id);
+            group_id = TransformUtils.hBytesToShort(bt_id);
 
             System.arraycopy(data, 36, bt_name, 0, len);
             group_name = new String(bt_name);
@@ -96,7 +94,7 @@ public class ParseGroupData {
         public void parseBytes(byte[] data) {
             byte[] group_id_bt = new byte[2];
             System.arraycopy(data, 32, group_id_bt, 0, 2);
-            group_id = FtFormatTransfer.hBytesToShort(group_id_bt);
+            group_id = TransformUtils.hBytesToShort(group_id_bt);
         }
     }
 
@@ -117,11 +115,11 @@ public class ParseGroupData {
         public void parseBytes(byte[] data, int len) {
             byte[] bt_group = new byte[2];
             System.arraycopy(data,32,bt_group,0,2);
-            group_id = FtFormatTransfer.hBytesToShort(bt_group);
+            group_id = TransformUtils.hBytesToShort(bt_group);
 
             byte[] bt_name = new byte[len];
             System.arraycopy(data, 36, bt_name, 0, len);
-            group_name = FtFormatTransfer.bytesToString(bt_name);
+            group_name = TransformUtils.bytesToString(bt_name);
         }
     }
 }

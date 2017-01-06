@@ -1,10 +1,11 @@
 package com.core.commanddata.gwdata;
 
-import com.core.utils.FTPUtils;
-import com.core.utils.FtFormatTransfer;
+import com.core.commanddata.appdata.GatewayCmdData;
+import com.core.connectivity.UdpClient;
+import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
-import org.apache.commons.net.ftp.FTP;
+import static com.core.global.Constants.GatewayInfo.SEND_SIZE;
 
 /**
  * Created by best on 2016/12/23.
@@ -26,7 +27,7 @@ public class ParseGatewayData {
             byte[] gateway_bt = new byte[8];
             if (data[31] == 8) {
                 System.arraycopy(data, 32, gateway_bt, 0, 8);
-                gateway_mac = Utils.bytesToHexString(gateway_bt);
+                gateway_mac = TransformUtils.bytesToHexString(gateway_bt);
             }
         }
     }
@@ -39,10 +40,21 @@ public class ParseGatewayData {
         public void parseBytes(byte[] data){
             byte[] size_bt = new byte[2];
             System.arraycopy(data,32,size_bt,0,2);
-            update_size = FtFormatTransfer.getInt(size_bt,false);
+            update_size = TransformUtils.getInt(size_bt,false);
             System.out.println("update_size = " + update_size);
+        }
+    }
 
-
+    public  static class ParseUpdateCountData{
+        public int packet_count;
+        public ParseUpdateCountData(){
+            packet_count = -1;
+        }
+        public void parseBytes(byte[] data){
+            byte[] size_bt = new byte[2];
+            System.arraycopy(data,32,size_bt,0,2);
+            packet_count = TransformUtils.getInt(size_bt,false);
+            System.out.println("packet_count = " + packet_count);
         }
     }
 
@@ -82,10 +94,10 @@ public class ParseGatewayData {
             }
 
             System.arraycopy(data, 38, gw_version_bt, 0, 4);
-            gw_version = FtFormatTransfer.hBytesToInt(gw_version_bt) + 10000;
+            gw_version = TransformUtils.hBytesToInt(gw_version_bt) + 10000;
 
             System.arraycopy(data, 42, gw_bootrodr_bt, 0, 4);
-            gw_bootrodr = FtFormatTransfer.hBytesToInt(gw_bootrodr_bt);
+            gw_bootrodr = TransformUtils.hBytesToInt(gw_bootrodr_bt);
             System.out.println("bootrodr = " + gw_bootrodr);
         }
     }
@@ -107,10 +119,10 @@ public class ParseGatewayData {
             byte[] gw_version_bt = new byte[2];
 
             System.arraycopy(data, 32, gw_mac_bt, 0, 2);
-            major_ver = FtFormatTransfer.hBytesToShort(gw_mac_bt);
+            major_ver = TransformUtils.hBytesToShort(gw_mac_bt);
 
             System.arraycopy(data, 34, gw_version_bt, 0, 2);
-            Install_ver = FtFormatTransfer.hBytesToShort(gw_version_bt);
+            Install_ver = TransformUtils.hBytesToShort(gw_version_bt);
         }
     }
 
@@ -127,7 +139,7 @@ public class ParseGatewayData {
         public void parseBytes(byte[] data) {
             byte[] server_address_bt = new byte[data[31]];
             System.arraycopy(data, 32, server_address_bt, 0, data[31]);
-            server_address = Utils.bytesToString(server_address_bt);//Utils.bytesToHexString(server_address_bt);
+            server_address = TransformUtils.bytesToString(server_address_bt);//Utils.bytesToHexString(server_address_bt);
 //            Constants.MQTT_SERVER = server_address;
             System.out.println("server_address = " + server_address);
         }
