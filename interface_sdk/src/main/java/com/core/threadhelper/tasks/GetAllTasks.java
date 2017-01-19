@@ -9,6 +9,7 @@ import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
 
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -32,6 +33,10 @@ public class GetAllTasks implements Runnable {
         try {
             byte[] bt_send = TaskCmdData.GetAllTasks();
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
+                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+                if (!isConnect){
+                    return;
+                }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(context), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(context), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
@@ -49,19 +54,17 @@ public class GetAllTasks implements Runnable {
                 while (true) {
                     byte[] recbuf = new byte[1024];
                     DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                    socket.receive(packet);
+                    try {
+                        socket.receive(packet);
+                    } catch (InterruptedIOException e) {
+                        System.out.println("continue....................");
+                        continue;  //非阻塞循环Operation not permitted
+                    }
                     String isK64 = new String(recbuf).trim();
                     if (isK64.contains("K64")) {
                         return;
                     }
                     DataPacket.getInstance().BytesDataPacket(context,recbuf);
-                    /**
-                     * 枚举A判断是否是任务列表
-                     */
-                    if (recbuf[11] == MessageType.A.GET_ALL_TASK.value()) {
-                        ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
-                        parseGetTaskInfo2.parseBytes(recbuf);
-                    }
                 }
             }
         } catch (Exception e) {

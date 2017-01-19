@@ -53,6 +53,7 @@ public class ParseDeviceData {
         if (!dev_name.equalsIgnoreCase("Device")) {
             int device_name_end = deviceinfo.indexOf(":", device_name_int) - 9;
             String device_name_hex = deviceinfo.substring(device_name_int, device_name_end);
+            System.out.println("device_name_hex = " + device_name_hex);
             device_name = TransformUtils.toStringHex(device_name_hex);
         } else {
             device_name = Constants.DeviceName(device_id, device_zone_type);
@@ -81,9 +82,11 @@ public class ParseDeviceData {
         appDevice.setZonetype(device_zone_type);
 
         if (appDevice.getDeviceid().equalsIgnoreCase("0051")) {
-            String IEEE = GatewayInfo.getInstance().getGwIEEEAddress(context);
-            byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDevice, IEEE);
-            new Thread(new UdpClient(context, bt_bind)).start();
+            if (context != null){
+                String IEEE = GatewayInfo.getInstance().getGwIEEEAddress(context);
+                byte[] bt_bind = DeviceCmdData.BindDeviceCmd(appDevice, IEEE);
+                new Thread(new UdpClient(context, bt_bind)).start();
+            }
         }
 
         if (isNew_Device) {
@@ -167,7 +170,7 @@ public class ParseDeviceData {
     public static class ParseAttributeData {
         public String message_type, device_mac, short_address;
         public short data_len_s, attributeID, clusterID;
-        public int endpoint, attribValue;
+        public int endpoint, attribValue,u8AttribType;
 
         public ParseAttributeData() {
             message_type = "";
@@ -225,7 +228,7 @@ public class ParseDeviceData {
             System.out.println("ParseAttributeData attribID =" + attributeID);
 
             //属性状态
-            int u8AttribType = data[39] & 0xFF;
+            u8AttribType = data[39] & 0xFF;
             System.out.println("ParseAttributeData AttrType =" + u8AttribType);
 
             switch ((byte) u8AttribType) {
@@ -278,16 +281,9 @@ public class ParseDeviceData {
                     String zone_type = TransformUtils.bytesToHexString(attribValue_bt);
                     Log.i("attribValue 0x31= ", "" + zone_type);
                     DataSources.getInstance().vDataZoneType(device_mac, zone_type);
-                    byte[] endpoint_bt = {data[34]};
-                    String main_endpoint = TransformUtils.bytesToHexString(endpoint_bt);
-                    Log.i("attribValue main_point=", "" + main_endpoint);
-                    byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, main_endpoint, (short) attribValue);
-                    try {
-                        new Thread(new UdpClient(context, bt)).start();
-//                        Constants.sendMessage(bt);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
+                    byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, endpoint, (short) attribValue);
+                    new Thread(new UdpClient(context, bt)).start();
                 }
                 break;
                 case 0x42: {
@@ -397,7 +393,7 @@ public class ParseDeviceData {
 
             System.arraycopy(data, 68, current_bt, 0, 2);//current_bt
             short current_s = TransformUtils.lBytesToShort(current_bt);
-            current = current_s / 1000.0000;
+            current = current_s / 10000.0000;
             Log.e("SmartSoket current = ",current + "");
 
             System.arraycopy(data, 73, power_bt, 0, 2);//power_bt

@@ -452,7 +452,7 @@ public class DeviceCmdData {
      */
     public static byte[] setDeviceHueSatCmd(AppDevice appDevice, int hue, int sat) {
         byte[] bt_send = new byte[41];
-        //415050C0A8016B 0101 43
+        //415050c0a80169010195 010002 0019415f5a494701007000158d0000aed8460007023e7e0102000483
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -908,9 +908,9 @@ public class DeviceCmdData {
      * @param main_point
      * @return
      */
-    public static byte[] SaveZoneTypeCmd(String devicemac, String shortaddr, String main_point, short zonetype) {
+    public static byte[] SaveZoneTypeCmd(String devicemac, String shortaddr, int main_point, short zonetype) {
         //415050c0 a8010a0101ed
-        byte[] bt_send = new byte[41];
+        byte[] bt_send = new byte[36];
         bt_send[0] = 0x41;
         bt_send[1] = 0x50;
         bt_send[2] = 0x50;
@@ -932,7 +932,7 @@ public class DeviceCmdData {
         bt_send[11] = 0x00;
         bt_send[12] = MessageType.A.SAVE_ZONE_TYPE.value();//数据体类型
         bt_send[13] = 0x00;
-        bt_send[14] = 0x19;//数据体长度
+        bt_send[14] = 0x14;//数据体长度
         //数据体-----头   415f5a4947010100
         bt_send[15] = 0x41;
         bt_send[16] = 0x5F;
@@ -954,21 +954,21 @@ public class DeviceCmdData {
         bt_send[29] = TransformUtils.HexString2Bytes(devicemac)[6];
         bt_send[30] = TransformUtils.HexString2Bytes(devicemac)[7];
         bt_send[31] = (byte) 0x00;//下面数据长度    000e
-        bt_send[32] = (byte) 0x07;//下面数据长度
+        bt_send[32] = (byte) 0x02;//下面数据长度
 
-        bt_send[33] = (byte) 0x02;//段地址模式   02d008
-        bt_send[34] = TransformUtils.HexString2Bytes(shortaddr)[0];
-        bt_send[35] = TransformUtils.HexString2Bytes(shortaddr)[1];
-        bt_send[36] = 0x01;   //01ff
-        bt_send[37] = TransformUtils.HexString2Bytes(main_point)[0];//目标端点
-        bt_send[38] = (byte) (zonetype >> 8); //zonetype  0500
-        bt_send[39] = (byte) zonetype;        //zonetype
+//        bt_send[33] = (byte) 0x02;//段地址模式   02d008
+//        bt_send[34] = TransformUtils.HexString2Bytes(shortaddr)[0];
+//        bt_send[35] = TransformUtils.HexString2Bytes(shortaddr)[1];
+//        bt_send[36] = 0x01;   //01ff
+//        bt_send[37] = (byte) main_point;//目标端点
+        bt_send[33] = (byte) (zonetype >> 8); //zonetype  0500
+        bt_send[34] = (byte) zonetype;        //zonetype
 
         if (!TransformUtils.isCRC8Value(TransformUtils.CrcToString(bt_send, bt_send.length - 1))) {
             String ss = TransformUtils.StringToHexString(TransformUtils.CrcToString(bt_send, bt_send.length - 1));
-            bt_send[40] = TransformUtils.HexString2Bytes(ss)[0];
+            bt_send[35] = TransformUtils.HexString2Bytes(ss)[0];
         } else {
-            bt_send[40] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
+            bt_send[35] = TransformUtils.HexString2Bytes(TransformUtils.CrcToString(bt_send, bt_send.length - 1))[0];
         }
         return bt_send;
     }

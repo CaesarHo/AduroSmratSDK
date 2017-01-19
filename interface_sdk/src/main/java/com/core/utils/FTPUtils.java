@@ -373,11 +373,11 @@ public class FTPUtils {
         System.out.println("openConnect");
         // 获取响应值
         reply = ftpClient.getReplyCode();
-        if (!FTPReply.isPositiveCompletion(reply)) {
-            // 断开连接
-            ftpClient.disconnect();
-            throw new IOException("connect fail: " + reply);
-        }
+//        if (!FTPReply.isPositiveCompletion(reply)) {
+//            // 断开连接
+//            ftpClient.disconnect();
+//            throw new IOException("connect fail: " + reply);
+//        }
         // 登录到服务器
         ftpClient.login(userName, password);
         System.out.println("openConnect login");
@@ -386,6 +386,7 @@ public class FTPUtils {
         if (!FTPReply.isPositiveCompletion(reply)) {
             // 断开连接
             ftpClient.disconnect();
+            DataSources.getInstance().GatewayUpdateVersion(1);
             throw new IOException("connect fail: " + reply);
         } else {
             // 获取登录信息

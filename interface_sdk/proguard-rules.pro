@@ -30,7 +30,6 @@
 
 # 表示不跳过library中的非public的类
 -dontskipnonpubliclibraryclasses
-
 # 打印混淆的详细信息
 -verbose
 
@@ -56,6 +55,13 @@
 -keepclasseswithmembernames class * {
     native <methods>;
 }
+
+-assumenosideeffects class java.io.PrintStream {
+     public void println(%);
+     public void println(**);
+     public void println(...);
+     public void print(...);
+ }
 
 # keep setters in Views so that animations can still work.
 # see http://proguard.sourceforge.net/manual/examples.html#beans
@@ -157,17 +163,17 @@
     public static int e(...);
 }
 
--assumenosideeffects public class java.lang.System {
-    public static long currentTimeMillis();
-    static java.lang.Class getCallerClass();
-    public static int identityHashCode(java.lang.Object);
-    public static java.lang.SecurityManager getSecurityManager();
-    public static java.util.Properties getProperties();
-    public static java.lang.String getProperty(java.lang.String);
-    public static java.lang.String getenv(java.lang.String);
-    public static java.lang.String mapLibraryName(java.lang.String);
-    public static java.lang.String getProperty(java.lang.String,java.lang.String);
-}
+#-assumenosideeffects class java.lang.System {
+#    public static long currentTimeMillis();
+#    static java.lang.Class getCallerClass();
+#    public static int identityHashCode(java.lang.Object);
+#    public static java.lang.SecurityManager getSecurityManager();
+#    public static java.util.Properties getProperties();
+#    public static java.lang.String getProperty(java.lang.String);
+#    public static java.lang.String getenv(java.lang.String);
+#    public static java.lang.String mapLibraryName(java.lang.String);
+#    public static java.lang.String getProperty(java.lang.String,java.lang.String);
+#}
 
 -keep class com.core.gatewayinterface.DataSources{
     public *;

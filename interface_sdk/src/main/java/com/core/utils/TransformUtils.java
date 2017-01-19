@@ -11,6 +11,8 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * Created by best on 2016/6/24.
@@ -215,8 +217,7 @@ public class TransformUtils {
      * @param s String
      * @return byte[]
      */
-    public static byte[] stringToBytes(String s)
-            throws UnsupportedEncodingException {
+    public static byte[] stringToBytes(String s) throws UnsupportedEncodingException {
         return s.getBytes("UTF-8");
     }
 
@@ -783,28 +784,68 @@ public class TransformUtils {
     /**
      * 转化十六进制编码为字符串
      *
-     * @param s
+     * @param str
      * @return
      */
-    public static String toStringHex(String s) {
-        byte[] baKeyword = new byte[s.length() / 2];
+    public static String toStringHex(String str) {
+        str = str.replace(" ", "");
+        byte[] baKeyword = new byte[str.length() / 2];
         for (int i = 0; i < baKeyword.length; i++) {
             try {
-                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+                String strToint = str.substring(i * 2, i * 2 + 2);
+                if (isHexNumber(str)) {
+                    return hexStr2Str(str).replaceAll("�", "");
+                }
+                baKeyword[i] = (byte) (0xFF & Integer.parseInt(strToint, 16));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
         try {
-            s = new String(baKeyword, "utf-8");// UTF-16le:Not
+            str = new String(baKeyword, "utf-8");// UTF-16le:Not
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        return s.replaceAll("�", "");
+        return str.replaceAll("�", "");
+    }
+
+    /**
+     * 十六进制转换字符串
+     *
+     * @param hexStr str Byte字符串(Byte之间无分隔符 如:[616C6B])
+     * @return String 对应的字符串
+     */
+    public static String hexStr2Str(String hexStr) {
+        String str = "0123456789ABCDEF";
+        char[] hexs = hexStr.toCharArray();
+        byte[] bytes = new byte[hexStr.length() / 2];
+        int n;
+
+        for (int i = 0; i < bytes.length; i++) {
+            n = str.indexOf(hexs[2 * i]) * 16;
+            n += str.indexOf(hexs[2 * i + 1]);
+            bytes[i] = (byte) (n & 0xff);
+        }
+        return new String(bytes);
+    }
+
+    //十六进制
+    private static boolean isHexNumber(String str) {
+        boolean flag = false;
+        for (int i = 0; i < str.length(); i++) {
+            char cc = str.charAt(i);
+            if (cc == '0' || cc == '1' || cc == '2' || cc == '3' || cc == '4' || cc == '5' || cc == '6' || cc == '7' || cc == '8' || cc == '9' || cc == 'A' || cc == 'B' || cc == 'C' ||
+                    cc == 'D' || cc == 'E' || cc == 'F' || cc == 'a' || cc == 'b' || cc == 'c' || cc == 'c' || cc == 'd' || cc == 'e' || cc == 'f') {
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     /**
      * CRC8转String
+     *
      * @param bt_send
      * @param len
      * @return
@@ -817,6 +858,7 @@ public class TransformUtils {
 
     /**
      * 判断CRC8结果长度是否为1
+     *
      * @param crc8value
      * @return
      */

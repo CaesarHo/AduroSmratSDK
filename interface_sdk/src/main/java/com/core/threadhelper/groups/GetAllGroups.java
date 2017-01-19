@@ -12,6 +12,7 @@ import com.core.mqtt.MqttManager;
 import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -36,6 +37,10 @@ public class GetAllGroups implements Runnable {
             byte[] bt_send = GroupCmdData.GetAllGroupListCmd();
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "getGroups");
+                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+                if (!isConnect){
+                    return;
+                }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
             } else {
@@ -53,19 +58,18 @@ public class GetAllGroups implements Runnable {
                 while (true) {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                    socket.receive(packet);
+                    try {
+                        socket.receive(packet);
+                    } catch (InterruptedIOException e) {
+                        System.out.println("continue....................");
+                        continue;  //非阻塞循环Operation not permitted
+                    }
                     String isK64 = new String(recbuf).trim();
                     if (isK64.contains("K64")) {
                         return;
                     }
                     System.out.println("当前接收的数据GetAllGroups = " + Arrays.toString(recbuf));
                     DataPacket.getInstance().BytesDataPacket(mContext,recbuf);
-                    /**
-                     * 枚举A判断是否是房间
-                     */
-                    if ((int) MessageType.A.GET_ALL_GROUP.value() == recbuf[11]){
-                        ParseGroupData.ParseGetGroupsInfo(recbuf);
-                    }
                 }
             }
         } catch (Exception e) {

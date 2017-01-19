@@ -3,10 +3,12 @@ package com.core.commanddata.gwdata;
 import com.core.entity.AppTask;
 import com.core.entity.AppTask2;
 import com.core.gatewayinterface.DataSources;
+import com.core.utils.SearchUtils;
 import com.core.utils.TransformUtils;
 import com.core.utils.Utils;
 
 import java.util.Arrays;
+import java.util.IllegalFormatCodePointException;
 
 /**
  * Created by best on 2016/10/11.
@@ -289,62 +291,75 @@ public class ParseTaskData {
 
         public void parseBytes(byte[] data){
             String task_info = new String(data);
+
             int strToint = task_info.indexOf(":");
             String isTask = "";
             if (strToint >= 0) {
                 isTask = task_info.substring(strToint - 4, strToint);
             }
-
+            int inedx = SearchUtils.searchString(task_info,"A_ZIG");
+            task_info = task_info.substring(inedx);
             if (isTask.equalsIgnoreCase("TCnt")){
                 return;
             }
-
+            System.out.println("task_info = " + task_info);
             String[] task_info_array = task_info.split(",");
             for (int i = 0; i < task_info_array.length; i++) {
-                System.out.println("task_info_array = " + task_info_array[i] + "," + i);
                 switch (i){
                     case 0:
                         task_no = TransformUtils.string2Int(task_info_array[0].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[0]);
+                        System.out.println("task_no = " + task_info_array[0]);
                         break;
+
                     case 1:
                         scene_id = TransformUtils.string2Int(task_info_array[1].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        System.out.println("scene_id = " + task_info_array[i]);
                         break;
+
                     case 2:
                         group_id = TransformUtils.string2Int(task_info_array[2].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        System.out.println("group_id = " + task_info_array[i]);
                         break;
+
                     case 3:
                         task_is_enabled = TransformUtils.string2Int(task_info_array[3].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        System.out.println("task_is_enabled = " + task_info_array[i]);
                         break;
 
                     case 4:
                         task_name = task_info_array[4].split(":")[1];
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        System.out.println("task_name = " + task_info_array[i]);
                         break;
 
                     case 5:
                         task_type = TransformUtils.string2Int(task_info_array[5].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        System.out.println("task_type = " + task_info_array[i]);
                         break;
+
                     case 6:
                         short_address = task_info_array[6].split(":")[1];
                         String task_cycle_str = task_info_array[6].split(":")[1].substring(2);
                         byte[] bt = TransformUtils.HexString2Bytes(task_cycle_str);
                         task_cycle = bt[0] & 0xFF;
-                        System.out.println("task_info_array = " + task_cycle);
+                        System.out.println("task_cycle = " + task_cycle);
                         break;
+
                     case 7:
-                        sensor_mac = task_info_array[7].split(":")[1];
-                        task_hour = TransformUtils.string2Int(task_info_array[7].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        if (task_type == 0){
+                            sensor_mac = task_info_array[7].split(":")[1];
+                        }else{
+                            task_hour = TransformUtils.string2Int(task_info_array[7].split(":")[1]);
+                        }
+                        System.out.println("task_hour = " + task_info_array[7]);
+
                         break;
                     case 8:
-                        sensor_state = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
-                        task_minute = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
-                        System.out.println("task_info_array = " + task_info_array[i]);
+                        if (task_type == 0){
+                            sensor_state = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
+                        }else{
+                            task_minute = TransformUtils.string2Int(task_info_array[8].split(":")[1]);
+                        }
+                        System.out.println("task_minute = " + task_info_array[i]);
                         break;
                 }
             }

@@ -29,8 +29,8 @@ public class DataSources {
 
     //============================实现数据接收与发送==============================
     //发送命令异常回调
-    public void SendExceptionResult(int result){
-        sdkCallback.SendExceptionCallack(result);
+    public void vExceptionResult(int result){
+        sdkCallback.vRetExceptionCallack(result);
     }
     public void ResetGatewayResult(int result){
         sdkCallback.vRetResetGatewayCallback(result);
@@ -237,5 +237,18 @@ public class DataSources {
     //网关相关
     public void GatewayUpdateVersion(int version){
         sdkCallback.vRetGatewayUpdateVersion(version);
+    }
+    /**
+     * 网关更新结果
+     */
+    public void GatewayUpdateResult(int result){
+        sdkCallback.vRetGatewayUpdateResult(result);
+    }
+
+    /**
+     * 网关服务器地址
+     */
+    public void GatewayServerAddress(String address){
+        sdkCallback.vRetGatewayServerAddress(address);
     }
 }

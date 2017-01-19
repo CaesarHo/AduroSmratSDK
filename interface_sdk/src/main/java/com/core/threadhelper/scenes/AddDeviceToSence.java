@@ -42,6 +42,10 @@ public class AddDeviceToSence implements Runnable {
             bt_send = SceneCmdData.Add_DeviceToScene(appDevice, (int) group_id, (int) scene_id);
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
                 System.out.println("远程打开 = " + "addDeviceToSence");
+                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+                if (!isConnect){
+                    return;
+                }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 //添加设备到场景后，间隔两百毫秒发送存储场景

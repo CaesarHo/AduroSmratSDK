@@ -6,66 +6,56 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1790d2f-a1c6-48cd-b348-d60fcca1ce39" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_net_3_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/mvp_sdk.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_19_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_4_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_23_4_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_interface_sdk_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/build.gradle" afterPath="$PROJECT_DIR$/interface_sdk/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" afterPath="$PROJECT_DIR$/interface_sdk/interface_sdk.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" afterPath="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GatewayCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GatewayCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGatewayData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGatewayData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGroupData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGroupData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseSceneData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseSceneData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/CRC8.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/CRC8Utils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FtFormatTransfer.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java" afterPath="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java" />
     </list>
     <ignored path="AndroidAduroSmratSDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,92 +131,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UDPHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1354#1355#0" expanded="false" />
-                <element signature="e#1383#1384#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SerialHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SerialHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-              <folding>
-                <element signature="e#4863#5309#0" expanded="true" />
-                <element signature="e#5308#5309#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1650">
+              <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetAllDevices.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="572">
-              <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java">
+      <file leaf-file-name="proguard-rules.pro" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1645#1646#0" expanded="false" />
-                <element signature="e#1683#1684#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="1254">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FTPUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5258">
-              <caret line="505" column="0" selection-start-line="505" selection-start-column="0" selection-end-line="505" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3028#3146#0" expanded="false" />
-                <element signature="e#10228#10340#0" expanded="false" />
-                <element signature="docComment;method#DirectoryList#0;class#FTPUtils#0" expanded="false" />
-                <element signature="method#DirectoryList#0;class#FTPUtils#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GatewayInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3674">
-              <caret line="169" column="47" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataPacket.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataPacket.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2266">
-              <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
+            <state relative-caret-position="261">
+              <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -299,6 +238,10 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="validateSigningDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="transformClassesAndResourcesWithProguardForRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -913,6 +856,10 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareDebugUnitTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="transformClassesWithShrinkResForRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1644,6 +1591,10 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
+                <option name="name" value="transformClassesAndResourcesWithProguardForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
                 <option name="name" value="validateSigningDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
@@ -2202,6 +2153,10 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
+                <option name="name" value="transformClassesWithShrinkResForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/interface_sdk" />
                 <option name="name" value="generateReleaseResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
@@ -2280,7 +2235,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="G:\AndroidAduroSmratSDK" value="5928496903635" />
+        <entry key="G:\AndroidAduroSmratSDK" value="5932047541369" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2693,7 +2648,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/version.xml" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTaskInfo.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppTask2.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetDeviceSwitchState.java" />
@@ -2705,7 +2659,6 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddSence.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/DeleteScence.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/UpdateSceneName.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/entity/AppGateway.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/SearchUtils.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/CRC8.java" />
@@ -2717,33 +2670,35 @@
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GroupCmdData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/SceneCmdData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGatewayData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/build.gradle" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GatewayCmdData.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java" />
-        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java" />
         <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java" />
+        <option value="$PROJECT_DIR$/interface_sdk/proguard-rules.pro" />
+        <option value="$PROJECT_DIR$/interface_sdk/build.gradle" />
+        <option value="$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java" />
       </list>
     </option>
   </component>
@@ -2910,74 +2865,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="threadhelper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interface_sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AndroidAduroSmratSDK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interface_sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="connectivity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3028,8 +2915,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="device.picker.selection" value="107189c602d6099a" />
-    <property name="last_opened_file_path" value="F:/Worksmarthome/LookLook-master" />
+    <property name="last_opened_file_path" value="E:/Program Files/Git/cmd/git.exe" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -3362,6 +3251,7 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1484639392702" text="getGwIEEEAddress" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
     <searchConfiguration name="user defined" created="1482803100427" text="BytesDataPacket" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
     <searchConfiguration name="user defined" created="1481009268801" text="ParseAttributeData" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
     <searchConfiguration name="user defined" created="1481008437657" text="getDeviceLevel" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
@@ -3389,8 +3279,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3399,12 +3289,12 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22828507" sideWeight="0.510661" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28285077" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27616927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53563476" sideWeight="0.5127932" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3197279" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27616927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2572383" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.53452116" sideWeight="0.48720682" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3414,8 +3304,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3423,7 +3313,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28507796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.422049" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3444,49 +3334,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Android/android-sdk-windows/sources/android-23/java/net/DatagramPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/ddbdeb2951e6dd60443763e6555f3bd2903943fc/org.eclipse.paho.client.mqttv3-1.0.2-sources.jar!/org/eclipse/paho/client/mqttv3/internal/ClientComms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="464" column="34" selection-start-line="464" selection-start-column="34" selection-end-line="464" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/ddbdeb2951e6dd60443763e6555f3bd2903943fc/org.eclipse.paho.client.mqttv3-1.0.2-sources.jar!/org/eclipse/paho/client/mqttv3/MqttConnectOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/ddbdeb2951e6dd60443763e6555f3bd2903943fc/org.eclipse.paho.client.mqttv3-1.0.2-sources.jar!/org/eclipse/paho/client/mqttv3/MqttAsyncClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -3513,9 +3360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="866" column="27" selection-start-line="866" selection-start-column="27" selection-end-line="866" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3523,17 +3367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="767" column="23" selection-start-line="767" selection-start-column="23" selection-end-line="767" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="1315" column="56" selection-start-line="1315" selection-start-column="56" selection-end-line="1315" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3548,13 +3381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1738">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="350" column="0" selection-start-line="350" selection-start-column="0" selection-end-line="350" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -3576,53 +3402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/SearchUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="83" column="69" selection-start-line="83" selection-start-column="69" selection-end-line="83" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="53" column="64" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="60" column="64" selection-start-line="60" selection-start-column="64" selection-end-line="60" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3633,26 +3412,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="163" column="35" selection-start-line="163" selection-start-column="35" selection-end-line="163" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3660,14 +3423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="278" column="13" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3685,172 +3440,274 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+        <state relative-caret-position="374">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="51" column="33" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1354#1355#0" expanded="false" />
-            <element signature="e#1383#1384#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="830" column="25" selection-start-line="830" selection-start-column="25" selection-end-line="830" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2263">
-          <caret line="401" column="27" selection-start-line="401" selection-start-column="27" selection-end-line="401" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="125">
+          <caret line="385" column="52" selection-start-line="385" selection-start-column="52" selection-end-line="385" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/DataSources.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="232" column="46" selection-start-line="232" selection-start-column="46" selection-end-line="232" selection-end-column="46" />
+        <state relative-caret-position="155">
+          <caret line="234" column="5" selection-start-line="234" selection-start-column="5" selection-end-line="234" selection-end-column="5" />
           <folding>
-            <element signature="e#6915#6916#0" expanded="false" />
-            <element signature="e#6972#6973#0" expanded="false" />
-            <element signature="e#7035#7036#0" expanded="false" />
-            <element signature="e#7096#7097#0" expanded="false" />
+            <element signature="e#6912#6913#0" expanded="false" />
+            <element signature="e#6969#6970#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="384" column="13" selection-start-line="384" selection-start-column="13" selection-end-line="384" selection-end-column="13" />
+        <state relative-caret-position="316">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+          <folding>
+            <element signature="e#1119#1137#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/InterfaceCallback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+        <state relative-caret-position="396">
+          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GatewayCmdData.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/mqtt/MqttCallbackBus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="463" column="9" selection-start-line="463" selection-start-column="9" selection-end-line="463" selection-end-column="9" />
+        <state relative-caret-position="902">
+          <caret line="64" column="40" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="276" column="48" selection-start-line="276" selection-start-column="48" selection-end-line="276" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseGatewayData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/FTPUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5258">
-          <caret line="505" column="0" selection-start-line="505" selection-start-column="0" selection-end-line="505" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3028#3146#0" expanded="false" />
-            <element signature="e#10228#10340#0" expanded="false" />
-            <element signature="docComment;method#DirectoryList#0;class#FTPUtils#0" expanded="false" />
-            <element signature="method#DirectoryList#0;class#FTPUtils#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2266">
-          <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
+        <state relative-caret-position="185">
+          <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/db/GatewayInfo.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/SearchUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3674">
-          <caret line="169" column="47" selection-start-line="169" selection-start-column="47" selection-end-line="169" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="223">
+          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/utils/TransformUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1034">
-          <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1645#1646#0" expanded="false" />
-            <element signature="e#1683#1684#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseTaskData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="378" column="38" selection-start-line="378" selection-start-column="38" selection-end-line="378" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/shake/ShakeThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="133" column="54" selection-start-line="133" selection-start-column="54" selection-end-line="133" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/GatewayCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="147" column="25" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/devices/GetAllDevices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/global/Constants.java">
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/groups/GetAllGroups.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="145" column="24" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+        <state relative-caret-position="441">
+          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/AddDeviceToSence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/scenes/GetAllSences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/tasks/GetAllTasks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UpdateHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="64" column="59" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/threadhelper/UDPHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/connectivity/UdpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="80" column="63" selection-start-line="80" selection-start-column="63" selection-end-line="80" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/gwdata/ParseDeviceData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/2.2.3/gradle-core-2.2.3.jar!/com/android/build/gradle/internal/dsl/BuildType.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="135" column="9" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/DeviceCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4848">
+          <caret line="911" column="31" selection-start-line="911" selection-start-column="31" selection-end-line="911" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/appdata/TaskCmdData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3140">
+          <caret line="1315" column="56" selection-start-line="1315" selection-start-column="56" selection-end-line="1315" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/gatewayinterface/SerialHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="360" column="0" selection-start-line="360" selection-start-column="0" selection-end-line="360" selection-end-column="0" />
-          <folding>
-            <element signature="e#4863#5309#0" expanded="true" />
-            <element signature="e#5308#5309#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1650">
+          <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/build/generated/source/buildConfig/debug/com/interfacecallback/BuildConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/proguard-rules.pro">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface_sdk/src/main/java/com/core/commanddata/DataPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

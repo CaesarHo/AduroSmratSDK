@@ -12,6 +12,7 @@ import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
 import com.core.utils.TransformUtils;
 
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -45,7 +46,11 @@ public class GetAllDevices implements Runnable {
 //                bt_send = AESUtils.encode(bt);
             }
 
-            if (Constants.GW_IP_ADDRESS.equals("")) {//NetworkUtil.isNetworkAvailable(mContext)  !NetworkUtil.NetWorkType(mContext)
+            if (GW_IP_ADDRESS.equals("")) {//NetworkUtil.isNetworkAvailable(mContext)  !NetworkUtil.NetWorkType(mContext)
+                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+                if (!isConnect){
+                    return;
+                }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
@@ -64,7 +69,12 @@ public class GetAllDevices implements Runnable {
                 while (true) {
                     byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
-                    socket.receive(packet);
+                    try {
+                        socket.receive(packet);
+                    } catch (InterruptedIOException e) {
+                        System.out.println("continue....................");
+                        continue;  //非阻塞循环Operation not permitted
+                    }
 
                     String isK64 = new String(recbuf).trim();
                     if (isK64.contains("K64")) {
@@ -73,22 +83,14 @@ public class GetAllDevices implements Runnable {
 
                     System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
                     DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
-                    /**
-                     * 获取网关所有设备及其新入网设备
-                     */
-                    if ((int) MessageType.A.UPLOAD_ALL_TXT.value() == recbuf[11]) {
-//                        byte[] bt = AESUtils.decode(recbuf);
-                        ParseDeviceData.ParseGetDeviceInfo(mContext, recbuf, false);
-                    } else if ((int) MessageType.A.UPLOAD_TXT.value() == recbuf[11]) {//新入网设备
-//                        byte[] bt = AESUtils.decode(recbuf);
-                        ParseDeviceData.ParseGetDeviceInfo(mContext, recbuf, true);
-                    }
                 }
             }
             Log.e("my", "shake thread broadcast end.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("GetAllDevices" + " =  " + e.getMessage());
+        }finally {
+            System.out.println("finally");
         }
 //        try {
 //            if (!isNewDevice) {

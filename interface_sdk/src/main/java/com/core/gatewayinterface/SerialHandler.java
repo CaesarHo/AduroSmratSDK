@@ -34,6 +34,7 @@ import java.util.Arrays;
 
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
+import static com.core.global.Constants.GW_IP_ADDRESS;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
 import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
@@ -133,11 +134,19 @@ public class SerialHandler {
         new Thread(new UdpClient(context, bt)).start();
     }
 
-    public void GetSetGwServerAddress(String server_address) {
+    public void SetGwServerAddress(String server_address) {
         byte[] bt = GatewayCmdData.GetSetGWServerAddress(server_address);
         new Thread(new UdpClient(context, bt)).start();
     }
 
+    public void GetGwServerAddress(){
+        byte[] bt = GatewayCmdData.GetSetGWServerAddress("");
+        new Thread(new UdpClient(context, bt)).start();
+    }
+
+    /**
+     * 检查更新信息
+     */
     public void CheckUpdateGatewayInfo() {
         new Thread(new Runnable() {
             @Override
@@ -146,6 +155,7 @@ public class SerialHandler {
                     if (NetworkUtil.isNetworkAvailable(context)){
                         new FTPUtils(context).openConnect(true);
                     }else{
+                        DataSources.getInstance().GatewayUpdateVersion(0);
                         System.out.println("网络不可用");
                     }
                 }catch (Exception e){
@@ -155,6 +165,9 @@ public class SerialHandler {
         }).start();
     }
 
+    /**
+     * 启动更新
+     */
     public void doUpdateGateway(){
         new Thread(new UpdateHelper(context)).start();
     }
@@ -523,6 +536,7 @@ public class SerialHandler {
             }
             ShakeManager.getInstance().stopShaking();
         } catch (Exception e) {
+
         }
     }
 }

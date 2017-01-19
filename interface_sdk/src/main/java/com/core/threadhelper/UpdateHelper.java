@@ -9,6 +9,7 @@ import com.core.commanddata.appdata.GatewayCmdData;
 import com.core.commanddata.gwdata.ParseGatewayData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
+import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.global.MessageType;
@@ -127,7 +128,13 @@ public class UpdateHelper implements Runnable {
                                     boolean isRun = true;
                                     while (isRun){
                                         try {
-                                            socket.receive(getack);
+                                            try {
+                                                socket.receive(getack);
+                                            }catch (SocketTimeoutException s){
+                                                s.getLocalizedMessage();
+                                                System.out.println("网络超时");
+                                            }
+
                                             if (rec_byte[32] == 0){
                                                 System.out.println("更新成功");
                                                 fin.close();
@@ -135,8 +142,10 @@ public class UpdateHelper implements Runnable {
                                                     socket.close();
                                                 }
                                                 isRun = false;
+                                                DataSources.getInstance().GatewayUpdateResult(0);
                                             }else{
                                                 System.out.println("更新失败");
+                                                DataSources.getInstance().GatewayUpdateResult(1);
                                             }
                                             System.out.println("接收最后一包返回值 = " + Arrays.toString(rec_byte));
                                         } catch (SocketTimeoutException e) {

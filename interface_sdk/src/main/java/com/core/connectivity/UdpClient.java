@@ -10,6 +10,7 @@ import com.core.mqtt.MqttManager;
 import com.core.utils.TransformUtils;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -23,6 +24,7 @@ import static com.core.global.Constants.GatewayInfo.GATEWAY_UPDATE_FILE_NEXT;
 import static com.core.global.Constants.GatewayInfo.PACKETS;
 import static com.core.global.Constants.GatewayInfo.SEND_SIZE;
 import static com.core.global.Constants.GatewayInfo.UPDATE_FILE_BT;
+import static com.core.global.Constants.isConn;
 
 /**
  * Created by best on 2016/11/3.
@@ -46,6 +48,10 @@ public class UdpClient implements Runnable {
     public void run() {
         try {
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
+                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+                if (!isConnect) {
+                    return;
+                }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
                 System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
@@ -66,17 +72,24 @@ public class UdpClient implements Runnable {
                     final byte[] recbytes = new byte[1024];
                     final DatagramPacket receive_packet = new DatagramPacket(recbytes, recbytes.length);
 
-                    socket.receive(receive_packet);
+                    try {
+                        socket.receive(receive_packet);
+                    } catch (InterruptedIOException e) {
+                        System.out.println("continue....................");
+                        continue;  //非阻塞循环Operation not permitted
+                    }
                     String isK64 = new String(recbytes).trim();
                     if (isK64.contains("K64")) {
                         return;
                     }
                     System.out.println("设备信息UdpClient = " + Arrays.toString(recbytes));
                     DataPacket.getInstance().BytesDataPacket(mContext, recbytes);
+
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(TAG + " = " + e.getMessage());
         } finally {
             System.out.println(TAG + " = " + "finally");
         }

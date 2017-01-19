@@ -13,6 +13,7 @@ import com.core.gatewayinterface.SerialHandler;
 import com.core.global.Constants;
 import com.core.utils.TransformUtils;
 
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
@@ -60,11 +61,16 @@ public class UDPHelper implements Runnable {
                 Thread.sleep(1000);
                 // 准备接收数据
                 lock.acquire();
-                DatagramPacket datagramPacket = new DatagramPacket(message, message.length);
-                socket.receive(datagramPacket);
-                String str_message = new String(datagramPacket.getData()).trim();
-                String ip_address = datagramPacket.getAddress().getHostAddress().toString();
-                int port_int = datagramPacket.getPort();
+                DatagramPacket packet = new DatagramPacket(message, message.length);
+                try {
+                    socket.receive(packet);
+                } catch (InterruptedIOException e) {
+                    System.out.println("continue....................");
+                    continue;  //非阻塞循环Operation not permitted
+                }
+                String str_message = new String(packet.getData()).trim();
+                String ip_address = packet.getAddress().getHostAddress().toString();
+                int port_int = packet.getPort();
 
                 Constants.GW_IP_ADDRESS = ip_address;
 
@@ -72,6 +78,10 @@ public class UDPHelper implements Runnable {
                 if (str_message.contains("K64_SEARCH_GW") & num < 4) {
                     String[] gw_no_arr = str_message.split(":");
                     String gw_no = gw_no_arr[1];
+                    if (context == null){
+                        System.out.println("上下文Context为空");
+                        return;
+                    }
                     GatewayInfo.getInstance().setInetAddress(context, ip_address);
                     GatewayInfo.getInstance().setPort(context, port_int);
                     GatewayInfo.getInstance().setGatewayNo(context, gw_no);

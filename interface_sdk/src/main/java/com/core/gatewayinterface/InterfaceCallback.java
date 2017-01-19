@@ -14,11 +14,13 @@ import java.util.ArrayList;
  */
 public interface InterfaceCallback {
     //-------------------------------网关相关------------------------------
-    void SendExceptionCallack(int result);
+    void vRetExceptionCallack(int result);
     void vRetResetGatewayCallback(int result);
     //网关信息回调
     void GatewatInfoCallback(AppGateway appGateway);
     void vRetGatewayUpdateVersion(int version);
+    void vRetGatewayUpdateResult(int result);
+    void vRetGatewayServerAddress(String address);
     //===============================房间相关==============================
     //添加房间
     void AddGroupCallback(Short group_id,String group_name);

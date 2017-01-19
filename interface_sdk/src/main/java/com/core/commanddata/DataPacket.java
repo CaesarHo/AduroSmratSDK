@@ -8,12 +8,14 @@ import com.core.commanddata.gwdata.ParseDeviceData;
 import com.core.commanddata.gwdata.ParseGatewayData;
 import com.core.commanddata.gwdata.ParseGroupData;
 import com.core.commanddata.gwdata.ParseSceneData;
+import com.core.commanddata.gwdata.ParseTaskData;
 import com.core.connectivity.UdpClient;
 import com.core.db.GatewayInfo;
 import com.core.entity.AppGateway;
 import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.MessageType;
+import com.interfacecallback.BuildConfig;
 
 import java.util.Arrays;
 import java.util.Timer;
@@ -72,8 +74,9 @@ public class DataPacket {
              * 解析服务器地址
              */
             if ((int) MessageType.A.GET_SET_SERVER_ADDRESS.value() == bytes[11]) {
-                ParseGatewayData.ParseServerAddress parseServerAddress = new ParseGatewayData.ParseServerAddress();
-                parseServerAddress.parseBytes(bytes);
+                ParseGatewayData.ParseServerAddress parseAddress = new ParseGatewayData.ParseServerAddress();
+                parseAddress.parseBytes(bytes);
+                DataSources.getInstance().GatewayServerAddress(parseAddress.server_address);
             }
 
             /**
@@ -82,13 +85,25 @@ public class DataPacket {
             if ((int) MessageType.A.GET_GATEWAY_IEEE.value() == bytes[11]) {
                 ParseGatewayData.ParseIEEEData parseIEEEData = new ParseGatewayData.ParseIEEEData();
                 parseIEEEData.parseBytes(bytes);
+
+                if (context == null){
+                    System.out.println("上下文Context为空");
+                    return;
+                }
                 GatewayInfo.getInstance().setGwIEEEAddress(context, parseIEEEData.gateway_mac);
             }
 
             if ((int) MessageType.A.GET_GW_INFO.value() == bytes[11]) {
-                System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
+                if (BuildConfig.LEO_DEBUG){
+                    System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
+                }
                 ParseGatewayData.ParseGWInfoData gwInfoData = new ParseGatewayData.ParseGWInfoData();
                 gwInfoData.parseBytes(bytes);
+
+                if (context == null){
+                    System.out.println("上下文Context为空");
+                    return;
+                }
 
                 GatewayInfo.getInstance().setFirmwareVersion(context, gwInfoData.gw_version);
                 GatewayInfo.getInstance().setGatewayMac(context, gwInfoData.gw_mac);
@@ -102,6 +117,10 @@ public class DataPacket {
                 ParseGatewayData.ParseNodeVer parseNodeVer = new ParseGatewayData.ParseNodeVer();
                 parseNodeVer.parseBytes(bytes);
 
+                if (context == null){
+                    System.out.println("上下文Context为空");
+                    return;
+                }
                 String ip_address = GatewayInfo.getInstance().getInetAddress(context);
                 String gateway_no = GatewayInfo.getInstance().getGatewayNo(context);
                 String gateway_mac = GatewayInfo.getInstance().getGatewayMac(context);
@@ -184,7 +203,6 @@ public class DataPacket {
                     //当有传感器数据上传时读取ZONETYPE
                     byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
                     new Thread(new UdpClient(context, bt)).start();
-//                Constants.sendMessage(bt);
                     DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
                 }
@@ -202,15 +220,15 @@ public class DataPacket {
                     DataSources.getInstance().responseBatteryValue(attribute.device_mac, attribute.attribValue);
                 }
 
-                if (attribute.message_type.contains("8100")) {
-                    //如果设备属性簇ID等于5则发送保存zonetypecmd
-                    if (attribute.clusterID == 5) {
-                        byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
-                                attribute.endpoint + "", (short) attribute.attribValue);
-                        new Thread(new UdpClient(context, zt_bt)).start();
-//                    Constants.sendMessage(zt_bt);
-                    }
-                }
+//                if (attribute.message_type.contains("8100")) {
+//                    //如果设备属性簇ID等于5则发送保存zonetypecmd
+//                    if (attribute.clusterID == 5 & attribute.u8AttribType == 0x31) {
+//                        byte[] zt_bt = DeviceCmdData.SaveZoneTypeCmd(attribute.message_type, attribute.short_address,
+//                                attribute.endpoint + "", (short) attribute.attribValue);
+//                        new Thread(new UdpClient(context, zt_bt)).start();
+////                    Constants.sendMessage(zt_bt);
+//                    }
+//                }
                 /**
                  * 读取设备亮度值
                  */
@@ -246,6 +264,13 @@ public class DataPacket {
             //-------------------------------设备end--------------------------------
             //-------------------------------场景start------------------------------
             /**
+             * 枚举A判断是否是场景（场景列表）
+             */
+            if ((int) MessageType.A.GET_ALL_SCENE.value() == bytes[11]) {
+                ParseSceneData.ParseGetScenesInfo(bytes);
+            }
+
+            /**
              * 添加场景名称
              */
             if ((int) MessageType.A.ADD_SCENE_NAME.value() == bytes[11]) {
@@ -273,6 +298,12 @@ public class DataPacket {
             //-------------------------------场景end--------------------------------
             //-------------------------------房间start------------------------------
             /**
+             * 枚举A判断是否是房间（获取所有房间列表）
+             */
+            if ((int) MessageType.A.GET_ALL_GROUP.value() == bytes[11]){
+                ParseGroupData.ParseGetGroupsInfo(bytes);
+            }
+            /**
              * 创建房间名称
              */
             if ((int) MessageType.A.ADD_GROUP_NAME.value() == bytes[11]) {
@@ -298,6 +329,14 @@ public class DataPacket {
                 DataSources.getInstance().DeleteGroupResult(parseData.group_id);
             }
             //----------------------------房间end-----------------------------------
+            //----------------------------任务start---------------------------------
+            /**
+             * 枚举A判断是否是任务列表
+             */
+            if (bytes[11] == MessageType.A.GET_ALL_TASK.value()) {
+                ParseTaskData.ParseGetTaskInfo2 parseGetTaskInfo2 = new ParseTaskData.ParseGetTaskInfo2();
+                parseGetTaskInfo2.parseBytes(bytes);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
