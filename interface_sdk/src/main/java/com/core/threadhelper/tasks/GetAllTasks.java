@@ -8,12 +8,14 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
+import com.core.utils.Utils;
 
 import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
 
@@ -60,11 +62,10 @@ public class GetAllTasks implements Runnable {
                         System.out.println("continue....................");
                         continue;  //非阻塞循环Operation not permitted
                     }
-                    String isK64 = new String(recbuf).trim();
-                    if (isK64.contains("K64")) {
-                        return;
+                    if (!Utils.isK6(recbuf)) {
+                        System.out.println("当前接收的数据GetAllTasks = " + Arrays.toString(recbuf));
+                        DataPacket.getInstance().BytesDataPacket(context, recbuf);
                     }
-                    DataPacket.getInstance().BytesDataPacket(context,recbuf);
                 }
             }
         } catch (Exception e) {

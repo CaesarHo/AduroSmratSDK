@@ -12,7 +12,7 @@ public class AppGroup implements Serializable{
     private Short group_id;
     private String group_name;
     private String icon_path;
-    private ArrayList<String> mac_data;
+    private List<String> mac_data;
     private Boolean selected = false;
     private int group_state = -1;
     private int group_level = -1;
@@ -41,11 +41,11 @@ public class AppGroup implements Serializable{
         this.icon_path = icon_path;
     }
 
-    public ArrayList<String> getMac_data() {
+    public List<String> getMac_data() {
         return mac_data;
     }
 
-    public void setMac_data(ArrayList<String> mac_data) {
+    public void setMac_data(List<String> mac_data) {
         this.mac_data = mac_data;
     }
 

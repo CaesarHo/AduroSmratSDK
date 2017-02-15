@@ -6,6 +6,7 @@ import com.core.global.Constants;
 import com.core.utils.TransformUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by best on 2016/10/10.
@@ -18,7 +19,7 @@ public class ParseGroupData {
         System.out.println("GetAllGroupsMac = " + groups_info);
         Short group_id = 0;
         String group_name = "";
-        ArrayList<String> device_list = new ArrayList<>();
+        List<String> device_list = new ArrayList<>();
         device_list.clear();
         String[] group_data = groups_info.split(",");
         for (int i = 2; i < group_data.length; i++) {
@@ -27,7 +28,8 @@ public class ParseGroupData {
             }
             if (group_data[i].length() >= 6) {
                 String mac = group_data[i].substring(6, group_data[i].length());
-                if (!mac.equals("")) {
+                System.out.println("房间mac地址 = " + mac);
+                if (!mac.equals("") & mac.length() == 16) {
                     device_list.add(mac);
                 }
             }
@@ -47,6 +49,7 @@ public class ParseGroupData {
         if (group_id <= 0) {
             return;
         }
+        System.out.println("设备个数 = " + device_list.size());
         AppGroup appGroup = new AppGroup();
         appGroup.setGroup_id(group_id);
         appGroup.setGroup_name(group_name);

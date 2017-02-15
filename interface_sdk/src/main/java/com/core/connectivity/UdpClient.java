@@ -8,6 +8,7 @@ import com.core.db.GatewayInfo;
 import com.core.global.Constants;
 import com.core.mqtt.MqttManager;
 import com.core.utils.TransformUtils;
+import com.core.utils.Utils;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -78,13 +79,10 @@ public class UdpClient implements Runnable {
                         System.out.println("continue....................");
                         continue;  //非阻塞循环Operation not permitted
                     }
-                    String isK64 = new String(recbytes).trim();
-                    if (isK64.contains("K64")) {
-                        return;
+                    if (!Utils.isK6(recbytes)) {
+                        System.out.println("设备信息UdpClient = " + Arrays.toString(recbytes));
+                        DataPacket.getInstance().BytesDataPacket(mContext, recbytes);
                     }
-                    System.out.println("设备信息UdpClient = " + Arrays.toString(recbytes));
-                    DataPacket.getInstance().BytesDataPacket(mContext, recbytes);
-
                 }
             }
         } catch (Exception e) {

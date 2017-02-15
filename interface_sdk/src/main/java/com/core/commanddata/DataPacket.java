@@ -94,9 +94,6 @@ public class DataPacket {
             }
 
             if ((int) MessageType.A.GET_GW_INFO.value() == bytes[11]) {
-                if (BuildConfig.LEO_DEBUG){
-                    System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
-                }
                 ParseGatewayData.ParseGWInfoData gwInfoData = new ParseGatewayData.ParseGWInfoData();
                 gwInfoData.parseBytes(bytes);
 

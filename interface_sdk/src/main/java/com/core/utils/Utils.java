@@ -106,6 +106,16 @@ public class Utils {
         return commandDataByte_Len;
     }
 
+    public static boolean isK6(byte[] bt){
+        String isK64 = new String(bt);
+        String  isK6 = isK64.substring(0, 2);
+        if (isK6.equalsIgnoreCase("K6")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * 获取手机唯一ID
      *

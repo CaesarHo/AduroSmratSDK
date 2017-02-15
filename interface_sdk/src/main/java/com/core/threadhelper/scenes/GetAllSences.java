@@ -68,13 +68,10 @@ public class GetAllSences implements Runnable {
                         continue;  //非阻塞循环Operation not permitted
                     }
 
-                    String isK64 = new String(recbuf).trim();
-                    if (isK64.contains("K64")) {
-                        return;
+                    if (!Utils.isK6(recbuf)) {
+                        System.out.println("当前接收的数据GetAllScene = " + Arrays.toString(recbuf));
+                        DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                     }
-
-                    System.out.println("当前接收的数据GetAllSences = " + Arrays.toString(recbuf));
-                    DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                 }
             }
         } catch (Exception e) {

@@ -11,6 +11,7 @@ import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.mqtt.MqttManager;
 import com.core.utils.TransformUtils;
+import com.core.utils.Utils;
 
 import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
@@ -76,22 +77,20 @@ public class GetAllDevices implements Runnable {
                         continue;  //非阻塞循环Operation not permitted
                     }
 
-                    String isK64 = new String(recbuf).trim();
-                    if (isK64.contains("K64")) {
-                        return;
+                    if (!Utils.isK6(recbuf)) {
+                        System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
+                        DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                     }
-
-                    System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
-                    DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                 }
             }
             Log.e("my", "shake thread broadcast end.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("GetAllDevices" + " =  " + e.getMessage());
-        }finally {
-            System.out.println("finally");
         }
+//        finally {
+//            System.out.println("finally");
+//        }
 //        try {
 //            if (!isNewDevice) {
 //                bt_send = DeviceCmdData.GetAllDeviceListCmd();

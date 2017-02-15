@@ -84,8 +84,10 @@ public class MqttManager {
             if (userName != null) {
                 conOpt.setUserName(userName);
             }
-            // Construct an MQTT blocking mode client
-            client = new MqttClient(brokerUrl, clientId, dataStore);
+            if (clientId != null){
+                // Construct an MQTT blocking mode client
+                client = new MqttClient(brokerUrl, clientId, dataStore);
+            }
             // Set this wrapper as the callback handler
             client.setCallback(mCallback);
             if (!client.isConnected()) {

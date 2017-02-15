@@ -6,6 +6,7 @@ import com.core.global.Constants;
 import com.core.utils.TransformUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by best on 2016/10/10.
@@ -19,7 +20,7 @@ public class ParseSceneData {
         Short scene_group_id = 0;
         Short scene_id = 0;
         String scene_name = "";
-        ArrayList<String> device_list = new ArrayList<>();
+        List<String> device_list = new ArrayList<>();
         device_list.clear();
         String[] scene_data = sceneinfo.split(",");
         for (int i = 3; i < scene_data.length; i++) {

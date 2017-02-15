@@ -25,8 +25,17 @@
         jumboMode="true"
         optimize="true"
         revision="21.1.2"
-        sha1="3a0c23f3891bc24d78796b61e36fae330f0db1be">
+        sha1="8af9fcc88b5e1da16f9a746a62abe53c48605772">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3ca0893cd13bc7c0cd25b3e43b1be6ebc92df0b2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="21.1.2"
+        sha1="7c1375a3b1e0e293714b4038e2cefbea472abbdb">
+        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,15 +45,6 @@
         revision="21.1.2"
         sha1="aa08375077798a446fb5a6a9a6a7c5a82edc2f67">
         <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\2\mvp_sdk_6a67c4e968e56eba7bb51c3379866e2544e33ecf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="G:\AndroidAduroSmratSDK\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="21.1.2"
-        sha1="5b048f1f727ef399cb8902e9e4b9da2a24466c44">
-        <dex dex="G:\AndroidAduroSmratSDK\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_93620e631c253782659e2469dd14eec8a1bfcf75\classes.dex" />
     </item>
     <item
         is-multidex="true"
