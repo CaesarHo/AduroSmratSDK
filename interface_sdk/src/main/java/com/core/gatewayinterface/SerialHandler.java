@@ -2,7 +2,6 @@ package com.core.gatewayinterface;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -22,19 +21,14 @@ import com.core.threadhelper.UpdateHelper;
 import com.core.threadhelper.devices.GetAllDevices;
 import com.core.threadhelper.groups.GetAllGroups;
 import com.core.threadhelper.scenes.AddDeviceToSence;
-import com.core.threadhelper.scenes.GetAllSences;
+import com.core.threadhelper.scenes.GetAllScenes;
 import com.core.threadhelper.tasks.GetAllTasks;
 import com.core.utils.FTPUtils;
 import com.core.utils.NetworkUtil;
 import com.core.utils.Utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Arrays;
-
 import static com.core.global.Constants.GROUP_GLOBAL.ADD_GROUP_NAME;
 import static com.core.global.Constants.GROUP_GLOBAL.NEW_GROUP_NAME;
-import static com.core.global.Constants.GW_IP_ADDRESS;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_GROUP_ID;
 import static com.core.global.Constants.SCENE_GLOBAL.ADD_SCENE_NAME;
 import static com.core.global.Constants.SCENE_GLOBAL.NEW_SCENE_NAME;
@@ -80,13 +74,13 @@ public class SerialHandler {
      * 初始化MQTT连接订阅
      */
     public void setMqttCommunication(Context context, String topicName) {
-        System.out.println("网关编号 = " + topicName);
+        Log.i("topicName = " , topicName);
         MqttManager.getInstance().init(context);
         //連接MQTT服務器
         String android_id = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         Constants.MQTT_CLIENT_ID = Utils.getIMEI(context) + android_id;
         boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
-        System.out.println("isConnected: " + isConnect + ", client = " + Constants.MQTT_CLIENT_ID);
+        Log.i("MQTTisConnected = ", "" + isConnect + ",client = " + Constants.MQTT_CLIENT_ID);
         if (isConnect) {
             isConn = true;
             GatewayInfo.getInstance().setGatewayNo(context, topicName);
@@ -369,7 +363,7 @@ public class SerialHandler {
     //=======================场景操作 start========================
     //获取网关所有场景
     public void getSences() {
-        new Thread(new GetAllSences(context)).start();
+        new Thread(new GetAllScenes(context)).start();
     }
 
     //添加场景

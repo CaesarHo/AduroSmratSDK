@@ -1,5 +1,7 @@
 package com.core.commanddata.appdata;
 
+import android.util.Log;
+
 import com.core.entity.AppDevice;
 import com.core.global.Constants;
 import com.core.global.MessageType;
@@ -1115,12 +1117,12 @@ public class TaskCmdData {
         byte[] bt_3 = TransformUtils.byteMerger(bt_1, bt_2);
 
         byte[] cmddata = TransformUtils.byteMerger(bt_3, recall_cmd);
-        System.out.println("cmddata = " + cmddata.length);
+        Log.i("cmd_data = " , cmddata.length + "");
         String task_str = "";
         for (int i = 0; i < cmddata.length; i++) {
             task_str = task_str + Integer.toHexString(cmddata[i] & 0xFF);
         }
-        System.out.println("task_str = " + task_str);
+        Log.i("task_str = " , task_str);
         return cmddata;
     }
 

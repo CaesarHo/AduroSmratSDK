@@ -56,7 +56,7 @@ public class MqttManager {
                 mInstance = null;
             }
         } catch (Exception e) {
-            System.out.println(TAG + "release = " +e.getMessage());
+            Log.i(TAG , " release = " + e.getMessage());
         }
     }
 
@@ -91,11 +91,11 @@ public class MqttManager {
             // Set this wrapper as the callback handler
             client.setCallback(mCallback);
             if (!client.isConnected()) {
-                System.out.println("正在连接 creatConnect = " + client.getClientId());
+                Log.i(TAG , " 正在连接 = " + client.getClientId());
                 flag = doConnect();
             }
         } catch (MqttException e) {
-            System.out.println(TAG + "creatConnect = " +e.getMessage());
+            Log.i(TAG , " 连接异常 = " + e.getMessage());
         }
         return flag;
     }
@@ -110,10 +110,10 @@ public class MqttManager {
         if (client != null) {
             try {
                 client.connect(conOpt);
-                Log.d(TAG, "Connected to " + client.getServerURI() + " with client ID " + client.getClientId());
+                Log.i(TAG, "Connected to " + client.getServerURI() + " with client ID " + client.getClientId());
                 flag = true;
             } catch (Exception e) {
-                System.out.println(TAG + "doConnect = " +e.getMessage());
+                Log.i(TAG , " doConnect = " + e.getMessage());
             }
         }
         return flag;
@@ -140,12 +140,12 @@ public class MqttManager {
             try {
                 client.publish(topicName, message);
                 flag = true;
-                System.out.println("发布状态 = " + flag);
+                Log.i(TAG , " 发布状态 = " + flag);
             } catch (MqttException e) {
-                System.out.println(TAG + "publish = " +e.getMessage());
+                Log.i(TAG , " 发布异常 = " + e.getMessage());
             }
         } else {
-            System.out.println("正在连接 publish = " + client.getClientId());
+            Log.i(TAG , " 断开连接 = " + client.getClientId());
             SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
         }
         return flag;
@@ -178,7 +178,7 @@ public class MqttManager {
                 System.out.println(TAG + " publish = " +e.getMessage());
             }
         } else {
-            System.out.println("正在连接 subscribe = " + client.getClientId());
+            Log.i(TAG , " 断开连接 = " + client.getClientId());
             SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
         }
         return flag;

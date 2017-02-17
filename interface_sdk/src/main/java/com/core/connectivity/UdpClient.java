@@ -1,6 +1,7 @@
 package com.core.connectivity;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.GatewayCmdData;
@@ -55,7 +56,7 @@ public class UdpClient implements Runnable {
                 }
                 MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
                 MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
-                System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
+                Log.i("当前为远程通讯 = " , "傻逼!!!");
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
@@ -66,7 +67,7 @@ public class UdpClient implements Runnable {
 
                 DatagramPacket send_packet = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(send_packet);
-                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
+                Log.i("当前为发送数据 = " , TransformUtils.binary(bt_send, 16));
 
                 while (MAX_BUSY_COUNT <= 20) {
                     MAX_BUSY_COUNT--;
@@ -80,7 +81,7 @@ public class UdpClient implements Runnable {
                         continue;  //非阻塞循环Operation not permitted
                     }
                     if (!Utils.isK6(recbytes)) {
-                        System.out.println("设备信息UdpClient = " + Arrays.toString(recbytes));
+                        Log.i("当前为发送数据 = " , Arrays.toString(recbytes));
                         DataPacket.getInstance().BytesDataPacket(mContext, recbytes);
                     }
                 }

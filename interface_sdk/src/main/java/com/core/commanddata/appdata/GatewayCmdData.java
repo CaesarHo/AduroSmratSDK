@@ -1,5 +1,7 @@
 package com.core.commanddata.appdata;
 
+import android.util.Log;
+
 import com.core.global.Constants;
 import com.core.global.MessageType;
 import com.core.utils.CRC8Utils;
@@ -503,7 +505,7 @@ public class GatewayCmdData {
         if (hex.length() == 1){
             hex = TransformUtils.StringToHexString(hex);
         }
-        System.out.println("当前crc8 = " + hex);
+        Log.i("当前crc8 = " , hex);
         byte[] bt_crcdata = TransformUtils.HexString2Bytes(hex);
 
         byte[] bt_data = TransformUtils.byteMerger(bt_send_data, bt_crcdata);

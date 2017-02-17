@@ -1,6 +1,7 @@
 package com.core.threadhelper.scenes;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.SceneCmdData;
@@ -24,12 +25,13 @@ import static com.core.global.Constants.GW_IP_ADDRESS;
 /**
  * Created by best on 2016/7/13.
  */
-public class GetAllSences implements Runnable {
+public class GetAllScenes implements Runnable {
+    public static final String TAG = "GetAllScenes";
     private Context mContext;
     private byte[] bt_send;
     private DatagramSocket socket = null;
 
-    public GetAllSences(Context context) {
+    public GetAllScenes(Context context) {
         this.mContext = context;
     }
 
@@ -56,8 +58,7 @@ public class GetAllSences implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
-
+                Log.i(TAG + " 当前发送的数据 = ",TransformUtils.binary(bt_send, 16));
                 while (true) {
                     final byte[] recbuf = new byte[1024];
                     final DatagramPacket packet = new DatagramPacket(recbuf, recbuf.length);
@@ -69,7 +70,7 @@ public class GetAllSences implements Runnable {
                     }
 
                     if (!Utils.isK6(recbuf)) {
-                        System.out.println("当前接收的数据GetAllScene = " + Arrays.toString(recbuf));
+                        Log.i(TAG + " 当前接收的数据 = " , Arrays.toString(recbuf));
                         DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                     }
                 }

@@ -16,7 +16,6 @@ public class ParseGroupData {
 
     public static void ParseGetGroupsInfo(byte[] bt) throws Exception {
         String groups_info = new String(bt);
-        System.out.println("GetAllGroupsMac = " + groups_info);
         Short group_id = 0;
         String group_name = "";
         List<String> device_list = new ArrayList<>();
@@ -28,7 +27,6 @@ public class ParseGroupData {
             }
             if (group_data[i].length() >= 6) {
                 String mac = group_data[i].substring(6, group_data[i].length());
-                System.out.println("房间mac地址 = " + mac);
                 if (!mac.equals("") & mac.length() == 16) {
                     device_list.add(mac);
                 }
@@ -49,7 +47,6 @@ public class ParseGroupData {
         if (group_id <= 0) {
             return;
         }
-        System.out.println("设备个数 = " + device_list.size());
         AppGroup appGroup = new AppGroup();
         appGroup.setGroup_id(group_id);
         appGroup.setGroup_name(group_name);

@@ -16,7 +16,6 @@ public class ParseSceneData {
 
     public static void ParseGetScenesInfo(byte[] bt) throws Exception {
         String sceneinfo = new String(bt);
-        System.out.println("场景设备列表 = " + sceneinfo);
         Short scene_group_id = 0;
         Short scene_id = 0;
         String scene_name = "";
@@ -30,7 +29,7 @@ public class ParseSceneData {
 
             if (scene_data[i].length() >= 6) {
                 String mac = scene_data[i].substring(6, scene_data[i].length());
-                if (!mac.equals("")) {
+                if (!mac.equals("") & mac.length() == 16) {
                     device_list.add(mac);
                 }
             }

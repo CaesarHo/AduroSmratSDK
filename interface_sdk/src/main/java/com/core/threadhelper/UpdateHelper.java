@@ -72,7 +72,7 @@ public class UpdateHelper implements Runnable {
             int version = GatewayInfo.getInstance().getGateWayUpdateVserion(context);
             byte[] bytes_data = GatewayCmdData.StartUpdateVerCmd(version, size);
             new Thread(new UdpClient(context, bytes_data)).start();
-            System.out.println("启动更新命令 = " + Arrays.toString(bytes_data));
+            Log.i(TAG + " 启动更新命令 = " , Arrays.toString(bytes_data));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -108,7 +108,7 @@ public class UpdateHelper implements Runnable {
                     byte[] send_byte = GatewayCmdData.FileDataToGatewayCmd(PACKETS, count, bytes);
                     DatagramPacket data = new DatagramPacket(send_byte, send_byte.length, inetAddress, Constants.UDP_PORT);
                     socket.send(data);
-                    System.out.println("发送byte = " + Arrays.toString(bytes));
+                    Log.i(TAG + " 发送的byte = ", Arrays.toString(bytes));
                     while (true) {
                         byte[] rec_byte = new byte[128];
                         DatagramPacket getack = new DatagramPacket(rec_byte, rec_byte.length);
@@ -124,6 +124,7 @@ public class UpdateHelper implements Runnable {
                                     byte[] bt = GatewayCmdData.FinallyUpdateCmd(crc32);
                                     DatagramPacket packet = new DatagramPacket(bt, bt.length, inetAddress, Constants.UDP_PORT);
                                     socket.send(packet);
+                                    Log.i(TAG + " = ", TransformUtils.bytesToHexString(bt));
                                     System.out.println("发送最后一包 = " + TransformUtils.bytesToHexString(bt));
                                     boolean isRun = true;
                                     while (isRun){
@@ -147,7 +148,7 @@ public class UpdateHelper implements Runnable {
                                                 System.out.println("更新失败");
                                                 DataSources.getInstance().GatewayUpdateResult(1);
                                             }
-                                            System.out.println("接收最后一包返回值 = " + Arrays.toString(rec_byte));
+                                            Log.i(TAG , " 最后一包返回值 = " + Arrays.toString(rec_byte));
                                         } catch (SocketTimeoutException e) {
                                             e.getLocalizedMessage();
                                         }

@@ -110,7 +110,6 @@ public class DataPacket {
                 SerialHandler.getInstance().GetCoordinatorVersion();
             }
             if ((int) MessageType.A.GET_NODE_VER.value() == bytes[11]) {
-                System.out.println("ScanGwInfoHelper = " + Arrays.toString(bytes));
                 ParseGatewayData.ParseNodeVer parseNodeVer = new ParseGatewayData.ParseNodeVer();
                 parseNodeVer.parseBytes(bytes);
 

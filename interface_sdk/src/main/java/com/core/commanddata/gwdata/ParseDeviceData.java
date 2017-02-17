@@ -53,7 +53,7 @@ public class ParseDeviceData {
         if (!dev_name.equalsIgnoreCase("Device")) {
             int device_name_end = deviceinfo.indexOf(":", device_name_int) - 9;
             String device_name_hex = deviceinfo.substring(device_name_int, device_name_end);
-            System.out.println("device_name_hex = " + device_name_hex);
+            Log.i("device_name_hex = " , device_name_hex);
             device_name = TransformUtils.toStringHex(device_name_hex);
         } else {
             device_name = Constants.DeviceName(device_id, device_zone_type);
@@ -187,35 +187,35 @@ public class ParseDeviceData {
             byte[] message_type_bt = new byte[2];
             System.arraycopy(data, 20, message_type_bt, 0, 2);
             message_type = TransformUtils.bytesToHexString(message_type_bt);
-            System.out.println("ParseAttributeData message_type =" + message_type);
+            Log.i("属性消息类型 = " , message_type);
 
             //设备MAC地址 0, 21, -115, 0, 1, 48, -5, 108,
             byte[] device_mac_bt = new byte[8];
             System.arraycopy(data, 22, device_mac_bt, 0, 8);
             device_mac = TransformUtils.bytesToHexString(device_mac_bt);
-            System.out.println("ParseAttributeData device_mac =" + device_mac);
+            Log.i("属性 MAC = " , device_mac);
 
             //数据长度0, 29,
             byte[] data_len = new byte[2];
             System.arraycopy(data, 30, data_len, 0, 2);
             data_len_s = TransformUtils.hBytesToShort(data_len);
-            System.out.println("ParseAttributeData data_len_s =" + data_len_s);
+            Log.i("属性数据长度 = " , data_len_s + "");
 
             //短地址107, -82,
             byte[] short_address_bt = new byte[2];
             System.arraycopy(data, 32, short_address_bt, 0, 2);
             short_address = TransformUtils.bytesToHexString(short_address_bt);
-            System.out.println("ParseAttributeData short_address =" + short_address);
+            Log.i("属性短地址 = " , short_address);
 
             //源端点1,
             endpoint = data[34] & 0xFF;
-            System.out.println("ParseAttributeData endpoint =" + endpoint);
+            Log.i("属性源端点 = " , endpoint + "");
 
             //簇ID  0, 6,
             byte[] clusterid_bt = new byte[2];
             System.arraycopy(data, 35, clusterid_bt, 0, 2);
             clusterID = TransformUtils.hBytesToShort(clusterid_bt);
-            System.out.println("ParseAttributeData clusterID =" + clusterID);
+            Log.i("属性簇ID = " , clusterID + "");
 
 //            //设备状态
 //            state = data[37] & 0xFF;
@@ -225,42 +225,41 @@ public class ParseDeviceData {
             byte[] attributeid_bt = new byte[2];
             System.arraycopy(data, 37, attributeid_bt, 0, 2);
             attributeID = TransformUtils.hBytesToShort(attributeid_bt);
-            System.out.println("ParseAttributeData attribID =" + attributeID);
+            Log.i("属性ID = " , attributeID + "");
 
             //属性状态
             u8AttribType = data[39] & 0xFF;
-            System.out.println("ParseAttributeData AttrType =" + u8AttribType);
+            Log.i("属性状态 = " , u8AttribType + "");
 
             switch ((byte) u8AttribType) {
 
                 case 0x10: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("ParseAttributeData attribValue 0x10= " + attribValue);
+                    Log.i("attributeValue 0x10 = " , attribValue + "");
                 }
                 break;
                 case 0x18: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("ParseAttributeData attribValue 0x18= " + attribValue);
+                    Log.i("attributeValue 0x18 = " , attribValue + "");
                 }
                 break;
                 case 0x20: {
                     attribValue = data[40] & 0xFF;
-                    System.out.println("ParseAttributeData attribValue 0x20= " + attribValue);
+                    Log.i("attributeValue 0x20 = " , attribValue + "");
                 }
                 break;
                 case 0x21: {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
                     attribValue = TransformUtils.hBytesToShort(attribValue_bt);
-                    System.out.println("ParseAttributeData attribValue 0x21= " + clusterID);
+                    Log.i("attributeValue 0x21 = " , attribValue + "");
                 }
                 break;
                 case 0x23: {
                     byte[] attribValue_bt = new byte[4];
                     System.arraycopy(data, 40, attribValue_bt, 0, 4);
                     attribValue = TransformUtils.hBytesToShort(attribValue_bt);
-                    Log.i("attribValue 0x23= ", "" + attribValue);
-                    System.out.println("ParseAttributeData attribValue 0x23= " + attribValue);
+                    Log.i("attributeValue 0x23= ", "" + attribValue);
                 }
                 break;
                 case 0x29: {
@@ -270,18 +269,17 @@ public class ParseDeviceData {
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
                     attribValue = TransformUtils.hBytesToShort(attribValue_bt);
-                    Log.i("attribValue 0x30= ", "" + attribValue);
+                    Log.i("attributeValue 0x30= ", "" + attribValue);
                 }
                 break;
                 case 0x31: {//zonetype
                     byte[] attribValue_bt = new byte[2];
                     System.arraycopy(data, 40, attribValue_bt, 0, 2);
                     attribValue = TransformUtils.hBytesToShort(attribValue_bt);
-                    Log.i("attribValue 0x31= ", "" + attribValue);
-                    String zone_type = TransformUtils.bytesToHexString(attribValue_bt);
-                    Log.i("attribValue 0x31= ", "" + zone_type);
-                    DataSources.getInstance().vDataZoneType(device_mac, zone_type);
 
+                    String zone_type = TransformUtils.bytesToHexString(attribValue_bt);
+                    DataSources.getInstance().vDataZoneType(device_mac, zone_type);
+                    Log.i("attributeValue 0x31= ", zone_type + "," + attribValue);
                     byte[] bt = DeviceCmdData.SaveZoneTypeCmd(device_mac, short_address, endpoint, (short) attribValue);
                     new Thread(new UdpClient(context, bt)).start();
                 }
