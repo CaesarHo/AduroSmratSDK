@@ -22,7 +22,7 @@ public class Constants {
     public static boolean isScanGwNodeVer = false;
     public static boolean isConn = false;
     public static int UDP_PORT = 8888;
-    public static String MQTT_SERVER = "120.24.242.83";//"data.adurosmart.com";//"120.24.242.83";//"192.168.0.80";//;
+    public static String MQTT_SERVER = "data.adurosmart.com";//"120.24.242.83";//"192.168.0.80";//;
     public static String MQTT_CLIENT_ID;
     public static int MQTT_PORT = 1883;
     public static String URI = "tcp://" + MQTT_SERVER + ":" + MQTT_PORT;

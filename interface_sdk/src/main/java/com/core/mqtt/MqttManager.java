@@ -13,6 +13,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
 import static com.core.global.Constants.URI;
+import static com.core.global.Constants.isConn;
 
 /**
  * Created by best on 2016/9/28.
@@ -88,8 +89,11 @@ public class MqttManager {
                 // Construct an MQTT blocking mode client
                 client = new MqttClient(brokerUrl, clientId, dataStore);
             }
-            // Set this wrapper as the callback handler
-            client.setCallback(mCallback);
+            if (mCallback != null){
+                // Set this wrapper as the callback handler
+                client.setCallback(mCallback);
+            }
+
             if (!client.isConnected()) {
                 Log.i(TAG , " 正在连接 = " + client.getClientId());
                 flag = doConnect();
@@ -142,11 +146,13 @@ public class MqttManager {
                 flag = true;
                 Log.i(TAG , " 发布状态 = " + flag);
             } catch (MqttException e) {
-                Log.i(TAG , " 发布异常 = " + e.getMessage());
+                Log.i(TAG , " 发布异常 = " + e.getLocalizedMessage() + e.toString());
             }
         } else {
-            Log.i(TAG , " 断开连接 = " + client.getClientId());
-            SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
+            if (!isConn){
+                Log.i(TAG , " 断开连接 = " + client.getClientId());
+                SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
+            }
         }
         return flag;
     }
@@ -175,11 +181,14 @@ public class MqttManager {
                 flag = true;
                 System.out.println("订阅状态 = " + flag);
             } catch (MqttException e) {
-                System.out.println(TAG + " publish = " +e.getMessage());
+                System.out.println(TAG + " 订阅异常 = " +e.getMessage());
             }
         } else {
-            Log.i(TAG , " 断开连接 = " + client.getClientId());
-            SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
+            if (!isConn){
+                Log.i(TAG , " 断开连接 = " + client.getClientId());
+                SerialHandler.getInstance().setMqttCommunication(mContext,topicName);
+            }
+
         }
         return flag;
     }

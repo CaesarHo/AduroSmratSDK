@@ -1,6 +1,7 @@
 package com.core.threadhelper.groups;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.DataPacket;
 import com.core.commanddata.appdata.GroupCmdData;
@@ -25,6 +26,7 @@ import static com.core.global.Constants.GW_IP_ADDRESS;
  * Created by best on 2016/7/13.
  */
 public class GetAllGroups implements Runnable {
+    public static final String TAG = "GetAllGroups";
     private Context mContext;
     public DatagramSocket socket = null;
     public GetAllGroups(Context context){
@@ -53,7 +55,7 @@ public class GetAllGroups implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
+                Log.i(TAG + "当前发送的数据 = " , TransformUtils.binary(bt_send, 16));
 
                 while (true) {
                     final byte[] recbuf = new byte[1024];
@@ -65,7 +67,7 @@ public class GetAllGroups implements Runnable {
                         continue;  //非阻塞循环Operation not permitted
                     }
                     if (!Utils.isK6(recbuf)) {
-                        System.out.println("当前接收的数据GetAllGroups = " + Arrays.toString(recbuf));
+                        Log.i(TAG + "当前接收的数据 = " , Arrays.toString(recbuf));
                         DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
                     }
                 }

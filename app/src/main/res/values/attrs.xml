@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RotateLoading">
+        <attr name="loading_width" format="dimension"/>
+        <attr name="loading_color" format="color"/>
+        <attr name="shadow_position" format="integer"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="SearchRipple">
+        <attr name="color" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="radius" format="dimension" />
+        <attr name="duration" format="integer" />
+        <attr name="rippleAmount" format="integer" />
+        <attr name="scale" format="float" />
+        <attr name="type" format="enum">
+            <enum name="fillRipple" value="0" />
+            <enum name="strokeRipple" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SmartSeekbar">
+        <attr name="bgColor" format="color"/>
+        <attr name="proColor" format="color"/>
+        <attr name="pro" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CompatRefreshLayout">
+        <attr name="listView" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -111,9 +111,9 @@ public class DataSources {
     }
 
     //接受传感器数据
-    public void getReceiveSensor(String mDevMac,int state){
+    public void getReceiveSensor(String device_address,int state){
         String time = String.valueOf(System.currentTimeMillis());
-        sdkCallback.getReceiveSensorDataCallback(mDevMac,state, Utils.getFormatTellDate(time));
+        sdkCallback.getReceiveSensorDataCallback(device_address,state, Utils.getFormatTellDate(time));
     }
 
     //传感器电量

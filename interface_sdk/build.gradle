@@ -1,38 +1,47 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+
     }
+
     buildTypes {
-        release {
+//        release {
+//            // 不显示Log
+//            buildConfigField "boolean", "LOG_DEBUG", "false"
+//            //混淆
+//            minifyEnabled false
+//            //Zipalign优化
+//            zipAlignEnabled true
+//            // 移除无用的resource文件
+//            shrinkResources true
+//            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+
+        debug {
+//            // 显示Log
+//            buildConfigField "boolean", "LEO_DEBUG", "true"
+//            versionNameSuffix "-debug"
+//            minifyEnabled false
+//            zipAlignEnabled false
+//            shrinkResources false
+
             // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "LOG_DEBUG", "false"
             //混淆
-            minifyEnabled true
+            minifyEnabled false
             //Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件
             shrinkResources true
             //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
-        debug {
-            // 显示Log
-            buildConfigField "boolean", "LEO_DEBUG", "true"
-
-            versionNameSuffix "-debug"
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.debug
         }
     }
     compileOptions.encoding = 'UTF-8'
@@ -49,7 +58,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.0.0'
     compile files('src/main/libs/commons-net-3.5.jar')
     compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
 }
@@ -57,7 +66,7 @@ dependencies {
 def SDK_BASENAME = "sdk";
 def SDK_VERSION = "_V0.1.8";
 def sdkDestinationPath = "build";
-def zipFile = file('build/intermediates/bundles/release/classes.jar')
+def zipFile = file('build/intermediates/bundles/default/classes.jar')
 
 task deleteBuild(type: Delete) {
 //    delete sdkDestinationPath + SDK_BASENAME + SDK_VERSION + ".jar"
@@ -71,5 +80,12 @@ task makeJar(type: Jar) {
     baseName = SDK_BASENAME
     destinationDir = file(sdkDestinationPath)
 }
+
+//task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//    classifier = 'javadoc'
+//    options.encoding = "UTF-8"
+//
+//    from androidJavadocs.destinationDir
+//}
 
 makeJar.dependsOn(deleteBuild, build)

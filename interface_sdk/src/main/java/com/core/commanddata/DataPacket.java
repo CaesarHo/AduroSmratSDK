@@ -1,6 +1,7 @@
 package com.core.commanddata;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.core.commanddata.appdata.DeviceCmdData;
 import com.core.commanddata.appdata.GatewayCmdData;
@@ -15,6 +16,7 @@ import com.core.entity.AppGateway;
 import com.core.gatewayinterface.DataSources;
 import com.core.gatewayinterface.SerialHandler;
 import com.core.global.MessageType;
+import com.core.utils.Utils;
 import com.interfacecallback.BuildConfig;
 
 import java.util.Arrays;
@@ -199,7 +201,7 @@ public class DataPacket {
                     //当有传感器数据上传时读取ZONETYPE
                     byte[] bt = DeviceCmdData.ReadZoneTypeCmd(sensorData.sensor_mac, sensorData.short_address);
                     new Thread(new UdpClient(context, bt)).start();
-                    DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
+//                    DataSources.getInstance().getReceiveSensor(sensorData.sensor_mac, sensorData.state);
                     DataSources.getInstance().getReceiveSensor(sensorData.short_address, sensorData.state);
                 }
 
@@ -253,6 +255,7 @@ public class DataPacket {
                 if (bytes.length < 60) {
                     return;
                 }
+                String time = String.valueOf(System.currentTimeMillis());
                 ParseDeviceData.ParseBindData parsePData = new ParseDeviceData.ParseBindData();
                 parsePData.parseBytes(bytes);
             }

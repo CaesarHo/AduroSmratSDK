@@ -1,0 +1,377 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    app:divider="@color/colorPrimary"
+    app:dividerPadding="@dimen/textsize_large"
+    app:showDividers="beginning">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/widget_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/layout_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="6">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="year"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="month"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="day"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="hour"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="min"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="sec"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_middle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_year"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content" />
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_month"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_day"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_hour"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_minute"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/date_second"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tiao_bg_center"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_setting_urban"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="时区设置:"
+                android:textColor="@android:color/black"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_setting_urban"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_utc"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="UTC"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
+
+                <com.adurosmart.widget.WheelView
+                    android:id="@+id/w_urban"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+
+
+                <Button
+                    android:id="@+id/bt_set_timezone"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/tv_magin_top"
+                    android:background="@drawable/determine_and_cancel"
+                    android:text="OK"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setting_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="应用"
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="2013-06-12 14:22"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <Button
+                android:id="@+id/choose_device"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:text="设备定时"
+                android:textSize="@dimen/textsize_small"
+                android:background="@drawable/determine_and_cancel"/>
+
+            <Button
+                android:id="@+id/choose_scene"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:text="场景定时"
+                android:textSize="@dimen/textsize_small"
+                android:background="@drawable/determine_and_cancel"/>
+
+            <Switch
+                android:id="@+id/swc"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/trigger_device"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:text="触发设备"
+                android:textSize="@dimen/textsize_small"
+                android:background="@drawable/determine_and_cancel"/>
+
+            <Button
+                android:id="@+id/trigger_scene"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:text="触发场景"
+                android:textSize="@dimen/textsize_small"
+                android:background="@drawable/determine_and_cancel"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:weightSum="7">
+
+            <Button
+                android:id="@+id/btn_one"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="一" />
+
+            <Button
+                android:id="@+id/btn_two"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="二" />
+
+            <Button
+                android:id="@+id/btn_three"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="三" />
+
+            <Button
+                android:id="@+id/btn_four"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="四" />
+
+            <Button
+                android:id="@+id/btn_five"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="五" />
+
+            <Button
+                android:id="@+id/btn_six"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="六" />
+
+            <Button
+                android:id="@+id/btn_seven"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="日" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/tv_task"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务名称:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/edit_task"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:hint="请输入任务名称！" />
+
+            <Button
+                android:id="@+id/btn_add_task"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/tv_magin_top"
+                android:background="@drawable/determine_and_cancel"
+                android:text="创建任务"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

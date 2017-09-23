@@ -104,68 +104,53 @@ public class UpdateHelper implements Runnable {
             FileInputStream fin = new FileInputStream(local_file);
             byte[] bytes = new byte[SEND_SIZE];
             while ((i = fin.read(bytes, 0, SEND_SIZE)) != -1) {
-                try {
-                    byte[] send_byte = GatewayCmdData.FileDataToGatewayCmd(PACKETS, count, bytes);
-                    DatagramPacket data = new DatagramPacket(send_byte, send_byte.length, inetAddress, Constants.UDP_PORT);
-                    socket.send(data);
-                    Log.i(TAG + " 发送的byte = ", Arrays.toString(bytes));
-                    while (true) {
-                        byte[] rec_byte = new byte[128];
-                        DatagramPacket getack = new DatagramPacket(rec_byte, rec_byte.length);
+                byte[] send_byte = GatewayCmdData.FileDataToGatewayCmd(PACKETS, count, bytes);
+                DatagramPacket data = new DatagramPacket(send_byte, send_byte.length, inetAddress, Constants.UDP_PORT);
+                socket.send(data);
+                Log.i(TAG + " 发送的byte = ", Arrays.toString(bytes));
+                while (true) {
+                    byte[] rec_byte = new byte[128];
+                    DatagramPacket getack = new DatagramPacket(rec_byte, rec_byte.length);
+                    socket.receive(getack);
+                    if ((int) MessageType.A.SEND_UPDATE_FILE_TO_GATEWAY.value() == rec_byte[11]) {
+                        ParseGatewayData.ParseUpdateCountData startUpdateData = new ParseGatewayData.ParseUpdateCountData();
+                        startUpdateData.parseBytes(rec_byte);
 
-                        socket.receive(getack);
-                        if ((int) MessageType.A.SEND_UPDATE_FILE_TO_GATEWAY.value() == rec_byte[11]) {
-                            ParseGatewayData.ParseUpdateCountData startUpdateData = new ParseGatewayData.ParseUpdateCountData();
-                            startUpdateData.parseBytes(rec_byte);
-
-                            if (count == startUpdateData.packet_count) {
-                                if (startUpdateData.packet_count == PACKETS) {//最后确认包
-                                    String crc32 = GatewayInfo.getInstance().getGatewayUpdateCRC32(context);
-                                    byte[] bt = GatewayCmdData.FinallyUpdateCmd(crc32);
-                                    DatagramPacket packet = new DatagramPacket(bt, bt.length, inetAddress, Constants.UDP_PORT);
-                                    socket.send(packet);
-                                    Log.i(TAG + " = ", TransformUtils.bytesToHexString(bt));
-                                    System.out.println("发送最后一包 = " + TransformUtils.bytesToHexString(bt));
-                                    boolean isRun = true;
-                                    while (isRun){
-                                        try {
-                                            try {
-                                                socket.receive(getack);
-                                            }catch (SocketTimeoutException s){
-                                                s.getLocalizedMessage();
-                                                System.out.println("网络超时");
+                        if (count == startUpdateData.packet_count) {
+                            if (startUpdateData.packet_count == PACKETS) {//最后确认包
+                                String crc32 = GatewayInfo.getInstance().getGatewayUpdateCRC32(context);
+                                byte[] bt = GatewayCmdData.FinallyUpdateCmd(crc32);
+                                DatagramPacket packet = new DatagramPacket(bt, bt.length, inetAddress, Constants.UDP_PORT);
+                                socket.send(packet);
+                                Log.i(TAG + " = ", TransformUtils.bytesToHexString(bt));
+                                System.out.println("发送最后一包 = " + TransformUtils.bytesToHexString(bt));
+                                boolean isRun = true;
+                                while (isRun){
+                                    socket.receive(getack);
+                                        if (rec_byte[32] == 0){
+                                            System.out.println("更新成功");
+                                            fin.close();
+                                            if (socket != null){
+                                                socket.close();
                                             }
-
-                                            if (rec_byte[32] == 0){
-                                                System.out.println("更新成功");
-                                                fin.close();
-                                                if (socket != null){
-                                                    socket.close();
-                                                }
-                                                isRun = false;
-                                                DataSources.getInstance().GatewayUpdateResult(0);
-                                            }else{
-                                                System.out.println("更新失败");
-                                                DataSources.getInstance().GatewayUpdateResult(1);
-                                            }
-                                            Log.i(TAG , " 最后一包返回值 = " + Arrays.toString(rec_byte));
-                                        } catch (SocketTimeoutException e) {
-                                            e.getLocalizedMessage();
+                                            isRun = false;
+                                            DataSources.getInstance().GatewayUpdateResult(0);
+                                        }else{
+                                            System.out.println("更新失败");
+                                            DataSources.getInstance().GatewayUpdateResult(1);
                                         }
-                                    }
+                                    Log.i(TAG , " 最后一包返回值 = " + Arrays.toString(rec_byte));
                                 }
-                                System.out.println("发送下一包 = " + count);
-                                count++;
-                                break;
                             }
-                        } else {
-                            Thread.sleep(1000);
-                            System.out.println("未接收到返回重新发送 = " + count);
-                            socket.send(data);
+                            System.out.println("发送下一包 = " + count);
+                            count++;
+                            break;
                         }
+                    } else {
+                        Thread.sleep(1000);
+                        System.out.println("未接收到返回重新发送 = " + count);
+                        socket.send(data);
                     }
-                } catch (IOException e) {
-                    e.getLocalizedMessage();
                 }
             }
         } catch (Exception e) {

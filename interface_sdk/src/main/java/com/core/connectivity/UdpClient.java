@@ -50,13 +50,15 @@ public class UdpClient implements Runnable {
     public void run() {
         try {
             if (GW_IP_ADDRESS.equals("")) {//!NetworkUtil.NetWorkType(mContext)
-                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
-                if (!isConnect) {
-                    return;
+//                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+//                if (!isConnect) {
+//                    return;
+//                }
+//                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
+                if (!isConn){
+                    MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
+                    Log.i("当前为远程通讯 = " , "傻逼!!!");
                 }
-                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
-                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
-                Log.i("当前为远程通讯 = " , "傻逼!!!");
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {

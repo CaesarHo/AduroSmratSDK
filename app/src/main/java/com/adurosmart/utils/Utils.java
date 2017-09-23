@@ -10,10 +10,6 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-
-import org.eclipse.paho.android.service.sample.MyApp;
 
 import java.io.File;
 import java.io.IOException;
@@ -302,15 +298,6 @@ public class Utils {
     }
 
     /**
-     * 隐藏软键盘()
-     */
-    public static void hindKeyBoard(View btnKey) {
-        InputMethodManager imm = (InputMethodManager) MyApp.app.getSystemService(Context.INPUT_METHOD_SERVICE);
-        // imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        imm.hideSoftInputFromWindow(btnKey.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-
-    /**
      * byte[]以16进制字符串输出
      *
      * @param src
@@ -437,17 +424,6 @@ public class Utils {
     }
 
     /**
-     * 字符串资源格式化
-     *
-     * @param formatSRC
-     * @param formats
-     * @return
-     */
-    public static String getFormatString(int formatSRC, String... formats) {
-        return MyApp.app.getResources().getString(formatSRC, formats);
-    }
-
-    /**
      * DES加密
      *
      * @param datasource
@@ -569,10 +545,6 @@ public class Utils {
             0x01, 0x02, 0x00, 0x00, 0x00, 0x03};// 光圈小
     public static byte[] aperture_big = {(byte) 130, 1, 7, 0, (byte) 0xff,
             0x01, 0x04, 0x00, 0x00, 0x00, 0x05};// 光圈大
-
-    public static int getColorByResouce(int R) {
-        return MyApp.app.getResources().getColor(R);
-    }
 
     public static boolean checkPassword(String password) {
         if (password.length() < 10 && Utils.isNumeric(password) && password.charAt(0) == '0') {

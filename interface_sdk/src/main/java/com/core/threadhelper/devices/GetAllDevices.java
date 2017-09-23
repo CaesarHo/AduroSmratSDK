@@ -21,11 +21,13 @@ import java.net.InetSocketAddress;
 import java.util.Arrays;
 
 import static com.core.global.Constants.GW_IP_ADDRESS;
+import static com.core.global.Constants.isConn;
 
 /**
  * Created by best on 2016/7/14.
  */
 public class GetAllDevices implements Runnable {
+    public final String TAG = "GetAllDevices";
     private byte[] bt_send;
     private DatagramSocket socket = null;
     private static Context mContext;
@@ -48,13 +50,15 @@ public class GetAllDevices implements Runnable {
             }
 
             if (GW_IP_ADDRESS.equals("")) {//NetworkUtil.isNetworkAvailable(mContext)  !NetworkUtil.NetWorkType(mContext)
-                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
-                if (!isConnect){
-                    return;
+//                boolean isConnect = MqttManager.getInstance().creatConnect(Constants.URI, null, null, Constants.MQTT_CLIENT_ID);
+//                if (!isConnect){
+//                    return;
+//                }
+//                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
+                if (!isConn){
+                    MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
+                    System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
                 }
-                MqttManager.getInstance().subscribe(GatewayInfo.getInstance().getGatewayNo(mContext), 2);
-                MqttManager.getInstance().publish(GatewayInfo.getInstance().getGatewayNo(mContext), 2, bt_send);
-                System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
             } else {
                 InetAddress inetAddress = InetAddress.getByName(GW_IP_ADDRESS);
                 if (socket == null) {
@@ -65,7 +69,7 @@ public class GetAllDevices implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(bt_send, bt_send.length, inetAddress, Constants.UDP_PORT);
                 socket.send(datagramPacket);
-                System.out.println("当前发送的数据 = " + TransformUtils.binary(bt_send, 16));
+                Log.i(TAG + "当前发送的数据 = " , TransformUtils.binary(bt_send, 16));
 
                 while (true) {
                     byte[] recbuf = new byte[1024];
@@ -78,10 +82,13 @@ public class GetAllDevices implements Runnable {
                     }
 
                     if (!Utils.isK6(recbuf)) {
-                        System.out.println("当前接收的数据GetAllDevices = " + Arrays.toString(recbuf));
+                        Log.i(TAG + "当前接收的数据 = " , Arrays.toString(recbuf));
                         DataPacket.getInstance().BytesDataPacket(mContext, recbuf);
+                        System.out.println("当前为远程通讯 = " + "GetAllDeviceListen");
                     }
                 }
+
+
             }
             Log.e("my", "shake thread broadcast end.");
         } catch (Exception e) {

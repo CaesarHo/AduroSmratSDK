@@ -20,7 +20,7 @@ import com.core.threadhelper.UDPHelper;
 import com.core.threadhelper.UpdateHelper;
 import com.core.threadhelper.devices.GetAllDevices;
 import com.core.threadhelper.groups.GetAllGroups;
-import com.core.threadhelper.scenes.AddDeviceToSence;
+import com.core.threadhelper.scenes.AddDeviceToScene;
 import com.core.threadhelper.scenes.GetAllScenes;
 import com.core.threadhelper.tasks.GetAllTasks;
 import com.core.utils.FTPUtils;
@@ -64,10 +64,10 @@ public class SerialHandler {
         this.context = mContext;
         this.aeskey = aeskey;
         GatewayInfo.getInstance().setAesKey(context, aeskey);
-//        topicName = GatewayInfo.getInstance().getGatewayNo(context);
-//        if (!topicName.equals("") & NetworkUtil.isNetworkAvailable(mContext)){
-//            setMqttCommunication(context,topicName);
-//        }
+        topicName = GatewayInfo.getInstance().getGatewayNo(context);
+        if (!topicName.equals("") & NetworkUtil.isNetworkAvailable(mContext)){
+            setMqttCommunication(context,topicName);
+        }
     }
 
     /**
@@ -384,7 +384,7 @@ public class SerialHandler {
 
     //将指定的设备动作添加到指定的场景中，若场景不存在，则创建新场景,uid(设备uID)
     public void addDeviceToSence(AppDevice appDevice, short group_id, short scene_id) {
-        new Thread(new AddDeviceToSence(context, appDevice, group_id, scene_id)).start();
+        new Thread(new AddDeviceToScene(context, appDevice, group_id, scene_id)).start();
     }
 
     //删除场景中指定设备成员 senceName场景名 设备Id
