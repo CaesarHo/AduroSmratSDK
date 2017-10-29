@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/wade/.android/build-cache/102789051bc3f9450359cf19fa569bcd2e55f649/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/wade/.android/build-cache/102789051bc3f9450359cf19fa569bcd2e55f649/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/wade/.android/build-cache/102789051bc3f9450359cf19fa569bcd2e55f649/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/wade/.android/build-cache/102789051bc3f9450359cf19fa569bcd2e55f649/output/res/layout-v21/notification_action.xml"
+    }
+]

@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_btn_checkable.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_switch_track.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_hint_foreground_material_light.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_hint_foreground_material_dark.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_edittext.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/wade/.android/build-cache/11fb6bd7b4ce3bce341ae57eba20da715b91b676/output/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/design_error.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/color/design_error.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/card_grey_text_color.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/color/card_grey_text_color.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/wade/.android/build-cache/11fb6bd7b4ce3bce341ae57eba20da715b91b676/output/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/design_tint_password_toggle.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/color/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_default.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_spinner.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_seek_thumb.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_search_url_text.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/card_text_color.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/color/card_text_color.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/wade/.android/build-cache/11fb6bd7b4ce3bce341ae57eba20da715b91b676/output/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/circular_button.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/color/circular_button.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_btn_colored_text_material.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_tint_switch_thumb.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/color/abc_secondary_text_material_light.xml"
+    }
+]

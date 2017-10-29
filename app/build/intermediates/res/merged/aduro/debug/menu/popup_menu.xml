@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.focus.androidnote.popupwindow.PopupWindowActivity">
+    <item
+        android:id="@+id/choose_scene"
+        android:title="选择场景"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/choose_device"
+        android:title="选择设备"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

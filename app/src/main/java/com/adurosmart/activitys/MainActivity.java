@@ -2,17 +2,11 @@ package com.adurosmart.activitys;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyCharacterMap;
@@ -26,8 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.adurosmart.GwInterfaceCallback;
-import com.adurosmart.MyApp;
 import com.adurosmart.adapters.BasePagerAdapter;
 import com.adurosmart.fragments.DevicesFragment;
 import com.adurosmart.fragments.GroupsFragment;
@@ -39,7 +31,7 @@ import com.adurosmart.util.ColorUtils;
 import com.adurosmart.widget.CompatViewpager;
 import com.adurosmart.widget.PopwUtil;
 import com.core.gatewayinterface.SerialHandler;
-import com.sideslipmenu.CoordinatorMenu;
+import com.adurosmart.widget.CoordinatorMenu;
 import java.util.ArrayList;
 import java.util.List;
 

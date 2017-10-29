@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/overlay_confirmation.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/layout-v21/overlay_confirmation.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/dismiss_overlay.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/layout-v21/dismiss_overlay.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/accept_deny_dialog.xml",
+        "source": "/Users/wade/.android/build-cache/0f1af428928bb48f543452cd593fa05a7b901357/output/res/layout-v21/accept_deny_dialog.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v21/notification_action.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v21/notification_action.xml"
+    }
+]

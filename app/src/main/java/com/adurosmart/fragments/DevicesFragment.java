@@ -76,16 +76,10 @@ public class DevicesFragment extends Fragment implements View.OnClickListener, C
     public static final String TAG = "DevicesFragment";
     @BindView(R.id.remote_switch)
     SwitchCompat remoteSwitch;
-    @BindView(R.id.icon_contact)
-    RelativeLayout iconContact;
     @BindView(R.id.net_btn)
     Button netBtn;
-    @BindView(R.id.icon_contact1)
-    RelativeLayout iconContact1;
     @BindView(R.id.read_attribute)
     Button readAttribute;
-    @BindView(R.id.icon_contact3)
-    RelativeLayout iconContact3;
     @BindView(R.id.layout_ll)
     LinearLayout layoutLl;
     @BindView(R.id.list)

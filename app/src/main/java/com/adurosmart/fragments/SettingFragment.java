@@ -14,10 +14,13 @@ import android.widget.Toast;
 
 import com.adurosmart.FirstEvent;
 import com.adurosmart.sdk.R;
+import com.ceiling.ComingActivity;
 import com.facecropper.FaceActivity;
 import com.ftp.FtpActivity;
 import com.loading.LoadingActivity;
 import com.mediacodec.RenderActivity;
+import com.okhttp.OkhttpActivity;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -37,10 +40,12 @@ public class SettingFragment extends Fragment {
     Button btn_facer;
     @BindView(R.id.btn_ftp)
     Button btn_ftp;
-    @BindView(R.id.btn_scrol)
+    @BindView(R.id.btn_okhttp)
     Button btn_scrol;
     @BindView(R.id.dec_btn)
     Button dec_btn;
+    @BindView(R.id.btn_codec)
+    Button btn_codec;
     private Context context;
     private boolean isRegFilter = false;
 
@@ -101,7 +106,7 @@ public class SettingFragment extends Fragment {
         }
     };
 
-    @OnClick({ R.id.btn_3d_desktop,R.id.btn_facer,R.id.btn_ftp,R.id.btn_scrol,R.id.dec_btn,R.id.ffmpeg_btn})
+    @OnClick({ R.id.btn_3d_desktop,R.id.btn_facer,R.id.btn_ftp,R.id.btn_okhttp,R.id.dec_btn,R.id.btn_codec})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_3d_desktop:
@@ -117,21 +122,17 @@ public class SettingFragment extends Fragment {
                 Intent intent2 = new Intent(context, FtpActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.btn_scrol:
-
+            case R.id.btn_okhttp:
+                Intent intent6 = new Intent(context, OkhttpActivity.class);
+                startActivity(intent6);
                 break;
-            case R.id.ffmpeg_btn:
+            case R.id.btn_codec:
                 Intent intent4 = new Intent(context, RenderActivity.class);
                 startActivity(intent4);
                 break;
             case R.id.dec_btn:
-//                Intent intent4 = new Intent(context, ComingActivity.class);
-//                startActivity(intent4);
-
-                //ok http btn
-//                Intent intent4 = new Intent(context, OkhttpActivity.class);
-//                startActivity(intent4);
-
+                Intent intent5 = new Intent(context, ComingActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

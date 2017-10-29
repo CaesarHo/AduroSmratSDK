@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/design_snackbar_out.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/anim/design_snackbar_out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/in.xml",
+        "source": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/src/main/res/anim/in.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/out.xml",
+        "source": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/src/main/res/anim/out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_fade_out.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/catalyst_push_up_in.xml",
+        "source": "/Users/wade/.android/build-cache/b441b79a235b9961b573e21a64f628d96290d8e4/output/res/anim/catalyst_push_up_in.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/design_fab_out.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/anim/design_fab_out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/progress_white.xml",
+        "source": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/src/main/res/anim/progress_white.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/catalyst_push_up_out.xml",
+        "source": "/Users/wade/.android/build-cache/b441b79a235b9961b573e21a64f628d96290d8e4/output/res/anim/catalyst_push_up_out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/scale_out.xml",
+        "source": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/src/main/res/anim/scale_out.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/design_fab_in.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/anim/design_fab_in.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/scale_in.xml",
+        "source": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/src/main/res/anim/scale_in.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/abc_fade_in.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/anim/design_snackbar_in.xml",
+        "source": "/Users/wade/.android/build-cache/6680719e778bf1fede5b86c35f0eb5c7041c860e/output/res/anim/design_snackbar_in.xml"
+    }
+]

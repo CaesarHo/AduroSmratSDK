@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_media_action.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/res/merged/aduro/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/layout-v11/notification_template_big_media.xml"
+    }
+]

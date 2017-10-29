@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/src/main/assets"/><source path="/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/wade/Desktop/StudioWork/AduroSmratSDK/interface_sdk/src/debug/assets"/></dataSet></merger>

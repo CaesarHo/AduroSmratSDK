@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/incremental/mergeAduroDebugResources/merged.dir/values-v18/values-v18.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "/Users/wade/.android/build-cache/64feb21ef7f200a7ee8f79c9d23f8fc8a60eb19f/output/res/values-v18/values-v18.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
+                }
+            }
+        ]
+    }
+]
