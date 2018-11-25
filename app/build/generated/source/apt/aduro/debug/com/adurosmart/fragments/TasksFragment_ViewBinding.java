@@ -14,13 +14,13 @@ import com.adurosmart.sdk.R;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class TasksFragment_ViewBinding<T extends TasksFragment> implements Unbinder {
-  protected T target;
+public class TasksFragment_ViewBinding implements Unbinder {
+  private TasksFragment target;
 
-  private View view2131951829;
+  private View view2131361931;
 
   @UiThread
-  public TasksFragment_ViewBinding(final T target, View source) {
+  public TasksFragment_ViewBinding(final TasksFragment target, View source) {
     this.target = target;
 
     View view;
@@ -28,7 +28,7 @@ public class TasksFragment_ViewBinding<T extends TasksFragment> implements Unbin
     target.srl = Utils.findRequiredViewAsType(source, R.id.srl, "field 'srl'", SwipeRefreshLayout.class);
     view = Utils.findRequiredView(source, R.id.fab, "field 'fab' and method 'onClick'");
     target.fab = Utils.castView(view, R.id.fab, "field 'fab'", FloatingActionButton.class);
-    view2131951829 = view;
+    view2131361931 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -40,16 +40,15 @@ public class TasksFragment_ViewBinding<T extends TasksFragment> implements Unbin
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    TasksFragment target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.recyclerView = null;
     target.srl = null;
     target.fab = null;
 
-    view2131951829.setOnClickListener(null);
-    view2131951829 = null;
-
-    this.target = null;
+    view2131361931.setOnClickListener(null);
+    view2131361931 = null;
   }
 }

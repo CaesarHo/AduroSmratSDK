@@ -16,7 +16,6 @@ import com.adurosmart.FirstEvent;
 import com.adurosmart.sdk.R;
 import com.ceiling.ComingActivity;
 import com.facecropper.FaceActivity;
-import com.ftp.FtpActivity;
 import com.loading.LoadingActivity;
 import com.mediacodec.RenderActivity;
 import com.okhttp.OkhttpActivity;
@@ -119,8 +118,7 @@ public class SettingFragment extends Fragment {
                 break;
 
             case R.id.btn_ftp:
-                Intent intent2 = new Intent(context, FtpActivity.class);
-                startActivity(intent2);
+
                 break;
             case R.id.btn_okhttp:
                 Intent intent6 = new Intent(context, OkhttpActivity.class);

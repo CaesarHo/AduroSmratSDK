@@ -98,7 +98,15 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coming);
+        setContentView(R.layout.activity_main);
+        //当系统版本为4.4或者4.4以上时可以使用沉浸式状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+
         ButterKnife.bind(this);
         initView();
         setListener();
@@ -360,26 +368,33 @@ public class MainActivity extends BaseActivity {
     }
 
     //退出时间
-    private long  currentBackPressedTime= 0;
-    //退出间隔
-    private static final int BACK_PRESSED_INTERVAL= 2000;
-    //重写onBackPressed()方法,继承自退出的方法
+    private long currentBackPressedTime = 0;
+
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (mCoordinatorMenu.isOpened()) {
             mCoordinatorMenu.closeMenu();
+            return false;
         } else {
-            //判断时间间隔
-            if(System.currentTimeMillis()-currentBackPressedTime>BACK_PRESSED_INTERVAL) {
-                currentBackPressedTime= System.currentTimeMillis();
-                Toast.makeText(this,"再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
-            }else{
-                //退出
-                finish();
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if ((System.currentTimeMillis() - currentBackPressedTime) > 2000) {
+                    Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    currentBackPressedTime = System.currentTimeMillis();
+                } else {
+                    finish();
+                    System.exit(0);
+                }
+                return true;
             }
-            super.onBackPressed();
         }
+        return super.onKeyDown(keyCode, event);
     }
+
 
     // 为弹出窗口实现监听类
     private View.OnClickListener itemsOnClick = new View.OnClickListener() {

@@ -16,31 +16,36 @@ import com.adurosmart.widget.ColorPickerView;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> implements Unbinder {
-  protected T target;
+public class ColourMixingActivity_ViewBinding implements Unbinder {
+  private ColourMixingActivity target;
 
-  private View view2131952007;
+  private View view2131361957;
 
-  private View view2131951797;
+  private View view2131362034;
 
-  private View view2131951798;
+  private View view2131361942;
 
-  private View view2131951799;
+  private View view2131361839;
 
-  private View view2131951800;
+  private View view2131362195;
 
-  private View view2131951801;
+  private View view2131361943;
 
-  private View view2131951802;
+  private View view2131361842;
 
   @UiThread
-  public ColourMixingActivity_ViewBinding(final T target, View source) {
+  public ColourMixingActivity_ViewBinding(ColourMixingActivity target) {
+    this(target, target.getWindow().getDecorView());
+  }
+
+  @UiThread
+  public ColourMixingActivity_ViewBinding(final ColourMixingActivity target, View source) {
     this.target = target;
 
     View view;
     view = Utils.findRequiredView(source, R.id.ibtn_left, "field 'imageButton' and method 'onClick'");
     target.imageButton = Utils.castView(view, R.id.ibtn_left, "field 'imageButton'", ImageButton.class);
-    view2131952007 = view;
+    view2131361957 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +57,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     target.color_view = Utils.findRequiredViewAsType(source, R.id.color_view, "field 'color_view'", ColorPickerView.class);
     view = Utils.findRequiredView(source, R.id.red, "field 'red_btn' and method 'onClick'");
     target.red_btn = Utils.castView(view, R.id.red, "field 'red_btn'", Button.class);
-    view2131951797 = view;
+    view2131362034 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +66,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     });
     view = Utils.findRequiredView(source, R.id.green, "field 'green_btn' and method 'onClick'");
     target.green_btn = Utils.castView(view, R.id.green, "field 'green_btn'", Button.class);
-    view2131951798 = view;
+    view2131361942 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +75,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     });
     view = Utils.findRequiredView(source, R.id.blue, "field 'blue_btn' and method 'onClick'");
     target.blue_btn = Utils.castView(view, R.id.blue, "field 'blue_btn'", Button.class);
-    view2131951799 = view;
+    view2131361839 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,7 +84,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     });
     view = Utils.findRequiredView(source, R.id.white, "field 'white_btn' and method 'onClick'");
     target.white_btn = Utils.castView(view, R.id.white, "field 'white_btn'", Button.class);
-    view2131951800 = view;
+    view2131362195 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -88,7 +93,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     });
     view = Utils.findRequiredView(source, R.id.grey, "field 'grey_btn' and method 'onClick'");
     target.grey_btn = Utils.castView(view, R.id.grey, "field 'grey_btn'", Button.class);
-    view2131951801 = view;
+    view2131361943 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -97,7 +102,7 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     });
     view = Utils.findRequiredView(source, R.id.brown, "field 'brown_btn' and method 'onClick'");
     target.brown_btn = Utils.castView(view, R.id.brown, "field 'brown_btn'", Button.class);
-    view2131951802 = view;
+    view2131361842 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -109,8 +114,9 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    ColourMixingActivity target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.imageButton = null;
     target.textView = null;
@@ -123,21 +129,19 @@ public class ColourMixingActivity_ViewBinding<T extends ColourMixingActivity> im
     target.grey_btn = null;
     target.brown_btn = null;
 
-    view2131952007.setOnClickListener(null);
-    view2131952007 = null;
-    view2131951797.setOnClickListener(null);
-    view2131951797 = null;
-    view2131951798.setOnClickListener(null);
-    view2131951798 = null;
-    view2131951799.setOnClickListener(null);
-    view2131951799 = null;
-    view2131951800.setOnClickListener(null);
-    view2131951800 = null;
-    view2131951801.setOnClickListener(null);
-    view2131951801 = null;
-    view2131951802.setOnClickListener(null);
-    view2131951802 = null;
-
-    this.target = null;
+    view2131361957.setOnClickListener(null);
+    view2131361957 = null;
+    view2131362034.setOnClickListener(null);
+    view2131362034 = null;
+    view2131361942.setOnClickListener(null);
+    view2131361942 = null;
+    view2131361839.setOnClickListener(null);
+    view2131361839 = null;
+    view2131362195.setOnClickListener(null);
+    view2131362195 = null;
+    view2131361943.setOnClickListener(null);
+    view2131361943 = null;
+    view2131361842.setOnClickListener(null);
+    view2131361842 = null;
   }
 }

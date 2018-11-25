@@ -18,15 +18,15 @@ import com.adurosmart.widget.CompatSeekBar;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class GroupsFragment_ViewBinding<T extends GroupsFragment> implements Unbinder {
-  protected T target;
+public class GroupsFragment_ViewBinding implements Unbinder {
+  private GroupsFragment target;
 
-  private View view2131951877;
+  private View view2131361821;
 
-  private View view2131951881;
+  private View view2131361949;
 
   @UiThread
-  public GroupsFragment_ViewBinding(final T target, View source) {
+  public GroupsFragment_ViewBinding(final GroupsFragment target, View source) {
     this.target = target;
 
     View view;
@@ -34,7 +34,7 @@ public class GroupsFragment_ViewBinding<T extends GroupsFragment> implements Unb
     target.editTxt = Utils.findRequiredViewAsType(source, R.id.edit_txt, "field 'editTxt'", EditText.class);
     view = Utils.findRequiredView(source, R.id.add_groups, "field 'addGroups' and method 'onClick'");
     target.addGroups = Utils.castView(view, R.id.add_groups, "field 'addGroups'", Button.class);
-    view2131951877 = view;
+    view2131361821 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class GroupsFragment_ViewBinding<T extends GroupsFragment> implements Unb
     target.deviceList = Utils.findRequiredViewAsType(source, R.id.device_list, "field 'deviceList'", ListView.class);
     view = Utils.findRequiredView(source, R.id.group_state, "field 'group_state' and method 'onClick'");
     target.group_state = Utils.castView(view, R.id.group_state, "field 'group_state'", ImageView.class);
-    view2131951881 = view;
+    view2131361949 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -59,8 +59,9 @@ public class GroupsFragment_ViewBinding<T extends GroupsFragment> implements Unb
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    GroupsFragment target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.roomName = null;
     target.editTxt = null;
@@ -71,11 +72,9 @@ public class GroupsFragment_ViewBinding<T extends GroupsFragment> implements Unb
     target.group_state = null;
     target.compatSeekBar = null;
 
-    view2131951877.setOnClickListener(null);
-    view2131951877 = null;
-    view2131951881.setOnClickListener(null);
-    view2131951881 = null;
-
-    this.target = null;
+    view2131361821.setOnClickListener(null);
+    view2131361821 = null;
+    view2131361949.setOnClickListener(null);
+    view2131361949 = null;
   }
 }

@@ -12,29 +12,29 @@ import com.adurosmart.sdk.R;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class SettingFragment_ViewBinding<T extends SettingFragment> implements Unbinder {
-  protected T target;
+public class SettingFragment_ViewBinding implements Unbinder {
+  private SettingFragment target;
 
-  private View view2131951893;
+  private View view2131361844;
 
-  private View view2131951894;
+  private View view2131361850;
 
-  private View view2131951895;
+  private View view2131361853;
 
-  private View view2131951896;
+  private View view2131361855;
 
-  private View view2131951897;
+  private View view2131361900;
 
-  private View view2131951898;
+  private View view2131361848;
 
   @UiThread
-  public SettingFragment_ViewBinding(final T target, View source) {
+  public SettingFragment_ViewBinding(final SettingFragment target, View source) {
     this.target = target;
 
     View view;
     view = Utils.findRequiredView(source, R.id.btn_3d_desktop, "field 'btn3dDesktop' and method 'onClick'");
     target.btn3dDesktop = Utils.castView(view, R.id.btn_3d_desktop, "field 'btn3dDesktop'", Button.class);
-    view2131951893 = view;
+    view2131361844 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,7 +43,7 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.btn_facer, "field 'btn_facer' and method 'onClick'");
     target.btn_facer = Utils.castView(view, R.id.btn_facer, "field 'btn_facer'", Button.class);
-    view2131951894 = view;
+    view2131361850 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.btn_ftp, "field 'btn_ftp' and method 'onClick'");
     target.btn_ftp = Utils.castView(view, R.id.btn_ftp, "field 'btn_ftp'", Button.class);
-    view2131951895 = view;
+    view2131361853 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +61,7 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.btn_okhttp, "field 'btn_scrol' and method 'onClick'");
     target.btn_scrol = Utils.castView(view, R.id.btn_okhttp, "field 'btn_scrol'", Button.class);
-    view2131951896 = view;
+    view2131361855 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +70,7 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.dec_btn, "field 'dec_btn' and method 'onClick'");
     target.dec_btn = Utils.castView(view, R.id.dec_btn, "field 'dec_btn'", Button.class);
-    view2131951897 = view;
+    view2131361900 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,7 +79,7 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.btn_codec, "field 'btn_codec' and method 'onClick'");
     target.btn_codec = Utils.castView(view, R.id.btn_codec, "field 'btn_codec'", Button.class);
-    view2131951898 = view;
+    view2131361848 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -91,8 +91,9 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    SettingFragment target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.btn3dDesktop = null;
     target.btn_facer = null;
@@ -101,19 +102,17 @@ public class SettingFragment_ViewBinding<T extends SettingFragment> implements U
     target.dec_btn = null;
     target.btn_codec = null;
 
-    view2131951893.setOnClickListener(null);
-    view2131951893 = null;
-    view2131951894.setOnClickListener(null);
-    view2131951894 = null;
-    view2131951895.setOnClickListener(null);
-    view2131951895 = null;
-    view2131951896.setOnClickListener(null);
-    view2131951896 = null;
-    view2131951897.setOnClickListener(null);
-    view2131951897 = null;
-    view2131951898.setOnClickListener(null);
-    view2131951898 = null;
-
-    this.target = null;
+    view2131361844.setOnClickListener(null);
+    view2131361844 = null;
+    view2131361850.setOnClickListener(null);
+    view2131361850 = null;
+    view2131361853.setOnClickListener(null);
+    view2131361853 = null;
+    view2131361855.setOnClickListener(null);
+    view2131361855 = null;
+    view2131361900.setOnClickListener(null);
+    view2131361900 = null;
+    view2131361848.setOnClickListener(null);
+    view2131361848 = null;
   }
 }

@@ -17,29 +17,29 @@ import com.adurosmart.sdk.R;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements Unbinder {
-  protected T target;
+public class DevicesFragment_ViewBinding implements Unbinder {
+  private DevicesFragment target;
 
-  private View view2131951867;
+  private View view2131362035;
 
-  private View view2131951864;
+  private View view2131362010;
 
-  private View view2131951866;
+  private View view2131362032;
 
-  private View view2131951865;
+  private View view2131361858;
 
-  private View view2131951868;
+  private View view2131362163;
 
-  private View view2131951869;
+  private View view2131362162;
 
   @UiThread
-  public DevicesFragment_ViewBinding(final T target, View source) {
+  public DevicesFragment_ViewBinding(final DevicesFragment target, View source) {
     this.target = target;
 
     View view;
     view = Utils.findRequiredView(source, R.id.remote_switch, "field 'remoteSwitch' and method 'onClick'");
     target.remoteSwitch = Utils.castView(view, R.id.remote_switch, "field 'remoteSwitch'", SwitchCompat.class);
-    view2131951867 = view;
+    view2131362035 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -48,7 +48,7 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.net_btn, "field 'netBtn' and method 'onClick'");
     target.netBtn = Utils.castView(view, R.id.net_btn, "field 'netBtn'", Button.class);
-    view2131951864 = view;
+    view2131362010 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.read_attribute, "field 'readAttribute' and method 'onClick'");
     target.readAttribute = Utils.castView(view, R.id.read_attribute, "field 'readAttribute'", Button.class);
-    view2131951866 = view;
+    view2131362032 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +70,7 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     target.ip_text = Utils.findRequiredViewAsType(source, R.id.ip_text, "field 'ip_text'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btn_reset, "field 'btn_reset' and method 'onClick'");
     target.btn_reset = Utils.castView(view, R.id.btn_reset, "field 'btn_reset'", Button.class);
-    view2131951865 = view;
+    view2131361858 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,7 +79,7 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.update_info, "field 'update_info' and method 'onClick'");
     target.update_info = Utils.castView(view, R.id.update_info, "field 'update_info'", Button.class);
-    view2131951868 = view;
+    view2131362163 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -88,7 +88,7 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     });
     view = Utils.findRequiredView(source, R.id.update_btn, "field 'update_btn' and method 'onClick'");
     target.update_btn = Utils.castView(view, R.id.update_btn, "field 'update_btn'", Button.class);
-    view2131951869 = view;
+    view2131362162 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -100,8 +100,9 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    DevicesFragment target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.remoteSwitch = null;
     target.netBtn = null;
@@ -114,19 +115,17 @@ public class DevicesFragment_ViewBinding<T extends DevicesFragment> implements U
     target.update_info = null;
     target.update_btn = null;
 
-    view2131951867.setOnClickListener(null);
-    view2131951867 = null;
-    view2131951864.setOnClickListener(null);
-    view2131951864 = null;
-    view2131951866.setOnClickListener(null);
-    view2131951866 = null;
-    view2131951865.setOnClickListener(null);
-    view2131951865 = null;
-    view2131951868.setOnClickListener(null);
-    view2131951868 = null;
-    view2131951869.setOnClickListener(null);
-    view2131951869 = null;
-
-    this.target = null;
+    view2131362035.setOnClickListener(null);
+    view2131362035 = null;
+    view2131362010.setOnClickListener(null);
+    view2131362010 = null;
+    view2131362032.setOnClickListener(null);
+    view2131362032 = null;
+    view2131361858.setOnClickListener(null);
+    view2131361858 = null;
+    view2131362163.setOnClickListener(null);
+    view2131362163 = null;
+    view2131362162.setOnClickListener(null);
+    view2131362162 = null;
   }
 }

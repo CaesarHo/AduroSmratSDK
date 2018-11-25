@@ -15,20 +15,20 @@ import com.adurosmart.sdk.R;
 import java.lang.IllegalStateException;
 import java.lang.Override;
 
-public class ScenesFragment_ViewBinding<T extends ScenesFragment> implements Unbinder {
-  protected T target;
+public class ScenesFragment_ViewBinding implements Unbinder {
+  private ScenesFragment target;
 
-  private View view2131951889;
+  private View view2131361822;
 
   @UiThread
-  public ScenesFragment_ViewBinding(final T target, View source) {
+  public ScenesFragment_ViewBinding(final ScenesFragment target, View source) {
     this.target = target;
 
     View view;
     target.editTxt = Utils.findRequiredViewAsType(source, R.id.edit_txt, "field 'editTxt'", EditText.class);
     view = Utils.findRequiredView(source, R.id.add_scenes, "field 'addScenes' and method 'onClick'");
     target.addScenes = Utils.castView(view, R.id.add_scenes, "field 'addScenes'", Button.class);
-    view2131951889 = view;
+    view2131361822 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,8 +43,9 @@ public class ScenesFragment_ViewBinding<T extends ScenesFragment> implements Unb
   @Override
   @CallSuper
   public void unbind() {
-    T target = this.target;
+    ScenesFragment target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
 
     target.editTxt = null;
     target.addScenes = null;
@@ -52,9 +53,7 @@ public class ScenesFragment_ViewBinding<T extends ScenesFragment> implements Unb
     target.srl = null;
     target.groupList = null;
 
-    view2131951889.setOnClickListener(null);
-    view2131951889 = null;
-
-    this.target = null;
+    view2131361822.setOnClickListener(null);
+    view2131361822 = null;
   }
 }

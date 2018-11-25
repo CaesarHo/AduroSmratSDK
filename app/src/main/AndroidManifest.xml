@@ -27,7 +27,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/SmartHome">
-        <activity android:name="com.adurosmart.activitys.MainActivity">
+        <activity
+            android:name="com.adurosmart.activitys.MainActivity"
+            android:label="@string/add_task"
+            android:theme="@style/SmartHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,7 +52,7 @@
         <!-- demo -->
         <activity android:name="com.loading.LoadingActivity" />
         <activity android:name="com.facecropper.FaceActivity" />
-        <activity android:name="com.ftp.FtpActivity" />
+
         <activity
             android:name="com.ceiling.ComingActivity"
             android:label="@string/title_activity_navigation_drawer"

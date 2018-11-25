@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaCodec;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextPaint;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -18,7 +19,7 @@ import java.nio.ByteBuffer;
 /**
  * Created by vladlichonos on 6/5/15.
  */
-public class RenderActivity extends Activity implements SurfaceHolder.Callback {
+public class RenderActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     // video output dimension
     static final int OUTPUT_WIDTH = 640;
@@ -52,6 +53,13 @@ public class RenderActivity extends Activity implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        mEncoder.stop();
+        mDecoder.stop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         mEncoder.stop();
         mDecoder.stop();
     }

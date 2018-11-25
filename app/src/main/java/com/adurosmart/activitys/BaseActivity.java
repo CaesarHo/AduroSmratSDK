@@ -2,6 +2,7 @@ package com.adurosmart.activitys;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,12 @@ import android.widget.FrameLayout;
 
 import com.adurosmart.util.ScreenUtils;
 
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
  * Created by best on 2016/11/9.
  */
 
-public abstract class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

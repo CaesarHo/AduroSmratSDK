@@ -3,6 +3,7 @@ package com.mediacodec;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.Build;
+import android.util.Log;
 import android.view.Surface;
 
 import java.io.IOException;
@@ -119,10 +120,15 @@ public class VideoDecoder implements VideoCodec {
                     }
                 }
             } finally {
-                if (mConfigured) {
-                    mCodec.stop();
-                    mCodec.release();
+                try {
+                    if (mConfigured) {
+                        mCodec.stop();
+                        mCodec.release();
+                    }
+                }catch (MediaCodec.CodecException e){
+                    Log.d("CodecException",e.getMessage());
                 }
+
             }
         }
     }

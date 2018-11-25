@@ -1,7 +1,0 @@
-#Sun Oct 29 20:58:22 CST 2017
-base.0=/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/transforms/dex/aduro/debug/folders/1000/10000/instant-run_d534b79ee569a2d5cf7e1a7a2af54bfc2e476e83
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/transforms/dex/aduro/debug/folders/1000/10000/instant-run-bootstrap_b566bc450586ff82a8139b8af42cc0c4b8088b1e/classes.dex
-base.1=/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/transforms/dex/aduro/debug/folders/1000/10000/instant-run-bootstrap_b566bc450586ff82a8139b8af42cc0c4b8088b1e
-file.0=/Users/wade/Desktop/StudioWork/AduroSmratSDK/app/build/intermediates/transforms/dex/aduro/debug/folders/1000/10000/instant-run_d534b79ee569a2d5cf7e1a7a2af54bfc2e476e83/classes.dex
